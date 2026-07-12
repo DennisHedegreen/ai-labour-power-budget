@@ -3,13 +3,14 @@
   "live_import_authorized": false,
   "offline_validator": "pass",
   "eu27": {
-    "status": "blocked",
-    "reason": "direct Eurostat nrg_cb_e FC GWH 2023 comparison mismatched all 27 candidate records",
+    "status": "source_value_check_passed_candidate_not_promoted",
+    "reason": "direct Eurostat nrg_cb_e FC E7000 GWH 2023 extraction refreshed all 27 candidate records",
     "direct_query": "nrg_cb_e?freq=A&nrg_bal=FC&siec=E7000&unit=GWH&time=2023",
     "records_compared": 27,
     "missing": 0,
-    "mismatches": 27,
-    "max_abs_diff_twh": 19.911
+    "mismatches": 0,
+    "max_abs_diff_twh": 0,
+    "metric_boundary": "Eurostat final consumption of electricity; annual energy denominator, not power capacity"
   },
   "us_national": {
     "status": "source_value_check_passed_candidate_not_promoted",
@@ -29,6 +30,6 @@
     "do not import live data yet",
     "decide source-specific denominator labels",
     "build adapter for reviewed datasets",
-    "redo or resolve EU27 source definition"
+    "review and explicitly authorize promotion before runtime import"
   ]
 }

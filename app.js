@@ -149,10 +149,14 @@
           return `<span class="rack-slot is-empty" aria-hidden="true"></span>`;
         }
         const hasData = countryByCode.has(code);
-        const classes = ["rack-slot", hasData ? "has-data" : ""].filter(Boolean).join(" ");
+        const classes = [
+          "rack-slot",
+          hasData ? "has-data" : "",
+          activeGroup.id === "us" && code === "US" ? "is-national" : "",
+        ].filter(Boolean).join(" ");
         const disabled = hasData ? "" : "disabled";
         return `<button type="button" class="${classes}" data-country-code="${escapeHtml(code)}" ${disabled} aria-label="${escapeAttribute(name)}">
-          <span>${escapeHtml(code)}</span>
+          <span>${escapeHtml(rackDisplayCode(code))}</span>
           <small aria-hidden="true"></small>
         </button>`;
       })
@@ -198,6 +202,13 @@
     const country = activeCountryByCode().get(code);
     if (state.languageMode === "local" && country?.local_name) return country.local_name;
     return fallbackName;
+  }
+
+  function rackDisplayCode(code) {
+    if (activeJurisdictionGroup()?.id === "us" && /^US-[A-Z]{2}$/.test(code)) {
+      return code.slice(3);
+    }
+    return code;
   }
 
   function updateLanguageControl() {
@@ -513,7 +524,7 @@
 
   function allocationSentenceTemplate() {
     const group = activeJurisdictionGroup();
-    if (group?.id && group.id !== "eu" && group.scenario_sentence_template) {
+    if (group?.id && group.scenario_sentence_template) {
       return group.scenario_sentence_template;
     }
     return activeCopy().allocationSentenceTemplate;
@@ -521,7 +532,7 @@
 
   function allocationLabelTemplate() {
     const group = activeJurisdictionGroup();
-    if (group?.id && group.id !== "eu" && group.allocation_label_template) {
+    if (group?.id && group.allocation_label_template) {
       return group.allocation_label_template;
     }
     return activeCopy().allocationLabelTemplate;

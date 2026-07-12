@@ -3,6 +3,12 @@
 Date: 2026-07-12
 Reviewer: Codex local source pass
 
+Supersession note: later on 2026-07-12 the EU27 candidate file was refreshed
+directly from the Eurostat API and the gate moved to
+`source_value_check_passed_candidate_not_promoted`. Keep this file as audit
+history; use `data/source-candidates/promotion-gate-summary.json` for current
+status.
+
 ## Result
 
 Do not import the candidate source data into the live prototype yet.
@@ -141,4 +147,3 @@ Recommended next step:
    `data/countries.json` directly.
 4. Rework the EU extraction around `nrg_cb_e/FC` or explicitly choose another
    Eurostat definition and document the difference.
-

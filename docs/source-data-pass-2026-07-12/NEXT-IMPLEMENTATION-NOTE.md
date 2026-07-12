@@ -2,6 +2,12 @@
 
 Date: 2026-07-12
 
+Supersession note: later on 2026-07-12 the EU27 candidate file was refreshed
+directly from the Eurostat API and the gate moved to
+`source_value_check_passed_candidate_not_promoted`. Keep the original blocked
+language below as handoff history; use `data/source-candidates/promotion-gate-summary.json`
+for current status.
+
 ## Current State
 
 The source-data handoff is now preserved inside the prototype as a review-only

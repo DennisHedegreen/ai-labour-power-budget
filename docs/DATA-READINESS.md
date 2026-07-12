@@ -39,13 +39,14 @@ verified runtime data.
 
 ### EU27
 
-Status: blocked.
+Status: source value checked, candidate not promoted.
 
 Reason:
 
-Direct Eurostat comparison mismatched all 27 candidate country records. The
-current EU candidate must not be promoted until the Eurostat source definition
-and extraction path are resolved.
+The candidate uses Eurostat `nrg_cb_e` annual final consumption (`FC`) of
+electricity (`E7000`) in GWh for 2023, converted to TWh/year. It is an official
+source extraction, but it remains candidate data until the promotion gate is
+explicitly opened.
 
 ### United States National
 
@@ -68,15 +69,16 @@ support source review, but not runtime import yet.
 
 ## Jurisdiction Mode Status
 
-- EU: selectable demo records only; unresolved EU27 source gate.
+- EU: selectable `source_candidate` records from Eurostat final-consumption
+  candidate files; not verified promoted runtime data.
 - USA: selectable `source_candidate` records from EIA retail-sales candidate
   files; not verified primary-source runtime data.
 - World: placeholder mode only; no source definition selected.
 
 ## Required Before Promotion
 
-1. Resolve EU27 against an official Eurostat extraction that matches the chosen
-   denominator.
+1. Review whether the EU27 Eurostat final-consumption denominator is the right
+   denominator before promotion.
 2. Decide whether the US metric remains "annual retail electricity sales" or is
    redesigned to include direct use.
 3. Add a promotion adapter that refuses to write runtime data unless the source

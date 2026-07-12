@@ -94,9 +94,9 @@ function buildStatus() {
       runtime_ready: false,
       source_candidates_ready_for_runtime: false,
       reason:
-        "Runtime import is not authorized. EU27 is blocked; US records remain source candidates with a retail-sales denominator.",
+        "Runtime import is not authorized. EU27 and US records are source-value checked candidates, but neither source is promoted runtime data.",
       next_required_actions: [
-        "Resolve the EU27 source definition against an official Eurostat extraction.",
+        "Review the Eurostat final-consumption denominator before promoting EU27.",
         "Decide whether the US denominator remains retail electricity sales or is redesigned to include direct use.",
         "Build a promotion adapter that refuses runtime output unless the gate is explicitly authorized.",
         "Update public copy to use source-specific denominator labels before any promotion.",
@@ -111,7 +111,11 @@ function assertStatus(status) {
   assert.strictEqual(status.runtime_data.ready_for_public_claims, false, "runtime data cannot be public-claim-ready");
 
   const byId = Object.fromEntries(status.candidates.map((candidate) => [candidate.dataset_id, candidate]));
-  assert.strictEqual(byId["eu27-electricity-use"].gate_status, "blocked", "EU27 gate must remain blocked");
+  assert.strictEqual(
+    byId["eu27-electricity-use"].gate_status,
+    "source_value_check_passed_candidate_not_promoted",
+    "EU27 gate must remain candidate-not-promoted"
+  );
   assert.strictEqual(
     byId["us-national-electricity-use"].gate_status,
     "source_value_check_passed_candidate_not_promoted",

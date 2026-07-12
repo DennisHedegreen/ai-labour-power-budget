@@ -9,7 +9,7 @@ Status: current.
 
 - Static local app works without backend.
 - Runtime country data remains demo-labelled.
-- Source-candidate layer exists and is blocked from runtime import.
+- Source-candidate layer exists and is blocked from promoted runtime import.
 - UI copy is JSON-backed.
 - 24 language files exist for review.
 - Local checks pass through `npm run check`.
@@ -18,7 +18,7 @@ Status: current.
 
 Required before real country data becomes runtime data:
 
-- Resolve the EU27 source definition and rebuild the Eurostat extraction.
+- Review the EU27 Eurostat final-consumption denominator before promotion.
 - Decide whether U.S. mode uses EIA retail sales or a redesigned metric that
   includes direct use.
 - Add an import adapter that refuses to emit runtime data unless the source gate
@@ -45,4 +45,3 @@ Required before real country data becomes runtime data:
 - Re-run language review for final semantic wording.
 - Re-test embedded TID shell presentation.
 - Keep 100% allocation visibly marked as a thought experiment.
-

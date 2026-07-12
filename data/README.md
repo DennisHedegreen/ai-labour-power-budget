@@ -52,7 +52,8 @@ reviewed and promoted.
 
 Current source definitions:
 
-- EU27 candidate: annual final electricity consumption. Status: blocked.
+- EU27 candidate: Eurostat annual final electricity consumption. Status:
+  source-value checked, not promoted.
 - U.S. candidate: EIA retail sales to ultimate customers. Status:
   source-value checked, not promoted. This excludes direct use.
 

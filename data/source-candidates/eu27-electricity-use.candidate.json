@@ -2,9 +2,10 @@
   "dataset_id": "eu27-electricity-use",
   "status": "source_candidate",
   "created_at": "2026-07-12",
-  "definition": "annual final consumption of electricity for energy use",
+  "updated_at": "2026-07-12",
+  "definition": "annual final consumption of electricity",
   "unit": "TWh/year",
-  "source_method_note": "Eurostat simplified energy balance, annual final consumption - energy use, electricity, 2023. The available commit-pinned raw transport export is in ktoe. Eurostat's official conversion factor is applied: 1 ktoe = 11.63 GWh = 0.01163 TWh. Record values are rounded to the nearest 0.001 TWh. This remains a source candidate until refreshed against the current official Eurostat API.",
+  "source_method_note": "Eurostat nrg_cb_e, annual final consumption (FC), electricity (E7000), GWh, 2023. Official GWh values are divided by 1,000 for TWh/year. Greece uses Eurostat geo code EL and UI code GR.",
   "records": [
     {
       "code": "AT",
@@ -16,24 +17,23 @@
       "jurisdiction_type": "country",
       "parent": "EU",
       "population": null,
-      "annual_electricity_twh": 61.857,
+      "annual_electricity_twh": 64.477,
       "electricity_per_capita_kwh_year": null,
       "source_name": "Eurostat",
-      "source_dataset": "Simplified energy balance (nrg_bal_s)",
-      "source_series": "Annual / Final consumption - energy use (FC_E) / Electricity (E7000) / ktoe / 2023",
-      "source_url": "https://ec.europa.eu/eurostat/databrowser/view/nrg_bal_s/default/table?lang=en",
+      "source_dataset": "Supply, transformation and consumption of electricity (nrg_cb_e)",
+      "source_series": "Annual / Final consumption (FC) / Electricity (E7000) / GWh / 2023",
+      "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/nrg_cb_e?format=JSON&freq=A&nrg_bal=FC&siec=E7000&unit=GWH&time=2023",
       "source_year": "2023",
       "source_retrieved_at": "2026-07-12",
       "source_status": "source_candidate",
-      "definition": "annual final consumption of electricity for energy use",
-      "unit_original": "thousand tonnes of oil equivalent (ktoe)",
-      "conversion_note": "Eurostat conversion: 1 ktoe = 11.63 GWh = 0.01163 TWh. Output rounded to 0.001 TWh.",
+      "definition": "annual final consumption of electricity",
+      "unit_original": "gigawatt-hour",
+      "conversion_note": "Official Eurostat GWh value divided by 1,000 to obtain TWh/year.",
       "review_flags": [
-        "official_api_refresh_required",
-        "commit_pinned_transport_mirror",
-        "cross_source_definition_not_identical"
+        "eurostat_direct_api_value_checked",
+        "source_candidate_not_promoted"
       ],
-      "notes": "Candidate derived from a commit-pinned transport copy of Eurostat nrg_bal_s. Do not promote until every 2023 country value is cross-checked against the current official Eurostat nrg_cb_e query for FC_E / E7000 / GWH. The ktoe-to-TWh conversion is official and validated; the unresolved issue is source freshness and direct API provenance."
+      "notes": "Candidate derived directly from Eurostat nrg_cb_e. Energy balance FC is Eurostat final consumption. Greece is queried as Eurostat geo EL and exposed in the UI as GR. Do not promote until the runtime import gate explicitly authorizes promotion."
     },
     {
       "code": "BE",
@@ -45,25 +45,23 @@
       "jurisdiction_type": "country",
       "parent": "EU",
       "population": null,
-      "annual_electricity_twh": 73.94,
+      "annual_electricity_twh": 75.63,
       "electricity_per_capita_kwh_year": null,
       "source_name": "Eurostat",
-      "source_dataset": "Simplified energy balance (nrg_bal_s)",
-      "source_series": "Annual / Final consumption - energy use (FC_E) / Electricity (E7000) / ktoe / 2023",
-      "source_url": "https://ec.europa.eu/eurostat/databrowser/view/nrg_bal_s/default/table?lang=en",
+      "source_dataset": "Supply, transformation and consumption of electricity (nrg_cb_e)",
+      "source_series": "Annual / Final consumption (FC) / Electricity (E7000) / GWh / 2023",
+      "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/nrg_cb_e?format=JSON&freq=A&nrg_bal=FC&siec=E7000&unit=GWH&time=2023",
       "source_year": "2023",
       "source_retrieved_at": "2026-07-12",
       "source_status": "source_candidate",
-      "definition": "annual final consumption of electricity for energy use",
-      "unit_original": "thousand tonnes of oil equivalent (ktoe)",
-      "conversion_note": "Eurostat conversion: 1 ktoe = 11.63 GWh = 0.01163 TWh. Output rounded to 0.001 TWh.",
+      "definition": "annual final consumption of electricity",
+      "unit_original": "gigawatt-hour",
+      "conversion_note": "Official Eurostat GWh value divided by 1,000 to obtain TWh/year.",
       "review_flags": [
-        "official_api_refresh_required",
-        "commit_pinned_transport_mirror",
-        "cross_source_definition_not_identical",
-        "local_language_is_ui_default_not_only_official_language"
+        "eurostat_direct_api_value_checked",
+        "source_candidate_not_promoted"
       ],
-      "notes": "Candidate derived from a commit-pinned transport copy of Eurostat nrg_bal_s. Do not promote until every 2023 country value is cross-checked against the current official Eurostat nrg_cb_e query for FC_E / E7000 / GWH. The ktoe-to-TWh conversion is official and validated; the unresolved issue is source freshness and direct API provenance."
+      "notes": "Candidate derived directly from Eurostat nrg_cb_e. Energy balance FC is Eurostat final consumption. Greece is queried as Eurostat geo EL and exposed in the UI as GR. Do not promote until the runtime import gate explicitly authorizes promotion."
     },
     {
       "code": "BG",
@@ -75,24 +73,23 @@
       "jurisdiction_type": "country",
       "parent": "EU",
       "population": null,
-      "annual_electricity_twh": 30.335,
+      "annual_electricity_twh": 31.534,
       "electricity_per_capita_kwh_year": null,
       "source_name": "Eurostat",
-      "source_dataset": "Simplified energy balance (nrg_bal_s)",
-      "source_series": "Annual / Final consumption - energy use (FC_E) / Electricity (E7000) / ktoe / 2023",
-      "source_url": "https://ec.europa.eu/eurostat/databrowser/view/nrg_bal_s/default/table?lang=en",
+      "source_dataset": "Supply, transformation and consumption of electricity (nrg_cb_e)",
+      "source_series": "Annual / Final consumption (FC) / Electricity (E7000) / GWh / 2023",
+      "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/nrg_cb_e?format=JSON&freq=A&nrg_bal=FC&siec=E7000&unit=GWH&time=2023",
       "source_year": "2023",
       "source_retrieved_at": "2026-07-12",
       "source_status": "source_candidate",
-      "definition": "annual final consumption of electricity for energy use",
-      "unit_original": "thousand tonnes of oil equivalent (ktoe)",
-      "conversion_note": "Eurostat conversion: 1 ktoe = 11.63 GWh = 0.01163 TWh. Output rounded to 0.001 TWh.",
+      "definition": "annual final consumption of electricity",
+      "unit_original": "gigawatt-hour",
+      "conversion_note": "Official Eurostat GWh value divided by 1,000 to obtain TWh/year.",
       "review_flags": [
-        "official_api_refresh_required",
-        "commit_pinned_transport_mirror",
-        "cross_source_definition_not_identical"
+        "eurostat_direct_api_value_checked",
+        "source_candidate_not_promoted"
       ],
-      "notes": "Candidate derived from a commit-pinned transport copy of Eurostat nrg_bal_s. Do not promote until every 2023 country value is cross-checked against the current official Eurostat nrg_cb_e query for FC_E / E7000 / GWH. The ktoe-to-TWh conversion is official and validated; the unresolved issue is source freshness and direct API provenance."
+      "notes": "Candidate derived directly from Eurostat nrg_cb_e. Energy balance FC is Eurostat final consumption. Greece is queried as Eurostat geo EL and exposed in the UI as GR. Do not promote until the runtime import gate explicitly authorizes promotion."
     },
     {
       "code": "HR",
@@ -104,24 +101,23 @@
       "jurisdiction_type": "country",
       "parent": "EU",
       "population": null,
-      "annual_electricity_twh": 16.314,
+      "annual_electricity_twh": 16.643,
       "electricity_per_capita_kwh_year": null,
       "source_name": "Eurostat",
-      "source_dataset": "Simplified energy balance (nrg_bal_s)",
-      "source_series": "Annual / Final consumption - energy use (FC_E) / Electricity (E7000) / ktoe / 2023",
-      "source_url": "https://ec.europa.eu/eurostat/databrowser/view/nrg_bal_s/default/table?lang=en",
+      "source_dataset": "Supply, transformation and consumption of electricity (nrg_cb_e)",
+      "source_series": "Annual / Final consumption (FC) / Electricity (E7000) / GWh / 2023",
+      "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/nrg_cb_e?format=JSON&freq=A&nrg_bal=FC&siec=E7000&unit=GWH&time=2023",
       "source_year": "2023",
       "source_retrieved_at": "2026-07-12",
       "source_status": "source_candidate",
-      "definition": "annual final consumption of electricity for energy use",
-      "unit_original": "thousand tonnes of oil equivalent (ktoe)",
-      "conversion_note": "Eurostat conversion: 1 ktoe = 11.63 GWh = 0.01163 TWh. Output rounded to 0.001 TWh.",
+      "definition": "annual final consumption of electricity",
+      "unit_original": "gigawatt-hour",
+      "conversion_note": "Official Eurostat GWh value divided by 1,000 to obtain TWh/year.",
       "review_flags": [
-        "official_api_refresh_required",
-        "commit_pinned_transport_mirror",
-        "cross_source_definition_not_identical"
+        "eurostat_direct_api_value_checked",
+        "source_candidate_not_promoted"
       ],
-      "notes": "Candidate derived from a commit-pinned transport copy of Eurostat nrg_bal_s. Do not promote until every 2023 country value is cross-checked against the current official Eurostat nrg_cb_e query for FC_E / E7000 / GWH. The ktoe-to-TWh conversion is official and validated; the unresolved issue is source freshness and direct API provenance."
+      "notes": "Candidate derived directly from Eurostat nrg_cb_e. Energy balance FC is Eurostat final consumption. Greece is queried as Eurostat geo EL and exposed in the UI as GR. Do not promote until the runtime import gate explicitly authorizes promotion."
     },
     {
       "code": "CY",
@@ -133,24 +129,23 @@
       "jurisdiction_type": "country",
       "parent": "EU",
       "population": null,
-      "annual_electricity_twh": 4.902,
+      "annual_electricity_twh": 4.907,
       "electricity_per_capita_kwh_year": null,
       "source_name": "Eurostat",
-      "source_dataset": "Simplified energy balance (nrg_bal_s)",
-      "source_series": "Annual / Final consumption - energy use (FC_E) / Electricity (E7000) / ktoe / 2023",
-      "source_url": "https://ec.europa.eu/eurostat/databrowser/view/nrg_bal_s/default/table?lang=en",
+      "source_dataset": "Supply, transformation and consumption of electricity (nrg_cb_e)",
+      "source_series": "Annual / Final consumption (FC) / Electricity (E7000) / GWh / 2023",
+      "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/nrg_cb_e?format=JSON&freq=A&nrg_bal=FC&siec=E7000&unit=GWH&time=2023",
       "source_year": "2023",
       "source_retrieved_at": "2026-07-12",
       "source_status": "source_candidate",
-      "definition": "annual final consumption of electricity for energy use",
-      "unit_original": "thousand tonnes of oil equivalent (ktoe)",
-      "conversion_note": "Eurostat conversion: 1 ktoe = 11.63 GWh = 0.01163 TWh. Output rounded to 0.001 TWh.",
+      "definition": "annual final consumption of electricity",
+      "unit_original": "gigawatt-hour",
+      "conversion_note": "Official Eurostat GWh value divided by 1,000 to obtain TWh/year.",
       "review_flags": [
-        "official_api_refresh_required",
-        "commit_pinned_transport_mirror",
-        "cross_source_definition_not_identical"
+        "eurostat_direct_api_value_checked",
+        "source_candidate_not_promoted"
       ],
-      "notes": "Candidate derived from a commit-pinned transport copy of Eurostat nrg_bal_s. Do not promote until every 2023 country value is cross-checked against the current official Eurostat nrg_cb_e query for FC_E / E7000 / GWH. The ktoe-to-TWh conversion is official and validated; the unresolved issue is source freshness and direct API provenance."
+      "notes": "Candidate derived directly from Eurostat nrg_cb_e. Energy balance FC is Eurostat final consumption. Greece is queried as Eurostat geo EL and exposed in the UI as GR. Do not promote until the runtime import gate explicitly authorizes promotion."
     },
     {
       "code": "CZ",
@@ -162,24 +157,23 @@
       "jurisdiction_type": "country",
       "parent": "EU",
       "population": null,
-      "annual_electricity_twh": 55.655,
+      "annual_electricity_twh": 56.85,
       "electricity_per_capita_kwh_year": null,
       "source_name": "Eurostat",
-      "source_dataset": "Simplified energy balance (nrg_bal_s)",
-      "source_series": "Annual / Final consumption - energy use (FC_E) / Electricity (E7000) / ktoe / 2023",
-      "source_url": "https://ec.europa.eu/eurostat/databrowser/view/nrg_bal_s/default/table?lang=en",
+      "source_dataset": "Supply, transformation and consumption of electricity (nrg_cb_e)",
+      "source_series": "Annual / Final consumption (FC) / Electricity (E7000) / GWh / 2023",
+      "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/nrg_cb_e?format=JSON&freq=A&nrg_bal=FC&siec=E7000&unit=GWH&time=2023",
       "source_year": "2023",
       "source_retrieved_at": "2026-07-12",
       "source_status": "source_candidate",
-      "definition": "annual final consumption of electricity for energy use",
-      "unit_original": "thousand tonnes of oil equivalent (ktoe)",
-      "conversion_note": "Eurostat conversion: 1 ktoe = 11.63 GWh = 0.01163 TWh. Output rounded to 0.001 TWh.",
+      "definition": "annual final consumption of electricity",
+      "unit_original": "gigawatt-hour",
+      "conversion_note": "Official Eurostat GWh value divided by 1,000 to obtain TWh/year.",
       "review_flags": [
-        "official_api_refresh_required",
-        "commit_pinned_transport_mirror",
-        "cross_source_definition_not_identical"
+        "eurostat_direct_api_value_checked",
+        "source_candidate_not_promoted"
       ],
-      "notes": "Candidate derived from a commit-pinned transport copy of Eurostat nrg_bal_s. Do not promote until every 2023 country value is cross-checked against the current official Eurostat nrg_cb_e query for FC_E / E7000 / GWH. The ktoe-to-TWh conversion is official and validated; the unresolved issue is source freshness and direct API provenance."
+      "notes": "Candidate derived directly from Eurostat nrg_cb_e. Energy balance FC is Eurostat final consumption. Greece is queried as Eurostat geo EL and exposed in the UI as GR. Do not promote until the runtime import gate explicitly authorizes promotion."
     },
     {
       "code": "DK",
@@ -191,24 +185,23 @@
       "jurisdiction_type": "country",
       "parent": "EU",
       "population": null,
-      "annual_electricity_twh": 30.413,
+      "annual_electricity_twh": 31.651,
       "electricity_per_capita_kwh_year": null,
       "source_name": "Eurostat",
-      "source_dataset": "Simplified energy balance (nrg_bal_s)",
-      "source_series": "Annual / Final consumption - energy use (FC_E) / Electricity (E7000) / ktoe / 2023",
-      "source_url": "https://ec.europa.eu/eurostat/databrowser/view/nrg_bal_s/default/table?lang=en",
+      "source_dataset": "Supply, transformation and consumption of electricity (nrg_cb_e)",
+      "source_series": "Annual / Final consumption (FC) / Electricity (E7000) / GWh / 2023",
+      "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/nrg_cb_e?format=JSON&freq=A&nrg_bal=FC&siec=E7000&unit=GWH&time=2023",
       "source_year": "2023",
       "source_retrieved_at": "2026-07-12",
       "source_status": "source_candidate",
-      "definition": "annual final consumption of electricity for energy use",
-      "unit_original": "thousand tonnes of oil equivalent (ktoe)",
-      "conversion_note": "Eurostat conversion: 1 ktoe = 11.63 GWh = 0.01163 TWh. Output rounded to 0.001 TWh.",
+      "definition": "annual final consumption of electricity",
+      "unit_original": "gigawatt-hour",
+      "conversion_note": "Official Eurostat GWh value divided by 1,000 to obtain TWh/year.",
       "review_flags": [
-        "official_api_refresh_required",
-        "commit_pinned_transport_mirror",
-        "cross_source_definition_not_identical"
+        "eurostat_direct_api_value_checked",
+        "source_candidate_not_promoted"
       ],
-      "notes": "Candidate derived from a commit-pinned transport copy of Eurostat nrg_bal_s. Do not promote until every 2023 country value is cross-checked against the current official Eurostat nrg_cb_e query for FC_E / E7000 / GWH. The ktoe-to-TWh conversion is official and validated; the unresolved issue is source freshness and direct API provenance."
+      "notes": "Candidate derived directly from Eurostat nrg_cb_e. Energy balance FC is Eurostat final consumption. Greece is queried as Eurostat geo EL and exposed in the UI as GR. Do not promote until the runtime import gate explicitly authorizes promotion."
     },
     {
       "code": "EE",
@@ -220,24 +213,23 @@
       "jurisdiction_type": "country",
       "parent": "EU",
       "population": null,
-      "annual_electricity_twh": 6.002,
+      "annual_electricity_twh": 6.249,
       "electricity_per_capita_kwh_year": null,
       "source_name": "Eurostat",
-      "source_dataset": "Simplified energy balance (nrg_bal_s)",
-      "source_series": "Annual / Final consumption - energy use (FC_E) / Electricity (E7000) / ktoe / 2023",
-      "source_url": "https://ec.europa.eu/eurostat/databrowser/view/nrg_bal_s/default/table?lang=en",
+      "source_dataset": "Supply, transformation and consumption of electricity (nrg_cb_e)",
+      "source_series": "Annual / Final consumption (FC) / Electricity (E7000) / GWh / 2023",
+      "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/nrg_cb_e?format=JSON&freq=A&nrg_bal=FC&siec=E7000&unit=GWH&time=2023",
       "source_year": "2023",
       "source_retrieved_at": "2026-07-12",
       "source_status": "source_candidate",
-      "definition": "annual final consumption of electricity for energy use",
-      "unit_original": "thousand tonnes of oil equivalent (ktoe)",
-      "conversion_note": "Eurostat conversion: 1 ktoe = 11.63 GWh = 0.01163 TWh. Output rounded to 0.001 TWh.",
+      "definition": "annual final consumption of electricity",
+      "unit_original": "gigawatt-hour",
+      "conversion_note": "Official Eurostat GWh value divided by 1,000 to obtain TWh/year.",
       "review_flags": [
-        "official_api_refresh_required",
-        "commit_pinned_transport_mirror",
-        "cross_source_definition_not_identical"
+        "eurostat_direct_api_value_checked",
+        "source_candidate_not_promoted"
       ],
-      "notes": "Candidate derived from a commit-pinned transport copy of Eurostat nrg_bal_s. Do not promote until every 2023 country value is cross-checked against the current official Eurostat nrg_cb_e query for FC_E / E7000 / GWH. The ktoe-to-TWh conversion is official and validated; the unresolved issue is source freshness and direct API provenance."
+      "notes": "Candidate derived directly from Eurostat nrg_cb_e. Energy balance FC is Eurostat final consumption. Greece is queried as Eurostat geo EL and exposed in the UI as GR. Do not promote until the runtime import gate explicitly authorizes promotion."
     },
     {
       "code": "FI",
@@ -249,24 +241,23 @@
       "jurisdiction_type": "country",
       "parent": "EU",
       "population": null,
-      "annual_electricity_twh": 74.156,
+      "annual_electricity_twh": 75.529,
       "electricity_per_capita_kwh_year": null,
       "source_name": "Eurostat",
-      "source_dataset": "Simplified energy balance (nrg_bal_s)",
-      "source_series": "Annual / Final consumption - energy use (FC_E) / Electricity (E7000) / ktoe / 2023",
-      "source_url": "https://ec.europa.eu/eurostat/databrowser/view/nrg_bal_s/default/table?lang=en",
+      "source_dataset": "Supply, transformation and consumption of electricity (nrg_cb_e)",
+      "source_series": "Annual / Final consumption (FC) / Electricity (E7000) / GWh / 2023",
+      "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/nrg_cb_e?format=JSON&freq=A&nrg_bal=FC&siec=E7000&unit=GWH&time=2023",
       "source_year": "2023",
       "source_retrieved_at": "2026-07-12",
       "source_status": "source_candidate",
-      "definition": "annual final consumption of electricity for energy use",
-      "unit_original": "thousand tonnes of oil equivalent (ktoe)",
-      "conversion_note": "Eurostat conversion: 1 ktoe = 11.63 GWh = 0.01163 TWh. Output rounded to 0.001 TWh.",
+      "definition": "annual final consumption of electricity",
+      "unit_original": "gigawatt-hour",
+      "conversion_note": "Official Eurostat GWh value divided by 1,000 to obtain TWh/year.",
       "review_flags": [
-        "official_api_refresh_required",
-        "commit_pinned_transport_mirror",
-        "cross_source_definition_not_identical"
+        "eurostat_direct_api_value_checked",
+        "source_candidate_not_promoted"
       ],
-      "notes": "Candidate derived from a commit-pinned transport copy of Eurostat nrg_bal_s. Do not promote until every 2023 country value is cross-checked against the current official Eurostat nrg_cb_e query for FC_E / E7000 / GWH. The ktoe-to-TWh conversion is official and validated; the unresolved issue is source freshness and direct API provenance."
+      "notes": "Candidate derived directly from Eurostat nrg_cb_e. Energy balance FC is Eurostat final consumption. Greece is queried as Eurostat geo EL and exposed in the UI as GR. Do not promote until the runtime import gate explicitly authorizes promotion."
     },
     {
       "code": "FR",
@@ -278,24 +269,23 @@
       "jurisdiction_type": "country",
       "parent": "EU",
       "population": null,
-      "annual_electricity_twh": 399.487,
+      "annual_electricity_twh": 407.334,
       "electricity_per_capita_kwh_year": null,
       "source_name": "Eurostat",
-      "source_dataset": "Simplified energy balance (nrg_bal_s)",
-      "source_series": "Annual / Final consumption - energy use (FC_E) / Electricity (E7000) / ktoe / 2023",
-      "source_url": "https://ec.europa.eu/eurostat/databrowser/view/nrg_bal_s/default/table?lang=en",
+      "source_dataset": "Supply, transformation and consumption of electricity (nrg_cb_e)",
+      "source_series": "Annual / Final consumption (FC) / Electricity (E7000) / GWh / 2023",
+      "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/nrg_cb_e?format=JSON&freq=A&nrg_bal=FC&siec=E7000&unit=GWH&time=2023",
       "source_year": "2023",
       "source_retrieved_at": "2026-07-12",
       "source_status": "source_candidate",
-      "definition": "annual final consumption of electricity for energy use",
-      "unit_original": "thousand tonnes of oil equivalent (ktoe)",
-      "conversion_note": "Eurostat conversion: 1 ktoe = 11.63 GWh = 0.01163 TWh. Output rounded to 0.001 TWh.",
+      "definition": "annual final consumption of electricity",
+      "unit_original": "gigawatt-hour",
+      "conversion_note": "Official Eurostat GWh value divided by 1,000 to obtain TWh/year.",
       "review_flags": [
-        "official_api_refresh_required",
-        "commit_pinned_transport_mirror",
-        "cross_source_definition_not_identical"
+        "eurostat_direct_api_value_checked",
+        "source_candidate_not_promoted"
       ],
-      "notes": "Candidate derived from a commit-pinned transport copy of Eurostat nrg_bal_s. Do not promote until every 2023 country value is cross-checked against the current official Eurostat nrg_cb_e query for FC_E / E7000 / GWH. The ktoe-to-TWh conversion is official and validated; the unresolved issue is source freshness and direct API provenance."
+      "notes": "Candidate derived directly from Eurostat nrg_cb_e. Energy balance FC is Eurostat final consumption. Greece is queried as Eurostat geo EL and exposed in the UI as GR. Do not promote until the runtime import gate explicitly authorizes promotion."
     },
     {
       "code": "DE",
@@ -307,24 +297,23 @@
       "jurisdiction_type": "country",
       "parent": "EU",
       "population": null,
-      "annual_electricity_twh": 453.586,
+      "annual_electricity_twh": 473.497,
       "electricity_per_capita_kwh_year": null,
       "source_name": "Eurostat",
-      "source_dataset": "Simplified energy balance (nrg_bal_s)",
-      "source_series": "Annual / Final consumption - energy use (FC_E) / Electricity (E7000) / ktoe / 2023",
-      "source_url": "https://ec.europa.eu/eurostat/databrowser/view/nrg_bal_s/default/table?lang=en",
+      "source_dataset": "Supply, transformation and consumption of electricity (nrg_cb_e)",
+      "source_series": "Annual / Final consumption (FC) / Electricity (E7000) / GWh / 2023",
+      "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/nrg_cb_e?format=JSON&freq=A&nrg_bal=FC&siec=E7000&unit=GWH&time=2023",
       "source_year": "2023",
       "source_retrieved_at": "2026-07-12",
       "source_status": "source_candidate",
-      "definition": "annual final consumption of electricity for energy use",
-      "unit_original": "thousand tonnes of oil equivalent (ktoe)",
-      "conversion_note": "Eurostat conversion: 1 ktoe = 11.63 GWh = 0.01163 TWh. Output rounded to 0.001 TWh.",
+      "definition": "annual final consumption of electricity",
+      "unit_original": "gigawatt-hour",
+      "conversion_note": "Official Eurostat GWh value divided by 1,000 to obtain TWh/year.",
       "review_flags": [
-        "official_api_refresh_required",
-        "commit_pinned_transport_mirror",
-        "cross_source_definition_not_identical"
+        "eurostat_direct_api_value_checked",
+        "source_candidate_not_promoted"
       ],
-      "notes": "Candidate derived from a commit-pinned transport copy of Eurostat nrg_bal_s. Do not promote until every 2023 country value is cross-checked against the current official Eurostat nrg_cb_e query for FC_E / E7000 / GWH. The ktoe-to-TWh conversion is official and validated; the unresolved issue is source freshness and direct API provenance."
+      "notes": "Candidate derived directly from Eurostat nrg_cb_e. Energy balance FC is Eurostat final consumption. Greece is queried as Eurostat geo EL and exposed in the UI as GR. Do not promote until the runtime import gate explicitly authorizes promotion."
     },
     {
       "code": "GR",
@@ -336,25 +325,23 @@
       "jurisdiction_type": "country",
       "parent": "EU",
       "population": null,
-      "annual_electricity_twh": 45.817,
+      "annual_electricity_twh": 47.305,
       "electricity_per_capita_kwh_year": null,
       "source_name": "Eurostat",
-      "source_dataset": "Simplified energy balance (nrg_bal_s)",
-      "source_series": "Annual / Final consumption - energy use (FC_E) / Electricity (E7000) / ktoe / 2023",
-      "source_url": "https://ec.europa.eu/eurostat/databrowser/view/nrg_bal_s/default/table?lang=en",
+      "source_dataset": "Supply, transformation and consumption of electricity (nrg_cb_e)",
+      "source_series": "Annual / Final consumption (FC) / Electricity (E7000) / GWh / 2023",
+      "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/nrg_cb_e?format=JSON&freq=A&nrg_bal=FC&siec=E7000&unit=GWH&time=2023",
       "source_year": "2023",
       "source_retrieved_at": "2026-07-12",
       "source_status": "source_candidate",
-      "definition": "annual final consumption of electricity for energy use",
-      "unit_original": "thousand tonnes of oil equivalent (ktoe)",
-      "conversion_note": "Eurostat conversion: 1 ktoe = 11.63 GWh = 0.01163 TWh. Output rounded to 0.001 TWh.",
+      "definition": "annual final consumption of electricity",
+      "unit_original": "gigawatt-hour",
+      "conversion_note": "Official Eurostat GWh value divided by 1,000 to obtain TWh/year.",
       "review_flags": [
-        "official_api_refresh_required",
-        "commit_pinned_transport_mirror",
-        "cross_source_definition_not_identical",
-        "source_geo_code_el_mapped_to_gr"
+        "eurostat_direct_api_value_checked",
+        "source_candidate_not_promoted"
       ],
-      "notes": "Candidate derived from a commit-pinned transport copy of Eurostat nrg_bal_s. Do not promote until every 2023 country value is cross-checked against the current official Eurostat nrg_cb_e query for FC_E / E7000 / GWH. The ktoe-to-TWh conversion is official and validated; the unresolved issue is source freshness and direct API provenance."
+      "notes": "Candidate derived directly from Eurostat nrg_cb_e. Energy balance FC is Eurostat final consumption. Greece is queried as Eurostat geo EL and exposed in the UI as GR. Do not promote until the runtime import gate explicitly authorizes promotion."
     },
     {
       "code": "HU",
@@ -366,24 +353,23 @@
       "jurisdiction_type": "country",
       "parent": "EU",
       "population": null,
-      "annual_electricity_twh": 40.161,
+      "annual_electricity_twh": 41.176,
       "electricity_per_capita_kwh_year": null,
       "source_name": "Eurostat",
-      "source_dataset": "Simplified energy balance (nrg_bal_s)",
-      "source_series": "Annual / Final consumption - energy use (FC_E) / Electricity (E7000) / ktoe / 2023",
-      "source_url": "https://ec.europa.eu/eurostat/databrowser/view/nrg_bal_s/default/table?lang=en",
+      "source_dataset": "Supply, transformation and consumption of electricity (nrg_cb_e)",
+      "source_series": "Annual / Final consumption (FC) / Electricity (E7000) / GWh / 2023",
+      "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/nrg_cb_e?format=JSON&freq=A&nrg_bal=FC&siec=E7000&unit=GWH&time=2023",
       "source_year": "2023",
       "source_retrieved_at": "2026-07-12",
       "source_status": "source_candidate",
-      "definition": "annual final consumption of electricity for energy use",
-      "unit_original": "thousand tonnes of oil equivalent (ktoe)",
-      "conversion_note": "Eurostat conversion: 1 ktoe = 11.63 GWh = 0.01163 TWh. Output rounded to 0.001 TWh.",
+      "definition": "annual final consumption of electricity",
+      "unit_original": "gigawatt-hour",
+      "conversion_note": "Official Eurostat GWh value divided by 1,000 to obtain TWh/year.",
       "review_flags": [
-        "official_api_refresh_required",
-        "commit_pinned_transport_mirror",
-        "cross_source_definition_not_identical"
+        "eurostat_direct_api_value_checked",
+        "source_candidate_not_promoted"
       ],
-      "notes": "Candidate derived from a commit-pinned transport copy of Eurostat nrg_bal_s. Do not promote until every 2023 country value is cross-checked against the current official Eurostat nrg_cb_e query for FC_E / E7000 / GWH. The ktoe-to-TWh conversion is official and validated; the unresolved issue is source freshness and direct API provenance."
+      "notes": "Candidate derived directly from Eurostat nrg_cb_e. Energy balance FC is Eurostat final consumption. Greece is queried as Eurostat geo EL and exposed in the UI as GR. Do not promote until the runtime import gate explicitly authorizes promotion."
     },
     {
       "code": "IE",
@@ -395,24 +381,23 @@
       "jurisdiction_type": "country",
       "parent": "EU",
       "population": null,
-      "annual_electricity_twh": 31.566,
+      "annual_electricity_twh": 31.643,
       "electricity_per_capita_kwh_year": null,
       "source_name": "Eurostat",
-      "source_dataset": "Simplified energy balance (nrg_bal_s)",
-      "source_series": "Annual / Final consumption - energy use (FC_E) / Electricity (E7000) / ktoe / 2023",
-      "source_url": "https://ec.europa.eu/eurostat/databrowser/view/nrg_bal_s/default/table?lang=en",
+      "source_dataset": "Supply, transformation and consumption of electricity (nrg_cb_e)",
+      "source_series": "Annual / Final consumption (FC) / Electricity (E7000) / GWh / 2023",
+      "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/nrg_cb_e?format=JSON&freq=A&nrg_bal=FC&siec=E7000&unit=GWH&time=2023",
       "source_year": "2023",
       "source_retrieved_at": "2026-07-12",
       "source_status": "source_candidate",
-      "definition": "annual final consumption of electricity for energy use",
-      "unit_original": "thousand tonnes of oil equivalent (ktoe)",
-      "conversion_note": "Eurostat conversion: 1 ktoe = 11.63 GWh = 0.01163 TWh. Output rounded to 0.001 TWh.",
+      "definition": "annual final consumption of electricity",
+      "unit_original": "gigawatt-hour",
+      "conversion_note": "Official Eurostat GWh value divided by 1,000 to obtain TWh/year.",
       "review_flags": [
-        "official_api_refresh_required",
-        "commit_pinned_transport_mirror",
-        "cross_source_definition_not_identical"
+        "eurostat_direct_api_value_checked",
+        "source_candidate_not_promoted"
       ],
-      "notes": "Candidate derived from a commit-pinned transport copy of Eurostat nrg_bal_s. Do not promote until every 2023 country value is cross-checked against the current official Eurostat nrg_cb_e query for FC_E / E7000 / GWH. The ktoe-to-TWh conversion is official and validated; the unresolved issue is source freshness and direct API provenance."
+      "notes": "Candidate derived directly from Eurostat nrg_cb_e. Energy balance FC is Eurostat final consumption. Greece is queried as Eurostat geo EL and exposed in the UI as GR. Do not promote until the runtime import gate explicitly authorizes promotion."
     },
     {
       "code": "IT",
@@ -424,24 +409,23 @@
       "jurisdiction_type": "country",
       "parent": "EU",
       "population": null,
-      "annual_electricity_twh": 278.865,
+      "annual_electricity_twh": 287.361,
       "electricity_per_capita_kwh_year": null,
       "source_name": "Eurostat",
-      "source_dataset": "Simplified energy balance (nrg_bal_s)",
-      "source_series": "Annual / Final consumption - energy use (FC_E) / Electricity (E7000) / ktoe / 2023",
-      "source_url": "https://ec.europa.eu/eurostat/databrowser/view/nrg_bal_s/default/table?lang=en",
+      "source_dataset": "Supply, transformation and consumption of electricity (nrg_cb_e)",
+      "source_series": "Annual / Final consumption (FC) / Electricity (E7000) / GWh / 2023",
+      "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/nrg_cb_e?format=JSON&freq=A&nrg_bal=FC&siec=E7000&unit=GWH&time=2023",
       "source_year": "2023",
       "source_retrieved_at": "2026-07-12",
       "source_status": "source_candidate",
-      "definition": "annual final consumption of electricity for energy use",
-      "unit_original": "thousand tonnes of oil equivalent (ktoe)",
-      "conversion_note": "Eurostat conversion: 1 ktoe = 11.63 GWh = 0.01163 TWh. Output rounded to 0.001 TWh.",
+      "definition": "annual final consumption of electricity",
+      "unit_original": "gigawatt-hour",
+      "conversion_note": "Official Eurostat GWh value divided by 1,000 to obtain TWh/year.",
       "review_flags": [
-        "official_api_refresh_required",
-        "commit_pinned_transport_mirror",
-        "cross_source_definition_not_identical"
+        "eurostat_direct_api_value_checked",
+        "source_candidate_not_promoted"
       ],
-      "notes": "Candidate derived from a commit-pinned transport copy of Eurostat nrg_bal_s. Do not promote until every 2023 country value is cross-checked against the current official Eurostat nrg_cb_e query for FC_E / E7000 / GWH. The ktoe-to-TWh conversion is official and validated; the unresolved issue is source freshness and direct API provenance."
+      "notes": "Candidate derived directly from Eurostat nrg_cb_e. Energy balance FC is Eurostat final consumption. Greece is queried as Eurostat geo EL and exposed in the UI as GR. Do not promote until the runtime import gate explicitly authorizes promotion."
     },
     {
       "code": "LV",
@@ -453,24 +437,23 @@
       "jurisdiction_type": "country",
       "parent": "EU",
       "population": null,
-      "annual_electricity_twh": 6.271,
+      "annual_electricity_twh": 6.56,
       "electricity_per_capita_kwh_year": null,
       "source_name": "Eurostat",
-      "source_dataset": "Simplified energy balance (nrg_bal_s)",
-      "source_series": "Annual / Final consumption - energy use (FC_E) / Electricity (E7000) / ktoe / 2023",
-      "source_url": "https://ec.europa.eu/eurostat/databrowser/view/nrg_bal_s/default/table?lang=en",
+      "source_dataset": "Supply, transformation and consumption of electricity (nrg_cb_e)",
+      "source_series": "Annual / Final consumption (FC) / Electricity (E7000) / GWh / 2023",
+      "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/nrg_cb_e?format=JSON&freq=A&nrg_bal=FC&siec=E7000&unit=GWH&time=2023",
       "source_year": "2023",
       "source_retrieved_at": "2026-07-12",
       "source_status": "source_candidate",
-      "definition": "annual final consumption of electricity for energy use",
-      "unit_original": "thousand tonnes of oil equivalent (ktoe)",
-      "conversion_note": "Eurostat conversion: 1 ktoe = 11.63 GWh = 0.01163 TWh. Output rounded to 0.001 TWh.",
+      "definition": "annual final consumption of electricity",
+      "unit_original": "gigawatt-hour",
+      "conversion_note": "Official Eurostat GWh value divided by 1,000 to obtain TWh/year.",
       "review_flags": [
-        "official_api_refresh_required",
-        "commit_pinned_transport_mirror",
-        "cross_source_definition_not_identical"
+        "eurostat_direct_api_value_checked",
+        "source_candidate_not_promoted"
       ],
-      "notes": "Candidate derived from a commit-pinned transport copy of Eurostat nrg_bal_s. Do not promote until every 2023 country value is cross-checked against the current official Eurostat nrg_cb_e query for FC_E / E7000 / GWH. The ktoe-to-TWh conversion is official and validated; the unresolved issue is source freshness and direct API provenance."
+      "notes": "Candidate derived directly from Eurostat nrg_cb_e. Energy balance FC is Eurostat final consumption. Greece is queried as Eurostat geo EL and exposed in the UI as GR. Do not promote until the runtime import gate explicitly authorizes promotion."
     },
     {
       "code": "LT",
@@ -482,24 +465,23 @@
       "jurisdiction_type": "country",
       "parent": "EU",
       "population": null,
-      "annual_electricity_twh": 10.217,
+      "annual_electricity_twh": 11.062,
       "electricity_per_capita_kwh_year": null,
       "source_name": "Eurostat",
-      "source_dataset": "Simplified energy balance (nrg_bal_s)",
-      "source_series": "Annual / Final consumption - energy use (FC_E) / Electricity (E7000) / ktoe / 2023",
-      "source_url": "https://ec.europa.eu/eurostat/databrowser/view/nrg_bal_s/default/table?lang=en",
+      "source_dataset": "Supply, transformation and consumption of electricity (nrg_cb_e)",
+      "source_series": "Annual / Final consumption (FC) / Electricity (E7000) / GWh / 2023",
+      "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/nrg_cb_e?format=JSON&freq=A&nrg_bal=FC&siec=E7000&unit=GWH&time=2023",
       "source_year": "2023",
       "source_retrieved_at": "2026-07-12",
       "source_status": "source_candidate",
-      "definition": "annual final consumption of electricity for energy use",
-      "unit_original": "thousand tonnes of oil equivalent (ktoe)",
-      "conversion_note": "Eurostat conversion: 1 ktoe = 11.63 GWh = 0.01163 TWh. Output rounded to 0.001 TWh.",
+      "definition": "annual final consumption of electricity",
+      "unit_original": "gigawatt-hour",
+      "conversion_note": "Official Eurostat GWh value divided by 1,000 to obtain TWh/year.",
       "review_flags": [
-        "official_api_refresh_required",
-        "commit_pinned_transport_mirror",
-        "cross_source_definition_not_identical"
+        "eurostat_direct_api_value_checked",
+        "source_candidate_not_promoted"
       ],
-      "notes": "Candidate derived from a commit-pinned transport copy of Eurostat nrg_bal_s. Do not promote until every 2023 country value is cross-checked against the current official Eurostat nrg_cb_e query for FC_E / E7000 / GWH. The ktoe-to-TWh conversion is official and validated; the unresolved issue is source freshness and direct API provenance."
+      "notes": "Candidate derived directly from Eurostat nrg_cb_e. Energy balance FC is Eurostat final consumption. Greece is queried as Eurostat geo EL and exposed in the UI as GR. Do not promote until the runtime import gate explicitly authorizes promotion."
     },
     {
       "code": "LU",
@@ -511,25 +493,23 @@
       "jurisdiction_type": "country",
       "parent": "EU",
       "population": null,
-      "annual_electricity_twh": 6.047,
+      "annual_electricity_twh": 6.057,
       "electricity_per_capita_kwh_year": null,
       "source_name": "Eurostat",
-      "source_dataset": "Simplified energy balance (nrg_bal_s)",
-      "source_series": "Annual / Final consumption - energy use (FC_E) / Electricity (E7000) / ktoe / 2023",
-      "source_url": "https://ec.europa.eu/eurostat/databrowser/view/nrg_bal_s/default/table?lang=en",
+      "source_dataset": "Supply, transformation and consumption of electricity (nrg_cb_e)",
+      "source_series": "Annual / Final consumption (FC) / Electricity (E7000) / GWh / 2023",
+      "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/nrg_cb_e?format=JSON&freq=A&nrg_bal=FC&siec=E7000&unit=GWH&time=2023",
       "source_year": "2023",
       "source_retrieved_at": "2026-07-12",
       "source_status": "source_candidate",
-      "definition": "annual final consumption of electricity for energy use",
-      "unit_original": "thousand tonnes of oil equivalent (ktoe)",
-      "conversion_note": "Eurostat conversion: 1 ktoe = 11.63 GWh = 0.01163 TWh. Output rounded to 0.001 TWh.",
+      "definition": "annual final consumption of electricity",
+      "unit_original": "gigawatt-hour",
+      "conversion_note": "Official Eurostat GWh value divided by 1,000 to obtain TWh/year.",
       "review_flags": [
-        "official_api_refresh_required",
-        "commit_pinned_transport_mirror",
-        "cross_source_definition_not_identical",
-        "local_language_is_ui_default_not_only_official_language"
+        "eurostat_direct_api_value_checked",
+        "source_candidate_not_promoted"
       ],
-      "notes": "Candidate derived from a commit-pinned transport copy of Eurostat nrg_bal_s. Do not promote until every 2023 country value is cross-checked against the current official Eurostat nrg_cb_e query for FC_E / E7000 / GWH. The ktoe-to-TWh conversion is official and validated; the unresolved issue is source freshness and direct API provenance."
+      "notes": "Candidate derived directly from Eurostat nrg_cb_e. Energy balance FC is Eurostat final consumption. Greece is queried as Eurostat geo EL and exposed in the UI as GR. Do not promote until the runtime import gate explicitly authorizes promotion."
     },
     {
       "code": "MT",
@@ -541,24 +521,23 @@
       "jurisdiction_type": "country",
       "parent": "EU",
       "population": null,
-      "annual_electricity_twh": 2.699,
+      "annual_electricity_twh": 2.709,
       "electricity_per_capita_kwh_year": null,
       "source_name": "Eurostat",
-      "source_dataset": "Simplified energy balance (nrg_bal_s)",
-      "source_series": "Annual / Final consumption - energy use (FC_E) / Electricity (E7000) / ktoe / 2023",
-      "source_url": "https://ec.europa.eu/eurostat/databrowser/view/nrg_bal_s/default/table?lang=en",
+      "source_dataset": "Supply, transformation and consumption of electricity (nrg_cb_e)",
+      "source_series": "Annual / Final consumption (FC) / Electricity (E7000) / GWh / 2023",
+      "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/nrg_cb_e?format=JSON&freq=A&nrg_bal=FC&siec=E7000&unit=GWH&time=2023",
       "source_year": "2023",
       "source_retrieved_at": "2026-07-12",
       "source_status": "source_candidate",
-      "definition": "annual final consumption of electricity for energy use",
-      "unit_original": "thousand tonnes of oil equivalent (ktoe)",
-      "conversion_note": "Eurostat conversion: 1 ktoe = 11.63 GWh = 0.01163 TWh. Output rounded to 0.001 TWh.",
+      "definition": "annual final consumption of electricity",
+      "unit_original": "gigawatt-hour",
+      "conversion_note": "Official Eurostat GWh value divided by 1,000 to obtain TWh/year.",
       "review_flags": [
-        "official_api_refresh_required",
-        "commit_pinned_transport_mirror",
-        "cross_source_definition_not_identical"
+        "eurostat_direct_api_value_checked",
+        "source_candidate_not_promoted"
       ],
-      "notes": "Candidate derived from a commit-pinned transport copy of Eurostat nrg_bal_s. Do not promote until every 2023 country value is cross-checked against the current official Eurostat nrg_cb_e query for FC_E / E7000 / GWH. The ktoe-to-TWh conversion is official and validated; the unresolved issue is source freshness and direct API provenance."
+      "notes": "Candidate derived directly from Eurostat nrg_cb_e. Energy balance FC is Eurostat final consumption. Greece is queried as Eurostat geo EL and exposed in the UI as GR. Do not promote until the runtime import gate explicitly authorizes promotion."
     },
     {
       "code": "NL",
@@ -570,24 +549,23 @@
       "jurisdiction_type": "country",
       "parent": "EU",
       "population": null,
-      "annual_electricity_twh": 101.735,
+      "annual_electricity_twh": 106.248,
       "electricity_per_capita_kwh_year": null,
       "source_name": "Eurostat",
-      "source_dataset": "Simplified energy balance (nrg_bal_s)",
-      "source_series": "Annual / Final consumption - energy use (FC_E) / Electricity (E7000) / ktoe / 2023",
-      "source_url": "https://ec.europa.eu/eurostat/databrowser/view/nrg_bal_s/default/table?lang=en",
+      "source_dataset": "Supply, transformation and consumption of electricity (nrg_cb_e)",
+      "source_series": "Annual / Final consumption (FC) / Electricity (E7000) / GWh / 2023",
+      "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/nrg_cb_e?format=JSON&freq=A&nrg_bal=FC&siec=E7000&unit=GWH&time=2023",
       "source_year": "2023",
       "source_retrieved_at": "2026-07-12",
       "source_status": "source_candidate",
-      "definition": "annual final consumption of electricity for energy use",
-      "unit_original": "thousand tonnes of oil equivalent (ktoe)",
-      "conversion_note": "Eurostat conversion: 1 ktoe = 11.63 GWh = 0.01163 TWh. Output rounded to 0.001 TWh.",
+      "definition": "annual final consumption of electricity",
+      "unit_original": "gigawatt-hour",
+      "conversion_note": "Official Eurostat GWh value divided by 1,000 to obtain TWh/year.",
       "review_flags": [
-        "official_api_refresh_required",
-        "commit_pinned_transport_mirror",
-        "cross_source_definition_not_identical"
+        "eurostat_direct_api_value_checked",
+        "source_candidate_not_promoted"
       ],
-      "notes": "Candidate derived from a commit-pinned transport copy of Eurostat nrg_bal_s. Do not promote until every 2023 country value is cross-checked against the current official Eurostat nrg_cb_e query for FC_E / E7000 / GWH. The ktoe-to-TWh conversion is official and validated; the unresolved issue is source freshness and direct API provenance."
+      "notes": "Candidate derived directly from Eurostat nrg_cb_e. Energy balance FC is Eurostat final consumption. Greece is queried as Eurostat geo EL and exposed in the UI as GR. Do not promote until the runtime import gate explicitly authorizes promotion."
     },
     {
       "code": "PL",
@@ -599,24 +577,23 @@
       "jurisdiction_type": "country",
       "parent": "EU",
       "population": null,
-      "annual_electricity_twh": 133.328,
+      "annual_electricity_twh": 147.582,
       "electricity_per_capita_kwh_year": null,
       "source_name": "Eurostat",
-      "source_dataset": "Simplified energy balance (nrg_bal_s)",
-      "source_series": "Annual / Final consumption - energy use (FC_E) / Electricity (E7000) / ktoe / 2023",
-      "source_url": "https://ec.europa.eu/eurostat/databrowser/view/nrg_bal_s/default/table?lang=en",
+      "source_dataset": "Supply, transformation and consumption of electricity (nrg_cb_e)",
+      "source_series": "Annual / Final consumption (FC) / Electricity (E7000) / GWh / 2023",
+      "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/nrg_cb_e?format=JSON&freq=A&nrg_bal=FC&siec=E7000&unit=GWH&time=2023",
       "source_year": "2023",
       "source_retrieved_at": "2026-07-12",
       "source_status": "source_candidate",
-      "definition": "annual final consumption of electricity for energy use",
-      "unit_original": "thousand tonnes of oil equivalent (ktoe)",
-      "conversion_note": "Eurostat conversion: 1 ktoe = 11.63 GWh = 0.01163 TWh. Output rounded to 0.001 TWh.",
+      "definition": "annual final consumption of electricity",
+      "unit_original": "gigawatt-hour",
+      "conversion_note": "Official Eurostat GWh value divided by 1,000 to obtain TWh/year.",
       "review_flags": [
-        "official_api_refresh_required",
-        "commit_pinned_transport_mirror",
-        "cross_source_definition_not_identical"
+        "eurostat_direct_api_value_checked",
+        "source_candidate_not_promoted"
       ],
-      "notes": "Candidate derived from a commit-pinned transport copy of Eurostat nrg_bal_s. Do not promote until every 2023 country value is cross-checked against the current official Eurostat nrg_cb_e query for FC_E / E7000 / GWH. The ktoe-to-TWh conversion is official and validated; the unresolved issue is source freshness and direct API provenance."
+      "notes": "Candidate derived directly from Eurostat nrg_cb_e. Energy balance FC is Eurostat final consumption. Greece is queried as Eurostat geo EL and exposed in the UI as GR. Do not promote until the runtime import gate explicitly authorizes promotion."
     },
     {
       "code": "PT",
@@ -628,24 +605,23 @@
       "jurisdiction_type": "country",
       "parent": "EU",
       "population": null,
-      "annual_electricity_twh": 49.54,
+      "annual_electricity_twh": 50.23,
       "electricity_per_capita_kwh_year": null,
       "source_name": "Eurostat",
-      "source_dataset": "Simplified energy balance (nrg_bal_s)",
-      "source_series": "Annual / Final consumption - energy use (FC_E) / Electricity (E7000) / ktoe / 2023",
-      "source_url": "https://ec.europa.eu/eurostat/databrowser/view/nrg_bal_s/default/table?lang=en",
+      "source_dataset": "Supply, transformation and consumption of electricity (nrg_cb_e)",
+      "source_series": "Annual / Final consumption (FC) / Electricity (E7000) / GWh / 2023",
+      "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/nrg_cb_e?format=JSON&freq=A&nrg_bal=FC&siec=E7000&unit=GWH&time=2023",
       "source_year": "2023",
       "source_retrieved_at": "2026-07-12",
       "source_status": "source_candidate",
-      "definition": "annual final consumption of electricity for energy use",
-      "unit_original": "thousand tonnes of oil equivalent (ktoe)",
-      "conversion_note": "Eurostat conversion: 1 ktoe = 11.63 GWh = 0.01163 TWh. Output rounded to 0.001 TWh.",
+      "definition": "annual final consumption of electricity",
+      "unit_original": "gigawatt-hour",
+      "conversion_note": "Official Eurostat GWh value divided by 1,000 to obtain TWh/year.",
       "review_flags": [
-        "official_api_refresh_required",
-        "commit_pinned_transport_mirror",
-        "cross_source_definition_not_identical"
+        "eurostat_direct_api_value_checked",
+        "source_candidate_not_promoted"
       ],
-      "notes": "Candidate derived from a commit-pinned transport copy of Eurostat nrg_bal_s. Do not promote until every 2023 country value is cross-checked against the current official Eurostat nrg_cb_e query for FC_E / E7000 / GWH. The ktoe-to-TWh conversion is official and validated; the unresolved issue is source freshness and direct API provenance."
+      "notes": "Candidate derived directly from Eurostat nrg_cb_e. Energy balance FC is Eurostat final consumption. Greece is queried as Eurostat geo EL and exposed in the UI as GR. Do not promote until the runtime import gate explicitly authorizes promotion."
     },
     {
       "code": "RO",
@@ -657,24 +633,23 @@
       "jurisdiction_type": "country",
       "parent": "EU",
       "population": null,
-      "annual_electricity_twh": 41.455,
+      "annual_electricity_twh": 43.869,
       "electricity_per_capita_kwh_year": null,
       "source_name": "Eurostat",
-      "source_dataset": "Simplified energy balance (nrg_bal_s)",
-      "source_series": "Annual / Final consumption - energy use (FC_E) / Electricity (E7000) / ktoe / 2023",
-      "source_url": "https://ec.europa.eu/eurostat/databrowser/view/nrg_bal_s/default/table?lang=en",
+      "source_dataset": "Supply, transformation and consumption of electricity (nrg_cb_e)",
+      "source_series": "Annual / Final consumption (FC) / Electricity (E7000) / GWh / 2023",
+      "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/nrg_cb_e?format=JSON&freq=A&nrg_bal=FC&siec=E7000&unit=GWH&time=2023",
       "source_year": "2023",
       "source_retrieved_at": "2026-07-12",
       "source_status": "source_candidate",
-      "definition": "annual final consumption of electricity for energy use",
-      "unit_original": "thousand tonnes of oil equivalent (ktoe)",
-      "conversion_note": "Eurostat conversion: 1 ktoe = 11.63 GWh = 0.01163 TWh. Output rounded to 0.001 TWh.",
+      "definition": "annual final consumption of electricity",
+      "unit_original": "gigawatt-hour",
+      "conversion_note": "Official Eurostat GWh value divided by 1,000 to obtain TWh/year.",
       "review_flags": [
-        "official_api_refresh_required",
-        "commit_pinned_transport_mirror",
-        "cross_source_definition_not_identical"
+        "eurostat_direct_api_value_checked",
+        "source_candidate_not_promoted"
       ],
-      "notes": "Candidate derived from a commit-pinned transport copy of Eurostat nrg_bal_s. Do not promote until every 2023 country value is cross-checked against the current official Eurostat nrg_cb_e query for FC_E / E7000 / GWH. The ktoe-to-TWh conversion is official and validated; the unresolved issue is source freshness and direct API provenance."
+      "notes": "Candidate derived directly from Eurostat nrg_cb_e. Energy balance FC is Eurostat final consumption. Greece is queried as Eurostat geo EL and exposed in the UI as GR. Do not promote until the runtime import gate explicitly authorizes promotion."
     },
     {
       "code": "SK",
@@ -686,24 +661,23 @@
       "jurisdiction_type": "country",
       "parent": "EU",
       "population": null,
-      "annual_electricity_twh": 21.273,
+      "annual_electricity_twh": 22.132,
       "electricity_per_capita_kwh_year": null,
       "source_name": "Eurostat",
-      "source_dataset": "Simplified energy balance (nrg_bal_s)",
-      "source_series": "Annual / Final consumption - energy use (FC_E) / Electricity (E7000) / ktoe / 2023",
-      "source_url": "https://ec.europa.eu/eurostat/databrowser/view/nrg_bal_s/default/table?lang=en",
+      "source_dataset": "Supply, transformation and consumption of electricity (nrg_cb_e)",
+      "source_series": "Annual / Final consumption (FC) / Electricity (E7000) / GWh / 2023",
+      "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/nrg_cb_e?format=JSON&freq=A&nrg_bal=FC&siec=E7000&unit=GWH&time=2023",
       "source_year": "2023",
       "source_retrieved_at": "2026-07-12",
       "source_status": "source_candidate",
-      "definition": "annual final consumption of electricity for energy use",
-      "unit_original": "thousand tonnes of oil equivalent (ktoe)",
-      "conversion_note": "Eurostat conversion: 1 ktoe = 11.63 GWh = 0.01163 TWh. Output rounded to 0.001 TWh.",
+      "definition": "annual final consumption of electricity",
+      "unit_original": "gigawatt-hour",
+      "conversion_note": "Official Eurostat GWh value divided by 1,000 to obtain TWh/year.",
       "review_flags": [
-        "official_api_refresh_required",
-        "commit_pinned_transport_mirror",
-        "cross_source_definition_not_identical"
+        "eurostat_direct_api_value_checked",
+        "source_candidate_not_promoted"
       ],
-      "notes": "Candidate derived from a commit-pinned transport copy of Eurostat nrg_bal_s. Do not promote until every 2023 country value is cross-checked against the current official Eurostat nrg_cb_e query for FC_E / E7000 / GWH. The ktoe-to-TWh conversion is official and validated; the unresolved issue is source freshness and direct API provenance."
+      "notes": "Candidate derived directly from Eurostat nrg_cb_e. Energy balance FC is Eurostat final consumption. Greece is queried as Eurostat geo EL and exposed in the UI as GR. Do not promote until the runtime import gate explicitly authorizes promotion."
     },
     {
       "code": "SI",
@@ -715,24 +689,23 @@
       "jurisdiction_type": "country",
       "parent": "EU",
       "population": null,
-      "annual_electricity_twh": 12.369,
+      "annual_electricity_twh": 12.453,
       "electricity_per_capita_kwh_year": null,
       "source_name": "Eurostat",
-      "source_dataset": "Simplified energy balance (nrg_bal_s)",
-      "source_series": "Annual / Final consumption - energy use (FC_E) / Electricity (E7000) / ktoe / 2023",
-      "source_url": "https://ec.europa.eu/eurostat/databrowser/view/nrg_bal_s/default/table?lang=en",
+      "source_dataset": "Supply, transformation and consumption of electricity (nrg_cb_e)",
+      "source_series": "Annual / Final consumption (FC) / Electricity (E7000) / GWh / 2023",
+      "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/nrg_cb_e?format=JSON&freq=A&nrg_bal=FC&siec=E7000&unit=GWH&time=2023",
       "source_year": "2023",
       "source_retrieved_at": "2026-07-12",
       "source_status": "source_candidate",
-      "definition": "annual final consumption of electricity for energy use",
-      "unit_original": "thousand tonnes of oil equivalent (ktoe)",
-      "conversion_note": "Eurostat conversion: 1 ktoe = 11.63 GWh = 0.01163 TWh. Output rounded to 0.001 TWh.",
+      "definition": "annual final consumption of electricity",
+      "unit_original": "gigawatt-hour",
+      "conversion_note": "Official Eurostat GWh value divided by 1,000 to obtain TWh/year.",
       "review_flags": [
-        "official_api_refresh_required",
-        "commit_pinned_transport_mirror",
-        "cross_source_definition_not_identical"
+        "eurostat_direct_api_value_checked",
+        "source_candidate_not_promoted"
       ],
-      "notes": "Candidate derived from a commit-pinned transport copy of Eurostat nrg_bal_s. Do not promote until every 2023 country value is cross-checked against the current official Eurostat nrg_cb_e query for FC_E / E7000 / GWH. The ktoe-to-TWh conversion is official and validated; the unresolved issue is source freshness and direct API provenance."
+      "notes": "Candidate derived directly from Eurostat nrg_cb_e. Energy balance FC is Eurostat final consumption. Greece is queried as Eurostat geo EL and exposed in the UI as GR. Do not promote until the runtime import gate explicitly authorizes promotion."
     },
     {
       "code": "ES",
@@ -744,24 +717,23 @@
       "jurisdiction_type": "country",
       "parent": "EU",
       "population": null,
-      "annual_electricity_twh": 222.673,
+      "annual_electricity_twh": 229.771,
       "electricity_per_capita_kwh_year": null,
       "source_name": "Eurostat",
-      "source_dataset": "Simplified energy balance (nrg_bal_s)",
-      "source_series": "Annual / Final consumption - energy use (FC_E) / Electricity (E7000) / ktoe / 2023",
-      "source_url": "https://ec.europa.eu/eurostat/databrowser/view/nrg_bal_s/default/table?lang=en",
+      "source_dataset": "Supply, transformation and consumption of electricity (nrg_cb_e)",
+      "source_series": "Annual / Final consumption (FC) / Electricity (E7000) / GWh / 2023",
+      "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/nrg_cb_e?format=JSON&freq=A&nrg_bal=FC&siec=E7000&unit=GWH&time=2023",
       "source_year": "2023",
       "source_retrieved_at": "2026-07-12",
       "source_status": "source_candidate",
-      "definition": "annual final consumption of electricity for energy use",
-      "unit_original": "thousand tonnes of oil equivalent (ktoe)",
-      "conversion_note": "Eurostat conversion: 1 ktoe = 11.63 GWh = 0.01163 TWh. Output rounded to 0.001 TWh.",
+      "definition": "annual final consumption of electricity",
+      "unit_original": "gigawatt-hour",
+      "conversion_note": "Official Eurostat GWh value divided by 1,000 to obtain TWh/year.",
       "review_flags": [
-        "official_api_refresh_required",
-        "commit_pinned_transport_mirror",
-        "cross_source_definition_not_identical"
+        "eurostat_direct_api_value_checked",
+        "source_candidate_not_promoted"
       ],
-      "notes": "Candidate derived from a commit-pinned transport copy of Eurostat nrg_bal_s. Do not promote until every 2023 country value is cross-checked against the current official Eurostat nrg_cb_e query for FC_E / E7000 / GWH. The ktoe-to-TWh conversion is official and validated; the unresolved issue is source freshness and direct API provenance."
+      "notes": "Candidate derived directly from Eurostat nrg_cb_e. Energy balance FC is Eurostat final consumption. Greece is queried as Eurostat geo EL and exposed in the UI as GR. Do not promote until the runtime import gate explicitly authorizes promotion."
     },
     {
       "code": "SE",
@@ -773,49 +745,35 @@
       "jurisdiction_type": "country",
       "parent": "EU",
       "population": null,
-      "annual_electricity_twh": 120.317,
+      "annual_electricity_twh": 123.293,
       "electricity_per_capita_kwh_year": null,
       "source_name": "Eurostat",
-      "source_dataset": "Simplified energy balance (nrg_bal_s)",
-      "source_series": "Annual / Final consumption - energy use (FC_E) / Electricity (E7000) / ktoe / 2023",
-      "source_url": "https://ec.europa.eu/eurostat/databrowser/view/nrg_bal_s/default/table?lang=en",
+      "source_dataset": "Supply, transformation and consumption of electricity (nrg_cb_e)",
+      "source_series": "Annual / Final consumption (FC) / Electricity (E7000) / GWh / 2023",
+      "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/nrg_cb_e?format=JSON&freq=A&nrg_bal=FC&siec=E7000&unit=GWH&time=2023",
       "source_year": "2023",
       "source_retrieved_at": "2026-07-12",
       "source_status": "source_candidate",
-      "definition": "annual final consumption of electricity for energy use",
-      "unit_original": "thousand tonnes of oil equivalent (ktoe)",
-      "conversion_note": "Eurostat conversion: 1 ktoe = 11.63 GWh = 0.01163 TWh. Output rounded to 0.001 TWh.",
+      "definition": "annual final consumption of electricity",
+      "unit_original": "gigawatt-hour",
+      "conversion_note": "Official Eurostat GWh value divided by 1,000 to obtain TWh/year.",
       "review_flags": [
-        "official_api_refresh_required",
-        "commit_pinned_transport_mirror",
-        "cross_source_definition_not_identical"
+        "eurostat_direct_api_value_checked",
+        "source_candidate_not_promoted"
       ],
-      "notes": "Candidate derived from a commit-pinned transport copy of Eurostat nrg_bal_s. Do not promote until every 2023 country value is cross-checked against the current official Eurostat nrg_cb_e query for FC_E / E7000 / GWH. The ktoe-to-TWh conversion is official and validated; the unresolved issue is source freshness and direct API provenance."
+      "notes": "Candidate derived directly from Eurostat nrg_cb_e. Energy balance FC is Eurostat final consumption. Greece is queried as Eurostat geo EL and exposed in the UI as GR. Do not promote until the runtime import gate explicitly authorizes promotion."
     }
   ],
-  "metric_scope": "Eurostat annual final consumption of electricity for energy use",
-  "comparability_note": "This EU series and the U.S. EIA retail-sales series are both customer-side annual electricity measures, but they are not metric-identical. In particular, EIA retail sales excludes the separately reported EIA direct-use category.",
-  "rounding_precision_twh": 0.001,
   "source_provenance": {
     "official_source_system": "Eurostat",
-    "candidate_dataset": "nrg_bal_s",
-    "candidate_dataflow": "ESTAT:NRG_BAL_S(1.0)",
-    "candidate_flow": "FC_E",
+    "candidate_dataset": "nrg_cb_e",
+    "candidate_dataflow": "ESTAT:NRG_CB_E(1.0)",
+    "candidate_balance": "FC",
     "candidate_product": "E7000",
-    "candidate_unit": "KTOE",
+    "candidate_unit": "GWH",
     "candidate_period": "2023",
-    "transport_last_update": "2024-12-16T23:00:00",
-    "transport_artifact_url": "https://github.com/Nautman/data-viz-project/blob/c58cbf9191dadcf43d3b351c0bd45533e8ce81c9/src/data/2020-2023_EU_energy_consumption.csv",
-    "transport_git_blob_sha1": "5ee34390e5d9892c4e270ada12079e88453fb46f",
-    "official_landing_page": "https://ec.europa.eu/eurostat/databrowser/view/nrg_bal_s/default/table?lang=en",
-    "promotion_crosscheck_dataset": "nrg_cb_e",
-    "promotion_crosscheck_query": {
-      "freq": "A",
-      "nrg_bal": "FC_E",
-      "siec": "E7000",
-      "unit": "GWH",
-      "time": "2023"
-    },
-    "conversion_reference_url": "https://ec.europa.eu/eurostat/documents/38154/4956218/ENERGY-BALANCE-GUIDE.pdf/de76d0d2-8b17-b47c-f6f5-415bd09b7750?t=1632139948586"
+    "official_api_updated": "2026-07-08T23:00:00+0200",
+    "direct_query_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/nrg_cb_e?format=JSON&freq=A&nrg_bal=FC&siec=E7000&unit=GWH&time=2023",
+    "status": "direct_official_api_value_checked_candidate_not_promoted"
   }
 }

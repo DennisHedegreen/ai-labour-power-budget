@@ -5,7 +5,9 @@ runtime data.
 
 Current gate status:
 
-- EU27: blocked. Direct Eurostat comparison mismatched the candidate records.
+- EU27: source-value checked, not promoted. Candidate records are refreshed
+  from the official Eurostat `nrg_cb_e` API using final consumption (`FC`) of
+  electricity (`E7000`) for 2023.
 - U.S. national: source-value check passed, but not promoted.
 - U.S. states/DC: source-value check passed, but not promoted.
 

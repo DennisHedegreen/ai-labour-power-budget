@@ -69,22 +69,12 @@
   }
 
   async function buildJurisdictionGroups({ countries, eu27Shell, jurisdictionGroupDefinitions }) {
-    const countryByCode = new Map(countries.map((country) => [country.code, country]));
     const groups = [];
 
     for (const group of jurisdictionGroupDefinitions) {
-      if (group.id === "eu") {
-        groups.push({
-          ...group,
-          shell: eu27Shell.map(([code, name]) => ({ code, name })),
-          records: countries,
-        });
-        continue;
-      }
-
-      if (group.id === "us") {
+      if (group.candidate_paths?.length) {
         const candidateDatasets = await Promise.all(
-          (group.candidate_paths || []).map((candidatePath) => fetchJson(`${DATA_ROOT}/${candidatePath}`))
+          group.candidate_paths.map((candidatePath) => fetchJson(`${DATA_ROOT}/${candidatePath}`))
         );
         const records = candidateDatasets.flatMap((dataset) =>
           (dataset.records || []).map((record) => normalizeCandidateRecord(record, dataset, group))
@@ -92,8 +82,19 @@
         groups.push({
           ...group,
           candidate_dataset_ids: candidateDatasets.map((dataset) => dataset.dataset_id),
-          shell: records.map((record) => ({ code: record.code, name: record.name })),
+          shell: group.shell_path === "eu27-shell.json"
+            ? eu27Shell.map(([code, name]) => ({ code, name }))
+            : records.map((record) => ({ code: record.code, name: record.name })),
           records,
+        });
+        continue;
+      }
+
+      if (group.id === "eu") {
+        groups.push({
+          ...group,
+          shell: eu27Shell.map(([code, name]) => ({ code, name })),
+          records: countries,
         });
         continue;
       }

@@ -50,9 +50,13 @@ for (const group of jurisdictionGroups) {
 }
 
 assert.strictEqual(
-  jurisdictionGroupsById.eu.record_source,
-  "countries.json",
-  "EU group must keep demo runtime records separate from source candidates"
+  jurisdictionGroupsById.eu.candidate_paths?.[0],
+  "source-candidates/eu27-electricity-use.candidate.json",
+  "EU group must load reviewed source candidates, not demo placeholders"
+);
+assert(
+  countries.every((country) => country.source_status === "demo_not_verified"),
+  "countries.json must remain a demo placeholder file until promotion is explicitly authorized"
 );
 assert(
   jurisdictionGroupsById.us.candidate_paths?.every((candidatePath) => candidatePath.startsWith("source-candidates/")),

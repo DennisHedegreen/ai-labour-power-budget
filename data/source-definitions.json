@@ -7,7 +7,7 @@
       "id": "eurostat_final_consumption_electricity",
       "jurisdiction_scope": "EU27",
       "source_system": "Eurostat",
-      "review_status": "blocked_pending_source_decision",
+      "review_status": "source_value_checked_candidate_not_promoted",
       "candidate_dataset": "source-candidates/eu27-electricity-use.candidate.json",
       "source_gate": "source-candidates/promotion-gate-summary.json#eu27",
       "metric_label": "final electricity consumption",
@@ -15,7 +15,7 @@
       "scenario_sentence_template": "Allocating {share}% of {jurisdiction}'s annual final electricity consumption to this scenario would provide an equivalent yearly energy budget for {workers} configured AI-worker profiles.",
       "unit": "TWh/year",
       "definition": "Annual final consumption of electricity for energy use.",
-      "boundary_note": "This is annual energy use, not power capacity. The current EU27 candidate is blocked because direct Eurostat comparison did not match the candidate values.",
+      "boundary_note": "This is annual energy use, not power capacity. The EU27 candidate is refreshed from the official Eurostat API but remains candidate-not-promoted until the runtime gate is explicitly opened.",
       "runtime_allowed": false
     },
     {

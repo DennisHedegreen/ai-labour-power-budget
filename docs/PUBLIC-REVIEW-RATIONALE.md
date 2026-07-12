@@ -13,7 +13,8 @@ the weak points reviewable instead of hiding them inside a polished interface.
 - Whether the tool's wording preserves the scenario boundary.
 - Whether source candidates are clearly separated from runtime data.
 - Whether the U.S. EIA retail-sales denominator is labelled honestly.
-- Whether the EU27 Eurostat mismatch remains blocked until resolved.
+- Whether the EU27 Eurostat final-consumption denominator is labelled honestly
+  and should remain candidate-only until promotion.
 - Whether translations preserve the meaning instead of turning the scenario
   into a claim about spare electricity or real deployment.
 - Whether the calculation model is simple enough to audit.
@@ -31,10 +32,9 @@ is published for review and inspection under an all-rights-reserved boundary.
 
 ## Current Boundary
 
-The runtime app still uses demo-labelled country values. The reviewable source
-layer exists so people can inspect why candidate values have not simply been
-copied into the app.
+The interface can load source candidates for review, but the promotion gate
+still blocks verified runtime import. Public review should inspect the source
+boundaries before any stronger claim is made.
 
 The goal is to make the instrument more trustworthy before it becomes more
 visible.
-

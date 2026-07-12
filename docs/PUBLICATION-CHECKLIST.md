@@ -17,7 +17,8 @@ Research.
 
 - `data/source-definitions.json` says whether runtime import is authorized.
 - `data/source-candidates/promotion-gate-summary.json` is current.
-- EU27 is not promoted while the Eurostat mismatch remains unresolved.
+- EU27 is not described as promoted runtime data until the promotion gate is
+  explicitly opened.
 - U.S. values are not described as all electricity use if the retail-sales
   metric remains in use.
 

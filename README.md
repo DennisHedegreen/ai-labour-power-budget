@@ -97,18 +97,21 @@ node scripts/source-status.js
 Runtime app data:
 
 - `data/countries.json` contains demo placeholder records.
-- Demo values must remain visibly labelled until replaced.
+- Demo values remain as a legacy placeholder file and are not promoted.
 
 Jurisdiction modes:
 
-- `EU` uses the current EU rack shell and the demo runtime records.
+- `EU` loads Eurostat candidate records from `data/source-candidates/` for
+  review mode only, with the denominator labelled as annual final electricity
+  consumption.
 - `USA` loads EIA candidate records from `data/source-candidates/` for review
   mode only, with the denominator labelled as annual retail electricity sales.
 - `World` exists as a mode placeholder, but has no selected source or records.
 
 Source candidate data:
 
-- EU27 candidate is blocked after direct Eurostat mismatch.
+- EU27 candidate values are refreshed from the official Eurostat API and remain
+  candidate-only until explicitly promoted.
 - U.S. national and U.S. state values passed direct EIA workbook value checks.
 - U.S. values remain candidate-only because they are EIA retail sales to
   ultimate customers and exclude direct use.

@@ -520,6 +520,7 @@ p {
   position: relative;
   z-index: 1;
   display: grid;
+  grid-auto-flow: row dense;
   grid-template-columns: repeat(var(--rack-columns), minmax(0, 1fr));
   grid-auto-rows: minmax(90px, 1fr);
   gap: 6px;
@@ -567,6 +568,12 @@ p {
   min-height: 66px;
 }
 
+.rack.is-dense .rack-slot.is-national {
+  grid-column: span 2;
+  grid-row: span 2;
+  min-height: 136px;
+}
+
 .rack-slot::before {
   content: "";
   position: absolute;
@@ -590,6 +597,13 @@ p {
   height: 24px;
 }
 
+.rack.is-dense .rack-slot.is-national::before {
+  left: 18px;
+  right: 18px;
+  top: 18px;
+  height: 44px;
+}
+
 .rack-slot::after {
   content: "";
   position: absolute;
@@ -610,6 +624,13 @@ p {
   bottom: 10px;
   height: 8px;
   background-size: 7px 4px, 7px 4px;
+}
+
+.rack.is-dense .rack-slot.is-national::after {
+  left: 18px;
+  right: 18px;
+  bottom: 20px;
+  height: 13px;
 }
 
 .rack-slot span {
@@ -636,6 +657,14 @@ p {
   min-height: 21px;
   padding: 0 5px;
   font-size: 0.68rem;
+}
+
+.rack.is-dense .rack-slot.is-national span {
+  min-width: 76px;
+  min-height: 34px;
+  border-color: rgba(125, 255, 191, 0.24);
+  color: rgba(233, 236, 232, 0.74);
+  font-size: 1rem;
 }
 
 .rack-slot small {

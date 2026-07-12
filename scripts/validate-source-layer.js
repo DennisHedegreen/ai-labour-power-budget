@@ -75,8 +75,12 @@ assert.match(
 );
 
 assert.strictEqual(gate.live_import_authorized, false, "promotion gate must not authorize live import");
-assert.strictEqual(gate.eu27.status, "blocked", "EU27 must remain blocked");
-assert.strictEqual(gate.eu27.mismatches, 27, "EU27 mismatch count changed; update review note before proceeding");
+assert.strictEqual(
+  gate.eu27.status,
+  "source_value_check_passed_candidate_not_promoted",
+  "EU27 gate must remain candidate-not-promoted"
+);
+assert.strictEqual(gate.eu27.mismatches, 0, "EU27 direct API refresh must not have unresolved mismatches");
 assert.strictEqual(
   gate.us_national.status,
   "source_value_check_passed_candidate_not_promoted",
@@ -94,8 +98,17 @@ assertDatasetShape(eu27, {
   requiredCodes: ["DK", "DE", "FR", "SE"]
 });
 assert(
-  eu27.records.every((record) => record.review_flags.includes("official_api_refresh_required")),
-  "EU27 records must keep official_api_refresh_required"
+  eu27.records.every((record) => record.review_flags.includes("eurostat_direct_api_value_checked")),
+  "EU27 records must keep direct Eurostat API check flag"
+);
+assert(
+  eu27.records.every((record) => record.review_flags.includes("source_candidate_not_promoted")),
+  "EU27 records must stay candidate-not-promoted"
+);
+assert.strictEqual(
+  eu27.records.find((record) => record.code === "GR")?.source_geo_code,
+  "EL",
+  "Greece must preserve Eurostat geo code EL while exposing UI code GR"
 );
 
 assertDatasetShape(usNational, {

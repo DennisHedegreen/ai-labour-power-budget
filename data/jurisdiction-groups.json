@@ -4,14 +4,16 @@
     "label": "EU",
     "short_label": "EU",
     "kind": "country_group",
-    "status": "demo_runtime",
+    "status": "source_candidate_review",
     "shell_path": "eu27-shell.json",
-    "record_source": "countries.json",
+    "candidate_paths": [
+      "source-candidates/eu27-electricity-use.candidate.json"
+    ],
     "rack_columns": 5,
-    "denominator_label": "annual electricity use",
-    "allocation_label_template": "{share} of national electricity",
-    "scenario_sentence_template": "Allocating {share} of {countryName}'s annual electricity use to this scenario would provide an equivalent yearly energy budget for {profiles} configured AI-worker profiles.",
-    "truth_boundary": "Runtime values are demo placeholders until the EU27 source gate is resolved."
+    "denominator_label": "annual final electricity consumption",
+    "allocation_label_template": "{share} of annual final electricity consumption",
+    "scenario_sentence_template": "Allocating {share} of {countryName}'s annual final electricity consumption to this scenario would provide an equivalent yearly energy budget for {profiles} configured AI-worker profiles.",
+    "truth_boundary": "EU records are source candidates from Eurostat annual final electricity consumption. They are not promoted runtime data."
   },
   {
     "id": "us",
