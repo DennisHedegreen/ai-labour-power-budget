@@ -33,6 +33,10 @@ Current gate:
 - Runtime import authorized: no.
 - Live import authorized: no.
 
+The interface may load source candidates in review mode so the source boundary,
+denominator wording, and layout can be inspected. That is not a promotion into
+verified runtime data.
+
 ### EU27
 
 Status: blocked.
@@ -61,6 +65,13 @@ Reason:
 
 The same EIA retail-sales boundary applies to all state/DC records. These can
 support source review, but not runtime import yet.
+
+## Jurisdiction Mode Status
+
+- EU: selectable demo records only; unresolved EU27 source gate.
+- USA: selectable `source_candidate` records from EIA retail-sales candidate
+  files; not verified primary-source runtime data.
+- World: placeholder mode only; no source definition selected.
 
 ## Required Before Promotion
 

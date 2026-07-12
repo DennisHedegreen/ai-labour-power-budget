@@ -11,6 +11,7 @@ function readJson(relativePath) {
 
 const countries = readJson("countries.json");
 const eu27Shell = readJson("eu27-shell.json");
+const jurisdictionGroups = readJson("jurisdiction-groups.json");
 const workerProfiles = readJson("worker-profiles.json");
 const allocationProfiles = readJson("electricity-allocation-profiles.json");
 const assumptions = readJson("comparison-assumptions.json");
@@ -21,8 +22,43 @@ const copy = Object.fromEntries(
 
 assert(Array.isArray(countries), "countries.json must be an array");
 assert(Array.isArray(eu27Shell), "eu27-shell.json must be an array");
+assert(Array.isArray(jurisdictionGroups), "jurisdiction-groups.json must be an array");
 assert(Array.isArray(allocationProfiles), "electricity-allocation-profiles.json must be an array");
 assert(Array.isArray(copyLanguages) && copyLanguages.length > 0, "copy/languages.json must list languages");
+
+const jurisdictionGroupsById = Object.fromEntries(jurisdictionGroups.map((group) => [group.id, group]));
+for (const requiredGroup of ["eu", "us", "world"]) {
+  assert(jurisdictionGroupsById[requiredGroup], `jurisdiction-groups.json missing ${requiredGroup}`);
+}
+
+for (const group of jurisdictionGroups) {
+  for (const key of [
+    "id",
+    "label",
+    "short_label",
+    "status",
+    "rack_columns",
+    "denominator_label",
+    "allocation_label_template",
+    "scenario_sentence_template",
+    "truth_boundary",
+  ]) {
+    assert(Object.prototype.hasOwnProperty.call(group, key), `jurisdiction group ${group.id || "unknown"} missing ${key}`);
+  }
+  assert(Number.isInteger(group.rack_columns) && group.rack_columns >= 3, `${group.id} rack_columns must be usable`);
+  assert(group.allocation_label_template.includes("{share}"), `${group.id} allocation template must include {share}`);
+}
+
+assert.strictEqual(
+  jurisdictionGroupsById.eu.record_source,
+  "countries.json",
+  "EU group must keep demo runtime records separate from source candidates"
+);
+assert(
+  jurisdictionGroupsById.us.candidate_paths?.every((candidatePath) => candidatePath.startsWith("source-candidates/")),
+  "US group must point at source-candidate files, not promoted runtime data"
+);
+assert.strictEqual(jurisdictionGroupsById.world.status, "source_not_selected", "world mode must stay unselected until sourced");
 
 for (const language of copyLanguages) {
   assert(language.code && typeof language.code === "string", "copy language missing code");

@@ -1,0 +1,45 @@
+[
+  {
+    "id": "eu",
+    "label": "EU",
+    "short_label": "EU",
+    "kind": "country_group",
+    "status": "demo_runtime",
+    "shell_path": "eu27-shell.json",
+    "record_source": "countries.json",
+    "rack_columns": 5,
+    "denominator_label": "annual electricity use",
+    "allocation_label_template": "{share} of national electricity",
+    "scenario_sentence_template": "Allocating {share} of {countryName}'s annual electricity use to this scenario would provide an equivalent yearly energy budget for {profiles} configured AI-worker profiles.",
+    "truth_boundary": "Runtime values are demo placeholders until the EU27 source gate is resolved."
+  },
+  {
+    "id": "us",
+    "label": "United States",
+    "short_label": "USA",
+    "kind": "country_and_state_group",
+    "status": "source_candidate_review",
+    "candidate_paths": [
+      "source-candidates/us-national-electricity-use.candidate.json",
+      "source-candidates/us-states-electricity-use.candidate.json"
+    ],
+    "rack_columns": 8,
+    "denominator_label": "annual retail electricity sales",
+    "allocation_label_template": "{share} of annual retail electricity sales",
+    "scenario_sentence_template": "Allocating {share} of {countryName}'s annual retail electricity sales to this scenario would provide an equivalent yearly energy budget for {profiles} configured AI-worker profiles.",
+    "truth_boundary": "US records are source candidates from EIA retail sales to ultimate customers. They exclude direct use and are not promoted runtime data."
+  },
+  {
+    "id": "world",
+    "label": "World",
+    "short_label": "World",
+    "kind": "global_country_group",
+    "status": "source_not_selected",
+    "records": [],
+    "rack_columns": 8,
+    "denominator_label": "source not selected",
+    "allocation_label_template": "{share} of selected denominator",
+    "scenario_sentence_template": "A world mode needs a reviewed source definition before it can calculate equivalent AI-worker profiles.",
+    "truth_boundary": "World mode is a placeholder until an official source definition and country dataset are selected."
+  }
+]

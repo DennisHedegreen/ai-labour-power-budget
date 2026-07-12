@@ -53,6 +53,22 @@ button {
   padding: 24px 0 40px;
 }
 
+.heat-tool-main.tool-shell {
+  container-type: inline-size;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.heat-tool-main.tool-shell > .topbar {
+  display: none;
+}
+
+.heat-tool-main.tool-shell .step-rail {
+  margin-top: 0;
+}
+
 .topbar,
 .panel-head,
 .action-row,
@@ -201,6 +217,84 @@ p {
   color: var(--green);
   background:
     linear-gradient(180deg, rgba(20, 68, 49, 0.76), rgba(5, 20, 15, 0.98));
+}
+
+.jurisdiction-panel {
+  position: absolute;
+  z-index: 4;
+  top: 88px;
+  left: 50%;
+  width: min(620px, calc(100% - 180px));
+  transform: translateX(-50%);
+  display: grid;
+  gap: 7px;
+  justify-items: center;
+}
+
+.jurisdiction-switch {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+  width: 100%;
+}
+
+.jurisdiction-button {
+  min-height: 38px;
+  padding: 5px 8px;
+  border: 1px solid rgba(216, 224, 226, 0.16);
+  border-radius: 5px;
+  background:
+    linear-gradient(180deg, rgba(23, 28, 32, 0.9), rgba(5, 7, 9, 0.96));
+  color: var(--muted);
+  text-transform: uppercase;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.035),
+    inset 0 -14px 22px rgba(0, 0, 0, 0.3);
+}
+
+.jurisdiction-button strong,
+.jurisdiction-button span {
+  display: block;
+  line-height: 1.1;
+  letter-spacing: 0.08em;
+}
+
+.jurisdiction-button strong {
+  color: var(--text);
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.jurisdiction-button span {
+  margin-top: 3px;
+  color: var(--soft);
+  font-size: 0.62rem;
+  font-weight: 900;
+}
+
+.jurisdiction-button.is-active,
+.jurisdiction-button:hover,
+.jurisdiction-button:focus-visible {
+  border-color: rgba(125, 255, 191, 0.48);
+  background:
+    linear-gradient(180deg, rgba(20, 68, 49, 0.72), rgba(5, 20, 15, 0.96));
+}
+
+.jurisdiction-button.is-active strong,
+.jurisdiction-button:hover strong,
+.jurisdiction-button:focus-visible strong {
+  color: var(--green);
+}
+
+.jurisdiction-status {
+  max-width: 100%;
+  margin: 0;
+  color: rgba(167, 176, 173, 0.76);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 .step-rail {
@@ -422,14 +516,15 @@ p {
 }
 
 .rack {
+  --rack-columns: 5;
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(var(--rack-columns), minmax(0, 1fr));
   grid-auto-rows: minmax(90px, 1fr);
   gap: 6px;
   width: min(960px, calc(100% - 160px));
-  margin: 74px auto 0;
+  margin: 132px auto 0;
   padding: 18px;
   border: 1px solid rgba(216, 224, 226, 0.18);
   border-radius: 5px;
@@ -439,6 +534,14 @@ p {
     inset 0 0 0 1px rgba(0, 0, 0, 0.76),
     inset 0 0 38px rgba(0, 0, 0, 0.72);
   backdrop-filter: none;
+}
+
+.rack.is-dense {
+  grid-auto-rows: minmax(66px, 1fr);
+  gap: 4px;
+  width: min(980px, calc(100% - 136px));
+  margin-top: 128px;
+  padding: 14px;
 }
 
 .rack-slot {
@@ -460,6 +563,10 @@ p {
     inset 0 -18px 26px rgba(0, 0, 0, 0.5);
 }
 
+.rack.is-dense .rack-slot {
+  min-height: 66px;
+}
+
 .rack-slot::before {
   content: "";
   position: absolute;
@@ -476,6 +583,13 @@ p {
     0 1px 0 rgba(255, 255, 255, 0.09);
 }
 
+.rack.is-dense .rack-slot::before {
+  left: 11px;
+  right: 11px;
+  top: 10px;
+  height: 24px;
+}
+
 .rack-slot::after {
   content: "";
   position: absolute;
@@ -488,6 +602,14 @@ p {
     radial-gradient(circle, rgba(140, 148, 148, 0.42) 0 2px, transparent 2.5px) 0 0 / 8px 6px,
     radial-gradient(circle, rgba(10, 12, 13, 0.9) 0 2px, transparent 2.5px) 0 6px / 8px 6px;
   opacity: 0.52;
+}
+
+.rack.is-dense .rack-slot::after {
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  height: 8px;
+  background-size: 7px 4px, 7px 4px;
 }
 
 .rack-slot span {
@@ -505,7 +627,15 @@ p {
   background: rgba(2, 4, 5, 0.82);
   color: rgba(233, 236, 232, 0.42);
   font-weight: 900;
+  white-space: nowrap;
   transform: translate(-50%, -50%);
+}
+
+.rack.is-dense .rack-slot span {
+  min-width: 50px;
+  min-height: 21px;
+  padding: 0 5px;
+  font-size: 0.68rem;
 }
 
 .rack-slot small {
@@ -519,6 +649,12 @@ p {
   color: transparent;
   background: repeating-linear-gradient(90deg, rgba(116, 127, 123, 0.28) 0 4px, transparent 4px 8px);
   transform: translateX(-50%);
+}
+
+.rack.is-dense .rack-slot small {
+  bottom: 10px;
+  width: min(64px, calc(100% - 34px));
+  height: 4px;
 }
 
 .rack-slot.has-data {
@@ -1047,6 +1183,7 @@ p {
 
 .readout-item,
 .metric {
+  min-width: 0;
   min-height: 96px;
 }
 
@@ -1060,19 +1197,23 @@ p {
 .readout-item span,
 .metric span {
   display: block;
+  max-width: 100%;
   color: var(--soft);
   font-size: 0.73rem;
   font-weight: 900;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  overflow-wrap: anywhere;
 }
 
 .readout-item strong,
 .metric strong {
   display: block;
+  max-width: 100%;
   margin-top: 6px;
   font-size: clamp(1.2rem, 2.3vw, 2rem);
   line-height: 1.08;
+  overflow-wrap: anywhere;
 }
 
 .boundary-copy {
@@ -1225,9 +1366,13 @@ p {
 
 .metric small {
   display: inline-block;
+  max-width: 100%;
   margin-top: 10px;
   padding: 5px 8px;
   border-radius: 4px;
+  line-height: 1.22;
+  white-space: normal;
+  overflow-wrap: anywhere;
 }
 
 .metric.is-primary {
@@ -1316,6 +1461,20 @@ p {
   .machine-panel-front::after,
   .rack {
     display: none;
+  }
+
+  .local-language-panel,
+  .jurisdiction-panel {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    margin: 0 auto 14px;
+    transform: none;
+  }
+
+  .jurisdiction-switch {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .mobile-country-select {

@@ -14,6 +14,7 @@
 
   const state = {
     page: "country-select",
+    jurisdictionGroupId: "eu",
     selectedCountry: null,
     wattsPerAiWorker: 700,
     powerProfileId: "heavy_700w",
@@ -33,6 +34,8 @@
   const stepButtons = Array.from(document.querySelectorAll("[data-step-target]"));
   const countryRack = document.querySelector("#country-rack");
   const countrySelect = document.querySelector("#country-select");
+  const jurisdictionModeSwitch = document.querySelector("#jurisdiction-mode-switch");
+  const jurisdictionStatus = document.querySelector("#jurisdiction-status");
   const powerOptions = document.querySelector("#power-options");
   const runtimeOptions = document.querySelector("#runtime-options");
   const overheadOptions = document.querySelector("#overhead-options");
@@ -56,7 +59,8 @@
   const copy = data.copy;
   const copyLanguageByCode = new Map((data.copyLanguages || []).map((language) => [language.code, language]));
 
-  const countryByCode = new Map(data.countries.map((country) => [country.code, country]));
+  const jurisdictionGroups = data.jurisdictionGroups || [];
+  const jurisdictionGroupById = new Map(jurisdictionGroups.map((group) => [group.id, group]));
   const profileControls = {
     power: {
       profiles: data.powerProfiles,
@@ -93,15 +97,54 @@
     },
   };
 
+  function activeJurisdictionGroup() {
+    return jurisdictionGroupById.get(state.jurisdictionGroupId) || jurisdictionGroups[0];
+  }
+
+  function activeJurisdictionRecords() {
+    return activeJurisdictionGroup()?.records || [];
+  }
+
+  function activeCountryByCode() {
+    return new Map(activeJurisdictionRecords().map((country) => [country.code, country]));
+  }
+
+  function renderJurisdictionModes() {
+    if (!jurisdictionModeSwitch) return;
+    const activeGroup = activeJurisdictionGroup();
+    jurisdictionModeSwitch.innerHTML = jurisdictionGroups
+      .map((group) => {
+        const active = group.id === activeGroup?.id ? " is-active" : "";
+        const status = group.status === "source_not_selected" ? "not-ready" : group.status.replaceAll("_", "-");
+        return `<button type="button" class="jurisdiction-button${active}" data-jurisdiction-group="${escapeAttribute(group.id)}" data-status="${escapeAttribute(status)}">
+          <strong>${escapeHtml(group.short_label || group.label)}</strong>
+          <span>${escapeHtml(String(group.selectable_count || 0))}/${escapeHtml(String(group.shell_count || 0))}</span>
+        </button>`;
+      })
+      .join("");
+
+    if (jurisdictionStatus && activeGroup) {
+      jurisdictionStatus.textContent = `${activeGroup.label} · ${activeGroup.denominator_label} · ${activeGroup.status.replaceAll("_", " ")}`;
+    }
+  }
+
   function renderCountrySelectors() {
     const text = activeCopy();
-    const rackSlots = [...data.eu27Shell];
-    while (rackSlots.length < 30) {
-      rackSlots.push(["", "Empty bay"]);
+    const activeGroup = activeJurisdictionGroup();
+    const countryByCode = activeCountryByCode();
+    const rackSlots = [...(activeGroup.shell || [])];
+    const minimumSlots = activeGroup.id === "eu" ? 30 : Math.max(36, rackSlots.length);
+    while (rackSlots.length < minimumSlots) {
+      rackSlots.push({ code: "", name: "Empty bay" });
     }
 
+    countryRack.style.setProperty("--rack-columns", String(activeGroup.rack_columns || 5));
+    countryRack.classList.toggle("is-dense", rackSlots.length > 36);
+    countryRack.setAttribute("aria-label", `${activeGroup.label} rack selector`);
     countryRack.innerHTML = rackSlots
-      .map(([code, name]) => {
+      .map((slot) => {
+        const code = Array.isArray(slot) ? slot[0] : slot.code;
+        const name = Array.isArray(slot) ? slot[1] : slot.name;
         if (!code) {
           return `<span class="rack-slot is-empty" aria-hidden="true"></span>`;
         }
@@ -117,12 +160,16 @@
 
     countrySelect.innerHTML = [
       `<option value="">${escapeHtml(text.selectCountry)}</option>`,
-      ...data.eu27Shell.map(([code, name]) => {
+      ...(activeGroup.shell || []).map((slot) => {
+        const code = Array.isArray(slot) ? slot[0] : slot.code;
+        const name = Array.isArray(slot) ? slot[1] : slot.name;
         const hasData = countryByCode.has(code);
-        const suffix = hasData ? ` - ${text.demoValue}` : ` - ${text.sourcePassNeeded}`;
+        const sourceStatus = countryByCode.get(code)?.source_status;
+        const suffix = hasData ? ` - ${sourceStatus || text.demoValue}` : ` - ${text.sourcePassNeeded}`;
         return `<option value="${escapeAttribute(code)}" ${hasData ? "" : "disabled"}>${escapeHtml(countryShellName(code, name) + suffix)}</option>`;
       }),
     ].join("");
+    renderJurisdictionModes();
   }
 
   function activeLanguage() {
@@ -148,7 +195,7 @@
   }
 
   function countryShellName(code, fallbackName) {
-    const country = countryByCode.get(code);
+    const country = activeCountryByCode().get(code);
     if (state.languageMode === "local" && country?.local_name) return country.local_name;
     return fallbackName;
   }
@@ -261,7 +308,7 @@
   }
 
   function selectCountry(code) {
-    const country = countryByCode.get(code);
+    const country = activeCountryByCode().get(code);
     if (!country) {
       return;
     }
@@ -277,6 +324,18 @@
     }
     updateLanguageControl();
     goToPage("worker-profile");
+  }
+
+  function selectJurisdictionGroup(groupId) {
+    if (!jurisdictionGroupById.has(groupId) || state.jurisdictionGroupId === groupId) return;
+    state.jurisdictionGroupId = groupId;
+    state.selectedCountry = null;
+    countrySelect.value = "";
+    renderCountrySelectors();
+    updateLanguageControl();
+    applyStaticCopy();
+    updateOutputs();
+    goToPage("country-select");
   }
 
   function syncSelectedCountryButton(code) {
@@ -346,7 +405,7 @@
     }
 
     previewCountry.textContent = `${countryDisplayName(state.selectedCountry)} · ${state.selectedCountry.source_status}`;
-    sharePreview.textContent = formatTemplate(text.allocationSentenceTemplate, {
+    sharePreview.textContent = formatTemplate(allocationSentenceTemplate(), {
       share: formatPercent(state.electricityAllocationShare),
       countryName: countryDisplayName(state.selectedCountry),
       profiles: formatInteger(scenario.supportedAiWorkers),
@@ -354,7 +413,7 @@
     pressureFill.style.width = `${Math.min(100, state.electricityAllocationShare * 100)}%`;
     pressureFill.dataset.pressure = pressureBand(state.electricityAllocationShare);
     budgetPreview.innerHTML = [
-      readout(text.selectedAllocation, formatTemplate(text.allocationLabelTemplate, { share: formatPercent(state.electricityAllocationShare) })),
+      readout(text.selectedAllocation, formatTemplate(allocationLabelTemplate(), { share: formatPercent(state.electricityAllocationShare) })),
       readout(text.equivalentProfiles, `${formatInteger(scenario.supportedAiWorkers)} ${text.profiles}`),
       readout(text.allocatedElectricity, `${formatNumber(scenario.allocatedElectricityTwhYear, 3)} TWh/year`),
       readout(text.averageAllocatedLoad, `${formatNumber(allocatedAverageLoadGw(scenario), 3)} GW`),
@@ -366,7 +425,7 @@
       share: formatPercent(scenario.shareOfNationalElectricityNeeded),
     });
 
-    reportCoreSentence.textContent = formatTemplate(text.allocationSentenceTemplate, {
+    reportCoreSentence.textContent = formatTemplate(allocationSentenceTemplate(), {
       share: formatPercent(state.electricityAllocationShare),
       countryName: countryDisplayName(state.selectedCountry),
       profiles: formatInteger(scenario.supportedAiWorkers),
@@ -390,7 +449,7 @@
       metric(text.oneProfileYearly, `${formatNumber(scenario.worker.mwhYear, 4)} MWh/year`, text.calculationBasisPrecise),
       metric(text.calculationBasis, calculationBasisText(scenario), text.calculationBasisStatus, "is-calculation"),
       metric(text.averageAllocatedLoad, `${formatNumber(allocatedAverageLoadGw(scenario), 3)} GW`, text.annualEnergySpread),
-      metric(text.targetComparison, `${formatInteger(state.targetAiWorkers)} ${text.profiles}`, formatTemplate(text.allocationLabelTemplate, { share: formatPercent(scenario.shareOfNationalElectricityNeeded) })),
+      metric(text.targetComparison, `${formatInteger(state.targetAiWorkers)} ${text.profiles}`, formatTemplate(allocationLabelTemplate(), { share: formatPercent(scenario.shareOfNationalElectricityNeeded) })),
       ...renderComparisons(scenario),
       metric(formatTemplate(text.shareCapacityLabelTemplate, { share: "1%" }), `${formatInteger(supportedAtShare(0.01))} ${text.profiles}`, source),
       metric(formatTemplate(text.shareCapacityLabelTemplate, { share: "10%" }), `${formatInteger(supportedAtShare(0.1))} ${text.profiles}`, source),
@@ -450,6 +509,22 @@
       overhead: formatNumber(state.overheadFactor, 2),
       mwhYear: formatNumber(scenario.worker.mwhYear, 4),
     });
+  }
+
+  function allocationSentenceTemplate() {
+    const group = activeJurisdictionGroup();
+    if (group?.id && group.id !== "eu" && group.scenario_sentence_template) {
+      return group.scenario_sentence_template;
+    }
+    return activeCopy().allocationSentenceTemplate;
+  }
+
+  function allocationLabelTemplate() {
+    const group = activeJurisdictionGroup();
+    if (group?.id && group.id !== "eu" && group.allocation_label_template) {
+      return group.allocation_label_template;
+    }
+    return activeCopy().allocationLabelTemplate;
   }
 
   function formatTemplate(template, values) {
@@ -537,6 +612,12 @@
   });
 
   countrySelect.addEventListener("change", () => selectCountry(countrySelect.value));
+
+  jurisdictionModeSwitch?.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-jurisdiction-group]");
+    if (!button) return;
+    selectJurisdictionGroup(button.getAttribute("data-jurisdiction-group"));
+  });
 
   powerOptions.addEventListener("click", (event) => {
     const button = event.target.closest("[data-profile-id]");
@@ -686,6 +767,7 @@
   function applyInitialUrlState() {
     const params = new URLSearchParams(window.location.search);
     const countryCode = params.get("country");
+    const groupId = params.get("mode");
     const page = params.get("page");
     const lang = params.get("lang");
 
@@ -693,8 +775,12 @@
       state.languageMode = "local";
     }
 
-    if (countryCode && countryByCode.has(countryCode)) {
-      state.selectedCountry = countryByCode.get(countryCode);
+    if (groupId && jurisdictionGroupById.has(groupId)) {
+      state.jurisdictionGroupId = groupId;
+    }
+
+    if (countryCode && activeCountryByCode().has(countryCode)) {
+      state.selectedCountry = activeCountryByCode().get(countryCode);
     }
     renderCountrySelectors();
     renderAllControls();

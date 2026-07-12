@@ -99,6 +99,13 @@ Runtime app data:
 - `data/countries.json` contains demo placeholder records.
 - Demo values must remain visibly labelled until replaced.
 
+Jurisdiction modes:
+
+- `EU` uses the current EU rack shell and the demo runtime records.
+- `USA` loads EIA candidate records from `data/source-candidates/` for review
+  mode only, with the denominator labelled as annual retail electricity sales.
+- `World` exists as a mode placeholder, but has no selected source or records.
+
 Source candidate data:
 
 - EU27 candidate is blocked after direct Eurostat mismatch.
