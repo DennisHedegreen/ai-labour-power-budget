@@ -1,0 +1,45 @@
+name: Source data review
+description: Review a source definition, source candidate, or promotion gate.
+title: "Source review: "
+labels:
+  - source-review
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this for source-data issues. Candidate data must not become runtime data without an explicit promotion gate.
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope
+      description: Which file, source, country, or metric is under review?
+    validations:
+      required: true
+  - type: dropdown
+    id: metric
+    attributes:
+      label: Metric area
+      options:
+        - EU27 Eurostat final electricity consumption
+        - U.S. EIA retail sales to ultimate customers
+        - Runtime demo data
+        - Comparison assumptions
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: concern
+    attributes:
+      label: Concern or evidence
+      description: Include source links, calculation notes, or mismatch details.
+    validations:
+      required: true
+  - type: checkboxes
+    id: boundary
+    attributes:
+      label: Boundary checks
+      options:
+        - label: This does not imply spare grid capacity.
+        - label: This does not promote candidate data without a gate.
+        - label: This preserves source-specific denominator wording.
+

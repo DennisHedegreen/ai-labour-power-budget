@@ -1,0 +1,30 @@
+name: Product/UI review
+description: Review the prototype flow, interface, dramaturgy, or report page.
+title: "UI review: "
+labels:
+  - ui-review
+body:
+  - type: textarea
+    id: page
+    attributes:
+      label: Page or flow
+      description: Which page or transition is affected?
+    validations:
+      required: true
+  - type: textarea
+    id: issue
+    attributes:
+      label: Issue
+      description: What feels unclear, broken, misleading, or visually weak?
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Product checks
+      options:
+        - label: The issue affects whether the tool reads as a scenario instrument.
+        - label: The issue affects whether the result could be misunderstood as spare electricity.
+        - label: The issue affects mobile or compact layout.
+        - label: The issue affects page 4 report readability or scroll.
+

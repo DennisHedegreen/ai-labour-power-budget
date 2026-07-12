@@ -1,0 +1,35 @@
+name: Language/localization review
+description: Review UI copy, local-language mode, or translation accuracy.
+title: "Language review: "
+labels:
+  - language-review
+body:
+  - type: input
+    id: language
+    attributes:
+      label: Language
+      placeholder: "Example: Danish, German, Swedish"
+    validations:
+      required: true
+  - type: textarea
+    id: text
+    attributes:
+      label: Text under review
+      description: Paste the key, phrase, or screenshot context.
+    validations:
+      required: true
+  - type: textarea
+    id: recommendation
+    attributes:
+      label: Recommended change
+      description: Suggest wording that preserves the scenario boundary.
+    validations:
+      required: true
+  - type: checkboxes
+    id: boundary
+    attributes:
+      label: Semantic boundary
+      options:
+        - label: The wording avoids job-loss prediction.
+        - label: The wording avoids spare-grid-capacity claims.
+        - label: The wording treats AI-worker as a configured energy profile.

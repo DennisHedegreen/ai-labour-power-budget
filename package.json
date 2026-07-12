@@ -5,10 +5,10 @@
   "description": "Static Hedegreen Research prototype for comparing configured AI-worker energy profiles against national electricity-denominator scenarios.",
   "scripts": {
     "start": "python3 -m http.server 8797 --directory .",
-    "check": "node --check app.js && node --check data.js && node tests/calculation.test.js && node tests/data-contract.test.js && node tests/source-layer.test.js",
+    "check": "node --check app.js && node --check data.js && node tests/calculation.test.js && node tests/data-contract.test.js && node tests/source-layer.test.js && node scripts/check-public-ready.js",
+    "check:public": "node scripts/check-public-ready.js",
     "test": "node tests/calculation.test.js && node tests/data-contract.test.js && node tests/source-layer.test.js",
     "validate:source": "node scripts/validate-source-layer.js"
   },
   "license": "UNLICENSED"
 }
-

@@ -94,6 +94,8 @@ Read:
 - `data/README.md`
 - `data/source-candidates/README.md`
 - `docs/source-data-pass-2026-07-12/PROMOTION-GATE-REVIEW-2026-07-12.md`
+- `docs/ROADMAP.md`
+- `docs/PUBLICATION-CHECKLIST.md`
 
 ## Localization
 
@@ -106,6 +108,22 @@ Read:
 
 The translation contract is part of the product contract: wording must preserve
 the scenario boundary.
+
+## Review Workflow
+
+Start with `REVIEW.md` for manual review.
+
+GitHub issue templates are provided for:
+
+- source-data review
+- product/UI review
+- language/localization review
+
+Pull requests should use the included template and report the result of:
+
+```bash
+npm run check
+```
 
 ## License
 
