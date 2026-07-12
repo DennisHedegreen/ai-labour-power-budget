@@ -1000,29 +1000,46 @@ p {
 .machine-panel-side .instrument-control h3 {
   display: inline-grid;
   place-items: center;
-  width: max-content;
+  width: fit-content;
+  max-width: 100%;
   min-height: 26px;
   padding: 0 9px;
   border: 1px solid rgba(216, 224, 226, 0.12);
   border-radius: 3px;
   background: rgba(2, 4, 5, 0.76);
   color: rgba(233, 236, 232, 0.86);
-  font-size: 0.74rem;
+  font-size: clamp(0.58rem, 0.9vw, 0.74rem);
+  line-height: 1.12;
+  text-align: center;
+  overflow-wrap: anywhere;
+  overflow: hidden;
 }
 
 .machine-panel-side .option-button {
-  min-height: 32px;
+  display: grid;
+  place-items: center;
+  min-width: 0;
+  height: 32px;
   border-color: rgba(216, 224, 226, 0.1);
   border-radius: 2px;
   background: rgba(2, 5, 6, 0.62);
   color: rgba(233, 236, 232, 0.38);
   padding: 4px 5px;
   text-align: center;
+  overflow: hidden;
 }
 
 .machine-panel-side .option-button strong {
-  font-size: 0.7rem;
-  letter-spacing: 0.03em;
+  display: -webkit-box;
+  max-width: 100%;
+  color: inherit;
+  font-size: clamp(0.56rem, 0.8vw, 0.68rem);
+  letter-spacing: 0.01em;
+  line-height: 1.08;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
 .machine-panel-side .option-button span {
@@ -1048,6 +1065,7 @@ p {
   align-self: end;
   margin-top: auto;
   padding: 0 4px 0;
+  min-width: 0;
 }
 
 .machine-panel-side .option-grid::before {
