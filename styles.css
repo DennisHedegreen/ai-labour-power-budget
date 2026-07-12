@@ -1153,7 +1153,7 @@ p {
 .driver-value {
   display: grid;
   place-items: center;
-  min-height: 56px;
+  height: 56px;
   margin-bottom: 10px;
   border: 1px solid rgba(125, 255, 191, 0.2);
   border-radius: 4px;
@@ -1161,11 +1161,13 @@ p {
     repeating-linear-gradient(180deg, rgba(125, 255, 191, 0.025) 0 1px, transparent 1px 5px),
     rgba(2, 6, 7, 0.82);
   color: var(--green);
-  font-size: clamp(1rem, 1.8vw, 1.45rem);
+  font-size: clamp(0.96rem, 1.45vw, 1.28rem);
   font-weight: 950;
   line-height: 1.04;
   text-align: center;
+  text-wrap: balance;
   overflow-wrap: anywhere;
+  overflow: hidden;
 }
 
 .vertical-range-field {
@@ -1252,8 +1254,11 @@ p {
 }
 
 .equation-readout > div {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  align-items: center;
   min-width: 0;
-  min-height: 138px;
+  height: 164px;
   border: 1px solid rgba(125, 255, 191, 0.18);
   border-radius: 5px;
   background:
@@ -1272,12 +1277,20 @@ p {
 }
 
 .equation-readout strong {
-  display: block;
-  margin-top: 12px;
+  display: grid;
+  place-items: center start;
+  height: 100%;
+  margin-top: 6px;
   color: var(--green);
-  font-size: clamp(1.65rem, 3.4vw, 3.5rem);
-  line-height: 0.98;
+  font-size: clamp(1.75rem, 2.7vw, 2.85rem);
+  line-height: 1;
+  text-wrap: balance;
   overflow-wrap: anywhere;
+  overflow: hidden;
+}
+
+#equation-profiles {
+  font-size: clamp(1.42rem, 2.25vw, 2.35rem);
 }
 
 .equation-readout b {
@@ -1362,13 +1375,14 @@ p {
 .readout-list {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-auto-rows: 112px;
   gap: 10px;
 }
 
 .readout-item,
 .metric {
   min-width: 0;
-  min-height: 96px;
+  min-height: 0;
 }
 
 .readout-item {
@@ -1376,6 +1390,7 @@ p {
   border-radius: 8px;
   background: var(--panel-3);
   padding: 14px;
+  overflow: hidden;
 }
 
 .readout-item span,
@@ -1395,8 +1410,9 @@ p {
   display: block;
   max-width: 100%;
   margin-top: 6px;
-  font-size: clamp(1.2rem, 2.3vw, 2rem);
+  font-size: clamp(1.08rem, 1.75vw, 1.5rem);
   line-height: 1.08;
+  text-wrap: balance;
   overflow-wrap: anywhere;
 }
 
@@ -1506,15 +1522,17 @@ p {
 
 .balance-equation .readout-list {
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: 98px;
 }
 
 .balance-equation .readout-item {
-  min-height: 80px;
+  height: 98px;
+  min-height: 0;
   padding: 12px;
 }
 
 .balance-equation .readout-item strong {
-  font-size: clamp(1.05rem, 1.8vw, 1.6rem);
+  font-size: clamp(1rem, 1.55vw, 1.35rem);
 }
 
 .primary-button,
