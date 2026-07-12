@@ -1,7 +1,7 @@
 (function attachPrototypeDataLoader(globalScope) {
   "use strict";
 
-  const DATA_ROOT = "./data";
+  const DATA_ROOT = new URL("./data", document.currentScript?.src || globalScope.location.href).href;
 
   async function fetchJson(path) {
     const response = await fetch(path, { cache: "no-store" });
