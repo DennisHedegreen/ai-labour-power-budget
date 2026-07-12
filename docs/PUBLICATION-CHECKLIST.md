@@ -32,6 +32,7 @@ Research.
 ## Site Integration
 
 - Test standalone at `http://127.0.0.1:8797/`.
+- Test GitHub Pages at `https://dennishedegreen.github.io/ai-labour-power-budget/` if enabled.
 - Test inside the future Hedegreen Research TID shell.
 - Test desktop and compact layouts.
 - Confirm page 4 can scroll.

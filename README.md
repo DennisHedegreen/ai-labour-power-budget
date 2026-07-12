@@ -44,6 +44,17 @@ http://127.0.0.1:8797/
 
 The app has no backend. It loads local JSON files from `data/`.
 
+## Public Demo
+
+The GitHub Pages demo, when enabled, is a public review surface rather than a
+finished release:
+
+```text
+https://dennishedegreen.github.io/ai-labour-power-budget/
+```
+
+Read: `docs/DEPLOYMENT.md`
+
 ## Verify
 
 ```bash
