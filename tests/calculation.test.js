@@ -34,4 +34,30 @@ closeTo(denmark.shareOfNationalElectricityNeeded, 0.1752);
 closeTo(denmark.averageLoadGw, 0.7);
 closeTo(denmark.activeLoadGw, 0.7);
 
+const zeroAllocation = calculateCountryBudget({
+  annualElectricityTwh: 35,
+  electricityAllocationShare: 0,
+  wattsPerAiWorker: 700,
+  runtimeHoursPerWeek: 168,
+  overheadFactor: 1,
+  targetAiWorkers: 0,
+});
+
+assert.equal(zeroAllocation.allocatedElectricityTwhYear, 0);
+assert.equal(zeroAllocation.supportedAiWorkers, 0);
+assert.equal(zeroAllocation.targetEnergyTwhYear, 0);
+assert.equal(zeroAllocation.shareOfNationalElectricityNeeded, 0);
+
+const stress = calculateCountryBudget({
+  annualElectricityTwh: 35,
+  electricityAllocationShare: 3,
+  wattsPerAiWorker: 700,
+  runtimeHoursPerWeek: 168,
+  overheadFactor: 1,
+  targetAiWorkers: 1000000,
+});
+
+assert.equal(stress.allocatedElectricityTwhYear, 105);
+assert.equal(stress.supportedAiWorkers, 17123287);
+
 console.log("AI Labour Power Budget calculation tests passed");

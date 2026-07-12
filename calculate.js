@@ -14,6 +14,12 @@
     }
   }
 
+  function assertNonNegativeNumber(value, name) {
+    if (!Number.isFinite(value) || value < 0) {
+      throw new Error(`${name} must be a non-negative number`);
+    }
+  }
+
   function calculateWorkerEnergy({ wattsPerAiWorker, runtimeHoursPerWeek, overheadFactor = 1 }) {
     assertPositiveNumber(wattsPerAiWorker, "wattsPerAiWorker");
     assertPositiveNumber(runtimeHoursPerWeek, "runtimeHoursPerWeek");
@@ -43,14 +49,10 @@
     targetAiWorkers = 1000000,
   }) {
     assertPositiveNumber(annualElectricityTwh, "annualElectricityTwh");
-    assertPositiveNumber(electricityAllocationShare, "electricityAllocationShare");
+    assertNonNegativeNumber(electricityAllocationShare, "electricityAllocationShare");
     assertPositiveNumber(wattsPerAiWorker, "wattsPerAiWorker");
     assertPositiveNumber(runtimeHoursPerWeek, "runtimeHoursPerWeek");
     assertPositiveNumber(overheadFactor, "overheadFactor");
-
-    if (electricityAllocationShare > 1) {
-      throw new Error("electricityAllocationShare must be <= 1");
-    }
 
     if (!Number.isFinite(targetAiWorkers) || targetAiWorkers < 0) {
       throw new Error("targetAiWorkers must be >= 0");

@@ -124,39 +124,62 @@
                 <button type="button" class="ghost-button" data-action="back-worker">Back</button>
               </div>
 
-              <div class="allocation-layout">
-                <section class="control-card">
-                  <h3>Electricity share</h3>
+              <div class="allocation-layout balance-layout">
+                <section class="control-card balance-driver balance-driver--allocation">
+                  <h3>Electricity allocation</h3>
+                  <output class="driver-value" id="allocation-driver-value" for="worker-scale-slider">10%</output>
+                  <label class="vertical-range-field">
+                    <span>Electricity share</span>
+                    <input id="worker-scale-slider" type="range" min="1" max="300" step="0.1" value="10" orient="vertical">
+                  </label>
                   <div class="allocation-options" id="worker-scale-options"></div>
-                  <label class="custom-field range-field">
-                    <span>National electricity allocation</span>
-                    <input id="worker-scale-slider" type="range" min="1" max="100" step="1" value="10">
-                  </label>
-                  <label class="custom-field">
-                    <span>Compare target profiles</span>
-                    <input id="target-workers" type="number" min="0" step="1000" value="1000000">
-                  </label>
                 </section>
 
-                <aside class="budget-preview" aria-live="polite">
+                <aside class="budget-preview balance-equation" aria-live="polite">
                   <p class="panel-label">Preview</p>
                   <h3 id="preview-country">No country selected</h3>
-                  <p class="share-sentence" id="share-preview"></p>
+                  <p class="balance-mode" id="balance-mode">Allocation drives profile capacity</p>
+                  <div class="equation-readout">
+                    <div>
+                      <span>Electricity share</span>
+                      <strong id="equation-share">10%</strong>
+                    </div>
+                    <b aria-hidden="true">=</b>
+                    <div>
+                      <span>Equivalent profiles</span>
+                      <strong id="equation-profiles">0</strong>
+                    </div>
+                  </div>
                   <div class="pressure-gauge" id="pressure-gauge" aria-label="Electricity pressure gauge">
                     <div class="pressure-gauge__track">
                       <div class="pressure-gauge__fill" id="pressure-fill"></div>
                     </div>
                     <div class="pressure-gauge__labels">
                       <span>0%</span>
-                      <span>50%</span>
                       <span>100%</span>
+                      <span>300%+</span>
                     </div>
                   </div>
+                  <p class="share-sentence" id="share-preview"></p>
                   <div class="readout-list" id="budget-preview"></div>
                   <div class="advanced-target">
                     <p id="target-preview" class="target-preview"></p>
                   </div>
                 </aside>
+
+                <section class="control-card balance-driver balance-driver--profiles">
+                  <h3>Profile target</h3>
+                  <output class="driver-value" id="profile-driver-value" for="target-workers-slider">0 profiles</output>
+                  <label class="vertical-range-field">
+                    <span>Configured profiles</span>
+                    <input id="target-workers-slider" type="range" min="0" max="1000000" step="1000" value="1000000" orient="vertical">
+                  </label>
+                  <div class="allocation-options target-options" id="target-profile-options"></div>
+                  <label class="custom-field compact-custom">
+                    <span>Custom target</span>
+                    <input id="target-workers" type="number" min="0" step="1000" value="1000000">
+                  </label>
+                </section>
               </div>
 
               <div class="action-row">

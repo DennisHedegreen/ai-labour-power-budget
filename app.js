@@ -25,6 +25,7 @@
     targetAiWorkers: 1000000,
     allocationProfileId: "ten_percent",
     electricityAllocationShare: 0.1,
+    budgetDriver: "allocation",
     languageMode: "en",
   };
 
@@ -41,6 +42,10 @@
   const overheadOptions = document.querySelector("#overhead-options");
   const workerScaleOptions = document.querySelector("#worker-scale-options");
   const workerScaleSlider = document.querySelector("#worker-scale-slider");
+  const allocationDriverValue = document.querySelector("#allocation-driver-value");
+  const profileDriverValue = document.querySelector("#profile-driver-value");
+  const targetProfileOptions = document.querySelector("#target-profile-options");
+  const targetWorkersSlider = document.querySelector("#target-workers-slider");
   const customWatts = document.querySelector("#custom-watts");
   const customRuntime = document.querySelector("#custom-runtime");
   const customOverhead = document.querySelector("#custom-overhead");
@@ -48,6 +53,9 @@
   const workerReadout = document.querySelector("#worker-readout");
   const budgetPreview = document.querySelector("#budget-preview");
   const previewCountry = document.querySelector("#preview-country");
+  const balanceMode = document.querySelector("#balance-mode");
+  const equationShare = document.querySelector("#equation-share");
+  const equationProfiles = document.querySelector("#equation-profiles");
   const sharePreview = document.querySelector("#share-preview");
   const targetPreview = document.querySelector("#target-preview");
   const pressureFill = document.querySelector("#pressure-fill");
@@ -58,6 +66,14 @@
 
   const copy = data.copy;
   const copyLanguageByCode = new Map((data.copyLanguages || []).map((language) => [language.code, language]));
+  const MAX_ALLOCATION_SHARE = 3;
+  const TARGET_PROFILE_PRESETS = [
+    { id: "target_100k", label: "100k", value: 100000 },
+    { id: "target_1m", label: "1M", value: 1000000 },
+    { id: "target_10m", label: "10M", value: 10000000 },
+    { id: "target_50m", label: "50M", value: 50000000 },
+    { id: "target_250m", label: "250M", value: 250000000 },
+  ];
 
   const jurisdictionGroups = data.jurisdictionGroups || [];
   const jurisdictionGroupById = new Map(jurisdictionGroups.map((group) => [group.id, group]));
@@ -266,8 +282,7 @@
     setText(".page-allocation .control-card h3", text.electricityShare);
     if (allocationPanel) {
       const allocationLabels = allocationPanel.querySelectorAll(".custom-field span");
-      if (allocationLabels[0]) allocationLabels[0].textContent = text.nationalAllocation;
-      if (allocationLabels[1]) allocationLabels[1].textContent = text.compareTargetProfiles;
+      if (allocationLabels[0]) allocationLabels[0].textContent = text.compareTargetProfiles;
     }
     setText(".budget-preview .panel-label", text.preview);
     setText('[data-action="to-report"]', text.generateReport);
@@ -316,7 +331,21 @@
     renderProfileButtons(runtimeOptions, data.runtimeProfiles, state.runtimeProfileId, (item) => item.hours_per_week);
     renderProfileButtons(overheadOptions, data.overheadProfiles, state.overheadProfileId, (item) => item.factor);
     renderProfileButtons(workerScaleOptions, data.electricityAllocationProfiles, state.allocationProfileId, (item) => item.share);
+    renderTargetProfileButtons();
     syncInstrumentLabels();
+  }
+
+  function renderTargetProfileButtons() {
+    if (!targetProfileOptions) return;
+    const maxProfiles = maxTargetProfiles();
+    targetProfileOptions.innerHTML = TARGET_PROFILE_PRESETS.map((preset) => {
+      const disabled = preset.value > maxProfiles ? "disabled" : "";
+      const active = Math.abs(state.targetAiWorkers - preset.value) < 1 ? " is-active" : "";
+      return `<button type="button" class="option-button${active}" data-target-workers="${escapeAttribute(preset.value)}" ${disabled}>
+        <strong>${escapeHtml(preset.label)}</strong>
+        <span>${escapeHtml(disabled ? "over 300%" : "preset")}</span>
+      </button>`;
+    }).join("");
   }
 
   function selectCountry(code) {
@@ -409,6 +438,7 @@
       readout("MWh/year", formatNumber(worker.mwhYear, 3)),
     ].join("");
 
+    reconcileBudgetDriver();
     const scenario = readScenario();
     if (!scenario) {
       budgetPreview.innerHTML = "";
@@ -417,12 +447,20 @@
     }
 
     previewCountry.textContent = `${countryDisplayName(state.selectedCountry)} · ${state.selectedCountry.source_status}`;
+    if (allocationDriverValue) allocationDriverValue.textContent = formatPercent(state.electricityAllocationShare);
+    if (profileDriverValue) profileDriverValue.textContent = `${formatInteger(state.targetAiWorkers)} ${text.profiles}`;
+    if (equationShare) equationShare.textContent = formatPercent(state.electricityAllocationShare);
+    if (equationProfiles) equationProfiles.textContent = `${formatInteger(scenario.supportedAiWorkers)} ${text.profiles}`;
+    if (balanceMode) {
+      balanceMode.textContent =
+        state.budgetDriver === "profiles" ? "Profile target drives required allocation" : "Allocation drives profile capacity";
+    }
     sharePreview.textContent = formatTemplate(allocationSentenceTemplate(), {
       share: formatPercent(state.electricityAllocationShare),
       countryName: countryDisplayName(state.selectedCountry),
       profiles: formatInteger(scenario.supportedAiWorkers),
     });
-    pressureFill.style.width = `${Math.min(100, state.electricityAllocationShare * 100)}%`;
+    pressureFill.style.width = `${Math.min(100, state.electricityAllocationShare / MAX_ALLOCATION_SHARE * 100)}%`;
     pressureFill.dataset.pressure = pressureBand(state.electricityAllocationShare);
     budgetPreview.innerHTML = [
       readout(text.selectedAllocation, formatTemplate(allocationLabelTemplate(), { share: formatPercent(state.electricityAllocationShare) })),
@@ -437,6 +475,7 @@
       share: formatPercent(scenario.shareOfNationalElectricityNeeded),
     });
 
+    syncBudgetControlValues(scenario);
     reportCoreSentence.textContent = formatTemplate(allocationSentenceTemplate(), {
       share: formatPercent(state.electricityAllocationShare),
       countryName: countryDisplayName(state.selectedCountry),
@@ -482,10 +521,56 @@
     }).supportedAiWorkers;
   }
 
+  function maxTargetProfiles() {
+    if (!state.selectedCountry) return 1000000;
+    return Math.max(1000, supportedAtShare(MAX_ALLOCATION_SHARE));
+  }
+
+  function targetShareForProfiles(profiles) {
+    if (!state.selectedCountry) return state.electricityAllocationShare;
+    const worker = calculator.calculateWorkerEnergy({
+      wattsPerAiWorker: state.wattsPerAiWorker,
+      runtimeHoursPerWeek: state.runtimeHoursPerWeek,
+      overheadFactor: state.overheadFactor,
+    });
+    return profiles * worker.kwhYear / (state.selectedCountry.annual_electricity_twh * calculator.KWH_PER_TWH);
+  }
+
+  function syncBudgetControlValues() {
+    const sharePercent = state.electricityAllocationShare * 100;
+    if (workerScaleSlider) {
+      workerScaleSlider.value = String(Math.min(MAX_ALLOCATION_SHARE * 100, Math.max(Number(workerScaleSlider.min), sharePercent)));
+    }
+    if (targetWorkers) {
+      targetWorkers.value = String(Math.round(state.targetAiWorkers));
+    }
+    if (targetWorkersSlider) {
+      const maxProfiles = maxTargetProfiles();
+      targetWorkersSlider.max = String(maxProfiles);
+      targetWorkersSlider.step = String(Math.max(1000, Math.round(maxProfiles / 1200)));
+      targetWorkersSlider.value = String(Math.min(maxProfiles, Math.max(0, Math.round(state.targetAiWorkers))));
+    }
+    renderTargetProfileButtons();
+    workerScaleOptions.querySelectorAll(".option-button").forEach((button) => {
+      const value = Number(button.getAttribute("data-profile-value"));
+      button.classList.toggle("is-active", Math.abs(value - state.electricityAllocationShare) < 0.0001);
+    });
+  }
+
+  function reconcileBudgetDriver() {
+    if (!state.selectedCountry) return;
+    if (state.budgetDriver === "profiles") {
+      state.electricityAllocationShare = targetShareForProfiles(state.targetAiWorkers);
+      return;
+    }
+    state.targetAiWorkers = supportedAtShare(state.electricityAllocationShare);
+  }
+
   function pressureBand(share) {
     if (share < 0.25) return "low";
-    if (share < 0.75) return "medium";
-    return "high";
+    if (share < 1) return "medium";
+    if (share < MAX_ALLOCATION_SHARE) return "high";
+    return "over";
   }
 
   function allocatedAverageLoadGw(scenario) {
@@ -664,10 +749,19 @@
   workerScaleOptions.addEventListener("click", (event) => {
     const button = event.target.closest("[data-profile-id]");
     if (!button) return;
+    state.budgetDriver = "allocation";
     state.allocationProfileId = button.getAttribute("data-profile-id");
     state.electricityAllocationShare = Number(button.getAttribute("data-profile-value"));
-    workerScaleSlider.value = String(Math.round(state.electricityAllocationShare * 100));
-    setActiveButton(workerScaleOptions, state.allocationProfileId);
+    state.targetAiWorkers = supportedAtShare(state.electricityAllocationShare);
+    updateOutputs();
+  });
+
+  targetProfileOptions?.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-target-workers]");
+    if (!button || button.disabled) return;
+    state.budgetDriver = "profiles";
+    state.targetAiWorkers = clampNumber(Number(button.getAttribute("data-target-workers")), 0, 10000000000, 1000000);
+    state.electricityAllocationShare = targetShareForProfiles(state.targetAiWorkers);
     updateOutputs();
   });
 
@@ -693,14 +787,24 @@
   });
 
   workerScaleSlider.addEventListener("input", () => {
+    state.budgetDriver = "allocation";
     state.allocationProfileId = "custom";
-    state.electricityAllocationShare = clampNumber(Number(workerScaleSlider.value), 1, 100, 10) / 100;
-    setActiveButton(workerScaleOptions, "custom");
+    state.electricityAllocationShare = clampNumber(Number(workerScaleSlider.value), 0.1, MAX_ALLOCATION_SHARE * 100, 10) / 100;
+    state.targetAiWorkers = supportedAtShare(state.electricityAllocationShare);
     updateOutputs();
   });
 
   targetWorkers.addEventListener("input", () => {
+    state.budgetDriver = "profiles";
     state.targetAiWorkers = clampNumber(Number(targetWorkers.value), 0, 10000000000, 1000000);
+    state.electricityAllocationShare = targetShareForProfiles(state.targetAiWorkers);
+    updateOutputs();
+  });
+
+  targetWorkersSlider?.addEventListener("input", () => {
+    state.budgetDriver = "profiles";
+    state.targetAiWorkers = clampNumber(Number(targetWorkersSlider.value), 0, 10000000000, 1000000);
+    state.electricityAllocationShare = targetShareForProfiles(state.targetAiWorkers);
     updateOutputs();
   });
 

@@ -1123,17 +1123,167 @@ p {
 }
 
 .machine-panel-pressure .allocation-layout {
-  grid-template-columns: minmax(260px, 370px) 1fr;
-  gap: 18px;
-  margin-top: 42px;
+  grid-template-columns: minmax(132px, 168px) minmax(0, 1fr) minmax(132px, 168px);
+  gap: 14px;
+  margin-top: 38px;
+  align-items: stretch;
 }
 
 .machine-panel-pressure .budget-preview {
-  min-height: 430px;
+  min-height: 500px;
 }
 
 .machine-panel-pressure .share-sentence {
-  font-size: clamp(1rem, 1.8vw, 1.35rem);
+  font-size: clamp(0.92rem, 1.45vw, 1.1rem);
+}
+
+.balance-driver {
+  display: grid;
+  grid-template-rows: auto auto minmax(220px, 1fr) auto auto;
+  min-height: 500px;
+  padding: 14px 12px;
+}
+
+.balance-driver h3 {
+  min-height: 34px;
+  margin-bottom: 6px;
+  text-align: center;
+}
+
+.driver-value {
+  display: grid;
+  place-items: center;
+  min-height: 56px;
+  margin-bottom: 10px;
+  border: 1px solid rgba(125, 255, 191, 0.2);
+  border-radius: 4px;
+  background:
+    repeating-linear-gradient(180deg, rgba(125, 255, 191, 0.025) 0 1px, transparent 1px 5px),
+    rgba(2, 6, 7, 0.82);
+  color: var(--green);
+  font-size: clamp(1rem, 1.8vw, 1.45rem);
+  font-weight: 950;
+  line-height: 1.04;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.vertical-range-field {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+  min-height: 220px;
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.vertical-range-field span {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  opacity: 0.76;
+}
+
+.vertical-range-field input[type="range"] {
+  width: 38px;
+  min-height: 190px;
+  padding: 0;
+  accent-color: var(--green);
+  writing-mode: bt-lr;
+  -webkit-appearance: slider-vertical;
+}
+
+.balance-driver .allocation-options {
+  grid-template-columns: 1fr;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.balance-driver .option-button {
+  min-height: 32px;
+  padding: 5px 7px;
+  text-align: center;
+}
+
+.balance-driver .option-button strong {
+  font-size: 0.78rem;
+}
+
+.balance-driver .option-button span {
+  display: none;
+}
+
+.balance-driver .option-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.36;
+}
+
+.balance-driver .compact-custom {
+  margin-top: 10px;
+}
+
+.balance-driver .compact-custom input {
+  min-height: 36px;
+  font-size: 0.82rem;
+}
+
+.balance-equation {
+  display: flex;
+  flex-direction: column;
+}
+
+.balance-mode {
+  margin: 0 0 12px;
+  color: var(--green);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.equation-readout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  margin: 12px 0 14px;
+}
+
+.equation-readout > div {
+  min-width: 0;
+  min-height: 138px;
+  border: 1px solid rgba(125, 255, 191, 0.18);
+  border-radius: 5px;
+  background:
+    repeating-linear-gradient(180deg, rgba(125, 255, 191, 0.025) 0 1px, transparent 1px 5px),
+    linear-gradient(180deg, rgba(5, 20, 18, 0.88), rgba(2, 5, 6, 0.96));
+  padding: 14px;
+}
+
+.equation-readout span {
+  display: block;
+  color: var(--soft);
+  font-size: 0.7rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.equation-readout strong {
+  display: block;
+  margin-top: 12px;
+  color: var(--green);
+  font-size: clamp(1.65rem, 3.4vw, 3.5rem);
+  line-height: 0.98;
+  overflow-wrap: anywhere;
+}
+
+.equation-readout b {
+  color: var(--green);
+  font-size: clamp(1.8rem, 3vw, 3rem);
+  line-height: 1;
 }
 
 .machine-panel-report .panel-head p#report-core-sentence {
@@ -1296,11 +1446,11 @@ p {
 }
 
 .pressure-gauge__track::before {
-  left: 50%;
+  left: 33.333%;
 }
 
 .pressure-gauge__track::after {
-  display: none;
+  left: 66.666%;
 }
 
 .pressure-gauge__fill {
@@ -1352,6 +1502,19 @@ p {
   margin: 10px 0 0;
   color: var(--muted);
   font-size: 0.92rem;
+}
+
+.balance-equation .readout-list {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.balance-equation .readout-item {
+  min-height: 80px;
+  padding: 12px;
+}
+
+.balance-equation .readout-item strong {
+  font-size: clamp(1.05rem, 1.8vw, 1.6rem);
 }
 
 .primary-button,
