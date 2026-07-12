@@ -139,6 +139,7 @@
     }
 
     countryRack.style.setProperty("--rack-columns", String(activeGroup.rack_columns || 5));
+    countryRack.dataset.jurisdiction = activeGroup.id || "";
     countryRack.classList.toggle("is-dense", rackSlots.length > 36);
     countryRack.setAttribute("aria-label", `${activeGroup.label} rack selector`);
     countryRack.innerHTML = rackSlots
