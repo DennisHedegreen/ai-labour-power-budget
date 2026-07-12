@@ -9,6 +9,7 @@ Research.
 - `git status --short` is clean.
 - No raw `.xlsx` or `.zip` source artifacts are committed.
 - No local machine paths are present.
+- `docs/PUBLIC-REVIEW-RATIONALE.md` explains why the repo is public.
 - License boundary is intentional.
 - GitHub Actions status is understood. Current token cannot push workflow files.
 
@@ -34,4 +35,3 @@ Research.
 - Test inside the future Hedegreen Research TID shell.
 - Test desktop and compact layouts.
 - Confirm page 4 can scroll.
-

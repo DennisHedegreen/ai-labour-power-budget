@@ -5,6 +5,14 @@ profiles compare with a country's annual electricity-denominator scenario.
 
 Status: prototype. Runtime country values are still demo placeholders.
 
+## Why This Repository Is Public
+
+This repository is public for method and source review before the tool makes
+stronger claims. The important parts are intentionally visible: calculation
+logic, source gates, translation files, and the unresolved data boundaries.
+
+Read: `docs/PUBLIC-REVIEW-RATIONALE.md`
+
 ## What It Is
 
 The tool is a scenario instrument. It calculates an energy-equivalent yearly
