@@ -68,6 +68,7 @@ node tests/calculation.test.js
 node tests/data-contract.test.js
 node tests/source-layer.test.js
 node scripts/validate-source-layer.js
+node scripts/source-status.js
 ```
 
 ## Repository Structure
@@ -112,9 +113,17 @@ Read:
 
 - `data/README.md`
 - `data/source-candidates/README.md`
+- `docs/DATA-READINESS.md`
 - `docs/source-data-pass-2026-07-12/PROMOTION-GATE-REVIEW-2026-07-12.md`
 - `docs/ROADMAP.md`
 - `docs/PUBLICATION-CHECKLIST.md`
+
+Quick source-status command:
+
+```bash
+npm run source:status
+node scripts/source-status.js --json
+```
 
 ## Localization
 
