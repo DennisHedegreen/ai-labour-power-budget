@@ -1189,9 +1189,9 @@ p {
 }
 
 .vertical-range-field {
+  position: relative;
   display: grid;
-  justify-items: center;
-  gap: 8px;
+  place-items: center;
   min-height: 220px;
   color: var(--muted);
   font-size: 0.68rem;
@@ -1201,9 +1201,18 @@ p {
 }
 
 .vertical-range-field span {
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
+  position: absolute;
+  left: calc(50% + 26px);
+  top: 50%;
+  max-width: 170px;
   opacity: 0.76;
+  overflow: hidden;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transform: translateY(-50%) rotate(90deg);
+  transform-origin: center;
+  pointer-events: none;
 }
 
 .vertical-range-field input[type="range"] {
