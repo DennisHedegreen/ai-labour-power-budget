@@ -1,0 +1,132 @@
+{
+  "languageButton": "English",
+  "languageState": "LT",
+  "localLanguageFallback": "Vietinė kalba",
+  "statusChips": [
+    "demonstracinės reikšmės",
+    "būtina patikrinti šaltinius",
+    "nepaskelbta"
+  ],
+  "manualSetting": "Rankinis nustatymas",
+  "clickToCycle": "Spustelėkite, kad perjungtumėte",
+  "selectCountry": "Pasirinkite šalį",
+  "demoValue": "demonstracinė reikšmė",
+  "sourcePassNeeded": "būtina patikrinti šaltinius",
+  "equivalentProfiles": "Energetiškai lygiaverčiai AI-worker profiliai",
+  "profiles": "profiliai",
+  "selectedAllocation": "Pasirinkta dalis",
+  "allocatedElectricity": "Paskirta elektros energija",
+  "averageAllocatedLoad": "Vidutinė paskirta galia",
+  "annualElectricity": "Metinis elektros energijos suvartojimas",
+  "country": "Šalis",
+  "wattProfile": "Galios profilis",
+  "runtime": "Veikimo laikas",
+  "overhead": "Papildomas koeficientas",
+  "oneAiWorker": "Vienas AI-worker",
+  "oneProfileYearly": "Vienas profilis per metus",
+  "electricityAllocation": "Elektros energijos paskirstymas",
+  "targetComparison": "Palyginimas su tikslu",
+  "calculationBasis": "Skaičiavimo pagrindas",
+  "dataStatus": "Duomenų būsena",
+  "scenarioOutput": "scenarijaus rezultatas",
+  "scenarioSetting": "scenarijaus nustatymas",
+  "notVerified": "nepatikrinta",
+  "thoughtExperiment": "minties eksperimentas",
+  "noCountrySelected": "Nepasirinkta jokia šalis",
+  "energyBoundary": "energetiškai lygiavertė scenarijaus talpa — ne laisvas tinklo pajėgumas ir ne diegimo prognozė",
+  "ofNationalAnnualElectricity": "iš nacionalinio metinio elektros energijos suvartojimo",
+  "underSelectedWattProfile": "pagal pasirinktą galios profilį",
+  "calculationBasisPrecise": "skaičiavimo pagrindas naudoja šią tikslią reikšmę",
+  "annualEnergySpread": "metinė energija, paskirstyta per visus metus",
+  "calculationBasisStatus": "vatai x valandos/savaitę x savaitės/metus x papildomas koeficientas",
+  "fullOutputAssumption": "atskaitos prielaida: nepertraukiamas veikimas 100 % galia",
+  "offshoreAssumption": "atskaitos prielaida: 45 % galios koeficientas",
+  "householdAssumption": "atskaitos prielaida: 3 500 kWh/metus",
+  "wind3": "3 MW vėjo turbinos",
+  "wind8": "8 MW jūrinės vėjo turbinos",
+  "households": "Namų ūkio metų ekvivalentas",
+  "truthBoundary": "Interpretavimo riba",
+  "truthBoundaryText": "Šis vietinis prototipas naudoja demonstracines reikšmes ir nuorodas į šaltinius. Jis neteigia, kad kuri nors šalis turi perteklinės elektros energijos, ir neprognozuoja darbo vietų praradimo.",
+  "steps": [
+    "1 Šalis",
+    "2 Worker",
+    "3 Biudžetas",
+    "4 Ataskaita"
+  ],
+  "workerProfile": "AI-worker profilis",
+  "defineWorker": "Apibrėžkite vieną AI-worker",
+  "workerIntro": "Nustatykite šiame scenarijuje naudojamą galios profilį ir veikimo laiką.",
+  "back": "Atgal",
+  "restart": "Pradėti iš naujo",
+  "powerDraw": "Galios suvartojimas",
+  "customWatts": "Pasirinktinė galia vatais",
+  "customHours": "Pasirinktinis valandų skaičius per savaitę",
+  "infrastructureOverhead": "Infrastruktūros papildomas koeficientas",
+  "customFactor": "Pasirinktinis koeficientas",
+  "oneWorkerUses": "Vienas AI-worker naudoja",
+  "scenarioSettingsBoundary": "Tai scenarijaus nustatymai, o ne prognozė.",
+  "continueToScale": "Tęsti į biudžetą",
+  "countryElectricityBudget": "Šalies elektros energijos biudžetas",
+  "chooseElectricityShare": "Pasirinkite elektros energijos dalį",
+  "allocationIntro": "Kokia šios šalies dabartinio metinio elektros energijos suvartojimo dalis paskiriama AI darbui?",
+  "electricityShare": "Elektros energijos dalis",
+  "nationalAllocation": "Nacionalinis elektros energijos paskirstymas",
+  "compareTargetProfiles": "Palyginti tikslinius profilius",
+  "preview": "Peržiūra",
+  "generateReport": "Sukurti ataskaitą",
+  "scenarioReport": "Scenarijaus ataskaita",
+  "allocationSentenceTemplate": "Jei {share} šalies {countryName} metinio elektros energijos suvartojimo būtų paskirta šiam scenarijui, tai atitiktų metinį energijos biudžetą {profiles} sukonfigūruotiems AI-worker profiliams.",
+  "comparisonSentenceTemplate": "Palyginimas: {profiles} sukonfigūruotiems profiliams reikėtų {twh} TWh/metus, o tai sudaro {share} dabartinio metinio elektros energijos suvartojimo.",
+  "allocationLabelTemplate": "{share} nacionalinės elektros energijos",
+  "shareCapacityLabelTemplate": "elektros energijos paskirstymas: {share}",
+  "calculationBasisTemplate": "{watts} W x {hoursPerWeek} valandos/savaitę x {weeksPerYear} savaitės/metus x {overhead} papildomas koeficientas = {mwhYear} MWh/profiliui/metus",
+  "profileText": {
+    "efficient_future_70w": {
+      "label": "70 W",
+      "description": "Energiškai efektyvios aparatinės įrangos scenarijus"
+    },
+    "improved_200w": {
+      "label": "200 W",
+      "description": "Patobulintos aparatinės įrangos scenarijus"
+    },
+    "heavy_700w": {
+      "label": "700 W",
+      "description": "Dabartinis didelio suvartojimo scenarijus"
+    },
+    "human_week_37h": {
+      "label": "37 valandos/savaitę",
+      "description": "Žmogaus darbo savaitės energetinis ekvivalentas"
+    },
+    "standard_40h": {
+      "label": "40 valandų/savaitę",
+      "description": "Standartinė visos darbo dienos savaitė"
+    },
+    "always_on_24_7": {
+      "label": "24/7",
+      "description": "Nuolat veikiantis mašininis worker"
+    },
+    "raw_compute": {
+      "label": "Išjungta / raw compute",
+      "description": "Be papildomo daugiklio"
+    },
+    "facility_1_3": {
+      "label": "1,3x",
+      "description": "Supaprastintas aušinimo ir infrastruktūros papildomo suvartojimo scenarijus"
+    },
+    "one_percent": {
+      "label": "1 %"
+    },
+    "five_percent": {
+      "label": "5 %"
+    },
+    "ten_percent": {
+      "label": "10 %"
+    },
+    "twentyfive_percent": {
+      "label": "25 %"
+    },
+    "hundred_percent_thought_experiment": {
+      "label": "100 % minties eksperimentas"
+    }
+  }
+}

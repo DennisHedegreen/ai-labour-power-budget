@@ -1,0 +1,170 @@
+[
+  {
+    "code": "en",
+    "label": "English",
+    "locale": "en",
+    "file": "en.json",
+    "source": true
+  },
+  {
+    "code": "da",
+    "label": "Dansk",
+    "locale": "da-DK",
+    "file": "da.json",
+    "source": false
+  },
+  {
+    "code": "de",
+    "label": "Deutsch",
+    "locale": "de-DE",
+    "file": "de.json",
+    "source": false
+  },
+  {
+    "code": "sv",
+    "label": "Svenska",
+    "locale": "sv-SE",
+    "file": "sv.json",
+    "source": false
+  },
+  {
+    "code": "fr",
+    "label": "Français",
+    "locale": "fr-FR",
+    "file": "fr.json",
+    "source": false
+  },
+  {
+    "code": "nl",
+    "label": "Nederlands",
+    "locale": "nl-NL",
+    "file": "nl.json",
+    "source": false
+  },
+  {
+    "code": "es",
+    "label": "Español",
+    "locale": "es-ES",
+    "file": "es.json",
+    "source": false
+  },
+  {
+    "code": "it",
+    "label": "Italiano",
+    "locale": "it-IT",
+    "file": "it.json",
+    "source": false
+  },
+  {
+    "code": "pt",
+    "label": "Português",
+    "locale": "pt-PT",
+    "file": "pt.json",
+    "source": false
+  },
+  {
+    "code": "pl",
+    "label": "Polski",
+    "locale": "pl-PL",
+    "file": "pl.json",
+    "source": false
+  },
+  {
+    "code": "ro",
+    "label": "Română",
+    "locale": "ro-RO",
+    "file": "ro.json",
+    "source": false
+  },
+  {
+    "code": "cs",
+    "label": "Čeština",
+    "locale": "cs-CZ",
+    "file": "cs.json",
+    "source": false
+  },
+  {
+    "code": "sk",
+    "label": "Slovenčina",
+    "locale": "sk-SK",
+    "file": "sk.json",
+    "source": false
+  },
+  {
+    "code": "hu",
+    "label": "Magyar",
+    "locale": "hu-HU",
+    "file": "hu.json",
+    "source": false
+  },
+  {
+    "code": "bg",
+    "label": "Български",
+    "locale": "bg-BG",
+    "file": "bg.json",
+    "source": false
+  },
+  {
+    "code": "hr",
+    "label": "Hrvatski",
+    "locale": "hr-HR",
+    "file": "hr.json",
+    "source": false
+  },
+  {
+    "code": "sl",
+    "label": "Slovenščina",
+    "locale": "sl-SI",
+    "file": "sl.json",
+    "source": false
+  },
+  {
+    "code": "el",
+    "label": "Ελληνικά",
+    "locale": "el-GR",
+    "file": "el.json",
+    "source": false
+  },
+  {
+    "code": "fi",
+    "label": "Suomi",
+    "locale": "fi-FI",
+    "file": "fi.json",
+    "source": false
+  },
+  {
+    "code": "et",
+    "label": "Eesti",
+    "locale": "et-EE",
+    "file": "et.json",
+    "source": false
+  },
+  {
+    "code": "lv",
+    "label": "Latviešu",
+    "locale": "lv-LV",
+    "file": "lv.json",
+    "source": false
+  },
+  {
+    "code": "lt",
+    "label": "Lietuvių",
+    "locale": "lt-LT",
+    "file": "lt.json",
+    "source": false
+  },
+  {
+    "code": "ga",
+    "label": "Gaeilge",
+    "locale": "ga-IE",
+    "file": "ga.json",
+    "source": false
+  },
+  {
+    "code": "mt",
+    "label": "Malti",
+    "locale": "mt-MT",
+    "file": "mt.json",
+    "source": false
+  }
+]

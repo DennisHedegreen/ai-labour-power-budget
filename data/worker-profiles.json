@@ -1,0 +1,59 @@
+{
+  "powerProfiles": [
+    {
+      "id": "efficient_future_70w",
+      "label": "70 W",
+      "watts": 70,
+      "description": "Efficient hardware scenario",
+      "evidence_status": "speculative_scenario"
+    },
+    {
+      "id": "improved_200w",
+      "label": "200 W",
+      "watts": 200,
+      "description": "Improved hardware scenario",
+      "evidence_status": "scenario"
+    },
+    {
+      "id": "heavy_700w",
+      "label": "700 W",
+      "watts": 700,
+      "description": "Current heavy scenario",
+      "evidence_status": "scenario_from_transcript_needs_verification"
+    }
+  ],
+  "runtimeProfiles": [
+    {
+      "id": "human_week_37h",
+      "label": "37 hours/week",
+      "hours_per_week": 37,
+      "description": "Human workweek equivalent"
+    },
+    {
+      "id": "standard_40h",
+      "label": "40 hours/week",
+      "hours_per_week": 40,
+      "description": "Standard full-time week"
+    },
+    {
+      "id": "always_on_24_7",
+      "label": "24/7",
+      "hours_per_week": 168,
+      "description": "Always-on machine worker"
+    }
+  ],
+  "overheadProfiles": [
+    {
+      "id": "raw_compute",
+      "label": "Off / raw compute",
+      "factor": 1,
+      "description": "No overhead multiplier"
+    },
+    {
+      "id": "facility_1_3",
+      "label": "1.3x",
+      "factor": 1.3,
+      "description": "Simple cooling / facility overhead scenario"
+    }
+  ]
+}

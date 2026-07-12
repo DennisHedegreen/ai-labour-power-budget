@@ -1,0 +1,132 @@
+{
+  "languageButton": "English",
+  "languageState": "NL",
+  "localLanguageFallback": "Lokale taal",
+  "statusChips": [
+    "demowaarden",
+    "broncontrole vereist",
+    "niet gepubliceerd"
+  ],
+  "manualSetting": "Handmatige instelling",
+  "clickToCycle": "Klik om te wisselen",
+  "selectCountry": "Selecteer land",
+  "demoValue": "demowaarde",
+  "sourcePassNeeded": "broncontrole vereist",
+  "equivalentProfiles": "Energie-equivalente AI-worker-profielen",
+  "profiles": "profielen",
+  "selectedAllocation": "Geselecteerd aandeel",
+  "allocatedElectricity": "Toegewezen elektriciteit",
+  "averageAllocatedLoad": "Gemiddeld toegewezen vermogen",
+  "annualElectricity": "Jaarlijks elektriciteitsverbruik",
+  "country": "Land",
+  "wattProfile": "Vermogensprofiel",
+  "runtime": "Draaitijd",
+  "overhead": "Overhead",
+  "oneAiWorker": "Eén AI-worker",
+  "oneProfileYearly": "Eén profiel per jaar",
+  "electricityAllocation": "Elektriciteitstoewijzing",
+  "targetComparison": "Doelvergelijking",
+  "calculationBasis": "Berekeningsbasis",
+  "dataStatus": "Datastatus",
+  "scenarioOutput": "scenario-uitkomst",
+  "scenarioSetting": "scenario-instelling",
+  "notVerified": "niet geverifieerd",
+  "thoughtExperiment": "gedachte-experiment",
+  "noCountrySelected": "Geen land geselecteerd",
+  "energyBoundary": "energie-equivalente scenariocapaciteit – geen vrije netcapaciteit en geen voorspelling van uitrol",
+  "ofNationalAnnualElectricity": "van het nationale jaarlijkse elektriciteitsverbruik",
+  "underSelectedWattProfile": "met het geselecteerde vermogensprofiel",
+  "calculationBasisPrecise": "de berekeningsbasis gebruikt deze exacte waarde",
+  "annualEnergySpread": "jaarlijkse energie verdeeld over het jaar",
+  "calculationBasisStatus": "watt x uren/week x weken/jaar x overhead",
+  "fullOutputAssumption": "referentieaanname: continu 100% vermogen",
+  "offshoreAssumption": "referentieaanname: capaciteitsfactor van 45%",
+  "householdAssumption": "referentieaanname: 3.500 kWh/jaar",
+  "wind3": "windturbines van 3 MW",
+  "wind8": "offshorewindturbines van 8 MW",
+  "households": "Huishouden-jaarequivalent",
+  "truthBoundary": "Interpretatiegrens",
+  "truthBoundaryText": "Dit lokale prototype gebruikt demowaarden en bronverwijzingen. Het beweert niet dat een land over vrije elektriciteit beschikt en voorspelt geen banenverlies.",
+  "steps": [
+    "1 Land",
+    "2 Worker",
+    "3 Budget",
+    "4 Rapport"
+  ],
+  "workerProfile": "AI-worker-profiel",
+  "defineWorker": "Definieer één AI-worker",
+  "workerIntro": "Stel het vermogensprofiel en de draaitijd voor dit scenario in.",
+  "back": "Terug",
+  "restart": "Opnieuw beginnen",
+  "powerDraw": "Vermogensopname",
+  "customWatts": "Eigen wattage",
+  "customHours": "Eigen uren/week",
+  "infrastructureOverhead": "Infrastructuuroverhead",
+  "customFactor": "Eigen factor",
+  "oneWorkerUses": "Eén AI-worker gebruikt",
+  "scenarioSettingsBoundary": "Dit zijn scenario-instellingen, geen voorspelling.",
+  "continueToScale": "Doorgaan naar budget",
+  "countryElectricityBudget": "Elektriciteitsbudget van het land",
+  "chooseElectricityShare": "Kies elektriciteitsaandeel",
+  "allocationIntro": "Welk deel van het huidige jaarlijkse elektriciteitsverbruik van dit land wordt aan AI-arbeid toegewezen?",
+  "electricityShare": "Elektriciteitsaandeel",
+  "nationalAllocation": "Nationale elektriciteitstoewijzing",
+  "compareTargetProfiles": "Doelprofielen vergelijken",
+  "preview": "Voorbeeld",
+  "generateReport": "Rapport genereren",
+  "scenarioReport": "Scenariorapport",
+  "allocationSentenceTemplate": "Als {share} van het jaarlijkse elektriciteitsverbruik van {countryName} aan dit scenario wordt toegewezen, komt dat overeen met een jaarlijks energiebudget voor {profiles} geconfigureerde AI-worker-profielen.",
+  "comparisonSentenceTemplate": "Vergelijking: {profiles} geconfigureerde profielen zouden {twh} TWh/jaar vereisen, oftewel {share} van het huidige jaarlijkse elektriciteitsverbruik.",
+  "allocationLabelTemplate": "{share} van de nationale elektriciteit",
+  "shareCapacityLabelTemplate": "{share} elektriciteitstoewijzing",
+  "calculationBasisTemplate": "{watts} W x {hoursPerWeek} uur/week x {weeksPerYear} weken/jaar x {overhead} overhead = {mwhYear} MWh/profiel/jaar",
+  "profileText": {
+    "efficient_future_70w": {
+      "label": "70 W",
+      "description": "Scenario met energiezuinige hardware"
+    },
+    "improved_200w": {
+      "label": "200 W",
+      "description": "Scenario met verbeterde hardware"
+    },
+    "heavy_700w": {
+      "label": "700 W",
+      "description": "Huidig scenario met zwaar energieverbruik"
+    },
+    "human_week_37h": {
+      "label": "37 uur/week",
+      "description": "Energie-equivalent van een menselijke werkweek"
+    },
+    "standard_40h": {
+      "label": "40 uur/week",
+      "description": "Standaard voltijdswerkweek"
+    },
+    "always_on_24_7": {
+      "label": "24/7",
+      "description": "Machine-worker die continu actief is"
+    },
+    "raw_compute": {
+      "label": "Uit / raw compute",
+      "description": "Geen overheadfactor"
+    },
+    "facility_1_3": {
+      "label": "1,3x",
+      "description": "Vereenvoudigd scenario voor koeling en facilitaire overhead"
+    },
+    "one_percent": {
+      "label": "1%"
+    },
+    "five_percent": {
+      "label": "5%"
+    },
+    "ten_percent": {
+      "label": "10%"
+    },
+    "twentyfive_percent": {
+      "label": "25%"
+    },
+    "hundred_percent_thought_experiment": {
+      "label": "100% gedachte-experiment"
+    }
+  }
+}

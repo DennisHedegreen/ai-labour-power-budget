@@ -1,0 +1,132 @@
+{
+  "languageButton": "English",
+  "languageState": "FR",
+  "localLanguageFallback": "Langue locale",
+  "statusChips": [
+    "valeurs de démonstration",
+    "vérification des sources requise",
+    "non publié"
+  ],
+  "manualSetting": "Réglage manuel",
+  "clickToCycle": "Cliquer pour changer",
+  "selectCountry": "Sélectionner un pays",
+  "demoValue": "valeur de démonstration",
+  "sourcePassNeeded": "vérification des sources requise",
+  "equivalentProfiles": "Profils d’AI-worker équivalents en énergie",
+  "profiles": "profils",
+  "selectedAllocation": "Part sélectionnée",
+  "allocatedElectricity": "Électricité allouée",
+  "averageAllocatedLoad": "Puissance moyenne allouée",
+  "annualElectricity": "Consommation annuelle d’électricité",
+  "country": "Pays",
+  "wattProfile": "Profil de puissance",
+  "runtime": "Durée de fonctionnement",
+  "overhead": "Surcharge",
+  "oneAiWorker": "Un AI-worker",
+  "oneProfileYearly": "Un profil par an",
+  "electricityAllocation": "Allocation d’électricité",
+  "targetComparison": "Comparaison avec l’objectif",
+  "calculationBasis": "Base de calcul",
+  "dataStatus": "État des données",
+  "scenarioOutput": "résultat du scénario",
+  "scenarioSetting": "paramètre du scénario",
+  "notVerified": "non vérifié",
+  "thoughtExperiment": "expérience de pensée",
+  "noCountrySelected": "Aucun pays sélectionné",
+  "energyBoundary": "capacité de scénario équivalente en énergie — pas une capacité disponible du réseau ni une prévision de déploiement",
+  "ofNationalAnnualElectricity": "de la consommation nationale annuelle d’électricité",
+  "underSelectedWattProfile": "avec le profil de puissance sélectionné",
+  "calculationBasisPrecise": "la base de calcul utilise cette valeur précise",
+  "annualEnergySpread": "énergie annuelle répartie sur l’année",
+  "calculationBasisStatus": "watts x heures/semaine x semaines/an x surcharge",
+  "fullOutputAssumption": "hypothèse de référence : fonctionnement continu à 100 %",
+  "offshoreAssumption": "hypothèse de référence : facteur de charge de 45 %",
+  "householdAssumption": "hypothèse de référence : 3 500 kWh/an",
+  "wind3": "éoliennes de 3 MW",
+  "wind8": "éoliennes offshore de 8 MW",
+  "households": "Équivalent ménage-année",
+  "truthBoundary": "Limite d’interprétation",
+  "truthBoundaryText": "Ce prototype local utilise des valeurs de démonstration et des références de sources. Il n’affirme pas qu’un pays dispose d’électricité excédentaire et ne prédit pas de pertes d’emplois.",
+  "steps": [
+    "1 Pays",
+    "2 Worker",
+    "3 Budget",
+    "4 Rapport"
+  ],
+  "workerProfile": "Profil d’AI-worker",
+  "defineWorker": "Définir un AI-worker",
+  "workerIntro": "Définissez le profil de puissance et la durée de fonctionnement utilisés dans ce scénario.",
+  "back": "Retour",
+  "restart": "Recommencer",
+  "powerDraw": "Puissance absorbée",
+  "customWatts": "Puissance personnalisée",
+  "customHours": "Heures personnalisées/semaine",
+  "infrastructureOverhead": "Surcharge d’infrastructure",
+  "customFactor": "Facteur personnalisé",
+  "oneWorkerUses": "Un AI-worker utilise",
+  "scenarioSettingsBoundary": "Il s’agit de paramètres de scénario, pas d’une prévision.",
+  "continueToScale": "Continuer vers le budget",
+  "countryElectricityBudget": "Budget électrique du pays",
+  "chooseElectricityShare": "Choisir la part d’électricité",
+  "allocationIntro": "Quelle part de la consommation annuelle actuelle d’électricité de ce pays est allouée au travail par IA ?",
+  "electricityShare": "Part d’électricité",
+  "nationalAllocation": "Allocation nationale d’électricité",
+  "compareTargetProfiles": "Comparer les profils cibles",
+  "preview": "Aperçu",
+  "generateReport": "Générer le rapport",
+  "scenarioReport": "Rapport de scénario",
+  "allocationSentenceTemplate": "Allouer {share} de la consommation annuelle d’électricité de {countryName} à ce scénario correspondrait à un budget énergétique annuel équivalent pour {profiles} profils d’AI-worker configurés.",
+  "comparisonSentenceTemplate": "Comparaison : {profiles} profils configurés nécessiteraient {twh} TWh/an, soit {share} de la consommation annuelle actuelle d’électricité.",
+  "allocationLabelTemplate": "{share} de l’électricité nationale",
+  "shareCapacityLabelTemplate": "allocation d’électricité de {share}",
+  "calculationBasisTemplate": "{watts} W x {hoursPerWeek} h/semaine x {weeksPerYear} semaines/an x {overhead} de surcharge = {mwhYear} MWh/profil/an",
+  "profileText": {
+    "efficient_future_70w": {
+      "label": "70 W",
+      "description": "Scénario avec matériel économe en énergie"
+    },
+    "improved_200w": {
+      "label": "200 W",
+      "description": "Scénario avec matériel amélioré"
+    },
+    "heavy_700w": {
+      "label": "700 W",
+      "description": "Scénario actuel à forte consommation"
+    },
+    "human_week_37h": {
+      "label": "37 heures/semaine",
+      "description": "Équivalent énergétique d’une semaine de travail humaine"
+    },
+    "standard_40h": {
+      "label": "40 heures/semaine",
+      "description": "Semaine standard à temps plein"
+    },
+    "always_on_24_7": {
+      "label": "24/7",
+      "description": "Worker machine fonctionnant en permanence"
+    },
+    "raw_compute": {
+      "label": "Désactivé / raw compute",
+      "description": "Aucun multiplicateur de surcharge"
+    },
+    "facility_1_3": {
+      "label": "1,3x",
+      "description": "Scénario simplifié de surcharge liée au refroidissement et aux installations"
+    },
+    "one_percent": {
+      "label": "1 %"
+    },
+    "five_percent": {
+      "label": "5 %"
+    },
+    "ten_percent": {
+      "label": "10 %"
+    },
+    "twentyfive_percent": {
+      "label": "25 %"
+    },
+    "hundred_percent_thought_experiment": {
+      "label": "Expérience de pensée à 100 %"
+    }
+  }
+}

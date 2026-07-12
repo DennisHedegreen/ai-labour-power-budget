@@ -1,0 +1,50 @@
+[
+  {
+    "code": "DK",
+    "name": "Denmark",
+    "local_name": "Danmark",
+    "local_language": "da",
+    "local_language_label": "Dansk",
+    "population": 6000000,
+    "annual_electricity_twh": 35,
+    "electricity_per_capita_kwh_year": 5833,
+    "source_name": "Demo placeholder",
+    "source_url": null,
+    "source_year": "DEMO",
+    "source_status": "demo_not_verified",
+    "retrieved_at": null,
+    "notes": "Approximate placeholder for local testing only. Replace during source-pass."
+  },
+  {
+    "code": "SE",
+    "name": "Sweden",
+    "local_name": "Sverige",
+    "local_language": "sv",
+    "local_language_label": "Svenska",
+    "population": 10500000,
+    "annual_electricity_twh": 135,
+    "electricity_per_capita_kwh_year": 12857,
+    "source_name": "Demo placeholder",
+    "source_url": null,
+    "source_year": "DEMO",
+    "source_status": "demo_not_verified",
+    "retrieved_at": null,
+    "notes": "Approximate placeholder for local testing only. Replace during source-pass."
+  },
+  {
+    "code": "DE",
+    "name": "Germany",
+    "local_name": "Deutschland",
+    "local_language": "de",
+    "local_language_label": "Deutsch",
+    "population": 84000000,
+    "annual_electricity_twh": 500,
+    "electricity_per_capita_kwh_year": 5952,
+    "source_name": "Demo placeholder",
+    "source_url": null,
+    "source_year": "DEMO",
+    "source_status": "demo_not_verified",
+    "retrieved_at": null,
+    "notes": "Approximate placeholder for local testing only. Replace during source-pass."
+  }
+]

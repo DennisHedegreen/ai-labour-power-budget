@@ -1,0 +1,132 @@
+{
+  "languageButton": "English",
+  "languageState": "MT",
+  "localLanguageFallback": "Lingwa lokali",
+  "statusChips": [
+    "valuri ta’ dimostrazzjoni",
+    "jeħtieġ verifika tas-sorsi",
+    "mhux ippubblikat"
+  ],
+  "manualSetting": "Issettjar manwali",
+  "clickToCycle": "Ikklikkja biex taqleb",
+  "selectCountry": "Agħżel pajjiż",
+  "demoValue": "valur ta’ dimostrazzjoni",
+  "sourcePassNeeded": "jeħtieġ verifika tas-sorsi",
+  "equivalentProfiles": "Profili AI-worker ekwivalenti fl-enerġija",
+  "profiles": "profili",
+  "selectedAllocation": "Sehem magħżul",
+  "allocatedElectricity": "Elettriku allokat",
+  "averageAllocatedLoad": "Qawwa medja allokata",
+  "annualElectricity": "Konsum annwali tal-elettriku",
+  "country": "Pajjiż",
+  "wattProfile": "Profil tal-qawwa",
+  "runtime": "Ħin ta’ tħaddim",
+  "overhead": "Piż addizzjonali",
+  "oneAiWorker": "AI-worker wieħed",
+  "oneProfileYearly": "Profil wieħed fis-sena",
+  "electricityAllocation": "Allokazzjoni tal-elettriku",
+  "targetComparison": "Tqabbil mal-mira",
+  "calculationBasis": "Bażi tal-kalkolu",
+  "dataStatus": "Status tad-data",
+  "scenarioOutput": "riżultat tax-xenarju",
+  "scenarioSetting": "issettjar tax-xenarju",
+  "notVerified": "mhux ivverifikat",
+  "thoughtExperiment": "esperiment tal-ħsieb",
+  "noCountrySelected": "Ma ntgħażel l-ebda pajjiż",
+  "energyBoundary": "kapaċità tax-xenarju ekwivalenti fl-enerġija — mhux kapaċità ħielsa tal-grilja u mhux tbassir ta’ implimentazzjoni",
+  "ofNationalAnnualElectricity": "mill-konsum annwali nazzjonali tal-elettriku",
+  "underSelectedWattProfile": "bil-profil tal-qawwa magħżul",
+  "calculationBasisPrecise": "il-bażi tal-kalkolu tuża dan il-valur preċiż",
+  "annualEnergySpread": "enerġija annwali mqassma matul is-sena",
+  "calculationBasisStatus": "watts x sigħat/ġimgħa x ġimgħat/sena x piż addizzjonali",
+  "fullOutputAssumption": "suppożizzjoni ta’ referenza: tħaddim kontinwu b’100 %",
+  "offshoreAssumption": "suppożizzjoni ta’ referenza: fattur ta’ kapaċità ta’ 45 %",
+  "householdAssumption": "suppożizzjoni ta’ referenza: 3,500 kWh/sena",
+  "wind3": "turbini tar-riħ ta’ 3 MW",
+  "wind8": "turbini tar-riħ lil hinn mill-kosta ta’ 8 MW",
+  "households": "Ekwivalenti ta’ dar għal sena",
+  "truthBoundary": "Limitu tal-interpretazzjoni",
+  "truthBoundaryText": "Dan il-prototip lokali juża valuri ta’ dimostrazzjoni u referenzi għas-sorsi. Ma jsostnix li xi pajjiż għandu elettriku żejjed u ma jbassarx telf ta’ impjiegi.",
+  "steps": [
+    "1 Pajjiż",
+    "2 Worker",
+    "3 Baġit",
+    "4 Rapport"
+  ],
+  "workerProfile": "Profil AI-worker",
+  "defineWorker": "Iddefinixxi AI-worker wieħed",
+  "workerIntro": "Issettja l-profil tal-qawwa u l-ħin ta’ tħaddim użati f’dan ix-xenarju.",
+  "back": "Lura",
+  "restart": "Ibda mill-ġdid",
+  "powerDraw": "Konsum tal-qawwa",
+  "customWatts": "Watts personalizzati",
+  "customHours": "Sigħat personalizzati/ġimgħa",
+  "infrastructureOverhead": "Piż addizzjonali tal-infrastruttura",
+  "customFactor": "Fattur personalizzat",
+  "oneWorkerUses": "AI-worker wieħed juża",
+  "scenarioSettingsBoundary": "Dawn huma settings tax-xenarju, mhux tbassir.",
+  "continueToScale": "Kompli għall-baġit",
+  "countryElectricityBudget": "Baġit tal-elettriku tal-pajjiż",
+  "chooseElectricityShare": "Agħżel sehem tal-elettriku",
+  "allocationIntro": "Liema sehem mill-konsum annwali attwali tal-elettriku ta’ dan il-pajjiż jiġi allokat għax-xogħol bl-AI?",
+  "electricityShare": "Sehem tal-elettriku",
+  "nationalAllocation": "Allokazzjoni nazzjonali tal-elettriku",
+  "compareTargetProfiles": "Qabbel il-profili fil-mira",
+  "preview": "Previżjoni",
+  "generateReport": "Oħloq rapport",
+  "scenarioReport": "Rapport tax-xenarju",
+  "allocationSentenceTemplate": "Jekk {share} mill-konsum annwali tal-elettriku ta’ {countryName} jiġi allokat għal dan ix-xenarju, dan ikun ekwivalenti għal baġit annwali tal-enerġija għal {profiles} profili AI-worker konfigurati.",
+  "comparisonSentenceTemplate": "Tqabbil: {profiles} profili konfigurati jkunu jeħtieġu {twh} TWh/sena, jiġifieri {share} mill-konsum annwali attwali tal-elettriku.",
+  "allocationLabelTemplate": "{share} mill-elettriku nazzjonali",
+  "shareCapacityLabelTemplate": "allokazzjoni tal-elettriku: {share}",
+  "calculationBasisTemplate": "{watts} W x {hoursPerWeek} sigħat/ġimgħa x {weeksPerYear} ġimgħat/sena x {overhead} piż addizzjonali = {mwhYear} MWh/profil/sena",
+  "profileText": {
+    "efficient_future_70w": {
+      "label": "70 W",
+      "description": "Xenarju b’hardware effiċjenti fl-enerġija"
+    },
+    "improved_200w": {
+      "label": "200 W",
+      "description": "Xenarju b’hardware imtejjeb"
+    },
+    "heavy_700w": {
+      "label": "700 W",
+      "description": "Xenarju attwali b’konsum għoli"
+    },
+    "human_week_37h": {
+      "label": "37 siegħa/ġimgħa",
+      "description": "Ekwivalenti enerġetiku ta’ ġimgħa tax-xogħol umana"
+    },
+    "standard_40h": {
+      "label": "40 siegħa/ġimgħa",
+      "description": "Ġimgħa standard ta’ xogħol full-time"
+    },
+    "always_on_24_7": {
+      "label": "24/7",
+      "description": "Worker tal-magna li jaħdem kontinwament"
+    },
+    "raw_compute": {
+      "label": "Mitfi / raw compute",
+      "description": "L-ebda multiplikatur addizzjonali"
+    },
+    "facility_1_3": {
+      "label": "1.3x",
+      "description": "Xenarju ssimplifikat għall-piż addizzjonali tat-tkessiħ u l-faċilitajiet"
+    },
+    "one_percent": {
+      "label": "1%"
+    },
+    "five_percent": {
+      "label": "5%"
+    },
+    "ten_percent": {
+      "label": "10%"
+    },
+    "twentyfive_percent": {
+      "label": "25%"
+    },
+    "hundred_percent_thought_experiment": {
+      "label": "Esperiment tal-ħsieb ta’ 100%"
+    }
+  }
+}

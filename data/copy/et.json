@@ -1,0 +1,132 @@
+{
+  "languageButton": "English",
+  "languageState": "ET",
+  "localLanguageFallback": "Kohalik keel",
+  "statusChips": [
+    "näidisväärtused",
+    "allikate kontroll vajalik",
+    "avaldamata"
+  ],
+  "manualSetting": "Käsitsi seadistus",
+  "clickToCycle": "Vahetamiseks klõpsake",
+  "selectCountry": "Valige riik",
+  "demoValue": "näidisväärtus",
+  "sourcePassNeeded": "allikate kontroll vajalik",
+  "equivalentProfiles": "Energiaekvivalentsed AI-worker-profiilid",
+  "profiles": "profiili",
+  "selectedAllocation": "Valitud osakaal",
+  "allocatedElectricity": "Eraldatud elektrienergia",
+  "averageAllocatedLoad": "Keskmine eraldatud võimsus",
+  "annualElectricity": "Aastane elektritarbimine",
+  "country": "Riik",
+  "wattProfile": "Võimsusprofiil",
+  "runtime": "Tööaeg",
+  "overhead": "Lisategur",
+  "oneAiWorker": "Üks AI-worker",
+  "oneProfileYearly": "Üks profiil aastas",
+  "electricityAllocation": "Elektrienergia eraldamine",
+  "targetComparison": "Võrdlus sihttasemega",
+  "calculationBasis": "Arvutuse alus",
+  "dataStatus": "Andmete olek",
+  "scenarioOutput": "stsenaariumi tulemus",
+  "scenarioSetting": "stsenaariumi seadistus",
+  "notVerified": "kontrollimata",
+  "thoughtExperiment": "mõttekatse",
+  "noCountrySelected": "Riiki pole valitud",
+  "energyBoundary": "energiaekvivalentne stsenaariumivõimekus — mitte vaba võrgumaht ega kasutuselevõtu prognoos",
+  "ofNationalAnnualElectricity": "riigi aastasest elektritarbimisest",
+  "underSelectedWattProfile": "valitud võimsusprofiili korral",
+  "calculationBasisPrecise": "arvutuse alus kasutab seda täpset väärtust",
+  "annualEnergySpread": "aastane energia jaotatuna kogu aasta peale",
+  "calculationBasisStatus": "vatid x tunnid/nädal x nädalad/aasta x lisategur",
+  "fullOutputAssumption": "võrdluseeldus: pidev töö 100 % võimsusel",
+  "offshoreAssumption": "võrdluseeldus: 45 % kasutegur",
+  "householdAssumption": "võrdluseeldus: 3 500 kWh/aasta",
+  "wind3": "3 MW tuuleturbiinid",
+  "wind8": "8 MW meretuulepargi turbiinid",
+  "households": "Majapidamisaasta ekvivalent",
+  "truthBoundary": "Tõlgenduspiir",
+  "truthBoundaryText": "See kohalik prototüüp kasutab näidisväärtusi ja allikaviiteid. See ei väida, et ühelgi riigil oleks üleliigset elektrienergiat, ega prognoosi töökohtade kadumist.",
+  "steps": [
+    "1 Riik",
+    "2 Worker",
+    "3 Eelarve",
+    "4 Aruanne"
+  ],
+  "workerProfile": "AI-worker-profiil",
+  "defineWorker": "Määrake üks AI-worker",
+  "workerIntro": "Määrake selles stsenaariumis kasutatav võimsusprofiil ja tööaeg.",
+  "back": "Tagasi",
+  "restart": "Alusta uuesti",
+  "powerDraw": "Võimsustarve",
+  "customWatts": "Kohandatud vatid",
+  "customHours": "Kohandatud tunnid/nädal",
+  "infrastructureOverhead": "Taristu lisategur",
+  "customFactor": "Kohandatud tegur",
+  "oneWorkerUses": "Üks AI-worker kasutab",
+  "scenarioSettingsBoundary": "Need on stsenaariumi seaded, mitte prognoos.",
+  "continueToScale": "Jätka eelarve juurde",
+  "countryElectricityBudget": "Riigi elektrieelarve",
+  "chooseElectricityShare": "Valige elektri osakaal",
+  "allocationIntro": "Kui suur osa selle riigi praegusest aastasest elektritarbimisest eraldatakse AI-tööle?",
+  "electricityShare": "Elektri osakaal",
+  "nationalAllocation": "Riiklik elektrienergia eraldamine",
+  "compareTargetProfiles": "Võrdle sihtprofiile",
+  "preview": "Eelvaade",
+  "generateReport": "Loo aruanne",
+  "scenarioReport": "Stsenaariumi aruanne",
+  "allocationSentenceTemplate": "Kui {share} riigi {countryName} aastasest elektritarbimisest eraldatakse sellele stsenaariumile, vastaks see aastasele energiaeelarvele {profiles} seadistatud AI-worker-profiili jaoks.",
+  "comparisonSentenceTemplate": "Võrdlus: {profiles} seadistatud profiili vajaksid {twh} TWh/aasta, mis vastab {share} praegusest aastasest elektritarbimisest.",
+  "allocationLabelTemplate": "{share} riiklikust elektrienergiast",
+  "shareCapacityLabelTemplate": "elektrienergia eraldamine: {share}",
+  "calculationBasisTemplate": "{watts} W x {hoursPerWeek} tundi/nädal x {weeksPerYear} nädalat/aasta x {overhead} lisategur = {mwhYear} MWh/profiil/aasta",
+  "profileText": {
+    "efficient_future_70w": {
+      "label": "70 W",
+      "description": "Energiatõhusa riistvara stsenaarium"
+    },
+    "improved_200w": {
+      "label": "200 W",
+      "description": "Täiustatud riistvara stsenaarium"
+    },
+    "heavy_700w": {
+      "label": "700 W",
+      "description": "Praegune suure energiatarbega stsenaarium"
+    },
+    "human_week_37h": {
+      "label": "37 tundi/nädal",
+      "description": "Inimese töönädala energiaekvivalent"
+    },
+    "standard_40h": {
+      "label": "40 tundi/nädal",
+      "description": "Tavaline täistööajaga töönädal"
+    },
+    "always_on_24_7": {
+      "label": "24/7",
+      "description": "Pidevalt töötav masin-worker"
+    },
+    "raw_compute": {
+      "label": "Väljas / raw compute",
+      "description": "Lisategurit ei kasutata"
+    },
+    "facility_1_3": {
+      "label": "1,3x",
+      "description": "Lihtsustatud jahutuse ja taristu lisakulu stsenaarium"
+    },
+    "one_percent": {
+      "label": "1 %"
+    },
+    "five_percent": {
+      "label": "5 %"
+    },
+    "ten_percent": {
+      "label": "10 %"
+    },
+    "twentyfive_percent": {
+      "label": "25 %"
+    },
+    "hundred_percent_thought_experiment": {
+      "label": "100 % mõttekatse"
+    }
+  }
+}

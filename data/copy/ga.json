@@ -1,0 +1,132 @@
+{
+  "languageButton": "English",
+  "languageState": "GA",
+  "localLanguageFallback": "Teanga áitiúil",
+  "statusChips": [
+    "luachanna taispeána",
+    "tá fíorú foinsí de dhíth",
+    "gan foilsiú"
+  ],
+  "manualSetting": "Socrú láimhe",
+  "clickToCycle": "Cliceáil chun athrú",
+  "selectCountry": "Roghnaigh tír",
+  "demoValue": "luach taispeána",
+  "sourcePassNeeded": "tá fíorú foinsí de dhíth",
+  "equivalentProfiles": "Próifílí AI-worker atá coibhéiseach ó thaobh fuinnimh de",
+  "profiles": "próifíl",
+  "selectedAllocation": "Cion roghnaithe",
+  "allocatedElectricity": "Leictreachas leithdháilte",
+  "averageAllocatedLoad": "Meánchumhacht leithdháilte",
+  "annualElectricity": "Tomhaltas bliantúil leictreachais",
+  "country": "Tír",
+  "wattProfile": "Próifíl chumhachta",
+  "runtime": "Am rite",
+  "overhead": "Forchostas",
+  "oneAiWorker": "AI-worker amháin",
+  "oneProfileYearly": "Próifíl amháin sa bhliain",
+  "electricityAllocation": "Leithdháileadh leictreachais",
+  "targetComparison": "Comparáid leis an sprioc",
+  "calculationBasis": "Bunús an ríofa",
+  "dataStatus": "Stádas sonraí",
+  "scenarioOutput": "toradh an cháis",
+  "scenarioSetting": "socrú an cháis",
+  "notVerified": "gan fíorú",
+  "thoughtExperiment": "turgnamh smaointe",
+  "noCountrySelected": "Níl tír roghnaithe",
+  "energyBoundary": "acmhainn cáis atá coibhéiseach ó thaobh fuinnimh de — ní acmhainn shaor eangaí ná réamhaisnéis imscartha",
+  "ofNationalAnnualElectricity": "den tomhaltas bliantúil náisiúnta leictreachais",
+  "underSelectedWattProfile": "faoin bpróifíl chumhachta roghnaithe",
+  "calculationBasisPrecise": "úsáideann bunús an ríofa an luach beacht seo",
+  "annualEnergySpread": "fuinneamh bliantúil scaipthe ar fud na bliana",
+  "calculationBasisStatus": "vataí x uaireanta/seachtain x seachtainí/bliain x forchostas",
+  "fullOutputAssumption": "toimhde tagartha: oibriú leanúnach ag 100 %",
+  "offshoreAssumption": "toimhde tagartha: fachtóir acmhainne 45 %",
+  "householdAssumption": "toimhde tagartha: 3,500 kWh/bliain",
+  "wind3": "tuirbíní gaoithe 3 MW",
+  "wind8": "tuirbíní gaoithe amach ón gcósta 8 MW",
+  "households": "Coibhéis teaghlaigh-bliain",
+  "truthBoundary": "Teorainn léirmhínithe",
+  "truthBoundaryText": "Úsáideann an fhréamhshamhail áitiúil seo luachanna taispeána agus tagairtí d’fhoinsí. Ní mhaíonn sí go bhfuil leictreachas breise ar fáil ag aon tír, agus ní dhéanann sí caillteanas post a thuar.",
+  "steps": [
+    "1 Tír",
+    "2 Worker",
+    "3 Buiséad",
+    "4 Tuairisc"
+  ],
+  "workerProfile": "Próifíl AI-worker",
+  "defineWorker": "Sainigh AI-worker amháin",
+  "workerIntro": "Socraigh an phróifíl chumhachta agus an t-am rite a úsáidtear sa chás seo.",
+  "back": "Ar ais",
+  "restart": "Tosaigh arís",
+  "powerDraw": "Ídiú cumhachta",
+  "customWatts": "Vataí saincheaptha",
+  "customHours": "Uaireanta saincheaptha/seachtain",
+  "infrastructureOverhead": "Forchostas bonneagair",
+  "customFactor": "Fachtóir saincheaptha",
+  "oneWorkerUses": "Úsáideann AI-worker amháin",
+  "scenarioSettingsBoundary": "Socruithe cáis atá iontu seo, ní réamhaisnéis.",
+  "continueToScale": "Lean ar aghaidh chuig an mbuiséad",
+  "countryElectricityBudget": "Buiséad leictreachais na tíre",
+  "chooseElectricityShare": "Roghnaigh cion leictreachais",
+  "allocationIntro": "Cén cion de thomhaltas bliantúil reatha leictreachais na tíre seo a leithdháiltear ar obair AI?",
+  "electricityShare": "Cion leictreachais",
+  "nationalAllocation": "Leithdháileadh náisiúnta leictreachais",
+  "compareTargetProfiles": "Déan comparáid idir na próifílí sprice",
+  "preview": "Réamhamharc",
+  "generateReport": "Cruthaigh tuairisc",
+  "scenarioReport": "Tuairisc ar an gcás",
+  "allocationSentenceTemplate": "Dá leithdháilfí {share} de thomhaltas bliantúil leictreachais {countryName} ar an gcás seo, bheadh sé coibhéiseach le buiséad bliantúil fuinnimh do {profiles} próifíl AI-worker chumraithe.",
+  "comparisonSentenceTemplate": "Comparáid: bheadh {twh} TWh/bliain de dhíth ar {profiles} próifíl chumraithe, arb ionann é agus {share} den tomhaltas bliantúil reatha leictreachais.",
+  "allocationLabelTemplate": "{share} den leictreachas náisiúnta",
+  "shareCapacityLabelTemplate": "leithdháileadh leictreachais: {share}",
+  "calculationBasisTemplate": "{watts} W x {hoursPerWeek} uair/seachtain x {weeksPerYear} seachtain/bliain x {overhead} forchostas = {mwhYear} MWh/próifíl/bliain",
+  "profileText": {
+    "efficient_future_70w": {
+      "label": "70 W",
+      "description": "Cás crua-earraí atá tíosach ar fhuinneamh"
+    },
+    "improved_200w": {
+      "label": "200 W",
+      "description": "Cás crua-earraí feabhsaithe"
+    },
+    "heavy_700w": {
+      "label": "700 W",
+      "description": "Cás reatha ardtomhaltais"
+    },
+    "human_week_37h": {
+      "label": "37 uair/seachtain",
+      "description": "Coibhéis fuinnimh seachtaine oibre daonna"
+    },
+    "standard_40h": {
+      "label": "40 uair/seachtain",
+      "description": "Seachtain chaighdeánach lánaimseartha"
+    },
+    "always_on_24_7": {
+      "label": "24/7",
+      "description": "Worker meaisín a bhíonn ar siúl i gcónaí"
+    },
+    "raw_compute": {
+      "label": "As / raw compute",
+      "description": "Gan iolraitheoir forchostais"
+    },
+    "facility_1_3": {
+      "label": "1.3x",
+      "description": "Cás simplithe d’fhorchostas fuaraithe agus saoráidí"
+    },
+    "one_percent": {
+      "label": "1%"
+    },
+    "five_percent": {
+      "label": "5%"
+    },
+    "ten_percent": {
+      "label": "10%"
+    },
+    "twentyfive_percent": {
+      "label": "25%"
+    },
+    "hundred_percent_thought_experiment": {
+      "label": "Turgnamh smaointe 100%"
+    }
+  }
+}

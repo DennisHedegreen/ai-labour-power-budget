@@ -1,0 +1,7 @@
+{
+  "onshore_wind_turbine_mw": 3,
+  "onshore_output_mode": "continuous_100_percent_output_equivalent",
+  "offshore_wind_turbine_mw": 8,
+  "offshore_capacity_factor": 0.45,
+  "household_kwh_year": 3500
+}

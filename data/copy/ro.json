@@ -1,0 +1,132 @@
+{
+  "languageButton": "English",
+  "languageState": "RO",
+  "localLanguageFallback": "Limba locală",
+  "statusChips": [
+    "valori demonstrative",
+    "verificarea surselor este necesară",
+    "nepublicat"
+  ],
+  "manualSetting": "Setare manuală",
+  "clickToCycle": "Faceți clic pentru a schimba",
+  "selectCountry": "Selectați țara",
+  "demoValue": "valoare demonstrativă",
+  "sourcePassNeeded": "verificarea surselor este necesară",
+  "equivalentProfiles": "Profiluri AI-worker echivalente energetic",
+  "profiles": "profiluri",
+  "selectedAllocation": "Pondere selectată",
+  "allocatedElectricity": "Electricitate alocată",
+  "averageAllocatedLoad": "Putere medie alocată",
+  "annualElectricity": "Consum anual de electricitate",
+  "country": "Țară",
+  "wattProfile": "Profil de putere",
+  "runtime": "Durată de funcționare",
+  "overhead": "Suprasarcină",
+  "oneAiWorker": "Un AI-worker",
+  "oneProfileYearly": "Un profil pe an",
+  "electricityAllocation": "Alocare de electricitate",
+  "targetComparison": "Comparație cu ținta",
+  "calculationBasis": "Baza de calcul",
+  "dataStatus": "Starea datelor",
+  "scenarioOutput": "rezultatul scenariului",
+  "scenarioSetting": "setarea scenariului",
+  "notVerified": "neverificat",
+  "thoughtExperiment": "experiment mental",
+  "noCountrySelected": "Nicio țară selectată",
+  "energyBoundary": "capacitate de scenariu echivalentă energetic — nu capacitate liberă a rețelei și nu prognoză de implementare",
+  "ofNationalAnnualElectricity": "din consumul anual național de electricitate",
+  "underSelectedWattProfile": "cu profilul de putere selectat",
+  "calculationBasisPrecise": "baza de calcul utilizează această valoare exactă",
+  "annualEnergySpread": "energia anuală distribuită pe parcursul anului",
+  "calculationBasisStatus": "wați x ore/săptămână x săptămâni/an x suprasarcină",
+  "fullOutputAssumption": "ipoteză de referință: funcționare continuă la 100 %",
+  "offshoreAssumption": "ipoteză de referință: factor de capacitate de 45 %",
+  "householdAssumption": "ipoteză de referință: 3.500 kWh/an",
+  "wind3": "turbine eoliene de 3 MW",
+  "wind8": "turbine eoliene offshore de 8 MW",
+  "households": "Echivalent gospodărie-an",
+  "truthBoundary": "Limită de interpretare",
+  "truthBoundaryText": "Acest prototip local utilizează valori demonstrative și trimiteri la surse. Nu susține că vreo țară dispune de electricitate excedentară și nu prezice pierderi de locuri de muncă.",
+  "steps": [
+    "1 Țară",
+    "2 Worker",
+    "3 Buget",
+    "4 Raport"
+  ],
+  "workerProfile": "Profil AI-worker",
+  "defineWorker": "Definiți un AI-worker",
+  "workerIntro": "Setați profilul de putere și durata de funcționare utilizate în acest scenariu.",
+  "back": "Înapoi",
+  "restart": "Reîncepeți",
+  "powerDraw": "Consum de putere",
+  "customWatts": "Wați personalizați",
+  "customHours": "Ore personalizate/săptămână",
+  "infrastructureOverhead": "Suprasarcină de infrastructură",
+  "customFactor": "Factor personalizat",
+  "oneWorkerUses": "Un AI-worker utilizează",
+  "scenarioSettingsBoundary": "Acestea sunt setări de scenariu, nu o prognoză.",
+  "continueToScale": "Continuați la buget",
+  "countryElectricityBudget": "Bugetul de electricitate al țării",
+  "chooseElectricityShare": "Alegeți ponderea de electricitate",
+  "allocationIntro": "Ce parte din consumul anual actual de electricitate al acestei țări este alocată muncii cu IA?",
+  "electricityShare": "Ponderea electricității",
+  "nationalAllocation": "Alocare națională de electricitate",
+  "compareTargetProfiles": "Comparați profilurile țintă",
+  "preview": "Previzualizare",
+  "generateReport": "Generați raportul",
+  "scenarioReport": "Raport de scenariu",
+  "allocationSentenceTemplate": "Alocarea a {share} din consumul anual de electricitate al {countryName} către acest scenariu ar corespunde unui buget energetic anual echivalent pentru {profiles} profiluri AI-worker configurate.",
+  "comparisonSentenceTemplate": "Comparație: {profiles} profiluri configurate ar necesita {twh} TWh/an, adică {share} din consumul anual actual de electricitate.",
+  "allocationLabelTemplate": "{share} din electricitatea națională",
+  "shareCapacityLabelTemplate": "alocare de electricitate de {share}",
+  "calculationBasisTemplate": "{watts} W x {hoursPerWeek} ore/săptămână x {weeksPerYear} săptămâni/an x {overhead} suprasarcină = {mwhYear} MWh/profil/an",
+  "profileText": {
+    "efficient_future_70w": {
+      "label": "70 W",
+      "description": "Scenariu cu hardware eficient energetic"
+    },
+    "improved_200w": {
+      "label": "200 W",
+      "description": "Scenariu cu hardware îmbunătățit"
+    },
+    "heavy_700w": {
+      "label": "700 W",
+      "description": "Scenariu actual cu consum ridicat"
+    },
+    "human_week_37h": {
+      "label": "37 ore/săptămână",
+      "description": "Echivalentul energetic al unei săptămâni de lucru umane"
+    },
+    "standard_40h": {
+      "label": "40 ore/săptămână",
+      "description": "Săptămână standard de lucru cu normă întreagă"
+    },
+    "always_on_24_7": {
+      "label": "24/7",
+      "description": "Worker de tip mașină, activ permanent"
+    },
+    "raw_compute": {
+      "label": "Dezactivat / raw compute",
+      "description": "Fără multiplicator de suprasarcină"
+    },
+    "facility_1_3": {
+      "label": "1,3x",
+      "description": "Scenariu simplificat pentru suprasarcina de răcire și infrastructură"
+    },
+    "one_percent": {
+      "label": "1 %"
+    },
+    "five_percent": {
+      "label": "5 %"
+    },
+    "ten_percent": {
+      "label": "10 %"
+    },
+    "twentyfive_percent": {
+      "label": "25 %"
+    },
+    "hundred_percent_thought_experiment": {
+      "label": "Experiment mental la 100 %"
+    }
+  }
+}

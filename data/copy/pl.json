@@ -1,0 +1,132 @@
+{
+  "languageButton": "English",
+  "languageState": "PL",
+  "localLanguageFallback": "Język lokalny",
+  "statusChips": [
+    "wartości demonstracyjne",
+    "wymagana weryfikacja źródeł",
+    "nieopublikowane"
+  ],
+  "manualSetting": "Ustawienie ręczne",
+  "clickToCycle": "Kliknij, aby zmienić",
+  "selectCountry": "Wybierz kraj",
+  "demoValue": "wartość demonstracyjna",
+  "sourcePassNeeded": "wymagana weryfikacja źródeł",
+  "equivalentProfiles": "Profile AI-worker równoważne energetycznie",
+  "profiles": "profile",
+  "selectedAllocation": "Wybrany udział",
+  "allocatedElectricity": "Przydzielona energia elektryczna",
+  "averageAllocatedLoad": "Średnia przydzielona moc",
+  "annualElectricity": "Roczne zużycie energii elektrycznej",
+  "country": "Kraj",
+  "wattProfile": "Profil mocy",
+  "runtime": "Czas pracy",
+  "overhead": "Narzut",
+  "oneAiWorker": "Jeden AI-worker",
+  "oneProfileYearly": "Jeden profil rocznie",
+  "electricityAllocation": "Przydział energii elektrycznej",
+  "targetComparison": "Porównanie z celem",
+  "calculationBasis": "Podstawa obliczeń",
+  "dataStatus": "Status danych",
+  "scenarioOutput": "wynik scenariusza",
+  "scenarioSetting": "ustawienie scenariusza",
+  "notVerified": "niezweryfikowane",
+  "thoughtExperiment": "eksperyment myślowy",
+  "noCountrySelected": "Nie wybrano kraju",
+  "energyBoundary": "energetycznie równoważna pojemność scenariusza — nie wolna przepustowość sieci ani prognoza wdrożenia",
+  "ofNationalAnnualElectricity": "krajowego rocznego zużycia energii elektrycznej",
+  "underSelectedWattProfile": "przy wybranym profilu mocy",
+  "calculationBasisPrecise": "podstawa obliczeń wykorzystuje tę dokładną wartość",
+  "annualEnergySpread": "roczna energia rozłożona na cały rok",
+  "calculationBasisStatus": "waty x godziny/tydzień x tygodnie/rok x narzut",
+  "fullOutputAssumption": "założenie referencyjne: ciągła praca przy 100% obciążenia",
+  "offshoreAssumption": "założenie referencyjne: współczynnik wykorzystania mocy 45%",
+  "householdAssumption": "założenie referencyjne: 3 500 kWh/rok",
+  "wind3": "turbiny wiatrowe o mocy 3 MW",
+  "wind8": "morskie turbiny wiatrowe o mocy 8 MW",
+  "households": "Równoważnik gospodarstwa domowego na rok",
+  "truthBoundary": "Granica interpretacji",
+  "truthBoundaryText": "Ten lokalny prototyp wykorzystuje wartości demonstracyjne i odwołania do źródeł. Nie twierdzi, że jakikolwiek kraj dysponuje nadwyżką energii elektrycznej, i nie przewiduje utraty miejsc pracy.",
+  "steps": [
+    "1 Kraj",
+    "2 Worker",
+    "3 Budżet",
+    "4 Raport"
+  ],
+  "workerProfile": "Profil AI-worker",
+  "defineWorker": "Zdefiniuj jednego AI-worker",
+  "workerIntro": "Ustaw profil mocy i czas pracy używane w tym scenariuszu.",
+  "back": "Wstecz",
+  "restart": "Zacznij od nowa",
+  "powerDraw": "Pobór mocy",
+  "customWatts": "Własna moc w watach",
+  "customHours": "Własna liczba godzin/tydzień",
+  "infrastructureOverhead": "Narzut infrastrukturalny",
+  "customFactor": "Własny współczynnik",
+  "oneWorkerUses": "Jeden AI-worker zużywa",
+  "scenarioSettingsBoundary": "To są ustawienia scenariusza, a nie prognoza.",
+  "continueToScale": "Przejdź do budżetu",
+  "countryElectricityBudget": "Budżet energetyczny kraju",
+  "chooseElectricityShare": "Wybierz udział energii elektrycznej",
+  "allocationIntro": "Jaka część obecnego rocznego zużycia energii elektrycznej w tym kraju zostaje przydzielona pracy AI?",
+  "electricityShare": "Udział energii elektrycznej",
+  "nationalAllocation": "Krajowy przydział energii elektrycznej",
+  "compareTargetProfiles": "Porównaj profile docelowe",
+  "preview": "Podgląd",
+  "generateReport": "Wygeneruj raport",
+  "scenarioReport": "Raport scenariusza",
+  "allocationSentenceTemplate": "Przydzielenie {share} rocznego zużycia energii elektrycznej w {countryName} do tego scenariusza odpowiadałoby rocznemu budżetowi energetycznemu dla {profiles} skonfigurowanych profili AI-worker.",
+  "comparisonSentenceTemplate": "Porównanie: {profiles} skonfigurowanych profili wymagałoby {twh} TWh/rok, czyli {share} obecnego rocznego zużycia energii elektrycznej.",
+  "allocationLabelTemplate": "{share} krajowej energii elektrycznej",
+  "shareCapacityLabelTemplate": "przydział energii elektrycznej: {share}",
+  "calculationBasisTemplate": "{watts} W x {hoursPerWeek} godz./tydzień x {weeksPerYear} tygodni/rok x {overhead} narzutu = {mwhYear} MWh/profil/rok",
+  "profileText": {
+    "efficient_future_70w": {
+      "label": "70 W",
+      "description": "Scenariusz z energooszczędnym sprzętem"
+    },
+    "improved_200w": {
+      "label": "200 W",
+      "description": "Scenariusz z ulepszonym sprzętem"
+    },
+    "heavy_700w": {
+      "label": "700 W",
+      "description": "Obecny scenariusz o wysokim zużyciu energii"
+    },
+    "human_week_37h": {
+      "label": "37 godz./tydzień",
+      "description": "Energetyczny odpowiednik ludzkiego tygodnia pracy"
+    },
+    "standard_40h": {
+      "label": "40 godz./tydzień",
+      "description": "Standardowy pełny tydzień pracy"
+    },
+    "always_on_24_7": {
+      "label": "24/7",
+      "description": "Worker maszynowy działający bez przerwy"
+    },
+    "raw_compute": {
+      "label": "Wyłączone / raw compute",
+      "description": "Bez mnożnika narzutu"
+    },
+    "facility_1_3": {
+      "label": "1,3x",
+      "description": "Uproszczony scenariusz narzutu chłodzenia i infrastruktury"
+    },
+    "one_percent": {
+      "label": "1%"
+    },
+    "five_percent": {
+      "label": "5%"
+    },
+    "ten_percent": {
+      "label": "10%"
+    },
+    "twentyfive_percent": {
+      "label": "25%"
+    },
+    "hundred_percent_thought_experiment": {
+      "label": "Eksperyment myślowy 100%"
+    }
+  }
+}

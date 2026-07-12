@@ -1,0 +1,132 @@
+{
+  "languageButton": "English",
+  "languageState": "SV",
+  "localLanguageFallback": "Lokalt språk",
+  "statusChips": [
+    "demovärden",
+    "källgranskning krävs",
+    "inte offentliggjord"
+  ],
+  "manualSetting": "Manuell inställning",
+  "clickToCycle": "Klicka för att växla",
+  "selectCountry": "Välj land",
+  "demoValue": "demovärde",
+  "sourcePassNeeded": "källgranskning krävs",
+  "equivalentProfiles": "Energiekvivalenta AI-worker-profiler",
+  "profiles": "profiler",
+  "selectedAllocation": "Vald elandel",
+  "allocatedElectricity": "Allokerad el",
+  "averageAllocatedLoad": "Genomsnittlig allokerad effekt",
+  "annualElectricity": "Årlig elanvändning",
+  "country": "Land",
+  "wattProfile": "Wattprofil",
+  "runtime": "Drifttid",
+  "overhead": "Overhead",
+  "oneAiWorker": "En AI-worker",
+  "oneProfileYearly": "En profil per år",
+  "electricityAllocation": "Elallokering",
+  "targetComparison": "Måljämförelse",
+  "calculationBasis": "Beräkningsgrund",
+  "dataStatus": "Datastatus",
+  "scenarioOutput": "scenarioresultat",
+  "scenarioSetting": "scenarioinställning",
+  "notVerified": "inte verifierad",
+  "thoughtExperiment": "tankeexperiment",
+  "noCountrySelected": "Inget land valt",
+  "energyBoundary": "energiekvivalent scenariokapacitet – inte ledig nätkapacitet eller en prognos för utbyggnad",
+  "ofNationalAnnualElectricity": "av den nationella årliga elanvändningen",
+  "underSelectedWattProfile": "med den valda wattprofilen",
+  "calculationBasisPrecise": "beräkningsgrunden använder detta exakta värde",
+  "annualEnergySpread": "årlig energi fördelad över året",
+  "calculationBasisStatus": "watt x timmar/vecka x veckor/år x overhead",
+  "fullOutputAssumption": "referensantagande: kontinuerlig effekt på 100 %",
+  "offshoreAssumption": "referensantagande: kapacitetsfaktor på 45 %",
+  "householdAssumption": "referensantagande: 3 500 kWh/år",
+  "wind3": "3 MW-vindkraftverk",
+  "wind8": "8 MW-havsbaserade vindkraftverk",
+  "households": "Hushållsårsekvivalent",
+  "truthBoundary": "Sanningsgräns",
+  "truthBoundaryText": "Den här lokala prototypen använder demovärden och källhänvisningar. Den hävdar inte att något land har ledig el, och den förutsäger inte förlust av arbetstillfällen.",
+  "steps": [
+    "1 Land",
+    "2 Worker",
+    "3 Budget",
+    "4 Rapport"
+  ],
+  "workerProfile": "AI-worker-profil",
+  "defineWorker": "Definiera en AI-worker",
+  "workerIntro": "Ange wattprofil och drifttid för det här scenariot.",
+  "back": "Tillbaka",
+  "restart": "Börja om",
+  "powerDraw": "Effektförbrukning",
+  "customWatts": "Egen watteffekt",
+  "customHours": "Egna timmar/vecka",
+  "infrastructureOverhead": "Infrastrukturoverhead",
+  "customFactor": "Egen faktor",
+  "oneWorkerUses": "En AI-worker använder",
+  "scenarioSettingsBoundary": "Det här är scenarioinställningar, inte en prognos.",
+  "continueToScale": "Fortsätt till budget",
+  "countryElectricityBudget": "Landets elbudget",
+  "chooseElectricityShare": "Välj elandel",
+  "allocationIntro": "Hur stor del av landets nuvarande årliga elanvändning allokeras till AI-arbete?",
+  "electricityShare": "Elandel",
+  "nationalAllocation": "Nationell elallokering",
+  "compareTargetProfiles": "Jämför målprofiler",
+  "preview": "Förhandsvisning",
+  "generateReport": "Skapa rapport",
+  "scenarioReport": "Scenariorapport",
+  "allocationSentenceTemplate": "Om {share} av den årliga elanvändningen i {countryName} allokeras till det här scenariot, motsvarar det en årlig energibudget för {profiles} konfigurerade AI-worker-profiler.",
+  "comparisonSentenceTemplate": "Jämförelse: {profiles} konfigurerade profiler skulle kräva {twh} TWh/år, vilket motsvarar {share} av den nuvarande årliga elanvändningen.",
+  "allocationLabelTemplate": "{share} av den nationella elanvändningen",
+  "shareCapacityLabelTemplate": "{share} elallokering",
+  "calculationBasisTemplate": "{watts} W x {hoursPerWeek} timmar/vecka x {weeksPerYear} veckor/år x {overhead} overhead = {mwhYear} MWh/profil/år",
+  "profileText": {
+    "efficient_future_70w": {
+      "label": "70 W",
+      "description": "Scenario med energieffektiv hårdvara"
+    },
+    "improved_200w": {
+      "label": "200 W",
+      "description": "Scenario med förbättrad hårdvara"
+    },
+    "heavy_700w": {
+      "label": "700 W",
+      "description": "Nuvarande tungt hårdvaruscenario"
+    },
+    "human_week_37h": {
+      "label": "37 timmar/vecka",
+      "description": "Energiekvivalent till en mänsklig arbetsvecka"
+    },
+    "standard_40h": {
+      "label": "40 timmar/vecka",
+      "description": "Standardvecka för heltidsarbete"
+    },
+    "always_on_24_7": {
+      "label": "24/7",
+      "description": "Maskin-worker som alltid är på"
+    },
+    "raw_compute": {
+      "label": "Av / raw compute",
+      "description": "Ingen overheadmultiplikator"
+    },
+    "facility_1_3": {
+      "label": "1,3x",
+      "description": "Förenklat scenario för kylning och anläggningsoverhead"
+    },
+    "one_percent": {
+      "label": "1 %"
+    },
+    "five_percent": {
+      "label": "5 %"
+    },
+    "ten_percent": {
+      "label": "10 %"
+    },
+    "twentyfive_percent": {
+      "label": "25 %"
+    },
+    "hundred_percent_thought_experiment": {
+      "label": "100 % tankeexperiment"
+    }
+  }
+}

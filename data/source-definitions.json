@@ -1,0 +1,40 @@
+{
+  "policy_version": "2026-07-12",
+  "runtime_import_authorized": false,
+  "default_truth_boundary": "Energy-equivalent scenario capacity only. Not spare grid capacity, not installed generation capacity, and not a deployment or job-loss prediction.",
+  "definitions": [
+    {
+      "id": "eurostat_final_consumption_electricity",
+      "jurisdiction_scope": "EU27",
+      "source_system": "Eurostat",
+      "review_status": "blocked_pending_source_decision",
+      "candidate_dataset": "source-candidates/eu27-electricity-use.candidate.json",
+      "source_gate": "source-candidates/promotion-gate-summary.json#eu27",
+      "metric_label": "final electricity consumption",
+      "allocation_label_template": "{share}% of annual final electricity consumption",
+      "scenario_sentence_template": "Allocating {share}% of {jurisdiction}'s annual final electricity consumption to this scenario would provide an equivalent yearly energy budget for {workers} configured AI-worker profiles.",
+      "unit": "TWh/year",
+      "definition": "Annual final consumption of electricity for energy use.",
+      "boundary_note": "This is annual energy use, not power capacity. The current EU27 candidate is blocked because direct Eurostat comparison did not match the candidate values.",
+      "runtime_allowed": false
+    },
+    {
+      "id": "eia_retail_sales_ultimate_customers",
+      "jurisdiction_scope": "US",
+      "source_system": "U.S. Energy Information Administration",
+      "review_status": "source_value_checked_candidate_not_promoted",
+      "candidate_datasets": [
+        "source-candidates/us-national-electricity-use.candidate.json",
+        "source-candidates/us-states-electricity-use.candidate.json"
+      ],
+      "source_gate": "source-candidates/promotion-gate-summary.json#us_national/us_states",
+      "metric_label": "retail electricity sales to ultimate customers",
+      "allocation_label_template": "{share}% of annual retail electricity sales",
+      "scenario_sentence_template": "Allocating {share}% of {jurisdiction}'s annual retail electricity sales to this scenario would provide an equivalent yearly energy budget for {workers} configured AI-worker profiles.",
+      "unit": "TWh/year",
+      "definition": "Annual electricity sales delivered to ultimate customers.",
+      "boundary_note": "This EIA metric excludes direct use. It must not be relabelled as all electricity use unless the source metric is redesigned.",
+      "runtime_allowed": false
+    }
+  ]
+}

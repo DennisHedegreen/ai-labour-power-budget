@@ -1,0 +1,76 @@
+{
+  "dataset_id": "us-national-electricity-use",
+  "status": "source_candidate",
+  "created_at": "2026-07-12",
+  "definition": "annual electricity sales delivered to ultimate customers",
+  "unit": "TWh/year",
+  "source_method_note": "EIA-861 final annual 2024 data, Total Electric Industry sheet, TOTAL Sales column. Original unit MWh; divide by 1,000,000 for TWh/year.",
+  "records": [
+    {
+      "code": "US",
+      "name": "United States",
+      "local_name": "United States",
+      "local_language": "en",
+      "local_language_label": "English",
+      "jurisdiction_type": "country",
+      "parent": null,
+      "population": null,
+      "annual_electricity_twh": 3975.382,
+      "electricity_per_capita_kwh_year": null,
+      "source_name": "U.S. Energy Information Administration (EIA)",
+      "source_dataset": "EIA-861 Annual Electric Power Industry Report",
+      "source_series": "Annual sales to ultimate customers by state and sector — Total Electric Industry — Total sales",
+      "source_url": "https://www.eia.gov/electricity/data/state/xls/861/HS861%202010-.xlsx",
+      "source_year": "2024",
+      "source_retrieved_at": "2026-07-12",
+      "source_status": "source_candidate",
+      "definition": "annual electricity sales delivered to ultimate customers",
+      "unit_original": "megawatthours",
+      "conversion_note": "Official total sales in MWh divided by 1,000,000 to obtain TWh/year.",
+      "review_flags": [
+        "cross_source_definition_not_identical",
+        "eia_retail_sales_excludes_direct_use"
+      ],
+      "notes": "Final 2024 EIA retail-sales value. EIA separately reports 135,040,521 MWh (135.041 TWh) of direct use for the United States; that amount is not included in annual_electricity_twh. Retain the retail-sales label or redesign the metric."
+    }
+  ],
+  "metric_scope": "EIA annual retail sales of electricity delivered to ultimate customers",
+  "comparability_note": "This metric excludes EIA's separately reported direct-use category. It is a deliberate retail-sales denominator and must not be relabelled as all end-use electricity consumption.",
+  "rounding_precision_twh": 0.001,
+  "source_provenance": {
+    "official_source_system": "U.S. Energy Information Administration (EIA)",
+    "dataset": "EIA-861 Annual Electric Power Industry Report",
+    "series": "Annual sales to ultimate customers by state and sector",
+    "workbook_url": "https://www.eia.gov/electricity/data/state/xls/861/HS861%202010-.xlsx",
+    "landing_page": "https://www.eia.gov/electricity/data/state/",
+    "detailed_data_page": "https://www.eia.gov/electricity/data/eia861/",
+    "sheet": "Total Electric Industry",
+    "column": "TOTAL — Sales",
+    "source_unit": "MWh",
+    "period": "2024",
+    "release_status": "final",
+    "release_date": "2025-10-07",
+    "workbook_update_date": "2025-12-03",
+    "next_scheduled_release": "2026-10",
+    "anchor_checks": {
+      "US": {
+        "official_mwh": 3975381832,
+        "candidate_twh": 3975.382
+      },
+      "US-AL": {
+        "official_mwh": 87522932,
+        "candidate_twh": 87.523
+      },
+      "US-CA": {
+        "official_mwh": 245717145,
+        "candidate_twh": 245.717
+      },
+      "US-TX": {
+        "official_mwh": 505431317,
+        "candidate_twh": 505.431
+      }
+    },
+    "excluded_direct_use_us_total_mwh": 135040521,
+    "excluded_direct_use_us_total_twh": 135.041
+  }
+}

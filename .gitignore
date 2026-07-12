@@ -1,0 +1,14 @@
+.DS_Store
+node_modules/
+npm-debug.log*
+
+# Local server/runtime clutter
+.cache/
+.tmp/
+coverage/
+
+# Raw source downloads and generated review artifacts should be linked or
+# regenerated, not silently committed.
+*.xlsx
+*.zip
+

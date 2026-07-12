@@ -1,0 +1,132 @@
+{
+  "languageButton": "English",
+  "languageState": "HU",
+  "localLanguageFallback": "Helyi nyelv",
+  "statusChips": [
+    "demóértékek",
+    "forrásellenőrzés szükséges",
+    "nincs közzétéve"
+  ],
+  "manualSetting": "Kézi beállítás",
+  "clickToCycle": "Kattintson a váltáshoz",
+  "selectCountry": "Ország kiválasztása",
+  "demoValue": "demóérték",
+  "sourcePassNeeded": "forrásellenőrzés szükséges",
+  "equivalentProfiles": "Energiaegyenértékű AI-worker profilok",
+  "profiles": "profil",
+  "selectedAllocation": "Kiválasztott arány",
+  "allocatedElectricity": "Hozzárendelt villamos energia",
+  "averageAllocatedLoad": "Átlagos hozzárendelt teljesítmény",
+  "annualElectricity": "Éves villamosenergia-felhasználás",
+  "country": "Ország",
+  "wattProfile": "Teljesítményprofil",
+  "runtime": "Üzemidő",
+  "overhead": "Többlettényező",
+  "oneAiWorker": "Egy AI-worker",
+  "oneProfileYearly": "Egy profil évente",
+  "electricityAllocation": "Villamosenergia-hozzárendelés",
+  "targetComparison": "Célérték-összehasonlítás",
+  "calculationBasis": "Számítási alap",
+  "dataStatus": "Adatállapot",
+  "scenarioOutput": "forgatókönyv eredménye",
+  "scenarioSetting": "forgatókönyv-beállítás",
+  "notVerified": "nem ellenőrzött",
+  "thoughtExperiment": "gondolatkísérlet",
+  "noCountrySelected": "Nincs kiválasztott ország",
+  "energyBoundary": "energiaegyenértékű forgatókönyv-kapacitás — nem szabad hálózati kapacitás és nem telepítési előrejelzés",
+  "ofNationalAnnualElectricity": "az ország éves villamosenergia-felhasználásából",
+  "underSelectedWattProfile": "a kiválasztott teljesítményprofil mellett",
+  "calculationBasisPrecise": "a számítási alap ezt a pontos értéket használja",
+  "annualEnergySpread": "az éves energia az egész évre elosztva",
+  "calculationBasisStatus": "watt x óra/hét x hét/év x többlettényező",
+  "fullOutputAssumption": "referenciafeltevés: folyamatos 100%-os terhelés",
+  "offshoreAssumption": "referenciafeltevés: 45%-os kapacitástényező",
+  "householdAssumption": "referenciafeltevés: 3 500 kWh/év",
+  "wind3": "3 MW-os szélturbinák",
+  "wind8": "8 MW-os tengeri szélturbinák",
+  "households": "Háztartás-évek egyenértéke",
+  "truthBoundary": "Értelmezési korlát",
+  "truthBoundaryText": "Ez a helyi prototípus demóértékeket és forráshivatkozásokat használ. Nem állítja, hogy bármely ország rendelkezik fel nem használt villamos energiával, és nem jelez előre munkahelyvesztést.",
+  "steps": [
+    "1 Ország",
+    "2 Worker",
+    "3 Keret",
+    "4 Jelentés"
+  ],
+  "workerProfile": "AI-worker profil",
+  "defineWorker": "Egy AI-worker meghatározása",
+  "workerIntro": "Állítsa be az ehhez a forgatókönyvhöz használt teljesítményprofilt és üzemidőt.",
+  "back": "Vissza",
+  "restart": "Újrakezdés",
+  "powerDraw": "Teljesítményfelvétel",
+  "customWatts": "Egyéni wattérték",
+  "customHours": "Egyéni óra/hét",
+  "infrastructureOverhead": "Infrastrukturális többlettényező",
+  "customFactor": "Egyéni tényező",
+  "oneWorkerUses": "Egy AI-worker fogyasztása",
+  "scenarioSettingsBoundary": "Ezek forgatókönyv-beállítások, nem előrejelzések.",
+  "continueToScale": "Tovább az energiakerethez",
+  "countryElectricityBudget": "Az ország villamosenergia-kerete",
+  "chooseElectricityShare": "Villamosenergia-arány kiválasztása",
+  "allocationIntro": "Az ország jelenlegi éves villamosenergia-felhasználásának mekkora részét rendeljük az AI-munkavégzéshez?",
+  "electricityShare": "Villamosenergia-arány",
+  "nationalAllocation": "Országos villamosenergia-hozzárendelés",
+  "compareTargetProfiles": "Célprofilok összehasonlítása",
+  "preview": "Előnézet",
+  "generateReport": "Jelentés létrehozása",
+  "scenarioReport": "Forgatókönyv-jelentés",
+  "allocationSentenceTemplate": "Ha {countryName} éves villamosenergia-felhasználásának {share} részét ehhez a forgatókönyvhöz rendeljük, az {profiles} konfigurált AI-worker profil éves energiaegyenértékű keretének felelne meg.",
+  "comparisonSentenceTemplate": "Összehasonlítás: {profiles} konfigurált profil {twh} TWh/év energiát igényelne, ami a jelenlegi éves villamosenergia-felhasználás {share} részének felel meg.",
+  "allocationLabelTemplate": "az országos villamosenergia-felhasználás {share} része",
+  "shareCapacityLabelTemplate": "{share} villamosenergia-hozzárendelés",
+  "calculationBasisTemplate": "{watts} W x {hoursPerWeek} óra/hét x {weeksPerYear} hét/év x {overhead} többlettényező = {mwhYear} MWh/profil/év",
+  "profileText": {
+    "efficient_future_70w": {
+      "label": "70 W",
+      "description": "Energiahatékony hardverforgatókönyv"
+    },
+    "improved_200w": {
+      "label": "200 W",
+      "description": "Továbbfejlesztett hardverforgatókönyv"
+    },
+    "heavy_700w": {
+      "label": "700 W",
+      "description": "Jelenlegi, nagy fogyasztású forgatókönyv"
+    },
+    "human_week_37h": {
+      "label": "37 óra/hét",
+      "description": "Egy emberi munkahét energiaegyenértéke"
+    },
+    "standard_40h": {
+      "label": "40 óra/hét",
+      "description": "Szokásos teljes munkaidős hét"
+    },
+    "always_on_24_7": {
+      "label": "24/7",
+      "description": "Folyamatosan működő gépi worker"
+    },
+    "raw_compute": {
+      "label": "Kikapcsolva / raw compute",
+      "description": "Nincs többletszorzó"
+    },
+    "facility_1_3": {
+      "label": "1,3x",
+      "description": "Egyszerűsített hűtési és létesítményi többletforgatókönyv"
+    },
+    "one_percent": {
+      "label": "1%"
+    },
+    "five_percent": {
+      "label": "5%"
+    },
+    "ten_percent": {
+      "label": "10%"
+    },
+    "twentyfive_percent": {
+      "label": "25%"
+    },
+    "hundred_percent_thought_experiment": {
+      "label": "100%-os gondolatkísérlet"
+    }
+  }
+}

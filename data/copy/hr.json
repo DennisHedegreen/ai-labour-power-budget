@@ -1,0 +1,132 @@
+{
+  "languageButton": "English",
+  "languageState": "HR",
+  "localLanguageFallback": "Lokalni jezik",
+  "statusChips": [
+    "demonstracijske vrijednosti",
+    "potrebna je provjera izvora",
+    "nije objavljeno"
+  ],
+  "manualSetting": "Ručna postavka",
+  "clickToCycle": "Kliknite za promjenu",
+  "selectCountry": "Odaberite državu",
+  "demoValue": "demonstracijska vrijednost",
+  "sourcePassNeeded": "potrebna je provjera izvora",
+  "equivalentProfiles": "Energetski ekvivalentni AI-worker profili",
+  "profiles": "profili",
+  "selectedAllocation": "Odabrani udio",
+  "allocatedElectricity": "Dodijeljena električna energija",
+  "averageAllocatedLoad": "Prosječna dodijeljena snaga",
+  "annualElectricity": "Godišnja potrošnja električne energije",
+  "country": "Država",
+  "wattProfile": "Profil snage",
+  "runtime": "Vrijeme rada",
+  "overhead": "Dodatni faktor",
+  "oneAiWorker": "Jedan AI-worker",
+  "oneProfileYearly": "Jedan profil godišnje",
+  "electricityAllocation": "Dodjela električne energije",
+  "targetComparison": "Usporedba s ciljem",
+  "calculationBasis": "Osnova izračuna",
+  "dataStatus": "Status podataka",
+  "scenarioOutput": "rezultat scenarija",
+  "scenarioSetting": "postavka scenarija",
+  "notVerified": "nije provjereno",
+  "thoughtExperiment": "misaoni eksperiment",
+  "noCountrySelected": "Nije odabrana nijedna država",
+  "energyBoundary": "energetski ekvivalentan kapacitet scenarija — ne slobodan kapacitet mreže niti prognoza uvođenja",
+  "ofNationalAnnualElectricity": "od nacionalne godišnje potrošnje električne energije",
+  "underSelectedWattProfile": "uz odabrani profil snage",
+  "calculationBasisPrecise": "osnova izračuna koristi ovu točnu vrijednost",
+  "annualEnergySpread": "godišnja energija raspoređena tijekom cijele godine",
+  "calculationBasisStatus": "vati x sati/tjedan x tjedni/godina x dodatni faktor",
+  "fullOutputAssumption": "referentna pretpostavka: neprekidan rad pri 100 %",
+  "offshoreAssumption": "referentna pretpostavka: faktor kapaciteta od 45 %",
+  "householdAssumption": "referentna pretpostavka: 3.500 kWh/godina",
+  "wind3": "vjetroturbine snage 3 MW",
+  "wind8": "odobalne vjetroturbine snage 8 MW",
+  "households": "Ekvivalent kućanstva za jednu godinu",
+  "truthBoundary": "Granica tumačenja",
+  "truthBoundaryText": "Ovaj lokalni prototip koristi demonstracijske vrijednosti i poveznice na izvore. Ne tvrdi da bilo koja država ima višak električne energije i ne predviđa gubitak radnih mjesta.",
+  "steps": [
+    "1 Država",
+    "2 Worker",
+    "3 Proračun",
+    "4 Izvješće"
+  ],
+  "workerProfile": "AI-worker profil",
+  "defineWorker": "Definirajte jednog AI-workera",
+  "workerIntro": "Postavite profil snage i vrijeme rada koji se koriste u ovom scenariju.",
+  "back": "Natrag",
+  "restart": "Pokreni ispočetka",
+  "powerDraw": "Potrošnja snage",
+  "customWatts": "Prilagođena snaga u vatima",
+  "customHours": "Prilagođeni sati/tjedan",
+  "infrastructureOverhead": "Dodatni faktor infrastrukture",
+  "customFactor": "Prilagođeni faktor",
+  "oneWorkerUses": "Jedan AI-worker koristi",
+  "scenarioSettingsBoundary": "Ovo su postavke scenarija, a ne prognoza.",
+  "continueToScale": "Nastavite na proračun",
+  "countryElectricityBudget": "Elektroenergetski proračun države",
+  "chooseElectricityShare": "Odaberite udio električne energije",
+  "allocationIntro": "Koliki dio trenutačne godišnje potrošnje električne energije ove države dodjeljujemo radu s umjetnom inteligencijom?",
+  "electricityShare": "Udio električne energije",
+  "nationalAllocation": "Nacionalna dodjela električne energije",
+  "compareTargetProfiles": "Usporedi ciljne profile",
+  "preview": "Pregled",
+  "generateReport": "Izradi izvješće",
+  "scenarioReport": "Izvješće o scenariju",
+  "allocationSentenceTemplate": "Dodjela {share} godišnje potrošnje električne energije države {countryName} ovom scenariju odgovarala bi godišnjem energetskom proračunu za {profiles} konfiguriranih AI-worker profila.",
+  "comparisonSentenceTemplate": "Usporedba: {profiles} konfiguriranih profila zahtijevalo bi {twh} TWh/godina, odnosno {share} trenutačne godišnje potrošnje električne energije.",
+  "allocationLabelTemplate": "{share} nacionalne električne energije",
+  "shareCapacityLabelTemplate": "dodjela električne energije: {share}",
+  "calculationBasisTemplate": "{watts} W x {hoursPerWeek} sati/tjedan x {weeksPerYear} tjedana/godina x {overhead} dodatni faktor = {mwhYear} MWh/profil/godina",
+  "profileText": {
+    "efficient_future_70w": {
+      "label": "70 W",
+      "description": "Scenarij s energetski učinkovitom opremom"
+    },
+    "improved_200w": {
+      "label": "200 W",
+      "description": "Scenarij s poboljšanom opremom"
+    },
+    "heavy_700w": {
+      "label": "700 W",
+      "description": "Trenutačni scenarij s visokom potrošnjom"
+    },
+    "human_week_37h": {
+      "label": "37 sati/tjedan",
+      "description": "Energetski ekvivalent ljudskog radnog tjedna"
+    },
+    "standard_40h": {
+      "label": "40 sati/tjedan",
+      "description": "Standardni radni tjedan s punim radnim vremenom"
+    },
+    "always_on_24_7": {
+      "label": "24/7",
+      "description": "Strojni worker koji neprekidno radi"
+    },
+    "raw_compute": {
+      "label": "Isključeno / raw compute",
+      "description": "Bez dodatnog množitelja"
+    },
+    "facility_1_3": {
+      "label": "1,3x",
+      "description": "Pojednostavljeni scenarij dodatne potrošnje za hlađenje i infrastrukturu"
+    },
+    "one_percent": {
+      "label": "1 %"
+    },
+    "five_percent": {
+      "label": "5 %"
+    },
+    "ten_percent": {
+      "label": "10 %"
+    },
+    "twentyfive_percent": {
+      "label": "25 %"
+    },
+    "hundred_percent_thought_experiment": {
+      "label": "100 % misaoni eksperiment"
+    }
+  }
+}

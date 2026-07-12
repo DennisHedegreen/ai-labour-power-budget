@@ -1,0 +1,132 @@
+{
+  "languageButton": "English",
+  "languageState": "BG",
+  "localLanguageFallback": "Местен език",
+  "statusChips": [
+    "демонстрационни стойности",
+    "необходима е проверка на източниците",
+    "не е публикувано"
+  ],
+  "manualSetting": "Ръчна настройка",
+  "clickToCycle": "Щракнете, за да смените",
+  "selectCountry": "Изберете държава",
+  "demoValue": "демонстрационна стойност",
+  "sourcePassNeeded": "необходима е проверка на източниците",
+  "equivalentProfiles": "Енергийно еквивалентни AI-worker профили",
+  "profiles": "профили",
+  "selectedAllocation": "Избран дял",
+  "allocatedElectricity": "Разпределена електроенергия",
+  "averageAllocatedLoad": "Средна разпределена мощност",
+  "annualElectricity": "Годишно потребление на електроенергия",
+  "country": "Държава",
+  "wattProfile": "Профил на мощността",
+  "runtime": "Време на работа",
+  "overhead": "Допълнителен коефициент",
+  "oneAiWorker": "Един AI-worker",
+  "oneProfileYearly": "Един профил годишно",
+  "electricityAllocation": "Разпределение на електроенергия",
+  "targetComparison": "Сравнение с целта",
+  "calculationBasis": "Основа на изчислението",
+  "dataStatus": "Състояние на данните",
+  "scenarioOutput": "резултат от сценария",
+  "scenarioSetting": "настройка на сценария",
+  "notVerified": "непроверено",
+  "thoughtExperiment": "мисловен експеримент",
+  "noCountrySelected": "Няма избрана държава",
+  "energyBoundary": "енергийно еквивалентен капацитет на сценария — не свободен мрежов капацитет и не прогноза за внедряване",
+  "ofNationalAnnualElectricity": "от националното годишно потребление на електроенергия",
+  "underSelectedWattProfile": "при избрания профил на мощността",
+  "calculationBasisPrecise": "основата на изчислението използва тази точна стойност",
+  "annualEnergySpread": "годишна енергия, разпределена през цялата година",
+  "calculationBasisStatus": "ватове x часа/седмица x седмици/година x допълнителен коефициент",
+  "fullOutputAssumption": "референтно допускане: непрекъсната работа при 100 %",
+  "offshoreAssumption": "референтно допускане: коефициент на използване 45 %",
+  "householdAssumption": "референтно допускане: 3 500 kWh/година",
+  "wind3": "вятърни турбини с мощност 3 MW",
+  "wind8": "офшорни вятърни турбини с мощност 8 MW",
+  "households": "Еквивалент домакинство-година",
+  "truthBoundary": "Граница на тълкуване",
+  "truthBoundaryText": "Този локален прототип използва демонстрационни стойности и препратки към източници. Той не твърди, че която и да е държава разполага с излишна електроенергия, и не прогнозира загуба на работни места.",
+  "steps": [
+    "1 Държава",
+    "2 Worker",
+    "3 Бюджет",
+    "4 Доклад"
+  ],
+  "workerProfile": "AI-worker профил",
+  "defineWorker": "Дефинирайте един AI-worker",
+  "workerIntro": "Задайте профила на мощността и времето на работа, използвани в този сценарий.",
+  "back": "Назад",
+  "restart": "Започнете отначало",
+  "powerDraw": "Консумирана мощност",
+  "customWatts": "Персонализирани ватове",
+  "customHours": "Персонализирани часове/седмица",
+  "infrastructureOverhead": "Инфраструктурен допълнителен коефициент",
+  "customFactor": "Персонализиран коефициент",
+  "oneWorkerUses": "Един AI-worker използва",
+  "scenarioSettingsBoundary": "Това са настройки на сценария, а не прогноза.",
+  "continueToScale": "Продължете към бюджета",
+  "countryElectricityBudget": "Електроенергиен бюджет на държавата",
+  "chooseElectricityShare": "Изберете дял от електроенергията",
+  "allocationIntro": "Каква част от текущото годишно потребление на електроенергия на тази държава се разпределя за работа с AI?",
+  "electricityShare": "Дял от електроенергията",
+  "nationalAllocation": "Национално разпределение на електроенергия",
+  "compareTargetProfiles": "Сравнете целевите профили",
+  "preview": "Преглед",
+  "generateReport": "Генерирайте доклад",
+  "scenarioReport": "Доклад за сценария",
+  "allocationSentenceTemplate": "Разпределянето на {share} от годишното потребление на електроенергия на {countryName} към този сценарий би съответствало на годишен енергиен бюджет за {profiles} конфигурирани AI-worker профили.",
+  "comparisonSentenceTemplate": "Сравнение: {profiles} конфигурирани профили биха изисквали {twh} TWh/година, което е {share} от текущото годишно потребление на електроенергия.",
+  "allocationLabelTemplate": "{share} от националната електроенергия",
+  "shareCapacityLabelTemplate": "разпределение на електроенергия: {share}",
+  "calculationBasisTemplate": "{watts} W x {hoursPerWeek} часа/седмица x {weeksPerYear} седмици/година x {overhead} допълнителен коефициент = {mwhYear} MWh/профил/година",
+  "profileText": {
+    "efficient_future_70w": {
+      "label": "70 W",
+      "description": "Сценарий с енергийно ефективен хардуер"
+    },
+    "improved_200w": {
+      "label": "200 W",
+      "description": "Сценарий с подобрен хардуер"
+    },
+    "heavy_700w": {
+      "label": "700 W",
+      "description": "Текущ сценарий с висока консумация"
+    },
+    "human_week_37h": {
+      "label": "37 часа/седмица",
+      "description": "Енергиен еквивалент на човешка работна седмица"
+    },
+    "standard_40h": {
+      "label": "40 часа/седмица",
+      "description": "Стандартна работна седмица на пълно работно време"
+    },
+    "always_on_24_7": {
+      "label": "24/7",
+      "description": "Машинен worker, работещ непрекъснато"
+    },
+    "raw_compute": {
+      "label": "Изключено / raw compute",
+      "description": "Без допълнителен множител"
+    },
+    "facility_1_3": {
+      "label": "1,3x",
+      "description": "Опростен сценарий за охлаждане и инфраструктурен допълнителен разход"
+    },
+    "one_percent": {
+      "label": "1 %"
+    },
+    "five_percent": {
+      "label": "5 %"
+    },
+    "ten_percent": {
+      "label": "10 %"
+    },
+    "twentyfive_percent": {
+      "label": "25 %"
+    },
+    "hundred_percent_thought_experiment": {
+      "label": "100 % мисловен експеримент"
+    }
+  }
+}

@@ -1,0 +1,118 @@
+const assert = require("assert");
+const fs = require("fs");
+const path = require("path");
+
+const root = path.join(__dirname, "..");
+const dataRoot = path.join(root, "data");
+const candidateRoot = path.join(dataRoot, "source-candidates");
+
+function readJson(filePath) {
+  return JSON.parse(fs.readFileSync(filePath, "utf8"));
+}
+
+function readDataJson(relativePath) {
+  return readJson(path.join(dataRoot, relativePath));
+}
+
+function readCandidate(fileName) {
+  return readJson(path.join(candidateRoot, fileName));
+}
+
+function assertDatasetShape(dataset, expected) {
+  assert.strictEqual(dataset.status, "source_candidate", `${expected.id} must remain source_candidate`);
+  assert.strictEqual(dataset.dataset_id, expected.id, `${expected.id} dataset_id mismatch`);
+  assert.strictEqual(dataset.unit, "TWh/year", `${expected.id} must use TWh/year`);
+  assert(Array.isArray(dataset.records), `${expected.id} records must be an array`);
+  assert.strictEqual(dataset.records.length, expected.records, `${expected.id} record count mismatch`);
+
+  const codes = new Set();
+  for (const record of dataset.records) {
+    assert(record.code && typeof record.code === "string", `${expected.id} has record without code`);
+    assert(!codes.has(record.code), `${expected.id} duplicate code ${record.code}`);
+    codes.add(record.code);
+    assert(Number.isFinite(record.annual_electricity_twh), `${record.code} annual_electricity_twh must be numeric`);
+    assert(record.annual_electricity_twh > 0, `${record.code} annual_electricity_twh must be positive`);
+    assert.strictEqual(record.source_status, "source_candidate", `${record.code} must remain source_candidate`);
+    assert(record.source_retrieved_at, `${record.code} missing source_retrieved_at`);
+    assert(Array.isArray(record.review_flags), `${record.code} missing review_flags`);
+    assert(record.definition && typeof record.definition === "string", `${record.code} missing definition`);
+  }
+
+  for (const requiredCode of expected.requiredCodes || []) {
+    assert(codes.has(requiredCode), `${expected.id} missing ${requiredCode}`);
+  }
+}
+
+const sourceDefinitions = readDataJson("source-definitions.json");
+const gate = readCandidate("promotion-gate-summary.json");
+const eu27 = readCandidate("eu27-electricity-use.candidate.json");
+const usNational = readCandidate("us-national-electricity-use.candidate.json");
+const usStates = readCandidate("us-states-electricity-use.candidate.json");
+
+assert.strictEqual(
+  sourceDefinitions.runtime_import_authorized,
+  false,
+  "runtime import must stay disabled until an explicit promotion gate changes it"
+);
+assert(Array.isArray(sourceDefinitions.definitions), "source-definitions.json must list definitions");
+assert(sourceDefinitions.definitions.length >= 2, "source-definitions.json must include EU and US definitions");
+
+const definitionsById = Object.fromEntries(sourceDefinitions.definitions.map((definition) => [definition.id, definition]));
+assert(definitionsById.eurostat_final_consumption_electricity, "missing Eurostat definition");
+assert(definitionsById.eia_retail_sales_ultimate_customers, "missing EIA definition");
+
+assert.strictEqual(definitionsById.eurostat_final_consumption_electricity.runtime_allowed, false);
+assert.strictEqual(definitionsById.eia_retail_sales_ultimate_customers.runtime_allowed, false);
+assert.match(
+  definitionsById.eia_retail_sales_ultimate_customers.boundary_note,
+  /excludes direct use/i,
+  "EIA boundary note must preserve direct-use exclusion"
+);
+assert.match(
+  sourceDefinitions.default_truth_boundary,
+  /not spare grid capacity/i,
+  "default truth boundary must reject spare-grid-capacity framing"
+);
+
+assert.strictEqual(gate.live_import_authorized, false, "promotion gate must not authorize live import");
+assert.strictEqual(gate.eu27.status, "blocked", "EU27 must remain blocked");
+assert.strictEqual(gate.eu27.mismatches, 27, "EU27 mismatch count changed; update review note before proceeding");
+assert.strictEqual(
+  gate.us_national.status,
+  "source_value_check_passed_candidate_not_promoted",
+  "US national status must remain candidate-not-promoted"
+);
+assert.strictEqual(
+  gate.us_states.status,
+  "source_value_check_passed_candidate_not_promoted",
+  "US states status must remain candidate-not-promoted"
+);
+
+assertDatasetShape(eu27, {
+  id: "eu27-electricity-use",
+  records: 27,
+  requiredCodes: ["DK", "DE", "FR", "SE"]
+});
+assert(
+  eu27.records.every((record) => record.review_flags.includes("official_api_refresh_required")),
+  "EU27 records must keep official_api_refresh_required"
+);
+
+assertDatasetShape(usNational, {
+  id: "us-national-electricity-use",
+  records: 1,
+  requiredCodes: ["US"]
+});
+assertDatasetShape(usStates, {
+  id: "us-states-electricity-use",
+  records: 51,
+  requiredCodes: ["US-CA", "US-DC", "US-NY", "US-TX"]
+});
+assert(
+  usNational.records.concat(usStates.records).every((record) =>
+    record.review_flags.includes("eia_retail_sales_excludes_direct_use")
+  ),
+  "US records must keep EIA direct-use exclusion flag"
+);
+
+console.log("AI Labour Power Budget source layer validation passed");

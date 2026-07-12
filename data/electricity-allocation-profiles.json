@@ -1,0 +1,7 @@
+[
+  { "id": "one_percent", "label": "1%", "share": 0.01 },
+  { "id": "five_percent", "label": "5%", "share": 0.05 },
+  { "id": "ten_percent", "label": "10%", "share": 0.1 },
+  { "id": "twentyfive_percent", "label": "25%", "share": 0.25 },
+  { "id": "hundred_percent_thought_experiment", "label": "100% thought experiment", "share": 1 }
+]

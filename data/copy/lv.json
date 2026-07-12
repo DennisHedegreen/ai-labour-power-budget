@@ -1,0 +1,132 @@
+{
+  "languageButton": "English",
+  "languageState": "LV",
+  "localLanguageFallback": "Vietējā valoda",
+  "statusChips": [
+    "demonstrācijas vērtības",
+    "nepieciešama avotu pārbaude",
+    "nav publicēts"
+  ],
+  "manualSetting": "Manuāls iestatījums",
+  "clickToCycle": "Noklikšķiniet, lai pārslēgtu",
+  "selectCountry": "Izvēlieties valsti",
+  "demoValue": "demonstrācijas vērtība",
+  "sourcePassNeeded": "nepieciešama avotu pārbaude",
+  "equivalentProfiles": "Enerģētiski ekvivalenti AI-worker profili",
+  "profiles": "profili",
+  "selectedAllocation": "Izvēlētā daļa",
+  "allocatedElectricity": "Piešķirtā elektroenerģija",
+  "averageAllocatedLoad": "Vidējā piešķirtā jauda",
+  "annualElectricity": "Gada elektroenerģijas patēriņš",
+  "country": "Valsts",
+  "wattProfile": "Jaudas profils",
+  "runtime": "Darbības laiks",
+  "overhead": "Papildu koeficients",
+  "oneAiWorker": "Viens AI-worker",
+  "oneProfileYearly": "Viens profils gadā",
+  "electricityAllocation": "Elektroenerģijas piešķīrums",
+  "targetComparison": "Salīdzinājums ar mērķi",
+  "calculationBasis": "Aprēķina pamats",
+  "dataStatus": "Datu statuss",
+  "scenarioOutput": "scenārija rezultāts",
+  "scenarioSetting": "scenārija iestatījums",
+  "notVerified": "nav pārbaudīts",
+  "thoughtExperiment": "domu eksperiments",
+  "noCountrySelected": "Nav izvēlēta neviena valsts",
+  "energyBoundary": "enerģētiski ekvivalenta scenārija kapacitāte — ne brīva tīkla jauda un ne ieviešanas prognoze",
+  "ofNationalAnnualElectricity": "no valsts gada elektroenerģijas patēriņa",
+  "underSelectedWattProfile": "ar izvēlēto jaudas profilu",
+  "calculationBasisPrecise": "aprēķina pamatā tiek izmantota šī precīzā vērtība",
+  "annualEnergySpread": "gada enerģija, sadalīta pa visu gadu",
+  "calculationBasisStatus": "vati x stundas/nedēļā x nedēļas/gadā x papildu koeficients",
+  "fullOutputAssumption": "atsauces pieņēmums: nepārtraukta darbība ar 100 % jaudu",
+  "offshoreAssumption": "atsauces pieņēmums: 45 % jaudas koeficients",
+  "householdAssumption": "atsauces pieņēmums: 3 500 kWh/gadā",
+  "wind3": "3 MW vēja turbīnas",
+  "wind8": "8 MW jūras vēja turbīnas",
+  "households": "Mājsaimniecības gada ekvivalents",
+  "truthBoundary": "Interpretācijas robeža",
+  "truthBoundaryText": "Šis lokālais prototips izmanto demonstrācijas vērtības un atsauces uz avotiem. Tas neapgalvo, ka kādai valstij būtu elektroenerģijas pārpalikums, un neprognozē darbvietu zudumu.",
+  "steps": [
+    "1 Valsts",
+    "2 Worker",
+    "3 Budžets",
+    "4 Pārskats"
+  ],
+  "workerProfile": "AI-worker profils",
+  "defineWorker": "Definējiet vienu AI-worker",
+  "workerIntro": "Iestatiet šajā scenārijā izmantoto jaudas profilu un darbības laiku.",
+  "back": "Atpakaļ",
+  "restart": "Sākt no jauna",
+  "powerDraw": "Jaudas patēriņš",
+  "customWatts": "Pielāgota jauda vatos",
+  "customHours": "Pielāgotas stundas/nedēļā",
+  "infrastructureOverhead": "Infrastruktūras papildu koeficients",
+  "customFactor": "Pielāgots koeficients",
+  "oneWorkerUses": "Viens AI-worker patērē",
+  "scenarioSettingsBoundary": "Tie ir scenārija iestatījumi, nevis prognoze.",
+  "continueToScale": "Turpināt uz budžetu",
+  "countryElectricityBudget": "Valsts elektroenerģijas budžets",
+  "chooseElectricityShare": "Izvēlieties elektroenerģijas daļu",
+  "allocationIntro": "Kāda daļa no šīs valsts pašreizējā gada elektroenerģijas patēriņa tiek piešķirta darbam ar AI?",
+  "electricityShare": "Elektroenerģijas daļa",
+  "nationalAllocation": "Valsts elektroenerģijas piešķīrums",
+  "compareTargetProfiles": "Salīdzināt mērķa profilus",
+  "preview": "Priekšskatījums",
+  "generateReport": "Izveidot pārskatu",
+  "scenarioReport": "Scenārija pārskats",
+  "allocationSentenceTemplate": "Ja {share} no valsts {countryName} gada elektroenerģijas patēriņa tiktu piešķirti šim scenārijam, tas atbilstu gada enerģijas budžetam {profiles} konfigurētiem AI-worker profiliem.",
+  "comparisonSentenceTemplate": "Salīdzinājums: {profiles} konfigurētiem profiliem būtu nepieciešami {twh} TWh/gadā, kas atbilst {share} no pašreizējā gada elektroenerģijas patēriņa.",
+  "allocationLabelTemplate": "{share} no valsts elektroenerģijas",
+  "shareCapacityLabelTemplate": "elektroenerģijas piešķīrums: {share}",
+  "calculationBasisTemplate": "{watts} W x {hoursPerWeek} stundas/nedēļā x {weeksPerYear} nedēļas/gadā x {overhead} papildu koeficients = {mwhYear} MWh/profilam/gadā",
+  "profileText": {
+    "efficient_future_70w": {
+      "label": "70 W",
+      "description": "Scenārijs ar energoefektīvu aparatūru"
+    },
+    "improved_200w": {
+      "label": "200 W",
+      "description": "Scenārijs ar uzlabotu aparatūru"
+    },
+    "heavy_700w": {
+      "label": "700 W",
+      "description": "Pašreizējais scenārijs ar lielu patēriņu"
+    },
+    "human_week_37h": {
+      "label": "37 stundas/nedēļā",
+      "description": "Cilvēka darba nedēļas enerģētiskais ekvivalents"
+    },
+    "standard_40h": {
+      "label": "40 stundas/nedēļā",
+      "description": "Standarta pilna laika darba nedēļa"
+    },
+    "always_on_24_7": {
+      "label": "24/7",
+      "description": "Nepārtraukti darbojošs mašīnas worker"
+    },
+    "raw_compute": {
+      "label": "Izslēgts / raw compute",
+      "description": "Bez papildu reizinātāja"
+    },
+    "facility_1_3": {
+      "label": "1,3x",
+      "description": "Vienkāršots dzesēšanas un infrastruktūras papildu patēriņa scenārijs"
+    },
+    "one_percent": {
+      "label": "1 %"
+    },
+    "five_percent": {
+      "label": "5 %"
+    },
+    "ten_percent": {
+      "label": "10 %"
+    },
+    "twentyfive_percent": {
+      "label": "25 %"
+    },
+    "hundred_percent_thought_experiment": {
+      "label": "100 % domu eksperiments"
+    }
+  }
+}

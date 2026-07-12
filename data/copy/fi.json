@@ -1,0 +1,132 @@
+{
+  "languageButton": "English",
+  "languageState": "FI",
+  "localLanguageFallback": "Paikallinen kieli",
+  "statusChips": [
+    "demoarvot",
+    "lähteet on tarkistettava",
+    "ei julkaistu"
+  ],
+  "manualSetting": "Manuaalinen asetus",
+  "clickToCycle": "Vaihda napsauttamalla",
+  "selectCountry": "Valitse maa",
+  "demoValue": "demoarvo",
+  "sourcePassNeeded": "lähteet on tarkistettava",
+  "equivalentProfiles": "Energiaekvivalentit AI-worker-profiilit",
+  "profiles": "profiilia",
+  "selectedAllocation": "Valittu osuus",
+  "allocatedElectricity": "Kohdennettu sähkö",
+  "averageAllocatedLoad": "Keskimääräinen kohdennettu teho",
+  "annualElectricity": "Vuotuinen sähkönkulutus",
+  "country": "Maa",
+  "wattProfile": "Tehoprofiili",
+  "runtime": "Käyttöaika",
+  "overhead": "Lisäkerroin",
+  "oneAiWorker": "Yksi AI-worker",
+  "oneProfileYearly": "Yksi profiili vuodessa",
+  "electricityAllocation": "Sähkön kohdentaminen",
+  "targetComparison": "Vertailu tavoitteeseen",
+  "calculationBasis": "Laskentaperuste",
+  "dataStatus": "Tietojen tila",
+  "scenarioOutput": "skenaarion tulos",
+  "scenarioSetting": "skenaarioasetus",
+  "notVerified": "ei vahvistettu",
+  "thoughtExperiment": "ajatuskoe",
+  "noCountrySelected": "Maata ei ole valittu",
+  "energyBoundary": "energiaekvivalentti skenaariokapasiteetti — ei vapaata verkkokapasiteettia eikä käyttöönottoennuste",
+  "ofNationalAnnualElectricity": "kansallisesta vuotuisesta sähkönkulutuksesta",
+  "underSelectedWattProfile": "valitulla tehoprofiililla",
+  "calculationBasisPrecise": "laskentaperuste käyttää tätä tarkkaa arvoa",
+  "annualEnergySpread": "vuotuinen energia jaettuna koko vuodelle",
+  "calculationBasisStatus": "wattia x tuntia/viikko x viikkoa/vuosi x lisäkerroin",
+  "fullOutputAssumption": "vertailuoletus: jatkuva käyttö 100 %:n teholla",
+  "offshoreAssumption": "vertailuoletus: 45 %:n kapasiteettikerroin",
+  "householdAssumption": "vertailuoletus: 3 500 kWh/vuosi",
+  "wind3": "3 MW:n tuulivoimalat",
+  "wind8": "8 MW:n merituulivoimalat",
+  "households": "Kotitalousvuosiekvivalentti",
+  "truthBoundary": "Tulkintaraja",
+  "truthBoundaryText": "Tämä paikallinen prototyyppi käyttää demoarvoja ja lähdeviitteitä. Se ei väitä, että millään maalla olisi ylimääräistä sähköä, eikä se ennusta työpaikkojen menetyksiä.",
+  "steps": [
+    "1 Maa",
+    "2 Worker",
+    "3 Budjetti",
+    "4 Raportti"
+  ],
+  "workerProfile": "AI-worker-profiili",
+  "defineWorker": "Määritä yksi AI-worker",
+  "workerIntro": "Aseta tässä skenaariossa käytettävä tehoprofiili ja käyttöaika.",
+  "back": "Takaisin",
+  "restart": "Aloita alusta",
+  "powerDraw": "Tehonkulutus",
+  "customWatts": "Mukautettu teho watteina",
+  "customHours": "Mukautetut tunnit/viikko",
+  "infrastructureOverhead": "Infrastruktuurin lisäkerroin",
+  "customFactor": "Mukautettu kerroin",
+  "oneWorkerUses": "Yksi AI-worker käyttää",
+  "scenarioSettingsBoundary": "Nämä ovat skenaarioasetuksia, eivät ennuste.",
+  "continueToScale": "Jatka budjettiin",
+  "countryElectricityBudget": "Maan sähköbudjetti",
+  "chooseElectricityShare": "Valitse sähkön osuus",
+  "allocationIntro": "Kuinka suuri osa tämän maan nykyisestä vuotuisesta sähkönkulutuksesta kohdennetaan AI-työhön?",
+  "electricityShare": "Sähkön osuus",
+  "nationalAllocation": "Kansallinen sähkön kohdentaminen",
+  "compareTargetProfiles": "Vertaa tavoiteprofiileja",
+  "preview": "Esikatselu",
+  "generateReport": "Luo raportti",
+  "scenarioReport": "Skenaarioraportti",
+  "allocationSentenceTemplate": "Jos {share} maan {countryName} vuotuisesta sähkönkulutuksesta kohdennetaan tähän skenaarioon, se vastaisi vuotuista energiabudjettia {profiles} määritetylle AI-worker-profiilille.",
+  "comparisonSentenceTemplate": "Vertailu: {profiles} määritettyä profiilia vaatisi {twh} TWh/vuosi, mikä vastaa {share} nykyisestä vuotuisesta sähkönkulutuksesta.",
+  "allocationLabelTemplate": "{share} kansallisesta sähköstä",
+  "shareCapacityLabelTemplate": "sähkön kohdennus: {share}",
+  "calculationBasisTemplate": "{watts} W x {hoursPerWeek} tuntia/viikko x {weeksPerYear} viikkoa/vuosi x {overhead} lisäkerroin = {mwhYear} MWh/profiili/vuosi",
+  "profileText": {
+    "efficient_future_70w": {
+      "label": "70 W",
+      "description": "Energiatehokkaan laitteiston skenaario"
+    },
+    "improved_200w": {
+      "label": "200 W",
+      "description": "Parannetun laitteiston skenaario"
+    },
+    "heavy_700w": {
+      "label": "700 W",
+      "description": "Nykyinen suuren kulutuksen skenaario"
+    },
+    "human_week_37h": {
+      "label": "37 tuntia/viikko",
+      "description": "Ihmisen työviikon energiaekvivalentti"
+    },
+    "standard_40h": {
+      "label": "40 tuntia/viikko",
+      "description": "Tavanomainen kokoaikainen työviikko"
+    },
+    "always_on_24_7": {
+      "label": "24/7",
+      "description": "Jatkuvasti toimiva kone-worker"
+    },
+    "raw_compute": {
+      "label": "Pois käytöstä / raw compute",
+      "description": "Ei lisäkerrointa"
+    },
+    "facility_1_3": {
+      "label": "1,3x",
+      "description": "Yksinkertaistettu jäähdytyksen ja infrastruktuurin lisäkulutusskenaario"
+    },
+    "one_percent": {
+      "label": "1 %"
+    },
+    "five_percent": {
+      "label": "5 %"
+    },
+    "ten_percent": {
+      "label": "10 %"
+    },
+    "twentyfive_percent": {
+      "label": "25 %"
+    },
+    "hundred_percent_thought_experiment": {
+      "label": "100 %:n ajatuskoe"
+    }
+  }
+}

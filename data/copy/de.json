@@ -1,0 +1,132 @@
+{
+  "languageButton": "English",
+  "languageState": "DE",
+  "localLanguageFallback": "Lokale Sprache",
+  "statusChips": [
+    "Demowerte",
+    "Quellenprüfung erforderlich",
+    "nicht veröffentlicht"
+  ],
+  "manualSetting": "Manuelle Einstellung",
+  "clickToCycle": "Zum Wechseln klicken",
+  "selectCountry": "Land auswählen",
+  "demoValue": "Demowert",
+  "sourcePassNeeded": "Quellenprüfung erforderlich",
+  "equivalentProfiles": "Energieäquivalente AI-worker-Profile",
+  "profiles": "Profile",
+  "selectedAllocation": "Gewählter Stromanteil",
+  "allocatedElectricity": "Zugeordnete Strommenge",
+  "averageAllocatedLoad": "Durchschnittlich zugeordnete Leistung",
+  "annualElectricity": "Jährlicher Stromverbrauch",
+  "country": "Land",
+  "wattProfile": "Wattprofil",
+  "runtime": "Laufzeit",
+  "overhead": "Overhead",
+  "oneAiWorker": "Ein AI-worker",
+  "oneProfileYearly": "Ein Profil pro Jahr",
+  "electricityAllocation": "Stromzuordnung",
+  "targetComparison": "Zielvergleich",
+  "calculationBasis": "Berechnungsgrundlage",
+  "dataStatus": "Datenstatus",
+  "scenarioOutput": "Szenarioergebnis",
+  "scenarioSetting": "Szenarioeinstellung",
+  "notVerified": "nicht verifiziert",
+  "thoughtExperiment": "Gedankenexperiment",
+  "noCountrySelected": "Kein Land ausgewählt",
+  "energyBoundary": "energieäquivalente Szenariokapazität – keine Aussage über freie Netzkapazität oder eine tatsächliche Bereitstellung",
+  "ofNationalAnnualElectricity": "des nationalen jährlichen Stromverbrauchs",
+  "underSelectedWattProfile": "mit dem gewählten Wattprofil",
+  "calculationBasisPrecise": "die Berechnungsgrundlage verwendet diesen exakten Wert",
+  "annualEnergySpread": "Jahresenergie über das Jahr verteilt",
+  "calculationBasisStatus": "Watt x Stunden/Woche x Wochen/Jahr x Overhead",
+  "fullOutputAssumption": "Referenzannahme: kontinuierliche Auslastung von 100 %",
+  "offshoreAssumption": "Referenzannahme: Kapazitätsfaktor von 45 %",
+  "householdAssumption": "Referenzannahme: 3.500 kWh/Jahr",
+  "wind3": "3-MW-Windenergieanlagen",
+  "wind8": "8-MW-Offshore-Windenergieanlagen",
+  "households": "Haushaltsjahresäquivalent",
+  "truthBoundary": "Aussagegrenze",
+  "truthBoundaryText": "Dieser lokale Prototyp verwendet Demowerte und Quellenhinweise. Er behauptet nicht, dass ein Land über freie Strommengen verfügt, und er prognostiziert keinen Verlust von Arbeitsplätzen.",
+  "steps": [
+    "1 Land",
+    "2 Worker",
+    "3 Budget",
+    "4 Bericht"
+  ],
+  "workerProfile": "AI-worker-Profil",
+  "defineWorker": "Einen AI-worker definieren",
+  "workerIntro": "Wattprofil und Laufzeit für dieses Szenario festlegen.",
+  "back": "Zurück",
+  "restart": "Neu starten",
+  "powerDraw": "Leistungsaufnahme",
+  "customWatts": "Eigene Wattzahl",
+  "customHours": "Eigene Stunden/Woche",
+  "infrastructureOverhead": "Infrastrukturoverhead",
+  "customFactor": "Eigener Faktor",
+  "oneWorkerUses": "Ein AI-worker benötigt",
+  "scenarioSettingsBoundary": "Dies sind Szenarioeinstellungen, keine Prognose.",
+  "continueToScale": "Weiter zum Budget",
+  "countryElectricityBudget": "Strombudget des Landes",
+  "chooseElectricityShare": "Stromanteil wählen",
+  "allocationIntro": "Welcher Anteil des aktuellen jährlichen Stromverbrauchs dieses Landes wird der AI-Arbeit zugeordnet?",
+  "electricityShare": "Stromanteil",
+  "nationalAllocation": "Nationale Stromzuordnung",
+  "compareTargetProfiles": "Zielprofile vergleichen",
+  "preview": "Vorschau",
+  "generateReport": "Bericht erstellen",
+  "scenarioReport": "Szenariobericht",
+  "allocationSentenceTemplate": "Wenn {share} des jährlichen Stromverbrauchs von {countryName} diesem Szenario zugeordnet werden, entspricht dies einem jährlichen Energiebudget für {profiles} konfigurierte AI-worker-Profile.",
+  "comparisonSentenceTemplate": "Vergleich: {profiles} konfigurierte Profile würden {twh} TWh/Jahr benötigen. Das entspricht {share} des aktuellen jährlichen Stromverbrauchs.",
+  "allocationLabelTemplate": "{share} des nationalen Stromverbrauchs",
+  "shareCapacityLabelTemplate": "{share} Stromzuordnung",
+  "calculationBasisTemplate": "{watts} W x {hoursPerWeek} Stunden/Woche x {weeksPerYear} Wochen/Jahr x {overhead} Overhead = {mwhYear} MWh/Profil/Jahr",
+  "profileText": {
+    "efficient_future_70w": {
+      "label": "70 W",
+      "description": "Szenario mit energieeffizienter Hardware"
+    },
+    "improved_200w": {
+      "label": "200 W",
+      "description": "Szenario mit verbesserter Hardware"
+    },
+    "heavy_700w": {
+      "label": "700 W",
+      "description": "Aktuelles Szenario mit hoher Hardwareleistung"
+    },
+    "human_week_37h": {
+      "label": "37 Stunden/Woche",
+      "description": "Energieäquivalent einer menschlichen Arbeitswoche"
+    },
+    "standard_40h": {
+      "label": "40 Stunden/Woche",
+      "description": "Standard-Vollzeitwoche"
+    },
+    "always_on_24_7": {
+      "label": "24/7",
+      "description": "Ständig laufender Maschinen-worker"
+    },
+    "raw_compute": {
+      "label": "Aus / raw compute",
+      "description": "Kein Overhead-Multiplikator"
+    },
+    "facility_1_3": {
+      "label": "1,3x",
+      "description": "Vereinfachtes Szenario für Kühlungs- und Anlagenoverhead"
+    },
+    "one_percent": {
+      "label": "1 %"
+    },
+    "five_percent": {
+      "label": "5 %"
+    },
+    "ten_percent": {
+      "label": "10 %"
+    },
+    "twentyfive_percent": {
+      "label": "25 %"
+    },
+    "hundred_percent_thought_experiment": {
+      "label": "100 % Gedankenexperiment"
+    }
+  }
+}

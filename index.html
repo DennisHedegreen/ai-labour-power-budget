@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex,nofollow">
+    <title>AI Labour Power Budget - local prototype</title>
+    <meta
+      name="description"
+      content="Private static prototype for measuring how many AI-workers fit inside a country electricity budget under selected scenario settings."
+    >
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <main class="tool-shell" id="app">
+      <header class="topbar" aria-label="Prototype status">
+        <div>
+          <p class="kicker">Hedegreen Research · private TID prototype</p>
+          <h1>AI Labour Power Budget</h1>
+        </div>
+        <div class="status-stack">
+          <span>demo values</span>
+          <span>source-pass needed</span>
+          <span>no public release</span>
+        </div>
+      </header>
+
+      <nav class="step-rail" aria-label="Prototype steps">
+        <button type="button" class="step-pill is-active" data-step-target="country-select">1 Country</button>
+        <button type="button" class="step-pill" data-step-target="worker-profile" disabled>2 Worker</button>
+        <button type="button" class="step-pill" data-step-target="allocation" disabled>3 Budget</button>
+        <button type="button" class="step-pill" data-step-target="report" disabled>4 Report</button>
+      </nav>
+
+      <div class="server-stage" aria-label="Rotating server scenario builder">
+        <div class="server-turntable" id="server-turntable">
+          <section class="page page-country is-active" data-page="country-select" aria-labelledby="country-heading">
+            <div class="machine-panel machine-panel-front">
+              <div class="machine-titleplate">
+                <h2 id="country-heading">Country rack</h2>
+              </div>
+
+              <div class="local-language-panel" aria-label="Language control">
+                <span id="language-state">EN</span>
+                <button type="button" class="machine-toggle" id="language-toggle">Local language</button>
+              </div>
+
+              <div class="mobile-country-select">
+                <label for="country-select">Choose country</label>
+                <select id="country-select">
+                  <option value="">Select country</option>
+                </select>
+              </div>
+
+              <div class="rack" aria-label="EU country rack selector" id="country-rack"></div>
+            </div>
+          </section>
+
+          <section class="page page-worker" data-page="worker-profile" aria-labelledby="worker-heading">
+            <div class="machine-panel machine-panel-side">
+              <div class="panel-head">
+                <div>
+                  <p class="panel-label">AI-worker profile</p>
+                  <h2 id="worker-heading">Define one AI-worker</h2>
+                  <p>Set the watt profile and runtime used for this scenario.</p>
+                </div>
+                <button type="button" class="ghost-button" data-action="back-country">Back</button>
+              </div>
+
+              <div class="control-grid">
+                <section class="control-card instrument-control" data-cycle-control="power" tabindex="0" role="button">
+                  <h3>Power draw</h3>
+                  <div class="option-grid" id="power-options"></div>
+                  <label class="custom-field advanced-custom">
+                    <span>Custom watts</span>
+                    <input id="custom-watts" type="number" min="1" max="50000" step="1" value="700">
+                  </label>
+                </section>
+
+                <section class="control-card instrument-control" data-cycle-control="runtime" tabindex="0" role="button">
+                  <h3>Runtime</h3>
+                  <div class="option-grid" id="runtime-options"></div>
+                  <label class="custom-field advanced-custom">
+                    <span>Custom hours/week</span>
+                    <input id="custom-runtime" type="number" min="1" max="168" step="1" value="168">
+                  </label>
+                </section>
+
+                <section class="control-card instrument-control" data-cycle-control="overhead" tabindex="0" role="button">
+                  <h3>Infrastructure overhead</h3>
+                  <div class="option-grid" id="overhead-options"></div>
+                  <label class="custom-field advanced-custom">
+                    <span>Custom factor</span>
+                    <input id="custom-overhead" type="number" min="0.1" max="10" step="0.1" value="1">
+                  </label>
+                </section>
+
+                <aside class="readout-card" aria-live="polite">
+                  <p class="panel-label">One AI-worker uses</p>
+                  <div class="readout-list" id="worker-readout"></div>
+                  <p class="boundary-copy">These are scenario settings, not a prediction.</p>
+                </aside>
+              </div>
+
+              <div class="action-row">
+                <button type="button" class="primary-button" data-action="to-allocation">Continue to scale</button>
+              </div>
+            </div>
+          </section>
+
+          <section class="page page-allocation" data-page="allocation" aria-labelledby="allocation-heading">
+            <div class="machine-panel machine-panel-pressure">
+              <div class="panel-head">
+                <div>
+                  <p class="panel-label">Country electricity budget</p>
+                  <h2 id="allocation-heading">Choose electricity share</h2>
+                  <p>How much of this country's current annual electricity use is allocated to AI labour?</p>
+                </div>
+                <button type="button" class="ghost-button" data-action="back-worker">Back</button>
+              </div>
+
+              <div class="allocation-layout">
+                <section class="control-card">
+                  <h3>Electricity share</h3>
+                  <div class="allocation-options" id="worker-scale-options"></div>
+                  <label class="custom-field range-field">
+                    <span>National electricity allocation</span>
+                    <input id="worker-scale-slider" type="range" min="1" max="100" step="1" value="10">
+                  </label>
+                  <label class="custom-field">
+                    <span>Compare target profiles</span>
+                    <input id="target-workers" type="number" min="0" step="1000" value="1000000">
+                  </label>
+                </section>
+
+                <aside class="budget-preview" aria-live="polite">
+                  <p class="panel-label">Preview</p>
+                  <h3 id="preview-country">No country selected</h3>
+                  <p class="share-sentence" id="share-preview"></p>
+                  <div class="pressure-gauge" id="pressure-gauge" aria-label="Electricity pressure gauge">
+                    <div class="pressure-gauge__track">
+                      <div class="pressure-gauge__fill" id="pressure-fill"></div>
+                    </div>
+                    <div class="pressure-gauge__labels">
+                      <span>0%</span>
+                      <span>50%</span>
+                      <span>100%</span>
+                    </div>
+                  </div>
+                  <div class="readout-list" id="budget-preview"></div>
+                  <div class="advanced-target">
+                    <p id="target-preview" class="target-preview"></p>
+                  </div>
+                </aside>
+              </div>
+
+              <div class="action-row">
+                <button type="button" class="primary-button" data-action="to-report">Generate report</button>
+              </div>
+            </div>
+          </section>
+
+          <section class="page page-report" data-page="report" aria-labelledby="report-heading">
+            <div class="machine-panel machine-panel-report report-panel">
+              <div class="panel-head">
+                <div>
+                  <p class="panel-label">Scenario report</p>
+                  <h2 id="report-heading">Scenario report</h2>
+                  <p id="report-core-sentence">Select a country to generate a report.</p>
+                </div>
+                <div class="report-actions">
+                  <button type="button" class="ghost-button" data-action="back-allocation">Back</button>
+                  <button type="button" class="ghost-button" data-action="restart">Restart</button>
+                </div>
+              </div>
+
+              <div class="report-grid" id="report-grid"></div>
+
+              <section class="source-box">
+                <p class="panel-label">Truth boundary</p>
+                <p>
+                  This local prototype uses demo values and source locators only. It does not claim that any country has spare
+                  electricity, and it does not predict job loss.
+                </p>
+              </section>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <script src="./calculate.js"></script>
+    <script src="./data.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>

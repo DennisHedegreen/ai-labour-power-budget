@@ -1,0 +1,132 @@
+{
+  "languageButton": "English",
+  "languageState": "EL",
+  "localLanguageFallback": "Τοπική γλώσσα",
+  "statusChips": [
+    "τιμές επίδειξης",
+    "απαιτείται έλεγχος πηγών",
+    "δεν έχει δημοσιευτεί"
+  ],
+  "manualSetting": "Χειροκίνητη ρύθμιση",
+  "clickToCycle": "Κάντε κλικ για αλλαγή",
+  "selectCountry": "Επιλέξτε χώρα",
+  "demoValue": "τιμή επίδειξης",
+  "sourcePassNeeded": "απαιτείται έλεγχος πηγών",
+  "equivalentProfiles": "Ενεργειακά ισοδύναμα προφίλ AI-worker",
+  "profiles": "προφίλ",
+  "selectedAllocation": "Επιλεγμένο ποσοστό",
+  "allocatedElectricity": "Κατανεμημένη ηλεκτρική ενέργεια",
+  "averageAllocatedLoad": "Μέση κατανεμημένη ισχύς",
+  "annualElectricity": "Ετήσια κατανάλωση ηλεκτρικής ενέργειας",
+  "country": "Χώρα",
+  "wattProfile": "Προφίλ ισχύος",
+  "runtime": "Χρόνος λειτουργίας",
+  "overhead": "Πρόσθετος συντελεστής",
+  "oneAiWorker": "Ένας AI-worker",
+  "oneProfileYearly": "Ένα προφίλ ανά έτος",
+  "electricityAllocation": "Κατανομή ηλεκτρικής ενέργειας",
+  "targetComparison": "Σύγκριση με τον στόχο",
+  "calculationBasis": "Βάση υπολογισμού",
+  "dataStatus": "Κατάσταση δεδομένων",
+  "scenarioOutput": "αποτέλεσμα σεναρίου",
+  "scenarioSetting": "ρύθμιση σεναρίου",
+  "notVerified": "μη επαληθευμένο",
+  "thoughtExperiment": "νοητικό πείραμα",
+  "noCountrySelected": "Δεν έχει επιλεγεί χώρα",
+  "energyBoundary": "ενεργειακά ισοδύναμη χωρητικότητα σεναρίου — όχι διαθέσιμη χωρητικότητα δικτύου ούτε πρόβλεψη ανάπτυξης",
+  "ofNationalAnnualElectricity": "της εθνικής ετήσιας κατανάλωσης ηλεκτρικής ενέργειας",
+  "underSelectedWattProfile": "με το επιλεγμένο προφίλ ισχύος",
+  "calculationBasisPrecise": "η βάση υπολογισμού χρησιμοποιεί αυτή την ακριβή τιμή",
+  "annualEnergySpread": "ετήσια ενέργεια κατανεμημένη σε όλο το έτος",
+  "calculationBasisStatus": "βατ x ώρες/εβδομάδα x εβδομάδες/έτος x πρόσθετος συντελεστής",
+  "fullOutputAssumption": "παραδοχή αναφοράς: συνεχής λειτουργία στο 100 %",
+  "offshoreAssumption": "παραδοχή αναφοράς: συντελεστής δυναμικότητας 45 %",
+  "householdAssumption": "παραδοχή αναφοράς: 3.500 kWh/έτος",
+  "wind3": "ανεμογεννήτριες ισχύος 3 MW",
+  "wind8": "υπεράκτιες ανεμογεννήτριες ισχύος 8 MW",
+  "households": "Ισοδύναμο νοικοκυριού-έτους",
+  "truthBoundary": "Όριο ερμηνείας",
+  "truthBoundaryText": "Αυτό το τοπικό πρωτότυπο χρησιμοποιεί τιμές επίδειξης και παραπομπές σε πηγές. Δεν ισχυρίζεται ότι οποιαδήποτε χώρα διαθέτει πλεονάζουσα ηλεκτρική ενέργεια και δεν προβλέπει απώλεια θέσεων εργασίας.",
+  "steps": [
+    "1 Χώρα",
+    "2 Worker",
+    "3 Προϋπολογισμός",
+    "4 Αναφορά"
+  ],
+  "workerProfile": "Προφίλ AI-worker",
+  "defineWorker": "Ορίστε έναν AI-worker",
+  "workerIntro": "Ορίστε το προφίλ ισχύος και τον χρόνο λειτουργίας που χρησιμοποιούνται σε αυτό το σενάριο.",
+  "back": "Πίσω",
+  "restart": "Επανεκκίνηση",
+  "powerDraw": "Κατανάλωση ισχύος",
+  "customWatts": "Προσαρμοσμένα βατ",
+  "customHours": "Προσαρμοσμένες ώρες/εβδομάδα",
+  "infrastructureOverhead": "Πρόσθετος συντελεστής υποδομής",
+  "customFactor": "Προσαρμοσμένος συντελεστής",
+  "oneWorkerUses": "Ένας AI-worker χρησιμοποιεί",
+  "scenarioSettingsBoundary": "Αυτές είναι ρυθμίσεις σεναρίου, όχι πρόβλεψη.",
+  "continueToScale": "Συνέχεια στον προϋπολογισμό",
+  "countryElectricityBudget": "Προϋπολογισμός ηλεκτρικής ενέργειας της χώρας",
+  "chooseElectricityShare": "Επιλέξτε ποσοστό ηλεκτρικής ενέργειας",
+  "allocationIntro": "Ποιο ποσοστό της τρέχουσας ετήσιας κατανάλωσης ηλεκτρικής ενέργειας αυτής της χώρας κατανέμεται σε εργασία με ΤΝ;",
+  "electricityShare": "Ποσοστό ηλεκτρικής ενέργειας",
+  "nationalAllocation": "Εθνική κατανομή ηλεκτρικής ενέργειας",
+  "compareTargetProfiles": "Σύγκριση προφίλ στόχου",
+  "preview": "Προεπισκόπηση",
+  "generateReport": "Δημιουργία αναφοράς",
+  "scenarioReport": "Αναφορά σεναρίου",
+  "allocationSentenceTemplate": "Η κατανομή του {share} της ετήσιας κατανάλωσης ηλεκτρικής ενέργειας της χώρας {countryName} σε αυτό το σενάριο θα αντιστοιχούσε σε ετήσιο ενεργειακό προϋπολογισμό για {profiles} διαμορφωμένα προφίλ AI-worker.",
+  "comparisonSentenceTemplate": "Σύγκριση: {profiles} διαμορφωμένα προφίλ θα απαιτούσαν {twh} TWh/έτος, δηλαδή {share} της τρέχουσας ετήσιας κατανάλωσης ηλεκτρικής ενέργειας.",
+  "allocationLabelTemplate": "{share} της εθνικής ηλεκτρικής ενέργειας",
+  "shareCapacityLabelTemplate": "κατανομή ηλεκτρικής ενέργειας: {share}",
+  "calculationBasisTemplate": "{watts} W x {hoursPerWeek} ώρες/εβδομάδα x {weeksPerYear} εβδομάδες/έτος x {overhead} πρόσθετος συντελεστής = {mwhYear} MWh/προφίλ/έτος",
+  "profileText": {
+    "efficient_future_70w": {
+      "label": "70 W",
+      "description": "Σενάριο με ενεργειακά αποδοτικό υλικό"
+    },
+    "improved_200w": {
+      "label": "200 W",
+      "description": "Σενάριο με βελτιωμένο υλικό"
+    },
+    "heavy_700w": {
+      "label": "700 W",
+      "description": "Τρέχον σενάριο υψηλής κατανάλωσης"
+    },
+    "human_week_37h": {
+      "label": "37 ώρες/εβδομάδα",
+      "description": "Ενεργειακό ισοδύναμο ανθρώπινης εβδομάδας εργασίας"
+    },
+    "standard_40h": {
+      "label": "40 ώρες/εβδομάδα",
+      "description": "Τυπική εβδομάδα πλήρους απασχόλησης"
+    },
+    "always_on_24_7": {
+      "label": "24/7",
+      "description": "Μηχανικός worker σε συνεχή λειτουργία"
+    },
+    "raw_compute": {
+      "label": "Απενεργοποιημένο / raw compute",
+      "description": "Χωρίς πρόσθετο πολλαπλασιαστή"
+    },
+    "facility_1_3": {
+      "label": "1,3x",
+      "description": "Απλοποιημένο σενάριο πρόσθετης κατανάλωσης για ψύξη και υποδομές"
+    },
+    "one_percent": {
+      "label": "1 %"
+    },
+    "five_percent": {
+      "label": "5 %"
+    },
+    "ten_percent": {
+      "label": "10 %"
+    },
+    "twentyfive_percent": {
+      "label": "25 %"
+    },
+    "hundred_percent_thought_experiment": {
+      "label": "Νοητικό πείραμα 100 %"
+    }
+  }
+}

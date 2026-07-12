@@ -1,0 +1,132 @@
+{
+  "languageButton": "English",
+  "languageState": "CS",
+  "localLanguageFallback": "Místní jazyk",
+  "statusChips": [
+    "demonstrační hodnoty",
+    "je nutné ověřit zdroje",
+    "nezveřejněno"
+  ],
+  "manualSetting": "Ruční nastavení",
+  "clickToCycle": "Kliknutím přepnete",
+  "selectCountry": "Vyberte zemi",
+  "demoValue": "demonstrační hodnota",
+  "sourcePassNeeded": "je nutné ověřit zdroje",
+  "equivalentProfiles": "Energeticky ekvivalentní profily AI-worker",
+  "profiles": "profily",
+  "selectedAllocation": "Vybraný podíl",
+  "allocatedElectricity": "Přidělená elektřina",
+  "averageAllocatedLoad": "Průměrný přidělený výkon",
+  "annualElectricity": "Roční spotřeba elektřiny",
+  "country": "Země",
+  "wattProfile": "Výkonový profil",
+  "runtime": "Doba provozu",
+  "overhead": "Režijní faktor",
+  "oneAiWorker": "Jeden AI-worker",
+  "oneProfileYearly": "Jeden profil za rok",
+  "electricityAllocation": "Přidělení elektřiny",
+  "targetComparison": "Porovnání s cílem",
+  "calculationBasis": "Základ výpočtu",
+  "dataStatus": "Stav dat",
+  "scenarioOutput": "výsledek scénáře",
+  "scenarioSetting": "nastavení scénáře",
+  "notVerified": "neověřeno",
+  "thoughtExperiment": "myšlenkový experiment",
+  "noCountrySelected": "Není vybrána žádná země",
+  "energyBoundary": "energeticky ekvivalentní kapacita scénáře — nejde o volnou kapacitu sítě ani o prognózu nasazení",
+  "ofNationalAnnualElectricity": "z roční národní spotřeby elektřiny",
+  "underSelectedWattProfile": "při zvoleném výkonovém profilu",
+  "calculationBasisPrecise": "základ výpočtu používá tuto přesnou hodnotu",
+  "annualEnergySpread": "roční energie rozložená do celého roku",
+  "calculationBasisStatus": "watty x hodiny/týden x týdny/rok x režijní faktor",
+  "fullOutputAssumption": "referenční předpoklad: nepřetržitý provoz na 100 %",
+  "offshoreAssumption": "referenční předpoklad: kapacitní faktor 45 %",
+  "householdAssumption": "referenční předpoklad: 3 500 kWh/rok",
+  "wind3": "větrné turbíny o výkonu 3 MW",
+  "wind8": "pobřežní větrné turbíny o výkonu 8 MW",
+  "households": "Ekvivalent domácnosti za rok",
+  "truthBoundary": "Meze interpretace",
+  "truthBoundaryText": "Tento místní prototyp používá demonstrační hodnoty a odkazy na zdroje. Netvrdí, že některá země má přebytečnou elektřinu, a nepředpovídá ztrátu pracovních míst.",
+  "steps": [
+    "1 Země",
+    "2 Worker",
+    "3 Rozpočet",
+    "4 Zpráva"
+  ],
+  "workerProfile": "Profil AI-worker",
+  "defineWorker": "Definujte jednoho AI-worker",
+  "workerIntro": "Nastavte výkonový profil a dobu provozu použitou v tomto scénáři.",
+  "back": "Zpět",
+  "restart": "Začít znovu",
+  "powerDraw": "Příkon",
+  "customWatts": "Vlastní příkon ve wattech",
+  "customHours": "Vlastní počet hodin/týden",
+  "infrastructureOverhead": "Režijní faktor infrastruktury",
+  "customFactor": "Vlastní faktor",
+  "oneWorkerUses": "Jeden AI-worker spotřebuje",
+  "scenarioSettingsBoundary": "Jde o nastavení scénáře, nikoli o prognózu.",
+  "continueToScale": "Pokračovat k rozpočtu",
+  "countryElectricityBudget": "Elektrický rozpočet země",
+  "chooseElectricityShare": "Zvolte podíl elektřiny",
+  "allocationIntro": "Jaká část současné roční spotřeby elektřiny této země je přidělena práci AI?",
+  "electricityShare": "Podíl elektřiny",
+  "nationalAllocation": "Národní přidělení elektřiny",
+  "compareTargetProfiles": "Porovnat cílové profily",
+  "preview": "Náhled",
+  "generateReport": "Vygenerovat zprávu",
+  "scenarioReport": "Zpráva o scénáři",
+  "allocationSentenceTemplate": "Přidělení {share} roční spotřeby elektřiny země {countryName} tomuto scénáři by odpovídalo ročnímu energetickému rozpočtu pro {profiles} nakonfigurovaných profilů AI-worker.",
+  "comparisonSentenceTemplate": "Porovnání: {profiles} nakonfigurovaných profilů by vyžadovalo {twh} TWh/rok, tedy {share} současné roční spotřeby elektřiny.",
+  "allocationLabelTemplate": "{share} národní elektřiny",
+  "shareCapacityLabelTemplate": "přidělení elektřiny: {share}",
+  "calculationBasisTemplate": "{watts} W x {hoursPerWeek} hodin/týden x {weeksPerYear} týdnů/rok x {overhead} režijní faktor = {mwhYear} MWh/profil/rok",
+  "profileText": {
+    "efficient_future_70w": {
+      "label": "70 W",
+      "description": "Scénář s energeticky úsporným hardwarem"
+    },
+    "improved_200w": {
+      "label": "200 W",
+      "description": "Scénář s vylepšeným hardwarem"
+    },
+    "heavy_700w": {
+      "label": "700 W",
+      "description": "Současný scénář s vysokou spotřebou"
+    },
+    "human_week_37h": {
+      "label": "37 hodin/týden",
+      "description": "Energetický ekvivalent lidského pracovního týdne"
+    },
+    "standard_40h": {
+      "label": "40 hodin/týden",
+      "description": "Standardní pracovní týden na plný úvazek"
+    },
+    "always_on_24_7": {
+      "label": "24/7",
+      "description": "Strojový worker v nepřetržitém provozu"
+    },
+    "raw_compute": {
+      "label": "Vypnuto / raw compute",
+      "description": "Bez režijního násobitele"
+    },
+    "facility_1_3": {
+      "label": "1,3x",
+      "description": "Zjednodušený scénář režie chlazení a infrastruktury"
+    },
+    "one_percent": {
+      "label": "1 %"
+    },
+    "five_percent": {
+      "label": "5 %"
+    },
+    "ten_percent": {
+      "label": "10 %"
+    },
+    "twentyfive_percent": {
+      "label": "25 %"
+    },
+    "hundred_percent_thought_experiment": {
+      "label": "100% myšlenkový experiment"
+    }
+  }
+}
