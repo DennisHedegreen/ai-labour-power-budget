@@ -66,7 +66,7 @@
               <div class="panel-head">
                 <div>
                   <p class="panel-label">AI-worker profile</p>
-                  <h2 id="worker-heading">Define one AI-worker</h2>
+                  <h2 id="worker-heading">Configure one AI-worker profile</h2>
                   <p>Set the watt profile and runtime used for this scenario.</p>
                 </div>
                 <button type="button" class="ghost-button" data-action="back-country">Back</button>
@@ -101,7 +101,7 @@
                 </section>
 
                 <aside class="readout-card" aria-live="polite">
-                  <p class="panel-label">One AI-worker uses</p>
+                  <p class="panel-label">One configured profile uses</p>
                   <div class="readout-list" id="worker-readout"></div>
                   <p class="boundary-copy">These are scenario settings, not a prediction.</p>
                 </aside>
@@ -126,10 +126,10 @@
 
               <div class="allocation-layout balance-layout">
                 <section class="control-card balance-driver balance-driver--allocation">
-                  <h3>Electricity allocation</h3>
+                  <h3 id="allocation-driver-heading">Electricity allocation</h3>
                   <output class="driver-value" id="allocation-driver-value" for="worker-scale-slider">10%</output>
                   <label class="vertical-range-field">
-                    <span>Electricity share</span>
+                    <span id="allocation-range-label">Electricity share</span>
                     <input id="worker-scale-slider" type="range" min="0" max="1000" step="1" value="520" orient="vertical">
                   </label>
                   <div class="allocation-options" id="worker-scale-options"></div>
@@ -141,7 +141,7 @@
                   <p class="balance-mode" id="balance-mode">Allocation drives profile capacity</p>
                   <div class="equation-readout">
                     <div>
-                      <span>Electricity share</span>
+                      <span id="equation-share-label">Electricity share</span>
                       <strong id="equation-share">10%</strong>
                     </div>
                     <b aria-hidden="true">=</b>
@@ -197,7 +197,7 @@
                   <p id="report-core-sentence">Select a country to generate a report.</p>
                 </div>
                 <div class="report-actions">
-                  <button type="button" class="ghost-button" data-action="print-report">Download report</button>
+                  <button type="button" class="ghost-button" data-action="download-report">Download PDF</button>
                   <button type="button" class="ghost-button" data-action="back-allocation">Back</button>
                   <button type="button" class="ghost-button" data-action="restart">Restart</button>
                 </div>
@@ -205,11 +205,13 @@
 
               <div class="report-grid" id="report-grid"></div>
 
+              <section class="source-box source-evidence" id="source-evidence" aria-live="polite"></section>
+
               <section class="source-box">
                 <p class="panel-label">Truth boundary</p>
                 <p>
-                  This public review prototype uses demo values and source locators only. It does not claim that any country has
-                  spare electricity, and it does not predict job loss.
+                  Outputs are energy-equivalent scenarios only. Data mode and source status are shown with each calculation. The
+                  tool does not claim spare electricity or grid capacity, deployment, or job loss.
                 </p>
               </section>
             </div>
@@ -219,7 +221,12 @@
     </main>
 
     <script src="./calculate.js"></script>
+    <script src="./display-format.js"></script>
+    <script src="./data-policy.js"></script>
     <script src="./data.js"></script>
+    <script src="./vendor/pdfmake-0.2.20/pdfmake.min.js"></script>
+    <script src="./vendor/pdfmake-0.2.20/vfs_fonts.js"></script>
+    <script src="./pdf-report.js"></script>
     <script src="./app.js"></script>
   </body>
 </html>

@@ -3,7 +3,9 @@
 Static Hedegreen Research prototype for testing how configured AI-worker energy
 profiles compare with a country's annual electricity-denominator scenario.
 
-Status: prototype. Runtime country values are still demo placeholders.
+Status: public-review prototype. EU, U.S., and World calculations run explicitly
+in `source_candidate_review` mode; those values are not promoted or verified
+runtime data. Demo placeholders remain separate.
 
 ## Why This Repository Is Public
 
@@ -94,10 +96,17 @@ node scripts/source-status.js
 
 ## Data Status
 
+Explicit data modes:
+
+- `demo`: unverified placeholders for interface testing only.
+- `source_candidate_review`: candidate values may be used in review
+  calculations, with source evidence and candidate-not-promoted labels.
+- `promoted_runtime`: blocked unless the explicit source promotion gate opens.
+
 Runtime app data:
 
-- `data/countries.json` contains demo placeholder records.
-- Demo values remain as a legacy placeholder file and are not promoted.
+- `data/countries.json` contains separate demo placeholder records.
+- Demo values are not mixed with source-candidate review calculations.
 
 Jurisdiction modes:
 
@@ -106,7 +115,9 @@ Jurisdiction modes:
   consumption.
 - `USA` loads EIA candidate records from `data/source-candidates/` for review
   mode only, with the denominator labelled as annual retail electricity sales.
-- `World` exists as a mode placeholder, but has no selected source or records.
+- `World` loads one official UNSD 2023 Energy Statistics Yearbook candidate for
+  review mode only, with the denominator labelled as annual final electricity
+  consumption.
 
 Source candidate data:
 
@@ -115,6 +126,9 @@ Source candidate data:
 - U.S. national and U.S. state values passed direct EIA workbook value checks.
 - U.S. values remain candidate-only because they are EIA retail sales to
   ultimate customers and exclude direct use.
+- The World candidate is the UNSD Table 34 total-final-consumption electricity
+  value for 2023: 25,539,798 GWh, converted to 25,539.798 TWh/year. It remains
+  candidate-only and is not promoted runtime data.
 
 The source gate is intentionally strict. Candidate values are not imported into
 runtime just because the files exist.

@@ -15,6 +15,8 @@ the weak points reviewable instead of hiding them inside a polished interface.
 - Whether the U.S. EIA retail-sales denominator is labelled honestly.
 - Whether the EU27 Eurostat final-consumption denominator is labelled honestly
   and should remain candidate-only until promotion.
+- Whether the World UNSD total-final-consumption electricity denominator is
+  labelled honestly and remains candidate-only until promotion.
 - Whether translations preserve the meaning instead of turning the scenario
   into a claim about spare electricity or real deployment.
 - Whether the calculation model is simple enough to audit.

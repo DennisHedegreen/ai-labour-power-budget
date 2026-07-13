@@ -13,8 +13,10 @@ Rules:
 - Keep every JSON key exactly the same.
 - Translate only string values.
 - Do not add, remove, rename, or reorder keys.
-- Preserve every placeholder exactly, including braces: {share}, {countryName}, {profiles}, {twh}, {watts}, {hoursPerWeek}, {weeksPerYear}, {overhead}, {mwhYear}.
-- Preserve units such as W, GW, TWh/year, MWh/year, kWh/day, and h/week unless the target language has a very strong standard convention.
+- Preserve every placeholder exactly, including braces: {share}, {countryName}, {profiles}, {twh}, {denominator}, {energyMultiple}, {value}, {watts}, {hoursPerWeek}, {weeksPerYear}, {overhead}, {mwhYear}.
+- Translate `downloadReport` as a concise direct PDF-download action. Do not mention printing or “save as PDF”.
+- Translate `average kWh/calendar day` accurately; never shorten it to ambiguous `kWh/day`. Keep SI symbols such as W, kWh, MWh, TWh, and GW unchanged, but localize the time denominator in `unitTwhPerYear`, `unitMwhPerYear`, `unitKwhPerYear`, and `unitHoursPerWeek` using the target language's normal concise convention.
+- Keep `wind3` and `fullOutputAssumption` explicit that the value is an energy equivalent at continuous 3 MW nameplate output, not a realistic turbine-count claim.
 - Keep "AI-worker profile" meaning as an energy/configuration profile, not a real employee.
 - Do not make the tool sound like it predicts job loss.
 - Do not make the tool sound like a country has spare electricity.

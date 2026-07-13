@@ -21,6 +21,8 @@ Required before real country data becomes runtime data:
 - Review the EU27 Eurostat final-consumption denominator before promotion.
 - Decide whether U.S. mode uses EIA retail sales or a redesigned metric that
   includes direct use.
+- Review the UNSD World total-final-consumption electricity denominator before
+  promotion.
 - Add an import adapter that refuses to emit runtime data unless the source gate
   explicitly authorizes promotion.
 - Preserve source-specific denominator labels in report copy.

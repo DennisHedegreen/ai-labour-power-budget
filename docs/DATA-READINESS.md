@@ -1,6 +1,6 @@
 # Data Readiness
 
-Date: 2026-07-12
+Date: 2026-07-13
 
 This project is not runtime-data ready.
 
@@ -26,6 +26,7 @@ Candidate files:
 - `data/source-candidates/eu27-electricity-use.candidate.json`
 - `data/source-candidates/us-national-electricity-use.candidate.json`
 - `data/source-candidates/us-states-electricity-use.candidate.json`
+- `data/source-candidates/world-electricity-use.candidate.json`
 - `data/source-candidates/promotion-gate-summary.json`
 
 Current gate:
@@ -67,13 +68,26 @@ Reason:
 The same EIA retail-sales boundary applies to all state/DC records. These can
 support source review, but not runtime import yet.
 
+### World
+
+Status: source value checked, candidate not promoted.
+
+Reason:
+
+The candidate uses the World row in official UNSD Energy Statistics Yearbook
+2023 Table 34, total final consumption (TFC) of electricity. The reported
+25,539,798 GWh is converted to 25,539.798 TWh/year. This is an annual final
+electricity energy denominator, not available power or grid capacity, and it
+remains candidate data until the promotion gate is explicitly opened.
+
 ## Jurisdiction Mode Status
 
 - EU: selectable `source_candidate` records from Eurostat final-consumption
   candidate files; not verified promoted runtime data.
 - USA: selectable `source_candidate` records from EIA retail-sales candidate
   files; not verified primary-source runtime data.
-- World: placeholder mode only; no source definition selected.
+- World: one selectable `source_candidate` record from the official UNSD
+  Yearbook Table 34; not verified promoted runtime data.
 
 ## Required Before Promotion
 
@@ -81,10 +95,12 @@ support source review, but not runtime import yet.
    denominator before promotion.
 2. Decide whether the US metric remains "annual retail electricity sales" or is
    redesigned to include direct use.
-3. Add a promotion adapter that refuses to write runtime data unless the source
+3. Review whether the UNSD World total-final-consumption denominator is the
+   right World denominator before promotion.
+4. Add a promotion adapter that refuses to write runtime data unless the source
    gate explicitly authorizes it.
-4. Preserve source-specific denominator wording in the app and report output.
-5. Re-run:
+5. Preserve source-specific denominator wording in the app and report output.
+6. Re-run:
 
 ```bash
 npm run check

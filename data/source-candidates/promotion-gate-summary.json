@@ -1,5 +1,5 @@
 {
-  "reviewed_at": "2026-07-12",
+  "reviewed_at": "2026-07-13",
   "live_import_authorized": false,
   "offline_validator": "pass",
   "eu27": {
@@ -26,9 +26,19 @@
     "mismatches": 0,
     "metric_boundary": "EIA retail sales to ultimate customers; excludes direct use"
   },
+  "world": {
+    "status": "source_value_check_passed_candidate_not_promoted",
+    "reason": "official UNSD 2023 Energy Statistics Yearbook Table 34 World TFC electricity value checked",
+    "direct_table_url": "https://unstats.un.org/unsd/energystats/pubs/yearbook/2023/t34.pdf",
+    "records_compared": 1,
+    "missing": 0,
+    "mismatches": 0,
+    "official_gwh": 25539798,
+    "candidate_twh": 25539.798,
+    "metric_boundary": "UNSD total final consumption of electricity; annual energy denominator, not power or grid capacity"
+  },
   "next_steps": [
     "do not import live data yet",
-    "decide source-specific denominator labels",
     "build adapter for reviewed datasets",
     "review and explicitly authorize promotion before runtime import"
   ]

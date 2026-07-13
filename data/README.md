@@ -11,7 +11,9 @@ The app should treat these files as input data, not application logic.
 - `electricity-allocation-profiles.json`: national electricity allocation presets.
 - `comparison-assumptions.json`: reference assumptions for report comparisons.
 - `source-definitions.json`: source-specific denominator definitions and import gate.
-- `source-candidates/`: reviewed candidate source datasets that are not runtime data.
+- `source-candidates/`: reviewed candidate datasets available only to the
+  explicit `source_candidate_review` calculation mode; they are not promoted or
+  verified runtime data.
 - `copy/languages.json`: language manifest used by the loader and tests.
 - `copy/*.json`: controlled UI and report copy by language.
 
@@ -56,6 +58,8 @@ Current source definitions:
   source-value checked, not promoted.
 - U.S. candidate: EIA retail sales to ultimate customers. Status:
   source-value checked, not promoted. This excludes direct use.
+- World candidate: UNSD Energy Statistics Yearbook 2023 Table 34 total final
+  consumption of electricity. Status: source-value checked, not promoted.
 
 Use the source-specific labels in `source-definitions.json` before adding any
 new public-facing region mode.

@@ -1,5 +1,5 @@
 {
-  "policy_version": "2026-07-12",
+  "policy_version": "2026-07-13",
   "runtime_import_authorized": false,
   "default_truth_boundary": "Energy-equivalent scenario capacity only. Not spare grid capacity, not installed generation capacity, and not a deployment or job-loss prediction.",
   "definitions": [
@@ -34,6 +34,21 @@
       "unit": "TWh/year",
       "definition": "Annual electricity sales delivered to ultimate customers.",
       "boundary_note": "This EIA metric excludes direct use. It must not be relabelled as all electricity use unless the source metric is redesigned.",
+      "runtime_allowed": false
+    },
+    {
+      "id": "unsd_world_final_consumption_electricity",
+      "jurisdiction_scope": "WORLD",
+      "source_system": "United Nations Statistics Division (UNSD)",
+      "review_status": "source_value_checked_candidate_not_promoted",
+      "candidate_dataset": "source-candidates/world-electricity-use.candidate.json",
+      "source_gate": "source-candidates/promotion-gate-summary.json#world",
+      "metric_label": "total final consumption of electricity",
+      "allocation_label_template": "{share}% of annual final electricity consumption",
+      "scenario_sentence_template": "Allocating {share}% of the world's annual final electricity consumption to this scenario would provide an equivalent yearly energy budget for {workers} configured AI-worker profiles.",
+      "unit": "TWh/year",
+      "definition": "Annual total final consumption (TFC) of electricity for the World, as reported in UNSD Energy Statistics Yearbook Table 34.",
+      "boundary_note": "This is annual final electricity consumption, not available power or grid capacity. The official UNSD Yearbook value is a source candidate and is not promoted runtime data.",
       "runtime_allowed": false
     }
   ]

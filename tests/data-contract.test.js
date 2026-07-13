@@ -15,6 +15,9 @@ const jurisdictionGroups = readJson("jurisdiction-groups.json");
 const workerProfiles = readJson("worker-profiles.json");
 const allocationProfiles = readJson("electricity-allocation-profiles.json");
 const assumptions = readJson("comparison-assumptions.json");
+const sourceDefinitions = readJson("source-definitions.json");
+const promotionGate = readJson("source-candidates/promotion-gate-summary.json");
+const worldCandidate = readJson("source-candidates/world-electricity-use.candidate.json");
 const copyLanguages = readJson("copy/languages.json");
 const copy = Object.fromEntries(
   copyLanguages.map((language) => [language.code, readJson(`copy/${language.file}`)])
@@ -62,7 +65,50 @@ assert(
   jurisdictionGroupsById.us.candidate_paths?.every((candidatePath) => candidatePath.startsWith("source-candidates/")),
   "US group must point at source-candidate files, not promoted runtime data"
 );
-assert.strictEqual(jurisdictionGroupsById.world.status, "source_not_selected", "world mode must stay unselected until sourced");
+assert.strictEqual(
+  jurisdictionGroupsById.world.data_mode,
+  "source_candidate_review",
+  "World must expose the reviewed UNSD value only in source-candidate review mode"
+);
+assert.strictEqual(jurisdictionGroupsById.world.status, "source_candidate_review");
+assert.deepEqual(
+  jurisdictionGroupsById.world.candidate_paths,
+  ["source-candidates/world-electricity-use.candidate.json"]
+);
+assert.strictEqual(
+  jurisdictionGroupsById.world.denominator_copy_key,
+  "denominatorFinalElectricityConsumption"
+);
+assert.strictEqual(
+  jurisdictionGroupsById.world.truth_boundary_copy_key,
+  "truthBoundaryWorldSourceCandidate"
+);
+
+const worldDefinition = sourceDefinitions.definitions.find(
+  (definition) => definition.id === jurisdictionGroupsById.world.source_definition_id
+);
+assert(worldDefinition, "World group must reference a source definition");
+assert.strictEqual(worldDefinition.source_system, "United Nations Statistics Division (UNSD)");
+assert.strictEqual(worldDefinition.runtime_allowed, false, "World candidate must not be runtime-authorized");
+assert.match(worldDefinition.review_status, /candidate_not_promoted/);
+
+assert.strictEqual(worldCandidate.dataset_id, "world-electricity-use");
+assert.strictEqual(worldCandidate.status, "source_candidate");
+assert.strictEqual(worldCandidate.records.length, 1);
+const worldRecord = worldCandidate.records[0];
+assert.strictEqual(worldRecord.code, "WLD");
+assert.strictEqual(worldRecord.sentence_name, "the world");
+assert.strictEqual(worldRecord.annual_electricity_twh, 25539.798);
+assert.strictEqual(worldRecord.source_year, "2023");
+assert.strictEqual(worldRecord.source_retrieved_at, "2026-07-13");
+assert.strictEqual(
+  worldRecord.source_url,
+  "https://unstats.un.org/unsd/energystats/pubs/yearbook/2023/t34.pdf"
+);
+assert.strictEqual(worldRecord.source_status, "source_candidate");
+assert(worldRecord.review_flags.includes("source_candidate_not_promoted"));
+assert.strictEqual(promotionGate.world.status, "source_value_check_passed_candidate_not_promoted");
+assert.strictEqual(promotionGate.live_import_authorized, false);
 
 for (const language of copyLanguages) {
   assert(language.code && typeof language.code === "string", "copy language missing code");

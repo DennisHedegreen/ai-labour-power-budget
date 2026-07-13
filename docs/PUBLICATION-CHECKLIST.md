@@ -21,6 +21,8 @@ Research.
   explicitly opened.
 - U.S. values are not described as all electricity use if the retail-sales
   metric remains in use.
+- The World UNSD Table 34 value is described as a source candidate and annual
+  final-electricity energy denominator, not promoted runtime or grid capacity.
 
 ## Product Language
 

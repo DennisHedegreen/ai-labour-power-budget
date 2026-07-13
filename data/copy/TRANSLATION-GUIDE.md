@@ -9,8 +9,11 @@ Use this guide when creating or reviewing a new `copy/{language}.json` file.
 - Do not add, remove, rename, or reorder keys unless explicitly asked.
 - Preserve every `{placeholder}` token exactly.
 - Preserve JSON validity.
-- Do not translate units such as `W`, `GW`, `TWh/year`, `MWh/year`, `kWh/day`, and `h/week` unless the target language has a very strong convention.
+- Keep the distinction between annual values and the explicitly labelled average per calendar day. Translate `average kWh/calendar day` accurately; do not shorten it to an ambiguous `kWh/day`.
+- Keep SI symbols such as `W`, `kWh`, `MWh`, `TWh`, and `GW` unchanged. Localize the time denominator in `unitTwhPerYear`, `unitMwhPerYear`, `unitKwhPerYear`, and `unitHoursPerWeek` using the target language's normal concise convention (for example, English `TWh/year` and Danish `TWh/år`).
 - Keep numbers out of the copy unless they already exist as reference assumptions.
+- Translate `downloadReport` as a concise direct PDF-download action. Do not mention printing or “save as PDF”.
+- Keep `wind3` and `fullOutputAssumption` explicit that the result is an energy equivalent at continuous 3 MW nameplate output, not a realistic turbine-count claim.
 
 ## Meaning Rules
 
@@ -39,7 +42,7 @@ If a literal translation sounds too strong, use a more careful phrase.
 
 `AI-worker profile` means a configured energy profile, not a person and not a real autonomous employee.
 
-`Electricity allocation` means a share of annual national electricity use.
+`Electricity allocation` means a share of the active source denominator. Preserve `{denominator}` so EU final consumption and US retail sales are not collapsed into a generic metric.
 
 `Scenario capacity` means the number of configured profiles that fit inside that energy budget.
 
@@ -50,7 +53,7 @@ If a literal translation sounds too strong, use a more careful phrase.
 Templates must preserve placeholders:
 
 ```json
-"allocationSentenceTemplate": "Allocating {share} of {countryName}'s annual electricity use to this scenario would provide an equivalent yearly energy budget for {profiles} configured AI-worker profiles."
+"allocationSentenceTemplate": "Allocating {share} of {countryName}'s {denominator} to this scenario would provide an equivalent yearly energy budget for {profiles} configured AI-worker profiles."
 ```
 
 The translated sentence must still include:
@@ -58,6 +61,7 @@ The translated sentence must still include:
 - `{share}`
 - `{countryName}`
 - `{profiles}`
+- `{denominator}`
 
 The same rule applies to every template:
 
@@ -66,6 +70,7 @@ The same rule applies to every template:
 - `allocationLabelTemplate`
 - `shareCapacityLabelTemplate`
 - `calculationBasisTemplate`
+- `averageKwhCalendarDayValueTemplate`
 
 ## Review Checklist
 
@@ -75,7 +80,7 @@ Before handing back a translation:
 - All keys from `en.json` are present.
 - No new keys were invented.
 - All placeholders are unchanged.
+- Every string key and nested string path in `en.json` is present.
 - The main report sentence does not sound like spare electricity exists.
 - The truth-boundary text is still clear.
 - 100% allocation is still labelled as a thought experiment.
-

@@ -10,6 +10,9 @@ Current gate status:
   electricity (`E7000`) for 2023.
 - U.S. national: source-value check passed, but not promoted.
 - U.S. states/DC: source-value check passed, but not promoted.
+- World: source-value check passed against the official UNSD 2023 Energy
+  Statistics Yearbook Table 34. The 25,539,798 GWh value is represented as
+  25,539.798 TWh/year and remains not promoted.
 
 Do not copy these records into `data/countries.json` until:
 

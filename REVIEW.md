@@ -19,8 +19,10 @@ Open:
 http://127.0.0.1:8797/
 ```
 
-The interface is a static local prototype. It currently uses demo country values
-for the runtime app.
+The interface is a static public-review prototype. EU, U.S., and World
+calculations run in explicit `source_candidate_review` mode. Candidate values
+are review inputs, not promoted or verified runtime data. Demo values remain a
+separate mode.
 
 Review questions:
 
@@ -49,9 +51,12 @@ Then read:
 
 Current decision:
 
-- EU27 is blocked.
-- U.S. national and state values are source-value checked, but not promoted.
-- Runtime still uses demo country data.
+- EU27, U.S. national/state, and World values are source-value checked, but not
+  promoted.
+- The U.S. denominator remains retail electricity sales to ultimate customers
+  and excludes direct use.
+- Runtime promotion remains blocked; the interface may use candidate values only
+  inside the visibly labelled source-candidate review mode.
 
 ## Language Review
 
@@ -64,4 +69,3 @@ Read:
 Translation must preserve the semantic boundary. Do not translate the tool into
 a claim about spare electricity, grid capacity, job loss, or real deployed AI
 workers.
-

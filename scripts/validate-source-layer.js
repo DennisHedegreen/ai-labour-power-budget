@@ -48,6 +48,7 @@ const gate = readCandidate("promotion-gate-summary.json");
 const eu27 = readCandidate("eu27-electricity-use.candidate.json");
 const usNational = readCandidate("us-national-electricity-use.candidate.json");
 const usStates = readCandidate("us-states-electricity-use.candidate.json");
+const world = readCandidate("world-electricity-use.candidate.json");
 
 assert.strictEqual(
   sourceDefinitions.runtime_import_authorized,
@@ -55,14 +56,16 @@ assert.strictEqual(
   "runtime import must stay disabled until an explicit promotion gate changes it"
 );
 assert(Array.isArray(sourceDefinitions.definitions), "source-definitions.json must list definitions");
-assert(sourceDefinitions.definitions.length >= 2, "source-definitions.json must include EU and US definitions");
+assert(sourceDefinitions.definitions.length >= 3, "source-definitions.json must include EU, US, and World definitions");
 
 const definitionsById = Object.fromEntries(sourceDefinitions.definitions.map((definition) => [definition.id, definition]));
 assert(definitionsById.eurostat_final_consumption_electricity, "missing Eurostat definition");
 assert(definitionsById.eia_retail_sales_ultimate_customers, "missing EIA definition");
+assert(definitionsById.unsd_world_final_consumption_electricity, "missing UNSD World definition");
 
 assert.strictEqual(definitionsById.eurostat_final_consumption_electricity.runtime_allowed, false);
 assert.strictEqual(definitionsById.eia_retail_sales_ultimate_customers.runtime_allowed, false);
+assert.strictEqual(definitionsById.unsd_world_final_consumption_electricity.runtime_allowed, false);
 assert.match(
   definitionsById.eia_retail_sales_ultimate_customers.boundary_note,
   /excludes direct use/i,
@@ -90,6 +93,11 @@ assert.strictEqual(
   gate.us_states.status,
   "source_value_check_passed_candidate_not_promoted",
   "US states status must remain candidate-not-promoted"
+);
+assert.strictEqual(
+  gate.world.status,
+  "source_value_check_passed_candidate_not_promoted",
+  "World status must remain candidate-not-promoted"
 );
 
 assertDatasetShape(eu27, {
@@ -127,5 +135,28 @@ assert(
   ),
   "US records must keep EIA direct-use exclusion flag"
 );
+
+assertDatasetShape(world, {
+  id: "world-electricity-use",
+  records: 1,
+  requiredCodes: ["WLD"]
+});
+const worldRecord = world.records[0];
+assert.strictEqual(worldRecord.annual_electricity_twh, 25539.798);
+assert.strictEqual(worldRecord.source_year, "2023");
+assert.strictEqual(worldRecord.source_retrieved_at, "2026-07-13");
+assert.strictEqual(
+  worldRecord.source_url,
+  "https://unstats.un.org/unsd/energystats/pubs/yearbook/2023/t34.pdf"
+);
+assert(
+  worldRecord.review_flags.includes("unsd_yearbook_table_value_checked"),
+  "World record must keep the official UNSD Yearbook table check flag"
+);
+assert(
+  worldRecord.review_flags.includes("source_candidate_not_promoted"),
+  "World record must stay candidate-not-promoted"
+);
+assert.strictEqual(gate.world.official_gwh / 1000, worldRecord.annual_electricity_twh);
 
 console.log("AI Labour Power Budget source layer validation passed");

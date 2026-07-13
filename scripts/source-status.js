@@ -51,6 +51,7 @@ function buildStatus() {
   const eu27 = readCandidate("eu27-electricity-use.candidate.json");
   const usNational = readCandidate("us-national-electricity-use.candidate.json");
   const usStates = readCandidate("us-states-electricity-use.candidate.json");
+  const world = readCandidate("world-electricity-use.candidate.json");
 
   const runtimeStatusCounts = {};
   for (const country of runtimeCountries) {
@@ -83,21 +84,24 @@ function buildStatus() {
       summarizeDataset(eu27, gate.eu27.status),
       summarizeDataset(usNational, gate.us_national.status),
       summarizeDataset(usStates, gate.us_states.status),
+      summarizeDataset(world, gate.world.status),
     ],
     promotion_gate: {
       eu27: gate.eu27,
       us_national: gate.us_national,
       us_states: gate.us_states,
+      world: gate.world,
       next_steps: gate.next_steps,
     },
     conclusion: {
       runtime_ready: false,
       source_candidates_ready_for_runtime: false,
       reason:
-        "Runtime import is not authorized. EU27 and US records are source-value checked candidates, but neither source is promoted runtime data.",
+        "Runtime import is not authorized. EU27, US, and World records are source-value checked candidates, but none are promoted runtime data.",
       next_required_actions: [
         "Review the Eurostat final-consumption denominator before promoting EU27.",
         "Decide whether the US denominator remains retail electricity sales or is redesigned to include direct use.",
+        "Review the UNSD World total-final-consumption denominator before promotion.",
         "Build a promotion adapter that refuses runtime output unless the gate is explicitly authorized.",
         "Update public copy to use source-specific denominator labels before any promotion.",
       ],
@@ -125,6 +129,11 @@ function assertStatus(status) {
     byId["us-states-electricity-use"].gate_status,
     "source_value_check_passed_candidate_not_promoted",
     "US states gate must remain candidate-not-promoted"
+  );
+  assert.strictEqual(
+    byId["world-electricity-use"].gate_status,
+    "source_value_check_passed_candidate_not_promoted",
+    "World gate must remain candidate-not-promoted"
   );
 }
 

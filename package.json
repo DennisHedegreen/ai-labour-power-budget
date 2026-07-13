@@ -5,9 +5,9 @@
   "description": "Static Hedegreen Research prototype for comparing configured AI-worker energy profiles against national electricity-denominator scenarios.",
   "scripts": {
     "start": "python3 -m http.server 8797 --directory .",
-    "check": "node --check app.js && node --check data.js && node --check scripts/source-status.js && node tests/calculation.test.js && node tests/data-contract.test.js && node tests/source-layer.test.js && node scripts/source-status.js && node scripts/check-public-ready.js",
+    "check": "node --check app.js && node --check calculate.js && node --check display-format.js && node --check data-policy.js && node --check data.js && node --check pdf-report.js && node --check scripts/source-status.js && node tests/calculation.test.js && node tests/display-format.test.js && node tests/data-mode.test.js && node tests/data-contract.test.js && node tests/source-layer.test.js && node tests/truth-copy.test.js && node tests/pdf-report.test.js && node tests/source-report-contract.test.js && node tests/responsive-contract.test.js && node scripts/source-status.js && node scripts/check-public-ready.js",
     "check:public": "node scripts/check-public-ready.js",
-    "test": "node tests/calculation.test.js && node tests/data-contract.test.js && node tests/source-layer.test.js",
+    "test": "node tests/calculation.test.js && node tests/display-format.test.js && node tests/data-mode.test.js && node tests/data-contract.test.js && node tests/source-layer.test.js && node tests/truth-copy.test.js && node tests/pdf-report.test.js && node tests/source-report-contract.test.js && node tests/responsive-contract.test.js",
     "validate:source": "node scripts/validate-source-layer.js",
     "source:status": "node scripts/source-status.js"
   },

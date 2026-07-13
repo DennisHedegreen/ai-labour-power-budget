@@ -3,6 +3,7 @@
 
   const calculator = window.AILabourPowerBudgetCalculator;
   const dataLoader = window.AILabourPowerBudgetDataLoader;
+  const displayFormat = window.AILabourPowerBudgetDisplayFormat;
   let data;
 
   try {
@@ -15,6 +16,7 @@
   const state = {
     page: "country-select",
     jurisdictionGroupId: "eu",
+    dataMode: data.dataMode,
     selectedCountry: null,
     wattsPerAiWorker: 700,
     powerProfileId: "heavy_700w",
@@ -55,12 +57,16 @@
   const previewCountry = document.querySelector("#preview-country");
   const balanceMode = document.querySelector("#balance-mode");
   const equationShare = document.querySelector("#equation-share");
+  const equationShareLabel = document.querySelector("#equation-share-label");
   const equationProfiles = document.querySelector("#equation-profiles");
   const sharePreview = document.querySelector("#share-preview");
   const targetPreview = document.querySelector("#target-preview");
   const pressureFill = document.querySelector("#pressure-fill");
   const reportGrid = document.querySelector("#report-grid");
   const reportCoreSentence = document.querySelector("#report-core-sentence");
+  const sourceEvidence = document.querySelector("#source-evidence");
+  const allocationDriverHeading = document.querySelector("#allocation-driver-heading");
+  const allocationRangeLabel = document.querySelector("#allocation-range-label");
   const languageToggle = document.querySelector("#language-toggle");
   const languageState = document.querySelector("#language-state");
 
@@ -126,6 +132,22 @@
     return jurisdictionGroupById.get(state.jurisdictionGroupId) || jurisdictionGroups[0];
   }
 
+  function activeDataMode() {
+    return activeJurisdictionGroup()?.data_mode || state.dataMode || "demo";
+  }
+
+  function dataModeLabel(text = activeCopy()) {
+    if (activeDataMode() === "source_candidate_review") return text.dataModeSourceCandidateReview;
+    if (activeDataMode() === "promoted_runtime") return text.dataModePromotedRuntime;
+    return text.dataModeDemo;
+  }
+
+  function dataModeBoundary(text = activeCopy()) {
+    if (activeDataMode() === "source_candidate_review") return text.dataModeSourceCandidateReviewText;
+    if (activeDataMode() === "promoted_runtime") return text.dataModePromotedRuntimeText;
+    return text.dataModeDemoText;
+  }
+
   function activeJurisdictionRecords() {
     return activeJurisdictionGroup()?.records || [];
   }
@@ -149,7 +171,7 @@
       .join("");
 
     if (jurisdictionStatus && activeGroup) {
-      jurisdictionStatus.textContent = `${activeGroup.label} · ${activeGroup.denominator_label} · ${activeGroup.status.replaceAll("_", " ")}`;
+      jurisdictionStatus.textContent = `${activeGroup.label} · ${denominatorText()} · ${dataModeLabel()}`;
     }
   }
 
@@ -224,6 +246,11 @@
     return country.name;
   }
 
+  function countrySentenceName(country) {
+    if (!country) return activeCopy().noCountrySelected;
+    return country.sentence_name || countryDisplayName(country);
+  }
+
   function countryShellName(code, fallbackName) {
     const country = activeCountryByCode().get(code);
     if (state.languageMode === "local" && country?.local_name) return country.local_name;
@@ -251,8 +278,14 @@
 
   function applyStaticCopy() {
     const text = activeCopy();
+    const modeStatusChip = activeDataMode() === "source_candidate_review"
+      ? text.candidateNotPromoted
+      : activeDataMode() === "promoted_runtime"
+        ? text.dataModePromotedRuntime
+        : text.notVerified;
+    const modeChips = [dataModeLabel(text), modeStatusChip, text.statusChips[2]];
     document.querySelectorAll(".status-stack span").forEach((chip, index) => {
-      chip.textContent = text.statusChips[index] || chip.textContent;
+      chip.textContent = modeChips[index] || chip.textContent;
     });
     stepButtons.forEach((button, index) => {
       button.textContent = text.steps[index] || button.textContent;
@@ -261,7 +294,7 @@
     const workerPanel = document.querySelector(".page-worker");
     const allocationPanel = document.querySelector(".page-allocation");
     const reportPanel = document.querySelector(".page-report");
-    const sourceBox = document.querySelector(".source-box");
+    const sourceBox = document.querySelector(".page-report .source-box:not(.source-evidence)");
 
     setText("#worker-heading", text.defineWorker);
     setText(".page-worker .panel-label", text.workerProfile);
@@ -269,7 +302,7 @@
     setText('[data-action="back-country"]', text.back);
     setText('[data-action="back-worker"]', text.back);
     setText('[data-action="back-allocation"]', text.back);
-    setText('[data-action="print-report"]', text.downloadReport || copy.en.downloadReport || "Download report");
+    setText('[data-action="download-report"]', text.downloadReport);
     setText('[data-action="restart"]', text.restart);
     setText('[data-cycle-control="power"] h3', text.powerDraw);
     setText('[data-cycle-control="runtime"] h3', text.runtime);
@@ -288,7 +321,10 @@
 
     setText(".page-allocation .panel-label", text.countryElectricityBudget);
     setText("#allocation-heading", text.chooseElectricityShare);
-    setText(".page-allocation .panel-head p:not(.panel-label)", text.allocationIntro);
+    setText(
+      ".page-allocation .panel-head p:not(.panel-label)",
+      formatTemplate(text.allocationIntro, { denominator: denominatorText(text) })
+    );
     setText(".page-allocation .control-card h3", text.electricityShare);
     if (allocationPanel) {
       const allocationLabels = allocationPanel.querySelectorAll(".custom-field span");
@@ -306,7 +342,7 @@
       const label = sourceBox.querySelector(".panel-label");
       const paragraph = sourceBox.querySelector("p:not(.panel-label)");
       if (label) label.textContent = text.truthBoundary;
-      if (paragraph) paragraph.textContent = text.truthBoundaryText;
+      if (paragraph) paragraph.textContent = truthBoundaryText();
     }
   }
 
@@ -347,13 +383,14 @@
 
   function renderTargetProfileButtons() {
     if (!targetProfileOptions) return;
+    const text = activeCopy();
     const maxProfiles = maxTargetProfiles();
     targetProfileOptions.innerHTML = TARGET_PROFILE_PRESETS.map((preset) => {
       const disabled = preset.value > maxProfiles ? "disabled" : "";
       const active = Math.abs(state.targetAiWorkers - preset.value) < 1 ? " is-active" : "";
       return `<button type="button" class="option-button${active}" data-target-workers="${escapeAttribute(preset.value)}" ${disabled}>
         <strong>${escapeHtml(preset.label)}</strong>
-        <span>${escapeHtml(disabled ? "over 300%" : "preset")}</span>
+        <span>${escapeHtml(disabled ? text.overThreeHundredPercent : text.targetPreset)}</span>
       </button>`;
     }).join("");
   }
@@ -380,6 +417,7 @@
   function selectJurisdictionGroup(groupId) {
     if (!jurisdictionGroupById.has(groupId) || state.jurisdictionGroupId === groupId) return;
     state.jurisdictionGroupId = groupId;
+    state.dataMode = activeJurisdictionGroup()?.data_mode || data.dataMode;
     state.selectedCountry = null;
     countrySelect.value = "";
     renderCountrySelectors();
@@ -443,9 +481,9 @@
     });
 
     workerReadout.innerHTML = [
-      readout("kWh/day", formatNumber(worker.kwhDayAverage, 2)),
-      readout("kWh/year", formatNumber(worker.kwhYear, 0)),
-      readout("MWh/year", formatNumber(worker.mwhYear, 3)),
+      readout(text.averageKwhCalendarDay, formatNumber(worker.kwhDayAverage, 2), "is-numeric"),
+      readout(text.unitKwhPerYear, formatNumber(worker.kwhYear, 0), "is-numeric"),
+      readout(text.unitMwhPerYear, formatNumber(worker.mwhYear, 3), "is-numeric"),
     ].join("");
 
     reconcileBudgetDriver();
@@ -453,70 +491,185 @@
     if (!scenario) {
       budgetPreview.innerHTML = "";
       reportGrid.innerHTML = "";
+      if (sourceEvidence) sourceEvidence.innerHTML = "";
       return;
     }
 
-    previewCountry.textContent = `${countryDisplayName(state.selectedCountry)} · ${state.selectedCountry.source_status}`;
-    if (allocationDriverValue) allocationDriverValue.textContent = formatPercent(state.electricityAllocationShare);
-    if (profileDriverValue) profileDriverValue.textContent = `${formatInteger(state.targetAiWorkers)} ${text.profiles}`;
-    if (equationShare) equationShare.textContent = formatPercent(state.electricityAllocationShare);
-    if (equationProfiles) equationProfiles.textContent = formatInteger(scenario.supportedAiWorkers);
-    if (balanceMode) {
-      balanceMode.textContent =
-        state.budgetDriver === "profiles" ? "Profile target drives required allocation" : "Allocation drives profile capacity";
+    const profileCount = scenarioProfileCount(scenario);
+    const beyondTotal = isBeyondTotalElectricity(state.electricityAllocationShare);
+    previewCountry.textContent = `${countryDisplayName(state.selectedCountry)} · ${dataModeLabel(text)}`;
+    if (allocationDriverHeading) allocationDriverHeading.textContent = beyondTotal ? text.requiredEnergy : text.electricityShare;
+    if (allocationRangeLabel) allocationRangeLabel.textContent = beyondTotal ? text.requiredEnergyMultiple : text.electricityShare;
+    if (equationShareLabel) equationShareLabel.textContent = beyondTotal ? text.requiredEnergyMultiple : text.electricityShare;
+    if (allocationDriverValue) {
+      allocationDriverValue.textContent = beyondTotal
+        ? formatEnergyMultiple(state.electricityAllocationShare)
+        : formatPercent(state.electricityAllocationShare);
     }
-    sharePreview.textContent = formatTemplate(allocationSentenceTemplate(), {
-      share: formatPercent(state.electricityAllocationShare),
-      countryName: countryDisplayName(state.selectedCountry),
-      profiles: formatInteger(scenario.supportedAiWorkers),
-    });
+    if (profileDriverValue) profileDriverValue.textContent = `${formatInteger(state.targetAiWorkers)} ${text.profiles}`;
+    if (equationShare) {
+      equationShare.textContent = beyondTotal
+        ? formatEnergyMultiple(state.electricityAllocationShare)
+        : formatPercent(state.electricityAllocationShare);
+    }
+    if (equationProfiles) equationProfiles.textContent = formatInteger(profileCount);
+    if (balanceMode) {
+      balanceMode.textContent = beyondTotal
+        ? text.beyondTotalIntro
+        : state.budgetDriver === "profiles"
+          ? text.compareTargetProfiles
+          : text.nationalAllocation;
+    }
+    sharePreview.textContent = scenarioCoreSentence(scenario, profileCount);
     pressureFill.style.width = `${Math.min(100, state.electricityAllocationShare / MAX_ALLOCATION_SHARE * 100)}%`;
     pressureFill.dataset.pressure = pressureBand(state.electricityAllocationShare);
     budgetPreview.innerHTML = [
-      readout(text.selectedAllocation, formatTemplate(allocationLabelTemplate(), { share: formatPercent(state.electricityAllocationShare) })),
-      readout(text.equivalentProfiles, `${formatInteger(scenario.supportedAiWorkers)} ${text.profiles}`),
-      readout(text.allocatedElectricity, `${formatNumber(scenario.allocatedElectricityTwhYear, 3)} TWh/year`),
-      readout(text.averageAllocatedLoad, `${formatNumber(allocatedAverageLoadGw(scenario), 3)} GW`),
-      readout(text.annualElectricity, `${formatNumber(state.selectedCountry.annual_electricity_twh, 1)} TWh/year`),
+      readout(
+        beyondTotal ? text.requiredEnergy : text.selectedAllocation,
+        beyondTotal
+          ? formatTemplate(requiredEnergyLabelTemplate(), {
+              energyMultiple: formatEnergyMultipleValue(state.electricityAllocationShare),
+              denominator: denominatorText(text),
+            })
+          : formatTemplate(allocationLabelTemplate(), {
+              share: formatPercent(state.electricityAllocationShare),
+              denominator: denominatorText(text),
+            })
+      ),
+      readout(text.equivalentProfiles, `${formatInteger(profileCount)} ${text.profiles}`, "is-numeric"),
+      readout(
+        beyondTotal ? text.requiredEnergy : text.allocatedElectricity,
+        formatValueWithUnit(scenario.allocatedElectricityTwhYear, 3, "unitTwhPerYear"),
+        "is-numeric"
+      ),
+      readout(text.averageAllocatedLoad, `${formatNumber(allocatedAverageLoadGw(scenario), 3)} GW`, "is-numeric"),
+      readout(
+        text.annualElectricity,
+        formatValueWithUnit(state.selectedCountry.annual_electricity_twh, 1, "unitTwhPerYear"),
+        "is-numeric"
+      ),
     ].join("");
-    targetPreview.textContent = formatTemplate(text.comparisonSentenceTemplate, {
-      profiles: formatInteger(state.targetAiWorkers),
-      twh: formatNumber(scenario.targetEnergyTwhYear, 3),
-      share: formatPercent(scenario.shareOfNationalElectricityNeeded),
-    });
+    targetPreview.textContent = targetComparisonSentence(scenario);
 
     syncBudgetControlValues(scenario);
-    reportCoreSentence.textContent = formatTemplate(allocationSentenceTemplate(), {
-      share: formatPercent(state.electricityAllocationShare),
-      countryName: countryDisplayName(state.selectedCountry),
-      profiles: formatInteger(scenario.supportedAiWorkers),
-    });
+    reportCoreSentence.textContent = scenarioCoreSentence(scenario, profileCount);
     reportGrid.innerHTML = renderReport(scenario);
+    if (sourceEvidence) sourceEvidence.innerHTML = renderSourceEvidence();
+    updateTruthBoundary();
     syncStageHeight();
   }
 
   function renderReport(scenario) {
     const text = activeCopy();
     const source = state.selectedCountry.source_status;
+    const profileCount = scenarioProfileCount(scenario);
+    const beyondTotal = isBeyondTotalElectricity(state.electricityAllocationShare);
     return [
-      metric(text.equivalentProfiles, formatInteger(scenario.supportedAiWorkers), text.energyBoundary, "is-primary"),
-      metric(text.electricityAllocation, formatPercent(state.electricityAllocationShare), text.ofNationalAnnualElectricity, "is-primary"),
-      metric(text.allocatedElectricity, `${formatNumber(scenario.allocatedElectricityTwhYear, 3)} TWh/year`, text.scenarioOutput),
+      metric(text.equivalentProfiles, formatInteger(profileCount), text.energyBoundary, "is-primary"),
+      metric(
+        beyondTotal ? text.requiredEnergyMultiple : text.electricityAllocation,
+        beyondTotal ? formatEnergyMultiple(state.electricityAllocationShare) : formatPercent(state.electricityAllocationShare),
+        beyondTotal
+          ? text.beyondTotalElectricity
+          : formatTemplate(allocationLabelTemplate(), {
+              share: formatPercent(state.electricityAllocationShare),
+              denominator: denominatorText(text),
+            }),
+        "is-primary"
+      ),
+      metric(
+        beyondTotal ? text.requiredEnergy : text.allocatedElectricity,
+        formatValueWithUnit(scenario.allocatedElectricityTwhYear, 3, "unitTwhPerYear"),
+        text.scenarioOutput
+      ),
       metric(text.country, countryDisplayName(state.selectedCountry), source),
       metric(text.wattProfile, `${formatNumber(state.wattsPerAiWorker, 0)} W`, text.scenarioSetting),
       metric(text.runtime, runtimeLabel(state.runtimeHoursPerWeek), text.scenarioSetting),
       metric(text.overhead, `${formatNumber(state.overheadFactor, 2)}x`, text.scenarioSetting),
-      metric(text.oneAiWorker, `${formatNumber(scenario.worker.kwhDayAverage, 2)} kWh/day`, text.underSelectedWattProfile),
-      metric(text.oneProfileYearly, `${formatNumber(scenario.worker.mwhYear, 4)} MWh/year`, text.calculationBasisPrecise),
+      metric(
+        text.oneAiWorker,
+        formatTemplate(text.averageKwhCalendarDayValueTemplate, {
+          value: formatNumber(scenario.worker.kwhDayAverage, 2),
+        }),
+        text.underSelectedWattProfile
+      ),
+      metric(
+        text.oneProfileYearly,
+        formatValueWithUnit(scenario.worker.mwhYear, 4, "unitMwhPerYear"),
+        text.calculationBasisPrecise
+      ),
       metric(text.calculationBasis, calculationBasisText(scenario), text.calculationBasisStatus, "is-calculation"),
       metric(text.averageAllocatedLoad, `${formatNumber(allocatedAverageLoadGw(scenario), 3)} GW`, text.annualEnergySpread),
-      metric(text.targetComparison, `${formatInteger(state.targetAiWorkers)} ${text.profiles}`, formatTemplate(allocationLabelTemplate(), { share: formatPercent(scenario.shareOfNationalElectricityNeeded) })),
+      metric(
+        text.targetComparison,
+        `${formatInteger(state.targetAiWorkers)} ${text.profiles}`,
+        isBeyondTotalElectricity(scenario.shareOfNationalElectricityNeeded)
+          ? formatTemplate(requiredEnergyLabelTemplate(), {
+              energyMultiple: formatEnergyMultipleValue(scenario.shareOfNationalElectricityNeeded),
+              denominator: denominatorText(text),
+            })
+          : formatTemplate(allocationLabelTemplate(), {
+              share: formatPercent(scenario.shareOfNationalElectricityNeeded),
+              denominator: denominatorText(text),
+            })
+      ),
       ...renderComparisons(scenario),
       metric(formatTemplate(text.shareCapacityLabelTemplate, { share: "1%" }), `${formatInteger(supportedAtShare(0.01))} ${text.profiles}`, source),
       metric(formatTemplate(text.shareCapacityLabelTemplate, { share: "10%" }), `${formatInteger(supportedAtShare(0.1))} ${text.profiles}`, source),
       metric(formatTemplate(text.shareCapacityLabelTemplate, { share: "100%" }), `${formatInteger(supportedAtShare(1))} ${text.profiles}`, text.thoughtExperiment),
-      metric(text.dataStatus, source, text.notVerified),
+      metric(text.dataStatus, source, activeDataMode() === "source_candidate_review" ? text.candidateNotPromoted : text.notVerified),
     ].join("");
+  }
+
+  function sourceEvidenceRows() {
+    const text = activeCopy();
+    const country = state.selectedCountry;
+    if (!country) return [];
+    return [
+      [text.dataMode, dataModeLabel(text), null],
+      [text.sourceName, country.source_name || text.sourceUnavailable, null],
+      [text.sourceYear, country.source_year || text.sourceUnavailable, null],
+      [text.sourceMetric, country.source_metric || country.definition || text.sourceUnavailable, null],
+      [text.retrievalDate, country.retrieved_at || text.sourceUnavailable, null],
+      [text.sourceStatus, `${country.source_status || text.sourceUnavailable} · ${country.promotion_status || text.sourceUnavailable}`, null],
+      [text.sourceUrl, country.source_url || text.sourceUnavailable, country.source_url || null],
+    ];
+  }
+
+  function renderSourceEvidence() {
+    const text = activeCopy();
+    const rows = sourceEvidenceRows().map(([label, value, href]) => {
+      const renderedValue = href
+        ? `<a href="${escapeAttribute(href)}" target="_blank" rel="noopener noreferrer">${escapeHtml(value)}</a>`
+        : escapeHtml(value);
+      return `<div><dt>${escapeHtml(label)}</dt><dd>${renderedValue}</dd></div>`;
+    }).join("");
+    const candidateBoundary = activeDataMode() === "source_candidate_review"
+      ? `<p class="source-evidence__boundary">${escapeHtml(text.sourceCandidateReportBoundary)}</p>`
+      : "";
+    return `<p class="panel-label">${escapeHtml(text.sourceEvidence)}</p><dl>${rows}</dl>${candidateBoundary}`;
+  }
+
+  function truthBoundaryText() {
+    const text = activeCopy();
+    const parts = [dataModeBoundary(text)];
+    const jurisdictionBoundary = jurisdictionTruthBoundary(text);
+    if (jurisdictionBoundary) {
+      parts.push(jurisdictionBoundary);
+    }
+    parts.push(text.truthBoundaryText);
+    return parts.filter(Boolean).join(" ");
+  }
+
+  function jurisdictionTruthBoundary(text = activeCopy()) {
+    const group = activeJurisdictionGroup();
+    const copyKey = group?.truth_boundary_copy_key;
+    return (copyKey && (text[copyKey] || copy.en[copyKey])) || "";
+  }
+
+  function updateTruthBoundary() {
+    const paragraph = document.querySelector(".page-report .source-box:not(.source-evidence) p:not(.panel-label)");
+    if (paragraph) paragraph.textContent = truthBoundaryText();
   }
 
   function supportedAtShare(share) {
@@ -538,12 +691,32 @@
 
   function targetShareForProfiles(profiles) {
     if (!state.selectedCountry) return state.electricityAllocationShare;
-    const worker = calculator.calculateWorkerEnergy({
+    return calculator.calculateShareForTargetProfiles({
+      annualElectricityTwh: state.selectedCountry.annual_electricity_twh,
+      targetAiWorkers: profiles,
       wattsPerAiWorker: state.wattsPerAiWorker,
       runtimeHoursPerWeek: state.runtimeHoursPerWeek,
       overheadFactor: state.overheadFactor,
     });
-    return profiles * worker.kwhYear / (state.selectedCountry.annual_electricity_twh * calculator.KWH_PER_TWH);
+  }
+
+  function scenarioProfileCount(scenario) {
+    return state.budgetDriver === "profiles"
+      ? Math.round(state.targetAiWorkers)
+      : scenario.supportedAiWorkers;
+  }
+
+  function isBeyondTotalElectricity(share) {
+    return calculator.classifyElectricityShare(share) === calculator.ELECTRICITY_SHARE_MODES.REQUIRED_ENERGY_MULTIPLE;
+  }
+
+  function formatEnergyMultiple(share) {
+    return `${formatEnergyMultipleValue(share)}×`;
+  }
+
+  function formatEnergyMultipleValue(share) {
+    const digits = share < 10 ? 2 : share < 100 ? 1 : 0;
+    return formatNumber(share, digits);
   }
 
   function syncBudgetControlValues() {
@@ -647,97 +820,90 @@
     ];
   }
 
-  function openScenarioReportPrint() {
-    const scenario = readScenario();
-    if (!scenario || !state.selectedCountry) return;
-    const reportWindow = window.open("", "_blank", "width=960,height=1200");
-    if (!reportWindow) return;
-    reportWindow.document.open();
-    reportWindow.document.write(renderPrintableReport(scenario));
-    reportWindow.document.close();
-    reportWindow.focus();
-  }
-
-  function renderPrintableReport(scenario) {
+  function buildPdfReportModel(scenario) {
     const text = activeCopy();
-    const generated = new Date().toISOString();
-    const rows = [
-      [text.country, countryDisplayName(state.selectedCountry)],
-      [text.equivalentProfiles, `${formatInteger(scenario.supportedAiWorkers)} ${text.profiles}`],
-      [text.electricityAllocation, formatPercent(state.electricityAllocationShare)],
-      [text.allocatedElectricity, `${formatNumber(scenario.allocatedElectricityTwhYear, 3)} TWh/year`],
-      [text.wattProfile, `${formatNumber(state.wattsPerAiWorker, 0)} W`],
-      [text.runtime, runtimeLabel(state.runtimeHoursPerWeek)],
-      [text.overhead, `${formatNumber(state.overheadFactor, 2)}x`],
-      [text.oneProfileYearly, `${formatNumber(scenario.worker.mwhYear, 4)} MWh/year`],
-      [text.calculationBasis, calculationBasisText(scenario)],
-      [text.dataStatus, state.selectedCountry.source_status],
+    const generatedAt = new Date().toISOString();
+    const profileCount = scenarioProfileCount(scenario);
+    const beyondTotal = isBeyondTotalElectricity(state.electricityAllocationShare);
+    const metrics = [
+      { label: text.country, value: countryDisplayName(state.selectedCountry) },
+      { label: text.equivalentProfiles, value: `${formatInteger(profileCount)} ${text.profiles}`, primary: true },
+      {
+        label: beyondTotal ? text.requiredEnergyMultiple : text.electricityAllocation,
+        value: beyondTotal ? formatEnergyMultiple(state.electricityAllocationShare) : formatPercent(state.electricityAllocationShare),
+      },
+      {
+        label: beyondTotal ? text.requiredEnergy : text.allocatedElectricity,
+        value: formatValueWithUnit(scenario.allocatedElectricityTwhYear, 3, "unitTwhPerYear"),
+      },
+      { label: text.wattProfile, value: `${formatNumber(state.wattsPerAiWorker, 0)} W` },
+      { label: text.runtime, value: runtimeLabel(state.runtimeHoursPerWeek) },
+      { label: text.overhead, value: `${formatNumber(state.overheadFactor, 2)}x` },
+      {
+        label: text.oneProfileYearly,
+        value: formatValueWithUnit(scenario.worker.mwhYear, 4, "unitMwhPerYear"),
+      },
+      { label: text.calculationBasis, value: calculationBasisText(scenario) },
+      { label: text.dataStatus, value: state.selectedCountry.source_status },
     ];
-    const comparisons = renderPrintableComparisonRows(scenario);
-    return `<!doctype html>
-<html lang="${escapeAttribute(activeLanguage())}">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AI Labour Power Budget - scenario report</title>
-  <style>
-    :root { color-scheme: light; --text: #111; --muted: #575d60; --rule: #cfd6d2; --green: #137d4a; --amber: #8a5b00; }
-    * { box-sizing: border-box; }
-    body { margin: 0; background: #fff; color: var(--text); font: 11pt/1.5 Georgia, "Times New Roman", serif; }
-    main { width: min(100%, 46rem); margin: 0 auto; padding: 28px 22px 42px; }
-    .screen-note { border: 1px solid var(--rule); padding: 8px 10px; color: var(--muted); font: 8pt/1.4 "Courier New", monospace; }
-    header { border-bottom: 1px solid var(--rule); padding-bottom: 16px; margin-bottom: 18px; }
-    .kicker, .label, footer { font: 7.5pt/1.45 "Courier New", monospace; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
-    .kicker { color: var(--green); margin: 0 0 8px; }
-    h1 { margin: 0; font-size: 25pt; line-height: 1.05; }
-    .lead { margin: 12px 0 0; font-size: 13pt; border-left: 3px solid var(--green); padding-left: 12px; }
-    .boundary { margin-top: 12px; padding: 9px 10px; border: 1px solid var(--rule); color: var(--muted); font-size: 9.5pt; }
-    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 16px; }
-    .card { border: 1px solid var(--rule); padding: 10px 11px; break-inside: avoid; min-height: 82px; }
-    .card strong { display: block; margin-top: 5px; font: 700 15pt/1.15 Arial, sans-serif; overflow-wrap: anywhere; }
-    .card.primary { grid-column: span 2; border-color: color-mix(in srgb, var(--green) 60%, var(--rule)); }
-    .card.primary strong { color: var(--green); font-size: 30pt; }
-    .comparisons .card strong { color: var(--amber); }
-    h2 { margin: 24px 0 10px; border-bottom: 1px solid var(--rule); padding-bottom: 4px; font: 700 12pt/1.25 Arial, sans-serif; }
-    footer { border-top: 1px solid var(--rule); margin-top: 22px; padding-top: 10px; }
-    @page { size: A4; margin: 16mm; }
-    @media print { main { width: auto; margin: 0; padding: 0; } .screen-note { display: none; } }
-  </style>
-</head>
-<body>
-  <main>
-    <p class="screen-note">Use browser print/save as PDF. This is a generated scenario report view.</p>
-    <header>
-      <p class="kicker">Hedegreen Research · AI Labour Power Budget</p>
-      <h1>${escapeHtml(text.scenarioReport)}</h1>
-      <p class="lead">${escapeHtml(formatTemplate(allocationSentenceTemplate(), {
-        share: formatPercent(state.electricityAllocationShare),
-        countryName: countryDisplayName(state.selectedCountry),
-        profiles: formatInteger(scenario.supportedAiWorkers),
-      }))}</p>
-      <p class="boundary">${escapeHtml(text.energyBoundary)}.</p>
-    </header>
-    <section class="grid">
-      ${rows.map(([label, value], index) => printableCard(label, value, index === 1)).join("")}
-    </section>
-    <h2>Reference comparisons</h2>
-    <section class="grid comparisons">
-      ${comparisons.map(([label, value, assumption]) => printableCard(label, `${value} · ${assumption}`, false)).join("")}
-    </section>
-    <h2>${escapeHtml(text.truthBoundary)}</h2>
-    <p>${escapeHtml(text.truthBoundaryText)}</p>
-    <footer>
-      <div>Generated: ${escapeHtml(generated)}</div>
-      <div>Source status: ${escapeHtml(state.selectedCountry.source_status)}</div>
-      <div>Public review prototype. Not spare grid capacity. Not a deployment prediction.</div>
-    </footer>
-  </main>
-  <script>setTimeout(() => window.print(), 250);</script>
-</body>
-</html>`;
+    const comparisons = reportComparisonRows(scenario).map(([label, value, assumption]) => ({ label, value, assumption }));
+    const evidenceRows = sourceEvidenceRows().map(([label, value, href]) => ({ label, value, href }));
+    const sourceStatus = `${state.selectedCountry.source_status} · ${state.selectedCountry.promotion_status || ""}`;
+    return {
+      filename: `ai-labour-power-budget-${state.selectedCountry.code}-${generatedAt.slice(0, 10)}.pdf`,
+      documentTitle: `AI Labour Power Budget - ${text.scenarioReport}`,
+      author: "Hedegreen Research",
+      subject: text.energyBoundary,
+      locale: activeLanguage(),
+      kicker: "Hedegreen Research · AI Labour Power Budget",
+      title: text.scenarioReport,
+      lead: scenarioCoreSentence(scenario, profileCount),
+      energyBoundary: text.energyBoundary,
+      metrics,
+      comparisonsTitle: text.referenceComparisons,
+      comparisons,
+      sourceEvidence: {
+        title: text.sourceEvidence,
+        rows: evidenceRows,
+        candidateBoundary: activeDataMode() === "source_candidate_review" ? text.sourceCandidateReportBoundary : "",
+      },
+      truthBoundary: {
+        title: text.truthBoundary,
+        text: truthBoundaryText(),
+      },
+      generatedLabel: text.generatedLabel,
+      generatedAt,
+      statusLabel: text.sourceStatus,
+      status: sourceStatus,
+      footer: text.publicReviewPdfBoundary,
+    };
   }
 
-  function renderPrintableComparisonRows(scenario) {
+  async function downloadScenarioReportPdf(button) {
+    const scenario = readScenario();
+    if (!scenario || !state.selectedCountry || !button) return;
+    const pdfReport = window.AILabourPowerBudgetPdfReport;
+    if (!pdfReport || !window.pdfMake) {
+      console.error("AI Labour Power Budget PDF runtime is unavailable.");
+      return;
+    }
+
+    button.disabled = true;
+    button.setAttribute("aria-busy", "true");
+    try {
+      await pdfReport.downloadReport(buildPdfReportModel(scenario), {
+        pdfMake: window.pdfMake,
+        env: window,
+      });
+    } catch (error) {
+      console.error("AI Labour Power Budget PDF download failed", error);
+    } finally {
+      button.disabled = false;
+      button.removeAttribute("aria-busy");
+    }
+  }
+
+  function reportComparisonRows(scenario) {
     const text = activeCopy();
     const assumptions = data.comparisonAssumptions;
     const averageLoadGw = allocatedAverageLoadGw(scenario);
@@ -775,13 +941,13 @@
     return activeCopy()[key] || copy.en[key] || key;
   }
 
-  function printableCard(label, value, primary) {
-    return `<div class="card${primary ? " primary" : ""}"><span class="label">${escapeHtml(label)}</span><strong>${escapeHtml(value)}</strong></div>`;
+  function formatValueWithUnit(value, fractionDigits, unitKey) {
+    return `${formatNumber(value, fractionDigits)} ${copyLabel(unitKey)}`;
   }
 
   function runtimeLabel(hoursPerWeek) {
-    if (hoursPerWeek === 168) return "24/7 - 168 h/week";
-    return `${formatNumber(hoursPerWeek, 0)} h/week`;
+    const value = formatValueWithUnit(hoursPerWeek, 0, "unitHoursPerWeek");
+    return hoursPerWeek === 168 ? `24/7 - ${value}` : value;
   }
 
   function calculationBasisText(scenario) {
@@ -795,19 +961,66 @@
   }
 
   function allocationSentenceTemplate() {
-    const group = activeJurisdictionGroup();
-    if (group?.id && group.scenario_sentence_template) {
-      return group.scenario_sentence_template;
-    }
-    return activeCopy().allocationSentenceTemplate;
+    return activeCopy().allocationSentenceTemplate || copy.en.allocationSentenceTemplate;
+  }
+
+  function comparisonSentenceTemplate() {
+    return activeCopy().comparisonSentenceTemplate || copy.en.comparisonSentenceTemplate;
   }
 
   function allocationLabelTemplate() {
+    return activeCopy().allocationLabelTemplate || copy.en.allocationLabelTemplate;
+  }
+
+  function requiredEnergySentenceTemplate() {
+    return activeCopy().requiredEnergySentenceTemplate || copy.en.requiredEnergySentenceTemplate;
+  }
+
+  function requiredEnergyLabelTemplate() {
+    return activeCopy().requiredEnergyLabelTemplate || copy.en.requiredEnergyLabelTemplate;
+  }
+
+  function denominatorText(text = activeCopy()) {
     const group = activeJurisdictionGroup();
-    if (group?.id && group.allocation_label_template) {
-      return group.allocation_label_template;
+    const copyKey = group?.denominator_copy_key;
+    return (copyKey && (text[copyKey] || copy.en[copyKey])) || text.denominatorSelected || copy.en.denominatorSelected;
+  }
+
+  function scenarioCoreSentence(scenario, profileCount = scenarioProfileCount(scenario)) {
+    if (isBeyondTotalElectricity(state.electricityAllocationShare)) {
+      return formatTemplate(requiredEnergySentenceTemplate(), {
+        energyMultiple: formatEnergyMultipleValue(state.electricityAllocationShare),
+        countryName: countrySentenceName(state.selectedCountry),
+        twh: formatNumber(scenario.allocatedElectricityTwhYear, 3),
+        profiles: formatInteger(profileCount),
+        denominator: denominatorText(),
+      });
     }
-    return activeCopy().allocationLabelTemplate;
+    return formatTemplate(allocationSentenceTemplate(), {
+      share: formatPercent(state.electricityAllocationShare),
+      countryName: countrySentenceName(state.selectedCountry),
+      profiles: formatInteger(profileCount),
+      denominator: denominatorText(),
+    });
+  }
+
+  function targetComparisonSentence(scenario) {
+    if (isBeyondTotalElectricity(scenario.shareOfNationalElectricityNeeded)) {
+      return formatTemplate(requiredEnergySentenceTemplate(), {
+        energyMultiple: formatEnergyMultipleValue(scenario.shareOfNationalElectricityNeeded),
+        countryName: countrySentenceName(state.selectedCountry),
+        twh: formatNumber(scenario.targetEnergyTwhYear, 3),
+        profiles: formatInteger(state.targetAiWorkers),
+        denominator: denominatorText(),
+      });
+    }
+    return formatTemplate(comparisonSentenceTemplate(), {
+      profiles: formatInteger(state.targetAiWorkers),
+      twh: formatNumber(scenario.targetEnergyTwhYear, 3),
+      share: formatPercent(scenario.shareOfNationalElectricityNeeded),
+      countryName: countrySentenceName(state.selectedCountry),
+      denominator: denominatorText(),
+    });
   }
 
   function formatTemplate(template, values) {
@@ -823,8 +1036,8 @@
     serverStage.style.setProperty("--stage-height", `${Math.max(704, panelHeight + 28)}px`);
   }
 
-  function readout(label, value) {
-    return `<div class="readout-item"><span>${escapeHtml(label)}</span><strong>${escapeHtml(value)}</strong></div>`;
+  function readout(label, value, className = "") {
+    return `<div class="readout-item ${escapeAttribute(className)}"><span>${escapeHtml(label)}</span><strong>${escapeHtml(value)}</strong></div>`;
   }
 
   function metric(label, value, status, className = "") {
@@ -852,7 +1065,10 @@
       card.dataset.activeLabel = activeLabel;
       card.dataset.activeDescription = activeDescription;
       config.container.dataset.activeDescription = activeDescription;
-      card.setAttribute("aria-label", `${card.querySelector("h3")?.textContent || controlName}: ${activeLabel}. ${text.clickToCycle}.`);
+      card.setAttribute(
+        "aria-label",
+        `${card.querySelector("h3")?.textContent || controlName}: ${activeLabel}. ${activeDescription}. ${text.clickToCycle}.`
+      );
     });
   }
 
@@ -1002,7 +1218,10 @@
     if (action === "back-worker") goToPage("worker-profile");
     if (action === "to-report") goToPage("report");
     if (action === "back-allocation") goToPage("allocation");
-    if (action === "print-report") openScenarioReportPrint();
+    if (action === "download-report") {
+      event.preventDefault();
+      void downloadScenarioReportPdf(event.target.closest('[data-action="download-report"]'));
+    }
     if (action === "restart") {
       state.selectedCountry = null;
       countrySelect.value = "";
@@ -1047,11 +1266,7 @@
   }
 
   function formatPercent(value) {
-    return new Intl.NumberFormat(activeLocale(), {
-      style: "percent",
-      minimumFractionDigits: value < 0.01 ? 1 : 0,
-      maximumFractionDigits: 1,
-    }).format(value);
+    return displayFormat.formatPercent(value, activeLocale());
   }
 
   function escapeHtml(value) {
@@ -1080,6 +1295,7 @@
 
     if (groupId && jurisdictionGroupById.has(groupId)) {
       state.jurisdictionGroupId = groupId;
+      state.dataMode = activeJurisdictionGroup()?.data_mode || data.dataMode;
     }
 
     if (countryCode && activeCountryByCode().has(countryCode)) {

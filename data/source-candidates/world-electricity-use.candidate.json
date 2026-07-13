@@ -1,0 +1,56 @@
+{
+  "dataset_id": "world-electricity-use",
+  "status": "source_candidate",
+  "created_at": "2026-07-13",
+  "updated_at": "2026-07-13",
+  "definition": "annual total final consumption of electricity",
+  "unit": "TWh/year",
+  "source_method_note": "UNSD Energy Statistics Yearbook 2023, Table 34, Total final consumption (TFC), World row, Electricity: 25,539,798 GWh. The official GWh value is divided by 1,000 to obtain TWh/year.",
+  "records": [
+    {
+      "code": "WLD",
+      "name": "World",
+      "local_name": "World",
+      "sentence_name": "the world",
+      "local_language": "en",
+      "local_language_label": "English",
+      "jurisdiction_type": "global",
+      "parent": null,
+      "population": null,
+      "annual_electricity_twh": 25539.798,
+      "electricity_per_capita_kwh_year": null,
+      "source_name": "United Nations Statistics Division (UNSD)",
+      "source_dataset": "2023 Energy Statistics Yearbook",
+      "source_series": "Table 34: Total final consumption (TFC) — Electricity — World",
+      "source_url": "https://unstats.un.org/unsd/energystats/pubs/yearbook/2023/t34.pdf",
+      "source_year": "2023",
+      "source_retrieved_at": "2026-07-13",
+      "source_status": "source_candidate",
+      "definition": "annual total final consumption of electricity",
+      "unit_original": "gigawatt-hour",
+      "conversion_note": "Official UNSD Table 34 value of 25,539,798 GWh divided by 1,000 to obtain 25,539.798 TWh/year.",
+      "review_flags": [
+        "unsd_yearbook_table_value_checked",
+        "source_candidate_not_promoted"
+      ],
+      "notes": "Official UNSD Yearbook table value checked for the World row. This is an annual final-electricity energy denominator for public review, not spare grid capacity, installed capacity, or promoted runtime data."
+    }
+  ],
+  "metric_scope": "UNSD annual total final consumption (TFC) of electricity for the World",
+  "comparability_note": "This is annual final consumption of electricity. It is an energy denominator, not available power or grid capacity.",
+  "rounding_precision_twh": 0.001,
+  "source_provenance": {
+    "official_source_system": "United Nations Statistics Division (UNSD)",
+    "publication": "2023 Energy Statistics Yearbook",
+    "table": "Table 34: Total final consumption",
+    "direct_table_url": "https://unstats.un.org/unsd/energystats/pubs/yearbook/2023/t34.pdf",
+    "landing_page": "https://unstats.un.org/unsd/energy/yearbook/default.htm",
+    "row": "World",
+    "product": "Electricity",
+    "flow": "Total final consumption (TFC)",
+    "source_unit": "GWh",
+    "period": "2023",
+    "official_gwh": 25539798,
+    "candidate_twh": 25539.798
+  }
+}

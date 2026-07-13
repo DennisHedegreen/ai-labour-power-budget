@@ -7,6 +7,10 @@
   const HOURS_PER_YEAR = 8760;
   const WATTS_PER_KW = 1000;
   const WATTS_PER_GW = 1000000000;
+  const ELECTRICITY_SHARE_MODES = Object.freeze({
+    ALLOCATION: "allocation",
+    REQUIRED_ENERGY_MULTIPLE: "required_energy_multiple",
+  });
 
   function assertPositiveNumber(value, name) {
     if (!Number.isFinite(value) || value <= 0) {
@@ -85,6 +89,33 @@
     };
   }
 
+  function calculateShareForTargetProfiles({
+    annualElectricityTwh,
+    targetAiWorkers,
+    wattsPerAiWorker,
+    runtimeHoursPerWeek,
+    overheadFactor = 1,
+  }) {
+    assertPositiveNumber(annualElectricityTwh, "annualElectricityTwh");
+    assertNonNegativeNumber(targetAiWorkers, "targetAiWorkers");
+    const worker = calculateWorkerEnergy({
+      wattsPerAiWorker,
+      runtimeHoursPerWeek,
+      overheadFactor,
+    });
+    const exactShare = targetAiWorkers * worker.kwhYear / (annualElectricityTwh * KWH_PER_TWH);
+
+    if (exactShare === 0) return 0;
+    return exactShare * (1 + Number.EPSILON * 4);
+  }
+
+  function classifyElectricityShare(electricityAllocationShare) {
+    assertNonNegativeNumber(electricityAllocationShare, "electricityAllocationShare");
+    return electricityAllocationShare > 1
+      ? ELECTRICITY_SHARE_MODES.REQUIRED_ENERGY_MULTIPLE
+      : ELECTRICITY_SHARE_MODES.ALLOCATION;
+  }
+
   const api = {
     KWH_PER_TWH,
     DAYS_PER_YEAR,
@@ -92,8 +123,11 @@
     HOURS_PER_YEAR,
     WATTS_PER_KW,
     WATTS_PER_GW,
+    ELECTRICITY_SHARE_MODES,
     calculateWorkerEnergy,
     calculateCountryBudget,
+    calculateShareForTargetProfiles,
+    classifyElectricityShare,
   };
 
   globalScope.AILabourPowerBudgetCalculator = api;
