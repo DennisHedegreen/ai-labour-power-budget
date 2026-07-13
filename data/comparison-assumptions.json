@@ -3,5 +3,10 @@
   "onshore_output_mode": "continuous_100_percent_output_equivalent",
   "offshore_wind_turbine_mw": 8,
   "offshore_capacity_factor": 0.45,
-  "household_kwh_year": 3500
+  "household_kwh_year": 3500,
+  "battery_pack_mwh": 100,
+  "nuclear_reactor_mw": 1000,
+  "nuclear_capacity_factor": 0.9,
+  "hydro_plant_mw": 500,
+  "hydro_capacity_factor": 0.45
 }

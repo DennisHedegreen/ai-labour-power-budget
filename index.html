@@ -130,7 +130,7 @@
                   <output class="driver-value" id="allocation-driver-value" for="worker-scale-slider">10%</output>
                   <label class="vertical-range-field">
                     <span>Electricity share</span>
-                    <input id="worker-scale-slider" type="range" min="1" max="300" step="0.1" value="10" orient="vertical">
+                    <input id="worker-scale-slider" type="range" min="0" max="1000" step="1" value="520" orient="vertical">
                   </label>
                   <div class="allocation-options" id="worker-scale-options"></div>
                 </section>
@@ -172,7 +172,7 @@
                   <output class="driver-value" id="profile-driver-value" for="target-workers-slider">0 profiles</output>
                   <label class="vertical-range-field">
                     <span>Configured profiles</span>
-                    <input id="target-workers-slider" type="range" min="0" max="1000000" step="1000" value="1000000" orient="vertical">
+                    <input id="target-workers-slider" type="range" min="0" max="1000" step="1" value="520" orient="vertical">
                   </label>
                   <div class="allocation-options target-options" id="target-profile-options"></div>
                   <label class="custom-field compact-custom">
@@ -197,6 +197,7 @@
                   <p id="report-core-sentence">Select a country to generate a report.</p>
                 </div>
                 <div class="report-actions">
+                  <button type="button" class="ghost-button" data-action="print-report">Download report</button>
                   <button type="button" class="ghost-button" data-action="back-allocation">Back</button>
                   <button type="button" class="ghost-button" data-action="restart">Restart</button>
                 </div>

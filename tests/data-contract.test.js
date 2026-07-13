@@ -117,6 +117,11 @@ for (const key of [
   "offshore_wind_turbine_mw",
   "offshore_capacity_factor",
   "household_kwh_year",
+  "battery_pack_mwh",
+  "nuclear_reactor_mw",
+  "nuclear_capacity_factor",
+  "hydro_plant_mw",
+  "hydro_capacity_factor",
 ]) {
   assert(Number.isFinite(assumptions[key]), `comparison-assumptions.json missing numeric ${key}`);
 }

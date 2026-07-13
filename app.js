@@ -67,6 +67,15 @@
   const copy = data.copy;
   const copyLanguageByCode = new Map((data.copyLanguages || []).map((language) => [language.code, language]));
   const MAX_ALLOCATION_SHARE = 3;
+  const SLIDER_MAX = 1000;
+  const SHARE_SLIDER_POINTS = [
+    { slider: 0, share: 0 },
+    { slider: 260, share: 0.01 },
+    { slider: 430, share: 0.1 },
+    { slider: 610, share: 0.25 },
+    { slider: 780, share: 1 },
+    { slider: SLIDER_MAX, share: MAX_ALLOCATION_SHARE },
+  ];
   const TARGET_PROFILE_PRESETS = [
     { id: "target_100k", label: "100k", value: 100000 },
     { id: "target_1m", label: "1M", value: 1000000 },
@@ -260,6 +269,7 @@
     setText('[data-action="back-country"]', text.back);
     setText('[data-action="back-worker"]', text.back);
     setText('[data-action="back-allocation"]', text.back);
+    setText('[data-action="print-report"]', text.downloadReport || copy.en.downloadReport || "Download report");
     setText('[data-action="restart"]', text.restart);
     setText('[data-cycle-control="power"] h3', text.powerDraw);
     setText('[data-cycle-control="runtime"] h3', text.runtime);
@@ -450,7 +460,7 @@
     if (allocationDriverValue) allocationDriverValue.textContent = formatPercent(state.electricityAllocationShare);
     if (profileDriverValue) profileDriverValue.textContent = `${formatInteger(state.targetAiWorkers)} ${text.profiles}`;
     if (equationShare) equationShare.textContent = formatPercent(state.electricityAllocationShare);
-    if (equationProfiles) equationProfiles.textContent = `${formatInteger(scenario.supportedAiWorkers)} ${text.profiles}`;
+    if (equationProfiles) equationProfiles.textContent = formatInteger(scenario.supportedAiWorkers);
     if (balanceMode) {
       balanceMode.textContent =
         state.budgetDriver === "profiles" ? "Profile target drives required allocation" : "Allocation drives profile capacity";
@@ -537,18 +547,16 @@
   }
 
   function syncBudgetControlValues() {
-    const sharePercent = state.electricityAllocationShare * 100;
     if (workerScaleSlider) {
-      workerScaleSlider.value = String(Math.min(MAX_ALLOCATION_SHARE * 100, Math.max(Number(workerScaleSlider.min), sharePercent)));
+      workerScaleSlider.value = String(shareToSliderValue(state.electricityAllocationShare));
     }
     if (targetWorkers) {
       targetWorkers.value = String(Math.round(state.targetAiWorkers));
     }
     if (targetWorkersSlider) {
-      const maxProfiles = maxTargetProfiles();
-      targetWorkersSlider.max = String(maxProfiles);
-      targetWorkersSlider.step = String(Math.max(1000, Math.round(maxProfiles / 1200)));
-      targetWorkersSlider.value = String(Math.min(maxProfiles, Math.max(0, Math.round(state.targetAiWorkers))));
+      targetWorkersSlider.max = String(SLIDER_MAX);
+      targetWorkersSlider.step = "1";
+      targetWorkersSlider.value = String(profilesToSliderValue(state.targetAiWorkers));
     }
     renderTargetProfileButtons();
     workerScaleOptions.querySelectorAll(".option-button").forEach((button) => {
@@ -573,6 +581,44 @@
     return "over";
   }
 
+  function shareToSliderValue(share) {
+    return Math.round(mapPiecewise(clampNumber(share, 0, MAX_ALLOCATION_SHARE, 0.1), "share", "slider", SHARE_SLIDER_POINTS));
+  }
+
+  function sliderValueToShare(value) {
+    return mapPiecewise(clampNumber(value, 0, SLIDER_MAX, 0), "slider", "share", SHARE_SLIDER_POINTS);
+  }
+
+  function profilesToSliderValue(profiles) {
+    const maxProfiles = maxTargetProfiles();
+    if (maxProfiles <= 0) return 0;
+    const clampedProfiles = clampNumber(profiles, 0, maxProfiles, 0);
+    const ratio = Math.log1p(clampedProfiles) / Math.log1p(maxProfiles);
+    return Math.round(ratio * SLIDER_MAX);
+  }
+
+  function sliderValueToProfiles(value) {
+    const maxProfiles = maxTargetProfiles();
+    if (maxProfiles <= 0) return 0;
+    const ratio = clampNumber(value, 0, SLIDER_MAX, 0) / SLIDER_MAX;
+    return Math.round(Math.expm1(Math.log1p(maxProfiles) * ratio));
+  }
+
+  function mapPiecewise(value, fromKey, toKey, points) {
+    const sorted = [...points].sort((a, b) => a[fromKey] - b[fromKey]);
+    if (value <= sorted[0][fromKey]) return sorted[0][toKey];
+    for (let index = 1; index < sorted.length; index += 1) {
+      const previous = sorted[index - 1];
+      const next = sorted[index];
+      if (value <= next[fromKey]) {
+        const span = next[fromKey] - previous[fromKey];
+        const ratio = span === 0 ? 0 : (value - previous[fromKey]) / span;
+        return previous[toKey] + (next[toKey] - previous[toKey]) * ratio;
+      }
+    }
+    return sorted[sorted.length - 1][toKey];
+  }
+
   function allocatedAverageLoadGw(scenario) {
     return scenario.allocatedElectricityTwhYear / 8.76;
   }
@@ -585,12 +631,152 @@
     const offshoreAverageWindTurbines =
       averageLoadGw * 1000 / (assumptions.offshore_wind_turbine_mw * assumptions.offshore_capacity_factor);
     const householdYears = scenario.allocatedElectricityTwhYear * 1000000000 / assumptions.household_kwh_year;
+    const batteryPacks = scenario.allocatedElectricityTwhYear * 1000000 / assumptions.battery_pack_mwh;
+    const nuclearReactors =
+      averageLoadGw * 1000 / (assumptions.nuclear_reactor_mw * assumptions.nuclear_capacity_factor);
+    const hydroPlants =
+      averageLoadGw * 1000 / (assumptions.hydro_plant_mw * assumptions.hydro_capacity_factor);
 
     return [
       metric(text.wind3, formatInteger(fullOutputWindTurbines), text.fullOutputAssumption, "is-comparison"),
       metric(text.wind8, formatInteger(offshoreAverageWindTurbines), text.offshoreAssumption, "is-comparison"),
       metric(text.households, formatInteger(householdYears), text.householdAssumption, "is-comparison"),
+      metric(copyLabel("batteryPacks"), formatInteger(batteryPacks), copyLabel("batteryAssumption"), "is-comparison"),
+      metric(copyLabel("nuclearReactors"), formatNumber(nuclearReactors, 2), copyLabel("nuclearAssumption"), "is-comparison"),
+      metric(copyLabel("hydroPlants"), formatNumber(hydroPlants, 2), copyLabel("hydroAssumption"), "is-comparison"),
     ];
+  }
+
+  function openScenarioReportPrint() {
+    const scenario = readScenario();
+    if (!scenario || !state.selectedCountry) return;
+    const reportWindow = window.open("", "_blank", "width=960,height=1200");
+    if (!reportWindow) return;
+    reportWindow.document.open();
+    reportWindow.document.write(renderPrintableReport(scenario));
+    reportWindow.document.close();
+    reportWindow.focus();
+  }
+
+  function renderPrintableReport(scenario) {
+    const text = activeCopy();
+    const generated = new Date().toISOString();
+    const rows = [
+      [text.country, countryDisplayName(state.selectedCountry)],
+      [text.equivalentProfiles, `${formatInteger(scenario.supportedAiWorkers)} ${text.profiles}`],
+      [text.electricityAllocation, formatPercent(state.electricityAllocationShare)],
+      [text.allocatedElectricity, `${formatNumber(scenario.allocatedElectricityTwhYear, 3)} TWh/year`],
+      [text.wattProfile, `${formatNumber(state.wattsPerAiWorker, 0)} W`],
+      [text.runtime, runtimeLabel(state.runtimeHoursPerWeek)],
+      [text.overhead, `${formatNumber(state.overheadFactor, 2)}x`],
+      [text.oneProfileYearly, `${formatNumber(scenario.worker.mwhYear, 4)} MWh/year`],
+      [text.calculationBasis, calculationBasisText(scenario)],
+      [text.dataStatus, state.selectedCountry.source_status],
+    ];
+    const comparisons = renderPrintableComparisonRows(scenario);
+    return `<!doctype html>
+<html lang="${escapeAttribute(activeLanguage())}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Labour Power Budget - scenario report</title>
+  <style>
+    :root { color-scheme: light; --text: #111; --muted: #575d60; --rule: #cfd6d2; --green: #137d4a; --amber: #8a5b00; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #fff; color: var(--text); font: 11pt/1.5 Georgia, "Times New Roman", serif; }
+    main { width: min(100%, 46rem); margin: 0 auto; padding: 28px 22px 42px; }
+    .screen-note { border: 1px solid var(--rule); padding: 8px 10px; color: var(--muted); font: 8pt/1.4 "Courier New", monospace; }
+    header { border-bottom: 1px solid var(--rule); padding-bottom: 16px; margin-bottom: 18px; }
+    .kicker, .label, footer { font: 7.5pt/1.45 "Courier New", monospace; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+    .kicker { color: var(--green); margin: 0 0 8px; }
+    h1 { margin: 0; font-size: 25pt; line-height: 1.05; }
+    .lead { margin: 12px 0 0; font-size: 13pt; border-left: 3px solid var(--green); padding-left: 12px; }
+    .boundary { margin-top: 12px; padding: 9px 10px; border: 1px solid var(--rule); color: var(--muted); font-size: 9.5pt; }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 16px; }
+    .card { border: 1px solid var(--rule); padding: 10px 11px; break-inside: avoid; min-height: 82px; }
+    .card strong { display: block; margin-top: 5px; font: 700 15pt/1.15 Arial, sans-serif; overflow-wrap: anywhere; }
+    .card.primary { grid-column: span 2; border-color: color-mix(in srgb, var(--green) 60%, var(--rule)); }
+    .card.primary strong { color: var(--green); font-size: 30pt; }
+    .comparisons .card strong { color: var(--amber); }
+    h2 { margin: 24px 0 10px; border-bottom: 1px solid var(--rule); padding-bottom: 4px; font: 700 12pt/1.25 Arial, sans-serif; }
+    footer { border-top: 1px solid var(--rule); margin-top: 22px; padding-top: 10px; }
+    @page { size: A4; margin: 16mm; }
+    @media print { main { width: auto; margin: 0; padding: 0; } .screen-note { display: none; } }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="screen-note">Use browser print/save as PDF. This is a generated scenario report view.</p>
+    <header>
+      <p class="kicker">Hedegreen Research · AI Labour Power Budget</p>
+      <h1>${escapeHtml(text.scenarioReport)}</h1>
+      <p class="lead">${escapeHtml(formatTemplate(allocationSentenceTemplate(), {
+        share: formatPercent(state.electricityAllocationShare),
+        countryName: countryDisplayName(state.selectedCountry),
+        profiles: formatInteger(scenario.supportedAiWorkers),
+      }))}</p>
+      <p class="boundary">${escapeHtml(text.energyBoundary)}.</p>
+    </header>
+    <section class="grid">
+      ${rows.map(([label, value], index) => printableCard(label, value, index === 1)).join("")}
+    </section>
+    <h2>Reference comparisons</h2>
+    <section class="grid comparisons">
+      ${comparisons.map(([label, value, assumption]) => printableCard(label, `${value} · ${assumption}`, false)).join("")}
+    </section>
+    <h2>${escapeHtml(text.truthBoundary)}</h2>
+    <p>${escapeHtml(text.truthBoundaryText)}</p>
+    <footer>
+      <div>Generated: ${escapeHtml(generated)}</div>
+      <div>Source status: ${escapeHtml(state.selectedCountry.source_status)}</div>
+      <div>Public review prototype. Not spare grid capacity. Not a deployment prediction.</div>
+    </footer>
+  </main>
+  <script>setTimeout(() => window.print(), 250);</script>
+</body>
+</html>`;
+  }
+
+  function renderPrintableComparisonRows(scenario) {
+    const text = activeCopy();
+    const assumptions = data.comparisonAssumptions;
+    const averageLoadGw = allocatedAverageLoadGw(scenario);
+    return [
+      [text.wind3, formatInteger(averageLoadGw * 1000 / assumptions.onshore_wind_turbine_mw), text.fullOutputAssumption],
+      [
+        text.wind8,
+        formatInteger(averageLoadGw * 1000 / (assumptions.offshore_wind_turbine_mw * assumptions.offshore_capacity_factor)),
+        text.offshoreAssumption,
+      ],
+      [
+        text.households,
+        formatInteger(scenario.allocatedElectricityTwhYear * 1000000000 / assumptions.household_kwh_year),
+        text.householdAssumption,
+      ],
+      [
+        copyLabel("batteryPacks"),
+        formatInteger(scenario.allocatedElectricityTwhYear * 1000000 / assumptions.battery_pack_mwh),
+        copyLabel("batteryAssumption"),
+      ],
+      [
+        copyLabel("nuclearReactors"),
+        formatNumber(averageLoadGw * 1000 / (assumptions.nuclear_reactor_mw * assumptions.nuclear_capacity_factor), 2),
+        copyLabel("nuclearAssumption"),
+      ],
+      [
+        copyLabel("hydroPlants"),
+        formatNumber(averageLoadGw * 1000 / (assumptions.hydro_plant_mw * assumptions.hydro_capacity_factor), 2),
+        copyLabel("hydroAssumption"),
+      ],
+    ];
+  }
+
+  function copyLabel(key) {
+    return activeCopy()[key] || copy.en[key] || key;
+  }
+
+  function printableCard(label, value, primary) {
+    return `<div class="card${primary ? " primary" : ""}"><span class="label">${escapeHtml(label)}</span><strong>${escapeHtml(value)}</strong></div>`;
   }
 
   function runtimeLabel(hoursPerWeek) {
@@ -789,7 +975,7 @@
   workerScaleSlider.addEventListener("input", () => {
     state.budgetDriver = "allocation";
     state.allocationProfileId = "custom";
-    state.electricityAllocationShare = clampNumber(Number(workerScaleSlider.value), 0.1, MAX_ALLOCATION_SHARE * 100, 10) / 100;
+    state.electricityAllocationShare = sliderValueToShare(Number(workerScaleSlider.value));
     state.targetAiWorkers = supportedAtShare(state.electricityAllocationShare);
     updateOutputs();
   });
@@ -803,7 +989,7 @@
 
   targetWorkersSlider?.addEventListener("input", () => {
     state.budgetDriver = "profiles";
-    state.targetAiWorkers = clampNumber(Number(targetWorkersSlider.value), 0, 10000000000, 1000000);
+    state.targetAiWorkers = sliderValueToProfiles(Number(targetWorkersSlider.value));
     state.electricityAllocationShare = targetShareForProfiles(state.targetAiWorkers);
     updateOutputs();
   });
@@ -816,6 +1002,7 @@
     if (action === "back-worker") goToPage("worker-profile");
     if (action === "to-report") goToPage("report");
     if (action === "back-allocation") goToPage("allocation");
+    if (action === "print-report") openScenarioReportPrint();
     if (action === "restart") {
       state.selectedCountry = null;
       countrySelect.value = "";
