@@ -28,14 +28,28 @@
   },
   "world": {
     "status": "source_value_check_passed_candidate_not_promoted",
-    "reason": "official UNSD 2023 Energy Statistics Yearbook Table 34 World TFC electricity value checked",
+    "reason": "official UNSD 2023 Energy Statistics Yearbook Table 34 World and United Kingdom TFC electricity values checked",
     "direct_table_url": "https://unstats.un.org/unsd/energystats/pubs/yearbook/2023/t34.pdf",
-    "records_compared": 1,
+    "records_compared": 2,
     "missing": 0,
     "mismatches": 0,
     "official_gwh": 25539798,
     "candidate_twh": 25539.798,
-    "metric_boundary": "UNSD total final consumption of electricity; annual energy denominator, not power or grid capacity"
+    "checked_records": [
+      {
+        "code": "WLD",
+        "row": "World",
+        "official_gwh": 25539798,
+        "candidate_twh": 25539.798
+      },
+      {
+        "code": "UK",
+        "row": "United Kingdom",
+        "official_gwh": 269086,
+        "candidate_twh": 269.086
+      }
+    ],
+    "metric_boundary": "UNSD total final consumption of electricity; annual energy denominator, not power or grid capacity. World is the global total; selected country rows are separate country denominators."
   },
   "next_steps": [
     "do not import live data yet",

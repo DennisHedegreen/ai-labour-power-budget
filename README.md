@@ -115,9 +115,9 @@ Jurisdiction modes:
   consumption.
 - `USA` loads EIA candidate records from `data/source-candidates/` for review
   mode only, with the denominator labelled as annual retail electricity sales.
-- `World` loads one official UNSD 2023 Energy Statistics Yearbook candidate for
-  review mode only, with the denominator labelled as annual final electricity
-  consumption.
+- `World` loads the official UNSD 2023 Energy Statistics Yearbook World total
+  plus selected non-EU country denominators for review mode only, with the
+  denominator labelled as annual final electricity consumption.
 
 Source candidate data:
 
@@ -126,9 +126,10 @@ Source candidate data:
 - U.S. national and U.S. state values passed direct EIA workbook value checks.
 - U.S. values remain candidate-only because they are EIA retail sales to
   ultimate customers and exclude direct use.
-- The World candidate is the UNSD Table 34 total-final-consumption electricity
-  value for 2023: 25,539,798 GWh, converted to 25,539.798 TWh/year. It remains
-  candidate-only and is not promoted runtime data.
+- The World candidate dataset uses UNSD Table 34 total-final-consumption
+  electricity values for 2023. World is 25,539,798 GWh, converted to
+  25,539.798 TWh/year. UK is 269,086 GWh, converted to 269.086 TWh/year. These
+  remain candidate-only and are not promoted runtime data.
 
 The source gate is intentionally strict. Candidate values are not imported into
 runtime just because the files exist.

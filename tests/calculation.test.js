@@ -120,7 +120,15 @@ for (const country of candidateRecords) {
   }
 }
 
-assert.equal(roundtripCases, 7200, "target roundtrip matrix must cover all built-in combinations");
+assert.equal(
+  roundtripCases,
+  candidateRecords.length
+    * workerProfiles.powerProfiles.length
+    * workerProfiles.runtimeProfiles.length
+    * workerProfiles.overheadProfiles.length
+    * targetPresets.length,
+  "target roundtrip matrix must cover all built-in combinations"
+);
 
 const conservativeWorker = calculateWorkerEnergy({
   wattsPerAiWorker: 700,

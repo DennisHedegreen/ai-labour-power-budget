@@ -7,12 +7,15 @@ Current gate status:
 
 - EU27: source-value checked, not promoted. Candidate records are refreshed
   from the official Eurostat `nrg_cb_e` API using final consumption (`FC`) of
-  electricity (`E7000`) for 2023.
+  electricity (`E7000`) for 2023. The `EU27` row is a local aggregate computed
+  from the 27 reviewed member records in the same candidate file.
 - U.S. national: source-value check passed, but not promoted.
 - U.S. states/DC: source-value check passed, but not promoted.
 - World: source-value check passed against the official UNSD 2023 Energy
-  Statistics Yearbook Table 34. The 25,539,798 GWh value is represented as
-  25,539.798 TWh/year and remains not promoted.
+  Statistics Yearbook Table 34. The World 25,539,798 GWh value is represented
+  as 25,539.798 TWh/year. UK is included as a selected non-EU country
+  denominator: 269,086 GWh, represented as 269.086 TWh/year. Both remain not
+  promoted.
 
 Do not copy these records into `data/countries.json` until:
 

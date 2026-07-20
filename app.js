@@ -69,6 +69,9 @@
   const allocationRangeLabel = document.querySelector("#allocation-range-label");
   const languageToggle = document.querySelector("#language-toggle");
   const languageState = document.querySelector("#language-state");
+  const guideOverlay = document.querySelector("#app-guide");
+  const guidePanel = document.querySelector(".guide-panel");
+  let lastGuideTrigger = document.querySelector('[data-action="open-guide"]');
 
   const copy = data.copy;
   const copyLanguageByCode = new Map((data.copyLanguages || []).map((language) => [language.code, language]));
@@ -201,6 +204,8 @@
           "rack-slot",
           hasData ? "has-data" : "",
           activeGroup.id === "us" && code === "US" ? "is-national" : "",
+          activeGroup.id === "eu" && code === "EU27" ? "is-national" : "",
+          activeGroup.id === "world" && code === "WLD" ? "is-national" : "",
         ].filter(Boolean).join(" ");
         const disabled = hasData ? "" : "disabled";
         return `<button type="button" class="${classes}" data-country-code="${escapeHtml(code)}" ${disabled} aria-label="${escapeAttribute(name)}">
@@ -258,6 +263,9 @@
   }
 
   function rackDisplayCode(code) {
+    if (activeJurisdictionGroup()?.id === "world" && code === "WLD") {
+      return "WORLD";
+    }
     if (activeJurisdictionGroup()?.id === "us" && /^US-[A-Z]{2}$/.test(code)) {
       return code.slice(3);
     }
@@ -1104,6 +1112,17 @@
     selectProfile(controlName, nextProfile.id);
   }
 
+  function setGuideOpen(isOpen) {
+    if (!guideOverlay) return;
+    guideOverlay.hidden = !isOpen;
+    document.body.classList.toggle("guide-is-open", isOpen);
+    if (isOpen) {
+      guidePanel?.focus();
+      return;
+    }
+    lastGuideTrigger?.focus();
+  }
+
   countryRack.addEventListener("click", (event) => {
     const button = event.target.closest("[data-country-code]");
     if (!button || button.disabled) return;
@@ -1218,6 +1237,11 @@
     if (action === "back-worker") goToPage("worker-profile");
     if (action === "to-report") goToPage("report");
     if (action === "back-allocation") goToPage("allocation");
+    if (action === "open-guide") {
+      lastGuideTrigger = event.target.closest('[data-action="open-guide"]') || lastGuideTrigger;
+      setGuideOpen(true);
+    }
+    if (action === "close-guide") setGuideOpen(false);
     if (action === "download-report") {
       event.preventDefault();
       void downloadScenarioReportPdf(event.target.closest('[data-action="download-report"]'));
@@ -1247,6 +1271,12 @@
     const target = event.target.closest("[data-step-target]");
     if (!target || target.disabled) return;
     goToPage(target.getAttribute("data-step-target"));
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && guideOverlay && !guideOverlay.hidden) {
+      setGuideOpen(false);
+    }
   });
 
   function clampNumber(value, min, max, fallback) {

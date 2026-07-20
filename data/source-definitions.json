@@ -38,17 +38,17 @@
     },
     {
       "id": "unsd_world_final_consumption_electricity",
-      "jurisdiction_scope": "WORLD",
+      "jurisdiction_scope": "WORLD_AND_SELECTED_NON_EU",
       "source_system": "United Nations Statistics Division (UNSD)",
       "review_status": "source_value_checked_candidate_not_promoted",
       "candidate_dataset": "source-candidates/world-electricity-use.candidate.json",
       "source_gate": "source-candidates/promotion-gate-summary.json#world",
       "metric_label": "total final consumption of electricity",
       "allocation_label_template": "{share}% of annual final electricity consumption",
-      "scenario_sentence_template": "Allocating {share}% of the world's annual final electricity consumption to this scenario would provide an equivalent yearly energy budget for {workers} configured AI-worker profiles.",
+      "scenario_sentence_template": "Allocating {share}% of the selected annual final electricity consumption denominator to this scenario would provide an equivalent yearly energy budget for {workers} configured AI-worker profiles.",
       "unit": "TWh/year",
-      "definition": "Annual total final consumption (TFC) of electricity for the World, as reported in UNSD Energy Statistics Yearbook Table 34.",
-      "boundary_note": "This is annual final electricity consumption, not available power or grid capacity. The official UNSD Yearbook value is a source candidate and is not promoted runtime data.",
+      "definition": "Annual total final consumption (TFC) of electricity for the World and selected non-EU country denominators, as reported in UNSD Energy Statistics Yearbook Table 34.",
+      "boundary_note": "These are annual final electricity consumption denominators, not available power or grid capacity. The official UNSD Yearbook values are source candidates and are not promoted runtime data.",
       "runtime_allowed": false
     }
   ]

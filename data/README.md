@@ -55,11 +55,14 @@ reviewed and promoted.
 Current source definitions:
 
 - EU27 candidate: Eurostat annual final electricity consumption. Status:
-  source-value checked, not promoted.
+  source-value checked, not promoted. Includes a local `EU27` aggregate computed
+  from the 27 reviewed member records.
 - U.S. candidate: EIA retail sales to ultimate customers. Status:
   source-value checked, not promoted. This excludes direct use.
-- World candidate: UNSD Energy Statistics Yearbook 2023 Table 34 total final
-  consumption of electricity. Status: source-value checked, not promoted.
+- World candidate dataset: UNSD Energy Statistics Yearbook 2023 Table 34 total
+  final consumption of electricity. Status: source-value checked, not
+  promoted. Includes the World global total plus selected non-EU country
+  denominators such as UK.
 
 Use the source-specific labels in `source-definitions.json` before adding any
 new public-facing region mode.

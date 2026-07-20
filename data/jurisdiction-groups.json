@@ -14,7 +14,7 @@
     "rack_columns": 5,
     "denominator_label": "annual final electricity consumption",
     "denominator_copy_key": "denominatorFinalElectricityConsumption",
-    "allocation_intro": "Choose a scenario share of annual final electricity consumption.",
+    "allocation_intro": "Choose a scenario share of annual final electricity consumption. World is the global total; UK is a selected non-EU country denominator.",
     "allocation_label_template": "{share} of annual final electricity consumption",
     "scenario_sentence_template": "Allocating {share} of {countryName}'s annual final electricity consumption to this scenario would provide an equivalent yearly energy budget for {profiles} configured AI-worker profiles.",
     "comparison_sentence_template": "Comparison: {profiles} configured profiles require {twh} TWh/year, equivalent to {share} of {countryName}'s annual final electricity consumption.",
@@ -68,6 +68,6 @@
     "required_energy_label_template": "{energyMultiple} times annual final electricity consumption",
     "required_energy_sentence_template": "This scenario requires {twh} TWh/year for {profiles} configured AI-worker profiles, equivalent to {energyMultiple} times {countryName}'s annual final electricity consumption. This is a beyond-total-electricity thought experiment, not an allocation.",
     "truth_boundary_copy_key": "truthBoundaryWorldSourceCandidate",
-    "truth_boundary": "The World record is a source candidate from the UNSD 2023 Energy Statistics Yearbook. It is not promoted runtime data."
+    "truth_boundary": "World-mode records are source candidates from the UNSD 2023 Energy Statistics Yearbook. World is the global total; UK is a selected non-EU country denominator. They are not promoted runtime data."
   }
 ]

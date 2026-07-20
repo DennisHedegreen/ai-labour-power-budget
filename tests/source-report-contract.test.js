@@ -149,6 +149,7 @@ for (const field of [
 ]) {
   assert(dataLoader.includes(`${field}:`), `normalized records missing ${field}`);
 }
+assert.match(dataLoader, /record\.source_metric/, "record-level source metrics must be preserved for aggregates");
 assert(dataLoader.includes("sentence_name:"), "normalized records must preserve an aggregate sentence name");
 assert(app.includes("countrySentenceName"), "report sentences must support aggregate grammar without changing display names");
 
@@ -213,7 +214,8 @@ const worldGroup = groups.find((entry) => entry.id === "world");
 assert.equal(worldGroup.denominator_copy_key, "denominatorFinalElectricityConsumption");
 assert.equal(worldGroup.truth_boundary_copy_key, "truthBoundaryWorldSourceCandidate");
 const worldDataset = readJson("source-candidates/world-electricity-use.candidate.json");
-const worldRecord = worldDataset.records[0];
+const worldRecord = worldDataset.records.find((record) => record.code === "WLD");
+const ukRecord = worldDataset.records.find((record) => record.code === "UK");
 assert.equal(worldRecord.code, "WLD");
 assert.equal(worldRecord.sentence_name, "the world");
 assert.equal(worldRecord.annual_electricity_twh, 25539.798);
@@ -224,5 +226,16 @@ assert.equal(
   "https://unstats.un.org/unsd/energystats/pubs/yearbook/2023/t34.pdf"
 );
 assert(worldRecord.review_flags.includes("source_candidate_not_promoted"));
+assert.equal(ukRecord.code, "UK");
+assert.equal(ukRecord.sentence_name, "the United Kingdom");
+assert.equal(ukRecord.annual_electricity_twh, 269.086);
+assert.equal(ukRecord.source_year, "2023");
+assert.equal(ukRecord.source_retrieved_at, "2026-07-21");
+assert.equal(
+  ukRecord.source_url,
+  "https://unstats.un.org/unsd/energystats/pubs/yearbook/2023/t34.pdf"
+);
+assert(ukRecord.review_flags.includes("selected_non_eu_country_denominator"));
+assert(ukRecord.review_flags.includes("source_candidate_not_promoted"));
 
 console.log("AI Labour Power Budget source/report contract tests passed");

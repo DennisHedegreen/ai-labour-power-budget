@@ -43,6 +43,7 @@
               <div class="local-language-panel" aria-label="Language control">
                 <span id="language-state">EN</span>
                 <button type="button" class="machine-toggle" id="language-toggle">Local language</button>
+                <button type="button" class="guide-button" data-action="open-guide" aria-haspopup="dialog" aria-controls="app-guide">Guide</button>
               </div>
 
               <div class="jurisdiction-panel" aria-label="Jurisdiction mode">
@@ -64,12 +65,15 @@
           <section class="page page-worker" data-page="worker-profile" aria-labelledby="worker-heading">
             <div class="machine-panel machine-panel-side">
               <div class="panel-head">
-                <div>
+                <div class="panel-copy">
                   <p class="panel-label">AI-worker profile</p>
                   <h2 id="worker-heading">Configure one AI-worker profile</h2>
                   <p>Set the watt profile and runtime used for this scenario.</p>
                 </div>
-                <button type="button" class="ghost-button" data-action="back-country">Back</button>
+                <div class="panel-actions">
+                  <button type="button" class="guide-button" data-action="open-guide" aria-haspopup="dialog" aria-controls="app-guide">Guide</button>
+                  <button type="button" class="ghost-button" data-action="back-country">Back</button>
+                </div>
               </div>
 
               <div class="control-grid">
@@ -116,12 +120,15 @@
           <section class="page page-allocation" data-page="allocation" aria-labelledby="allocation-heading">
             <div class="machine-panel machine-panel-pressure">
               <div class="panel-head">
-                <div>
+                <div class="panel-copy">
                   <p class="panel-label">Country electricity budget</p>
                   <h2 id="allocation-heading">Choose electricity share</h2>
                   <p>How much of this country's current annual electricity use is allocated to AI labour?</p>
                 </div>
-                <button type="button" class="ghost-button" data-action="back-worker">Back</button>
+                <div class="panel-actions">
+                  <button type="button" class="guide-button" data-action="open-guide" aria-haspopup="dialog" aria-controls="app-guide">Guide</button>
+                  <button type="button" class="ghost-button" data-action="back-worker">Back</button>
+                </div>
               </div>
 
               <div class="allocation-layout balance-layout">
@@ -191,13 +198,14 @@
           <section class="page page-report" data-page="report" aria-labelledby="report-heading">
             <div class="machine-panel machine-panel-report report-panel">
               <div class="panel-head">
-                <div>
+                <div class="panel-copy">
                   <p class="panel-label">Scenario report</p>
                   <h2 id="report-heading">Scenario report</h2>
                   <p id="report-core-sentence">Select a country to generate a report.</p>
                 </div>
                 <div class="report-actions">
                   <button type="button" class="ghost-button" data-action="download-report">Download PDF</button>
+                  <button type="button" class="guide-button" data-action="open-guide" aria-haspopup="dialog" aria-controls="app-guide">Guide</button>
                   <button type="button" class="ghost-button" data-action="back-allocation">Back</button>
                   <button type="button" class="ghost-button" data-action="restart">Restart</button>
                 </div>
@@ -218,6 +226,54 @@
           </section>
         </div>
       </div>
+
+      <aside class="guide-overlay" id="app-guide" role="dialog" aria-modal="true" aria-labelledby="guide-title" hidden>
+        <div class="guide-backdrop" data-action="close-guide" aria-hidden="true"></div>
+        <section class="guide-panel" tabindex="-1">
+          <div class="guide-head">
+            <div>
+              <p class="panel-label">Guide</p>
+              <h2 id="guide-title">What the settings mean</h2>
+            </div>
+            <button type="button" class="ghost-button" data-action="close-guide">Close</button>
+          </div>
+
+          <div class="guide-grid">
+            <article>
+              <h3>Country / EU / USA / World</h3>
+              <p>Choose the electricity denominator used for the scenario. EU27, member countries, U.S. national/state records and World are source-candidate review values, not promoted runtime data.</p>
+            </article>
+            <article>
+              <h3>Power draw</h3>
+              <p>Watts are the average electrical load assigned to one configured AI-worker profile while it is running. It is not model intelligence, job output, or necessarily one physical machine.</p>
+            </article>
+            <article>
+              <h3>Runtime</h3>
+              <p>Runtime is how many hours per week the configured profile is assumed to run. A 24/7 profile uses 168 hours per week.</p>
+            </article>
+            <article>
+              <h3>Infrastructure overhead</h3>
+              <p>Overhead adds simplified facility and support energy on top of the raw watt setting. It keeps compute and infrastructure from being silently collapsed into one number.</p>
+            </article>
+            <article>
+              <h3>Electricity share</h3>
+              <p>The budget step allocates a selected share of the chosen annual electricity denominator to the scenario. Above 100% becomes a thought experiment, not a real allocation.</p>
+            </article>
+            <article>
+              <h3>Profile target</h3>
+              <p>The target side asks how much yearly energy a chosen number of configured profiles would require, then compares that requirement with the selected denominator.</p>
+            </article>
+            <article>
+              <h3>Report and PDF</h3>
+              <p>The report repeats the calculation basis, source status and truth boundary. The PDF is a portable scenario receipt, not a publication-grade data certificate.</p>
+            </article>
+            <article>
+              <h3>Truth boundary</h3>
+              <p>The output is an energy-equivalent scenario. It does not claim spare electricity, available grid capacity, deployed AI-workers, productivity, job loss or social feasibility.</p>
+            </article>
+          </div>
+        </section>
+      </aside>
     </main>
 
     <script src="./calculate.js"></script>

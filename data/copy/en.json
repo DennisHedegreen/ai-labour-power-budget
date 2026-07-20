@@ -29,7 +29,7 @@
   "averageKwhCalendarDayValueTemplate": "{value} kWh/calendar day on average",
   "truthBoundaryEuSourceCandidate": "Eurostat annual final electricity consumption is used as a source candidate. It is not promoted or verified runtime data.",
   "truthBoundaryUsSourceCandidate": "EIA retail electricity sales to ultimate customers are used as a source candidate; direct use is excluded. The value is not promoted or verified runtime data.",
-  "truthBoundaryWorldSourceCandidate": "UNSD 2023 world total final electricity consumption is used as a source candidate. It is not promoted or verified runtime data.",
+  "truthBoundaryWorldSourceCandidate": "UNSD 2023 world total and selected non-EU country final electricity consumption values are used as source candidates. They are not promoted or verified runtime data.",
   "requiredEnergy": "Required energy",
   "requiredEnergyMultiple": "Required-energy multiple",
   "beyondTotalElectricity": "Beyond-total-electricity thought experiment",

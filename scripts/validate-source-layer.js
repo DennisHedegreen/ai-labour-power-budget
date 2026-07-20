@@ -102,12 +102,23 @@ assert.strictEqual(
 
 assertDatasetShape(eu27, {
   id: "eu27-electricity-use",
-  records: 27,
-  requiredCodes: ["DK", "DE", "FR", "SE"]
+  records: 28,
+  requiredCodes: ["EU27", "DK", "DE", "FR", "SE"]
 });
+const eu27Aggregate = eu27.records[0];
+assert.strictEqual(eu27Aggregate.code, "EU27", "EU27 aggregate must remain the first EU candidate record");
+assert.strictEqual(eu27Aggregate.jurisdiction_type, "country_group");
+assert.strictEqual(eu27Aggregate.annual_electricity_twh, 2413.752);
+assert.match(eu27Aggregate.source_metric, /aggregate computed from the 27 reviewed member records/);
 assert(
-  eu27.records.every((record) => record.review_flags.includes("eurostat_direct_api_value_checked")),
-  "EU27 records must keep direct Eurostat API check flag"
+  eu27Aggregate.review_flags.includes("eu27_member_sum_from_checked_records"),
+  "EU27 aggregate must preserve the member-sum review flag"
+);
+assert(
+  eu27.records
+    .filter((record) => record.jurisdiction_type === "country")
+    .every((record) => record.review_flags.includes("eurostat_direct_api_value_checked")),
+  "EU27 member-country records must keep direct Eurostat API check flag"
 );
 assert(
   eu27.records.every((record) => record.review_flags.includes("source_candidate_not_promoted")),
@@ -138,10 +149,11 @@ assert(
 
 assertDatasetShape(world, {
   id: "world-electricity-use",
-  records: 1,
-  requiredCodes: ["WLD"]
+  records: 2,
+  requiredCodes: ["WLD", "UK"]
 });
-const worldRecord = world.records[0];
+const worldRecord = world.records.find((record) => record.code === "WLD");
+const ukRecord = world.records.find((record) => record.code === "UK");
 assert.strictEqual(worldRecord.annual_electricity_twh, 25539.798);
 assert.strictEqual(worldRecord.source_year, "2023");
 assert.strictEqual(worldRecord.source_retrieved_at, "2026-07-13");
@@ -158,5 +170,19 @@ assert(
   "World record must stay candidate-not-promoted"
 );
 assert.strictEqual(gate.world.official_gwh / 1000, worldRecord.annual_electricity_twh);
+assert.strictEqual(ukRecord.annual_electricity_twh, 269.086);
+assert.strictEqual(ukRecord.source_year, "2023");
+assert.strictEqual(ukRecord.source_retrieved_at, "2026-07-21");
+assert.strictEqual(ukRecord.jurisdiction_type, "country");
+assert.strictEqual(ukRecord.source_url, "https://unstats.un.org/unsd/energystats/pubs/yearbook/2023/t34.pdf");
+assert(
+  ukRecord.review_flags.includes("selected_non_eu_country_denominator"),
+  "UK record must be labelled as a selected non-EU country denominator"
+);
+assert(
+  ukRecord.review_flags.includes("source_candidate_not_promoted"),
+  "UK record must stay candidate-not-promoted"
+);
+assert.strictEqual(gate.world.checked_records.find((record) => record.code === "UK").official_gwh / 1000, ukRecord.annual_electricity_twh);
 
 console.log("AI Labour Power Budget source layer validation passed");

@@ -97,11 +97,11 @@ function buildStatus() {
       runtime_ready: false,
       source_candidates_ready_for_runtime: false,
       reason:
-        "Runtime import is not authorized. EU27, US, and World records are source-value checked candidates, but none are promoted runtime data.",
+        "Runtime import is not authorized. EU27, US, World, and selected non-EU country records are source-value checked candidates, but none are promoted runtime data.",
       next_required_actions: [
         "Review the Eurostat final-consumption denominator before promoting EU27.",
         "Decide whether the US denominator remains retail electricity sales or is redesigned to include direct use.",
-        "Review the UNSD World total-final-consumption denominator before promotion.",
+        "Review the UNSD World and selected non-EU country total-final-consumption denominators before promotion.",
         "Build a promotion adapter that refuses runtime output unless the gate is explicitly authorized.",
         "Update public copy to use source-specific denominator labels before any promotion.",
       ],

@@ -203,7 +203,7 @@
       notes: record.notes || dataset.source_method_note || "",
       data_mode: dataPolicy.DATA_MODES.SOURCE_CANDIDATE_REVIEW,
       promotion_status: "candidate_not_promoted",
-      source_metric: sourceDefinition?.metric_label || record.definition || dataset.definition,
+      source_metric: record.source_metric || sourceDefinition?.metric_label || record.definition || dataset.definition,
       source_definition: sourceDefinition?.definition || record.definition || dataset.definition,
       source_review_status: sourceDefinition?.review_status || "source_candidate_not_promoted",
       runtime_allowed: sourceDefinition?.runtime_allowed === true,

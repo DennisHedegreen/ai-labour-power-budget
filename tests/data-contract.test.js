@@ -17,6 +17,7 @@ const allocationProfiles = readJson("electricity-allocation-profiles.json");
 const assumptions = readJson("comparison-assumptions.json");
 const sourceDefinitions = readJson("source-definitions.json");
 const promotionGate = readJson("source-candidates/promotion-gate-summary.json");
+const eu27Candidate = readJson("source-candidates/eu27-electricity-use.candidate.json");
 const worldCandidate = readJson("source-candidates/world-electricity-use.candidate.json");
 const copyLanguages = readJson("copy/languages.json");
 const copy = Object.fromEntries(
@@ -57,6 +58,18 @@ assert.strictEqual(
   "source-candidates/eu27-electricity-use.candidate.json",
   "EU group must load reviewed source candidates, not demo placeholders"
 );
+assert.deepStrictEqual(eu27Shell[0], ["EU27", "European Union (EU27)"]);
+assert.strictEqual(eu27Candidate.status, "source_candidate");
+assert.strictEqual(eu27Candidate.records.length, 28);
+const eu27Aggregate = eu27Candidate.records[0];
+assert.strictEqual(eu27Aggregate.code, "EU27");
+assert.strictEqual(eu27Aggregate.jurisdiction_type, "country_group");
+assert.strictEqual(eu27Aggregate.annual_electricity_twh, 2413.752);
+assert.strictEqual(eu27Aggregate.source_status, "source_candidate");
+assert.match(eu27Aggregate.source_metric, /aggregate computed from the 27 reviewed member records/);
+assert(eu27Aggregate.review_flags.includes("eu27_member_sum_from_checked_records"));
+assert(eu27Aggregate.review_flags.includes("source_candidate_not_promoted"));
+assert.match(eu27Aggregate.notes, /not spare electricity/i);
 assert(
   countries.every((country) => country.source_status === "demo_not_verified"),
   "countries.json must remain a demo placeholder file until promotion is explicitly authorized"
@@ -94,8 +107,9 @@ assert.match(worldDefinition.review_status, /candidate_not_promoted/);
 
 assert.strictEqual(worldCandidate.dataset_id, "world-electricity-use");
 assert.strictEqual(worldCandidate.status, "source_candidate");
-assert.strictEqual(worldCandidate.records.length, 1);
-const worldRecord = worldCandidate.records[0];
+assert.strictEqual(worldCandidate.records.length, 2);
+const worldRecord = worldCandidate.records.find((record) => record.code === "WLD");
+const ukRecord = worldCandidate.records.find((record) => record.code === "UK");
 assert.strictEqual(worldRecord.code, "WLD");
 assert.strictEqual(worldRecord.sentence_name, "the world");
 assert.strictEqual(worldRecord.annual_electricity_twh, 25539.798);
@@ -107,7 +121,26 @@ assert.strictEqual(
 );
 assert.strictEqual(worldRecord.source_status, "source_candidate");
 assert(worldRecord.review_flags.includes("source_candidate_not_promoted"));
+assert.strictEqual(ukRecord.code, "UK");
+assert.strictEqual(ukRecord.name, "United Kingdom");
+assert.strictEqual(ukRecord.sentence_name, "the United Kingdom");
+assert.strictEqual(ukRecord.jurisdiction_type, "country");
+assert.strictEqual(ukRecord.annual_electricity_twh, 269.086);
+assert.strictEqual(ukRecord.source_year, "2023");
+assert.strictEqual(ukRecord.source_retrieved_at, "2026-07-21");
+assert.strictEqual(
+  ukRecord.source_url,
+  "https://unstats.un.org/unsd/energystats/pubs/yearbook/2023/t34.pdf"
+);
+assert.strictEqual(ukRecord.source_status, "source_candidate");
+assert(ukRecord.review_flags.includes("selected_non_eu_country_denominator"));
+assert(ukRecord.review_flags.includes("source_candidate_not_promoted"));
 assert.strictEqual(promotionGate.world.status, "source_value_check_passed_candidate_not_promoted");
+assert.strictEqual(promotionGate.world.records_compared, 2);
+assert.strictEqual(
+  promotionGate.world.checked_records.find((record) => record.code === "UK").candidate_twh,
+  269.086
+);
 assert.strictEqual(promotionGate.live_import_authorized, false);
 
 for (const language of copyLanguages) {
