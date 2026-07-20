@@ -128,8 +128,9 @@ Source candidate data:
   ultimate customers and exclude direct use.
 - The World candidate dataset uses UNSD Table 34 total-final-consumption
   electricity values for 2023. World is 25,539,798 GWh, converted to
-  25,539.798 TWh/year. UK is 269,086 GWh, converted to 269.086 TWh/year. These
-  remain candidate-only and are not promoted runtime data.
+  25,539.798 TWh/year. UK is 269,086 GWh, converted to 269.086 TWh/year.
+  Australia is 224,377 GWh, converted to 224.377 TWh/year. These remain
+  candidate-only and are not promoted runtime data.
 
 The source gate is intentionally strict. Candidate values are not imported into
 runtime just because the files exist.

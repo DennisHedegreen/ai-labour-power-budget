@@ -14,8 +14,9 @@ Current gate status:
 - World: source-value check passed against the official UNSD 2023 Energy
   Statistics Yearbook Table 34. The World 25,539,798 GWh value is represented
   as 25,539.798 TWh/year. UK is included as a selected non-EU country
-  denominator: 269,086 GWh, represented as 269.086 TWh/year. Both remain not
-  promoted.
+  denominator: 269,086 GWh, represented as 269.086 TWh/year. Australia is also
+  included as a selected non-EU country denominator: 224,377 GWh, represented as
+  224.377 TWh/year. These remain not promoted.
 
 Do not copy these records into `data/countries.json` until:
 

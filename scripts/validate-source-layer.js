@@ -149,11 +149,12 @@ assert(
 
 assertDatasetShape(world, {
   id: "world-electricity-use",
-  records: 2,
-  requiredCodes: ["WLD", "UK"]
+  records: 3,
+  requiredCodes: ["WLD", "UK", "AU"]
 });
 const worldRecord = world.records.find((record) => record.code === "WLD");
 const ukRecord = world.records.find((record) => record.code === "UK");
+const australiaRecord = world.records.find((record) => record.code === "AU");
 assert.strictEqual(worldRecord.annual_electricity_twh, 25539.798);
 assert.strictEqual(worldRecord.source_year, "2023");
 assert.strictEqual(worldRecord.source_retrieved_at, "2026-07-13");
@@ -184,5 +185,22 @@ assert(
   "UK record must stay candidate-not-promoted"
 );
 assert.strictEqual(gate.world.checked_records.find((record) => record.code === "UK").official_gwh / 1000, ukRecord.annual_electricity_twh);
+assert.strictEqual(australiaRecord.annual_electricity_twh, 224.377);
+assert.strictEqual(australiaRecord.source_year, "2023");
+assert.strictEqual(australiaRecord.source_retrieved_at, "2026-07-21");
+assert.strictEqual(australiaRecord.jurisdiction_type, "country");
+assert.strictEqual(australiaRecord.source_url, "https://unstats.un.org/unsd/energystats/pubs/yearbook/2023/t34.pdf");
+assert(
+  australiaRecord.review_flags.includes("selected_non_eu_country_denominator"),
+  "Australia record must be labelled as a selected non-EU country denominator"
+);
+assert(
+  australiaRecord.review_flags.includes("source_candidate_not_promoted"),
+  "Australia record must stay candidate-not-promoted"
+);
+assert.strictEqual(
+  gate.world.checked_records.find((record) => record.code === "AU").official_gwh / 1000,
+  australiaRecord.annual_electricity_twh
+);
 
 console.log("AI Labour Power Budget source layer validation passed");

@@ -107,9 +107,10 @@ assert.match(worldDefinition.review_status, /candidate_not_promoted/);
 
 assert.strictEqual(worldCandidate.dataset_id, "world-electricity-use");
 assert.strictEqual(worldCandidate.status, "source_candidate");
-assert.strictEqual(worldCandidate.records.length, 2);
+assert.strictEqual(worldCandidate.records.length, 3);
 const worldRecord = worldCandidate.records.find((record) => record.code === "WLD");
 const ukRecord = worldCandidate.records.find((record) => record.code === "UK");
+const australiaRecord = worldCandidate.records.find((record) => record.code === "AU");
 assert.strictEqual(worldRecord.code, "WLD");
 assert.strictEqual(worldRecord.sentence_name, "the world");
 assert.strictEqual(worldRecord.annual_electricity_twh, 25539.798);
@@ -136,10 +137,28 @@ assert.strictEqual(ukRecord.source_status, "source_candidate");
 assert(ukRecord.review_flags.includes("selected_non_eu_country_denominator"));
 assert(ukRecord.review_flags.includes("source_candidate_not_promoted"));
 assert.strictEqual(promotionGate.world.status, "source_value_check_passed_candidate_not_promoted");
-assert.strictEqual(promotionGate.world.records_compared, 2);
+assert.strictEqual(australiaRecord.code, "AU");
+assert.strictEqual(australiaRecord.name, "Australia");
+assert.strictEqual(australiaRecord.sentence_name, "Australia");
+assert.strictEqual(australiaRecord.jurisdiction_type, "country");
+assert.strictEqual(australiaRecord.annual_electricity_twh, 224.377);
+assert.strictEqual(australiaRecord.source_year, "2023");
+assert.strictEqual(australiaRecord.source_retrieved_at, "2026-07-21");
+assert.strictEqual(
+  australiaRecord.source_url,
+  "https://unstats.un.org/unsd/energystats/pubs/yearbook/2023/t34.pdf"
+);
+assert.strictEqual(australiaRecord.source_status, "source_candidate");
+assert(australiaRecord.review_flags.includes("selected_non_eu_country_denominator"));
+assert(australiaRecord.review_flags.includes("source_candidate_not_promoted"));
+assert.strictEqual(promotionGate.world.records_compared, 3);
 assert.strictEqual(
   promotionGate.world.checked_records.find((record) => record.code === "UK").candidate_twh,
   269.086
+);
+assert.strictEqual(
+  promotionGate.world.checked_records.find((record) => record.code === "AU").candidate_twh,
+  224.377
 );
 assert.strictEqual(promotionGate.live_import_authorized, false);
 

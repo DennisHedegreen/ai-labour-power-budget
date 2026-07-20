@@ -5,7 +5,7 @@
   "updated_at": "2026-07-21",
   "definition": "annual total final consumption of electricity",
   "unit": "TWh/year",
-  "source_method_note": "UNSD Energy Statistics Yearbook 2023, Table 34, Total final consumption (TFC), Electricity. World row: 25,539,798 GWh. United Kingdom row: 269,086 GWh. Official GWh values are divided by 1,000 to obtain TWh/year.",
+  "source_method_note": "UNSD Energy Statistics Yearbook 2023, Table 34, Total final consumption (TFC), Electricity. World row: 25,539,798 GWh. United Kingdom row: 269,086 GWh. Australia row: 224,377 GWh. Official GWh values are divided by 1,000 to obtain TWh/year.",
   "records": [
     {
       "code": "WLD",
@@ -63,6 +63,35 @@
         "source_candidate_not_promoted"
       ],
       "notes": "Official UNSD Yearbook table value checked for the United Kingdom row. This is a selected non-EU country annual final-electricity denominator within World mode for public review, not spare grid capacity, installed capacity, or promoted runtime data."
+    },
+    {
+      "code": "AU",
+      "name": "Australia",
+      "local_name": "Australia",
+      "sentence_name": "Australia",
+      "local_language": "en",
+      "local_language_label": "English",
+      "jurisdiction_type": "country",
+      "parent": null,
+      "population": null,
+      "annual_electricity_twh": 224.377,
+      "electricity_per_capita_kwh_year": null,
+      "source_name": "United Nations Statistics Division (UNSD)",
+      "source_dataset": "2023 Energy Statistics Yearbook",
+      "source_series": "Table 34: Total final consumption (TFC) — Electricity — Australia",
+      "source_url": "https://unstats.un.org/unsd/energystats/pubs/yearbook/2023/t34.pdf",
+      "source_year": "2023",
+      "source_retrieved_at": "2026-07-21",
+      "source_status": "source_candidate",
+      "definition": "annual total final consumption of electricity",
+      "unit_original": "gigawatt-hour",
+      "conversion_note": "Official UNSD Table 34 value of 224,377 GWh divided by 1,000 to obtain 224.377 TWh/year.",
+      "review_flags": [
+        "unsd_yearbook_table_value_checked",
+        "selected_non_eu_country_denominator",
+        "source_candidate_not_promoted"
+      ],
+      "notes": "Official UNSD Yearbook table value checked for the Australia row. This is a selected non-EU country annual final-electricity denominator within World mode for public review, not spare grid capacity, installed capacity, or promoted runtime data."
     }
   ],
   "metric_scope": "UNSD annual total final consumption (TFC) of electricity for the World and selected non-EU country denominators",
@@ -86,6 +115,12 @@
         "row": "United Kingdom",
         "official_gwh": 269086,
         "candidate_twh": 269.086
+      },
+      {
+        "code": "AU",
+        "row": "Australia",
+        "official_gwh": 224377,
+        "candidate_twh": 224.377
       }
     ],
     "product": "Electricity",
