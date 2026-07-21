@@ -79,10 +79,10 @@
   "fullOutputAssumption": "założenie referencyjne: ekwiwalent energii przy ciągłej mocy znamionowej 3 MW; nie jest to realistyczna liczba turbin",
   "offshoreAssumption": "założenie referencyjne: współczynnik wykorzystania mocy 45%",
   "householdAssumption": "założenie referencyjne: 3 500 kWh/rok",
-  "batteryAssumption": "założenie referencyjne: pakiet akumulatorów 100 MWh",
+  "batteryAssumption": "założenie referencyjne: roczny przepływ energii podzielony przez 100 MWh; nie liczba zainstalowanych systemów bateryjnych",
   "nuclearAssumption": "założenie referencyjne: reaktor 1 GW przy współczynniku wykorzystania mocy 90%",
   "hydroAssumption": "założenie referencyjne: elektrownia wodna 500 MW przy współczynniku wykorzystania mocy 45%",
-  "batteryPacks": "Pakiety akumulatorów 100 MWh",
+  "batteryPacks": "Ekwiwalenty pełnego cyklu 100 MWh",
   "nuclearReactors": "Równowartość reaktora jądrowego 1 GW",
   "hydroPlants": "Równowartość elektrowni wodnej 500 MW",
   "wind3": "Ekwiwalenty ciągłej mocy znamionowej 3 MW",
@@ -175,5 +175,10 @@
     "hundred_percent_thought_experiment": {
       "label": "Eksperyment myślowy 100%"
     }
-  }
+  },
+  "guide": "Przewodnik",
+  "close": "Zamknij",
+  "guideTitle": "Co oznaczają ustawienia",
+  "targetMatch": "Dopasowanie celu",
+  "targetMatchSentenceTemplate": "Pojemność profili wynosi {ratio} wybranego celu."
 }

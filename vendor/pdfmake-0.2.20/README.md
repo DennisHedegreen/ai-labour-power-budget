@@ -9,3 +9,5 @@ Vendored browser build used only for direct, client-side PDF report downloads.
 - `vfs_fonts.js` SHA-256: `f91db5690400fc851536c3a9322f822619f8e9f681abe42013e572d88d3c1f38`
 
 The bundled Roboto virtual fonts keep the static tool independent of a CDN at runtime and preserve the Latin, Greek, and Cyrillic scripts used by its configured locales.
+
+`noto-cjk-jp-vfs.js` registers a small Noto Sans CJK JP subset for Japanese PDF output. It is generated from the local Noto CJK font and only contains the public-review Japanese report character set plus basic ASCII, avoiding a full CJK font bundle.

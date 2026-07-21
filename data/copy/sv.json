@@ -79,10 +79,10 @@
   "fullOutputAssumption": "referensantagande: energiekvivalent vid kontinuerlig märkeffekt på 3 MW; inte ett realistiskt antal vindkraftverk",
   "offshoreAssumption": "referensantagande: kapacitetsfaktor på 45 %",
   "householdAssumption": "referensantagande: 3 500 kWh/år",
-  "batteryAssumption": "referensantagande: batteripaket på 100 MWh",
+  "batteryAssumption": "referensantagande: årlig energigenomströmning dividerad med 100 MWh; inte antal installerade batterisystem",
   "nuclearAssumption": "referensantagande: 1 GW-reaktor med 90 % kapacitetsfaktor",
   "hydroAssumption": "referensantagande: 500 MW-vattenkraftverk med 45 % kapacitetsfaktor",
-  "batteryPacks": "Batteripaket på 100 MWh",
+  "batteryPacks": "100 MWh fullcykelekvivalenter",
   "nuclearReactors": "Motsvarande en kärnreaktor på 1 GW",
   "hydroPlants": "Motsvarande ett vattenkraftverk på 500 MW",
   "wind3": "Ekvivalenter vid kontinuerlig märkeffekt på 3 MW",
@@ -175,5 +175,10 @@
     "hundred_percent_thought_experiment": {
       "label": "100 % tankeexperiment"
     }
-  }
+  },
+  "guide": "Guide",
+  "close": "Stäng",
+  "guideTitle": "Vad inställningarna betyder",
+  "targetMatch": "Målmatchning",
+  "targetMatchSentenceTemplate": "Profilkapaciteten är {ratio} av det valda målet."
 }

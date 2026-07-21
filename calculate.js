@@ -116,6 +116,35 @@
       : ELECTRICITY_SHARE_MODES.ALLOCATION;
   }
 
+  function calculateProfileComparisonGauge({
+    calculatedProfiles,
+    targetProfiles,
+    ceilingRatio = 3,
+  }) {
+    assertNonNegativeNumber(calculatedProfiles, "calculatedProfiles");
+    assertPositiveNumber(ceilingRatio, "ceilingRatio");
+
+    if (!Number.isFinite(targetProfiles) || targetProfiles < 0) {
+      throw new Error("targetProfiles must be >= 0");
+    }
+
+    if (targetProfiles === 0) {
+      return {
+        ratio: null,
+        percent: null,
+        clampedPercent: 0,
+      };
+    }
+
+    const ratio = calculatedProfiles / targetProfiles;
+    const percent = ratio * 100;
+    return {
+      ratio,
+      percent,
+      clampedPercent: Math.min(ceilingRatio * 100, percent),
+    };
+  }
+
   const api = {
     KWH_PER_TWH,
     DAYS_PER_YEAR,
@@ -128,6 +157,7 @@
     calculateCountryBudget,
     calculateShareForTargetProfiles,
     classifyElectricityShare,
+    calculateProfileComparisonGauge,
   };
 
   globalScope.AILabourPowerBudgetCalculator = api;

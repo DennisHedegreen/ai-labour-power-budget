@@ -79,13 +79,13 @@
   "fullOutputAssumption": "referenceantagelse: energiækvivalent ved kontinuerligt 3 MW-mærkeoutput; ikke et realistisk antal vindmøller",
   "offshoreAssumption": "referenceantagelse: kapacitetsfaktor på 45 %",
   "householdAssumption": "referenceantagelse: 3.500 kWh/år",
-  "batteryAssumption": "referenceantagelse: 100 MWh-batteripakke",
+  "batteryAssumption": "referenceantagelse: årlig energigennemstrømning divideret med 100 MWh; ikke antal installerede batterisystemer",
   "nuclearAssumption": "referenceantagelse: 1 GW-reaktor med en kapacitetsfaktor på 90 %",
   "hydroAssumption": "referenceantagelse: 500 MW-vandkraftværk med en kapacitetsfaktor på 45 %",
   "wind3": "Ækvivalenter ved kontinuerligt 3 MW-mærkeoutput",
   "wind8": "8 MW-havvindmøller",
   "households": "Husstandsår-ækvivalent",
-  "batteryPacks": "100 MWh-batteripakker",
+  "batteryPacks": "100 MWh fuldcyklus-ækvivalenter",
   "nuclearReactors": "Ækvivalent til en 1 GW-atomreaktor",
   "hydroPlants": "Ækvivalent til et 500 MW-vandkraftværk",
   "truthBoundary": "Sandhedsgrænse",
@@ -175,5 +175,10 @@
     "hundred_percent_thought_experiment": {
       "label": "100 % tankeeksperiment"
     }
-  }
+  },
+  "guide": "Guide",
+  "close": "Luk",
+  "guideTitle": "Hvad indstillingerne betyder",
+  "targetMatch": "Målmatch",
+  "targetMatchSentenceTemplate": "Profilkapaciteten er {ratio} af det valgte mål."
 }

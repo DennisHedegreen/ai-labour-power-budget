@@ -74,7 +74,7 @@ for (const expected of [
 
 const sourceHeading = definition.content.find((item) => item.text === model.sourceEvidence.title);
 assert(sourceHeading, "source evidence heading is missing");
-assert.equal(sourceHeading.pageBreak, "before", "source evidence must start on a new page");
+assert.equal(sourceHeading.pageBreak, undefined, "source evidence must not force a separate page");
 
 function findLinkedValue(value) {
   for (const item of definition.content) {

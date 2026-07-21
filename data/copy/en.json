@@ -37,7 +37,11 @@
   "requiredEnergySentenceTemplate": "{profiles} configured AI-worker profiles would require {twh} TWh/year, equivalent to {energyMultiple} times {countryName}'s {denominator}. This is a beyond-total-electricity thought experiment, not an allocation.",
   "requiredEnergyLabelTemplate": "{energyMultiple} times {denominator}",
   "sourceCandidateReportBoundary": "Source-candidate values are used in review calculations. They are not promoted or verified runtime data.",
-  "statusChips": ["demo values", "source review needed", "public review"],
+  "statusChips": [
+    "demo values",
+    "source review needed",
+    "public review"
+  ],
   "manualSetting": "Manual setting",
   "clickToCycle": "Click to cycle",
   "selectCountry": "Select country",
@@ -75,18 +79,23 @@
   "fullOutputAssumption": "reference assumption: energy equivalent at continuous 3 MW nameplate output; not a realistic turbine count",
   "offshoreAssumption": "reference assumption: 45% capacity factor",
   "householdAssumption": "reference assumption: 3,500 kWh/year",
-  "batteryAssumption": "reference assumption: 100 MWh battery pack",
+  "batteryAssumption": "reference assumption: annual energy throughput divided by 100 MWh; not installed battery-system count",
   "nuclearAssumption": "reference assumption: 1 GW reactor at 90% capacity factor",
   "hydroAssumption": "reference assumption: 500 MW hydro plant at 45% capacity factor",
   "wind3": "Continuous 3 MW nameplate-output equivalents",
   "wind8": "8 MW offshore turbines",
   "households": "Household-year equivalent",
-  "batteryPacks": "100 MWh battery packs",
+  "batteryPacks": "100 MWh full-cycle equivalents",
   "nuclearReactors": "1 GW nuclear reactor equivalent",
   "hydroPlants": "500 MW hydro plant equivalent",
   "truthBoundary": "Truth boundary",
   "truthBoundaryText": "Outputs are energy-equivalent scenarios only. They do not show spare electricity or grid capacity, deployed AI workers, or job loss. Data status is shown separately by mode.",
-  "steps": ["1 Country", "2 Worker", "3 Budget", "4 Report"],
+  "steps": [
+    "1 Country",
+    "2 Worker",
+    "3 Budget",
+    "4 Report"
+  ],
   "workerProfile": "AI-worker profile",
   "defineWorker": "Define one configured AI-worker profile",
   "workerIntro": "Set the watt profile and runtime used for this scenario.",
@@ -119,18 +128,57 @@
   "shareCapacityLabelTemplate": "{share} electricity allocation",
   "calculationBasisTemplate": "{watts} W x {hoursPerWeek} h/week x {weeksPerYear} weeks/year x {overhead} overhead = {mwhYear} MWh/profile/year",
   "profileText": {
-    "efficient_future_70w": { "label": "70 W", "description": "Efficient hardware scenario" },
-    "improved_200w": { "label": "200 W", "description": "Improved hardware scenario" },
-    "heavy_700w": { "label": "700 W", "description": "Current heavy scenario" },
-    "human_week_37h": { "label": "37 hours/week", "description": "Human workweek equivalent" },
-    "standard_40h": { "label": "40 hours/week", "description": "Standard full-time week" },
-    "always_on_24_7": { "label": "24/7", "description": "Always-on machine worker" },
-    "raw_compute": { "label": "Off / raw compute", "description": "No overhead multiplier" },
-    "facility_1_3": { "label": "1.3x", "description": "Simple cooling / facility overhead scenario" },
-    "one_percent": { "label": "1%" },
-    "five_percent": { "label": "5%" },
-    "ten_percent": { "label": "10%" },
-    "twentyfive_percent": { "label": "25%" },
-    "hundred_percent_thought_experiment": { "label": "100% thought experiment" }
-  }
+    "efficient_future_70w": {
+      "label": "70 W",
+      "description": "Efficient hardware scenario"
+    },
+    "improved_200w": {
+      "label": "200 W",
+      "description": "Improved hardware scenario"
+    },
+    "heavy_700w": {
+      "label": "700 W",
+      "description": "Current heavy scenario"
+    },
+    "human_week_37h": {
+      "label": "37 hours/week",
+      "description": "Human workweek equivalent"
+    },
+    "standard_40h": {
+      "label": "40 hours/week",
+      "description": "Standard full-time week"
+    },
+    "always_on_24_7": {
+      "label": "24/7",
+      "description": "Always-on machine worker"
+    },
+    "raw_compute": {
+      "label": "Off / raw compute",
+      "description": "No overhead multiplier"
+    },
+    "facility_1_3": {
+      "label": "1.3x",
+      "description": "Simple cooling / facility overhead scenario"
+    },
+    "one_percent": {
+      "label": "1%"
+    },
+    "five_percent": {
+      "label": "5%"
+    },
+    "ten_percent": {
+      "label": "10%"
+    },
+    "twentyfive_percent": {
+      "label": "25%"
+    },
+    "hundred_percent_thought_experiment": {
+      "label": "100% thought experiment"
+    }
+  },
+  "guide": "Guide",
+  "close": "Close",
+  "guideTitle": "What the settings mean",
+  "targetMatch": "Target match",
+  "targetMatchSentenceTemplate": "Profile capacity is {ratio} of the selected target."
 }

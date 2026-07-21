@@ -79,13 +79,13 @@
   "fullOutputAssumption": "toimhde thagartha: coibhéis fuinnimh ag aschur ainmchláir leanúnach 3 MW; ní líon réalaíoch tuirbíní é",
   "offshoreAssumption": "toimhde tagartha: fachtóir acmhainne 45 %",
   "householdAssumption": "toimhde tagartha: 3,500 kWh/bliain",
-  "batteryAssumption": "toimhde tagartha: pacáiste ceallraí 100 MWh",
+  "batteryAssumption": "toimhde tagartha: tréchur fuinnimh bliantúil roinnte ar 100 MWh; ní líon córas ceallraí suiteáilte é",
   "nuclearAssumption": "toimhde tagartha: imoibreoir 1 GW ag fachtóir acmhainne 90%",
   "hydroAssumption": "toimhde tagartha: gléasra hidrileictreach 500 MW ag fachtóir acmhainne 45%",
   "wind3": "Coibhéisí d’aschur ainmchláir leanúnach 3 MW",
   "wind8": "tuirbíní gaoithe amach ón gcósta 8 MW",
   "households": "Coibhéis teaghlaigh-bliain",
-  "batteryPacks": "Pacáistí ceallraí 100 MWh",
+  "batteryPacks": "Coibhéisí lán-timthrialla 100 MWh",
   "nuclearReactors": "Coibhéis imoibreora núicléach 1 GW",
   "hydroPlants": "Coibhéis gléasra hidrileictrigh 500 MW",
   "truthBoundary": "Teorainn léirmhínithe",
@@ -175,5 +175,10 @@
     "hundred_percent_thought_experiment": {
       "label": "Turgnamh smaointe 100%"
     }
-  }
+  },
+  "guide": "Treoir",
+  "close": "Dún",
+  "guideTitle": "Cad is brí leis na socruithe",
+  "targetMatch": "Meaitseáil sprice",
+  "targetMatchSentenceTemplate": "Is é acmhainn na bpróifílí {ratio} den sprioc roghnaithe."
 }

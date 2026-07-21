@@ -171,6 +171,20 @@
                   <div class="readout-list" id="budget-preview"></div>
                   <div class="advanced-target">
                     <p id="target-preview" class="target-preview"></p>
+                    <div class="target-match" id="target-match" aria-live="polite">
+                      <div class="target-match__head">
+                        <span id="target-match-label">Target match</span>
+                        <strong id="target-match-value">0%</strong>
+                      </div>
+                      <div class="target-match__track" aria-hidden="true">
+                        <div class="target-match__fill" id="target-match-fill"></div>
+                      </div>
+                      <div class="target-match__labels" aria-hidden="true">
+                        <span>0%</span>
+                        <span>100%</span>
+                        <span>300%+</span>
+                      </div>
+                    </div>
                   </div>
                 </aside>
 
@@ -238,7 +252,7 @@
             <button type="button" class="ghost-button" data-action="close-guide">Close</button>
           </div>
 
-          <div class="guide-grid">
+          <div class="guide-grid" id="guide-grid">
             <article>
               <h3>Country / EU / USA / World</h3>
               <p>Choose the electricity denominator used for the scenario. EU27, member countries, U.S. national/state records and World are source-candidate review values, not promoted runtime data.</p>
@@ -282,6 +296,7 @@
     <script src="./data.js"></script>
     <script src="./vendor/pdfmake-0.2.20/pdfmake.min.js"></script>
     <script src="./vendor/pdfmake-0.2.20/vfs_fonts.js"></script>
+    <script src="./vendor/pdfmake-0.2.20/noto-cjk-jp-vfs.js"></script>
     <script src="./pdf-report.js"></script>
     <script src="./app.js"></script>
   </body>

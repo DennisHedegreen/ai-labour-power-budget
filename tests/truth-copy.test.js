@@ -13,6 +13,9 @@ const requiredKeys = [
   "dataModeDemoText",
   "dataModeSourceCandidateReviewText",
   "dataModePromotedRuntimeText",
+  "guide",
+  "close",
+  "guideTitle",
   "candidateNotPromoted",
   "sourceEvidence",
   "sourceName",
@@ -41,6 +44,8 @@ const requiredKeys = [
   "requiredEnergySentenceTemplate",
   "requiredEnergyLabelTemplate",
   "sourceCandidateReportBoundary",
+  "targetMatch",
+  "targetMatchSentenceTemplate",
   "targetPreset",
   "overThreeHundredPercent",
   "downloadReport",
@@ -289,6 +294,11 @@ for (const language of languages) {
     ["denominator", "energyMultiple"],
     `${language.code} required-energy label placeholders drifted`
   );
+  assert.deepEqual(
+    placeholders(text.targetMatchSentenceTemplate),
+    ["ratio"],
+    `${language.code} target-match sentence placeholders drifted`
+  );
 
   assert.match(text.unitTwhPerYear, /^TWh\//, `${language.code} must retain the TWh SI symbol`);
   assert.match(text.unitMwhPerYear, /^MWh\//, `${language.code} must retain the MWh SI symbol`);
@@ -317,12 +327,15 @@ assert.deepEqual(
   }
 );
 assert.equal(en.wind3, "Continuous 3 MW nameplate-output equivalents");
+assert.equal(en.batteryPacks, "100 MWh full-cycle equivalents");
 assert.equal(en.targetPreset, "preset");
 assert.equal(en.overThreeHundredPercent, "over 300%");
+assert.doesNotMatch(en.batteryPacks, /battery packs/i);
 assert.equal(
   en.fullOutputAssumption,
   "reference assumption: energy equivalent at continuous 3 MW nameplate output; not a realistic turbine count"
 );
+assert.match(en.batteryAssumption, /throughput/i);
 assert.match(en.dataModeSourceCandidateReviewText, /source-candidate/i);
 assert.match(en.dataModeSourceCandidateReviewText, /not promoted/i);
 assert.match(en.dataModePromotedRuntimeText, /promotion gate/i);

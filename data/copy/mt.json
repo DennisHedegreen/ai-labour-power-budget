@@ -79,13 +79,13 @@
   "fullOutputAssumption": "assunzjoni ta’ referenza: ekwivalenza tal-enerġija b’output nominali kontinwu ta’ 3 MW; mhux għadd realistiku ta’ turbini",
   "offshoreAssumption": "suppożizzjoni ta’ referenza: fattur ta’ kapaċità ta’ 45 %",
   "householdAssumption": "suppożizzjoni ta’ referenza: 3,500 kWh/sena",
-  "batteryAssumption": "suppożizzjoni ta’ referenza: pakkett ta’ batteriji ta’ 100 MWh",
+  "batteryAssumption": "assunzjoni ta’ referenza: throughput annwali tal-enerġija maqsum b’100 MWh; mhux għadd ta’ sistemi ta’ batteriji installati",
   "nuclearAssumption": "suppożizzjoni ta’ referenza: reattur ta’ 1 GW b’fattur ta’ kapaċità ta’ 90%",
   "hydroAssumption": "suppożizzjoni ta’ referenza: impjant idroelettriku ta’ 500 MW b’fattur ta’ kapaċità ta’ 45%",
   "wind3": "Ekwivalenti ta’ output nominali kontinwu ta’ 3 MW",
   "wind8": "turbini tar-riħ lil hinn mill-kosta ta’ 8 MW",
   "households": "Ekwivalenti ta’ dar għal sena",
-  "batteryPacks": "Pakketti ta’ batteriji ta’ 100 MWh",
+  "batteryPacks": "Ekwivalenti taċ-ċiklu sħiħ ta’ 100 MWh",
   "nuclearReactors": "Ekwivalenti ta’ reattur nukleari ta’ 1 GW",
   "hydroPlants": "Ekwivalenti ta’ impjant idroelettriku ta’ 500 MW",
   "truthBoundary": "Limitu tal-interpretazzjoni",
@@ -175,5 +175,10 @@
     "hundred_percent_thought_experiment": {
       "label": "Esperiment tal-ħsieb ta’ 100%"
     }
-  }
+  },
+  "guide": "Gwida",
+  "close": "Agħlaq",
+  "guideTitle": "Xi jfissru s-settings",
+  "targetMatch": "Qbil mal-mira",
+  "targetMatchSentenceTemplate": "Il-kapaċità tal-profili hija {ratio} tal-mira magħżula."
 }

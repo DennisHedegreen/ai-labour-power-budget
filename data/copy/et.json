@@ -79,13 +79,13 @@
   "fullOutputAssumption": "võrdluseeldus: energiaekvivalent pideva 3 MW nimivõimsuse juures; ei ole realistlik turbiinide arv",
   "offshoreAssumption": "võrdluseeldus: 45 % kasutegur",
   "householdAssumption": "võrdluseeldus: 3 500 kWh/aasta",
-  "batteryAssumption": "võrdluseeldus: 100 MWh akupakk",
+  "batteryAssumption": "võrdluseeldus: aastane energia läbilase jagatud 100 MWh-ga; mitte paigaldatud akusüsteemide arv",
   "nuclearAssumption": "võrdluseeldus: 1 GW reaktor 90% võimsusteguriga",
   "hydroAssumption": "võrdluseeldus: 500 MW hüdroelektrijaam 45% võimsusteguriga",
   "wind3": "Pideva 3 MW nimivõimsuse ekvivalendid",
   "wind8": "8 MW meretuulepargi turbiinid",
   "households": "Majapidamisaasta ekvivalent",
-  "batteryPacks": "100 MWh akupakid",
+  "batteryPacks": "100 MWh täistsükli ekvivalendid",
   "nuclearReactors": "1 GW tuumareaktori ekvivalent",
   "hydroPlants": "500 MW hüdroelektrijaama ekvivalent",
   "truthBoundary": "Tõlgenduspiir",
@@ -175,5 +175,10 @@
     "hundred_percent_thought_experiment": {
       "label": "100 % mõttekatse"
     }
-  }
+  },
+  "guide": "Juhend",
+  "close": "Sulge",
+  "guideTitle": "Mida seaded tähendavad",
+  "targetMatch": "Sihtmärgi kattuvus",
+  "targetMatchSentenceTemplate": "Profiilide võimekus on {ratio} valitud sihtmärgist."
 }

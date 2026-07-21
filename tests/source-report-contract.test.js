@@ -44,6 +44,7 @@ assert(
 for (const script of [
   "./vendor/pdfmake-0.2.20/pdfmake.min.js",
   "./vendor/pdfmake-0.2.20/vfs_fonts.js",
+  "./vendor/pdfmake-0.2.20/noto-cjk-jp-vfs.js",
   "./pdf-report.js",
 ]) {
   assert(index.includes(script), `index.html missing direct-PDF runtime ${script}`);
@@ -69,6 +70,9 @@ for (const hook of [
   "renderSourceEvidence",
   "buildPdfReportModel",
   "downloadScenarioReportPdf",
+  "sourceStatusLabel",
+  "scenarioStatusLabel",
+  "renderTargetMatch",
   "sourceCandidateReportBoundary",
   "truthBoundaryText",
 ]) {
@@ -96,8 +100,18 @@ assert.match(app, /text\.referenceComparisons/);
 assert.match(app, /text\.generatedLabel/);
 assert.match(app, /text\.publicReviewPdfBoundary/);
 assert.match(app, /pdfReport\.downloadReport/);
-assert.match(app, /activeLanguageCode === "ja" \? copy\.en : activeCopy\(\)/);
-assert.match(app, /activeLanguageCode === "ja" \? "en" : activeLanguageCode/);
+assert.match(app, /const pdfLanguage = activeLanguage\(\)/);
+assert.match(app, /const text = activeCopy\(\)/);
+assert.match(app, /fontFamily: pdfLanguage === "ja" \? "NotoSansCJKJP" : "Roboto"/);
+assert.match(app, /AILabourPowerBudgetPdfFonts\?\.register/);
+assert.doesNotMatch(app, /activeLanguageCode === "ja" \? copy\.en : activeCopy\(\)/);
+assert.doesNotMatch(app, /activeLanguageCode === "ja" \? "en" : activeLanguageCode/);
+assert.match(app, /calculateProfileComparisonGauge/);
+assert.match(index, /id="target-match"/);
+assert.match(pdfReport, /model\.fontFamily/);
+assert(fs.existsSync(path.join(root, "vendor/pdfmake-0.2.20/NotoSansCJKJP-Regular.subset.ttf")));
+assert(fs.existsSync(path.join(root, "vendor/pdfmake-0.2.20/NotoSansCJKJP-Bold.subset.ttf")));
+assert.match(read("vendor/pdfmake-0.2.20/noto-cjk-jp-vfs.js"), /NotoSansCJKJP/);
 assert.match(pdfReport, /application\/pdf/);
 assert.match(pdfReport, /createObjectURL/);
 assert.match(pdfReport, /revokeObjectURL/);

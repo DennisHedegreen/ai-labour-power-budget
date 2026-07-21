@@ -79,10 +79,10 @@
   "fullOutputAssumption": "referentieaanname: energie-equivalent bij continu nominaal vermogen van 3 MW; geen realistisch aantal windturbines",
   "offshoreAssumption": "referentieaanname: capaciteitsfactor van 45%",
   "householdAssumption": "referentieaanname: 3.500 kWh/jaar",
-  "batteryAssumption": "referentieaanname: batterijpakket van 100 MWh",
+  "batteryAssumption": "referentieaanname: jaarlijkse energiedoorvoer gedeeld door 100 MWh; geen aantal geïnstalleerde batterijsystemen",
   "nuclearAssumption": "referentieaanname: reactor van 1 GW bij een capaciteitsfactor van 90%",
   "hydroAssumption": "referentieaanname: waterkrachtcentrale van 500 MW bij een capaciteitsfactor van 45%",
-  "batteryPacks": "Batterijpakketten van 100 MWh",
+  "batteryPacks": "100 MWh-volledige-cyclus-equivalenten",
   "nuclearReactors": "Equivalent van een kernreactor van 1 GW",
   "hydroPlants": "Equivalent van een waterkrachtcentrale van 500 MW",
   "wind3": "Equivalenten bij continu nominaal vermogen van 3 MW",
@@ -175,5 +175,10 @@
     "hundred_percent_thought_experiment": {
       "label": "100% gedachte-experiment"
     }
-  }
+  },
+  "guide": "Gids",
+  "close": "Sluiten",
+  "guideTitle": "Wat de instellingen betekenen",
+  "targetMatch": "Doelmatch",
+  "targetMatchSentenceTemplate": "De profielcapaciteit is {ratio} van het gekozen doel."
 }

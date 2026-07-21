@@ -79,10 +79,10 @@
   "fullOutputAssumption": "ipotesi di riferimento: equivalente energetico a potenza nominale continua di 3 MW; non è un numero realistico di turbine",
   "offshoreAssumption": "ipotesi di riferimento: fattore di capacità del 45 %",
   "householdAssumption": "ipotesi di riferimento: 3.500 kWh/anno",
-  "batteryAssumption": "ipotesi di riferimento: pacco batteria da 100 MWh",
+  "batteryAssumption": "ipotesi di riferimento: throughput energetico annuale diviso per 100 MWh; non numero di sistemi batteria installati",
   "nuclearAssumption": "ipotesi di riferimento: reattore da 1 GW con fattore di capacità del 90%",
   "hydroAssumption": "ipotesi di riferimento: centrale idroelettrica da 500 MW con fattore di capacità del 45%",
-  "batteryPacks": "Pacchi batteria da 100 MWh",
+  "batteryPacks": "Equivalenti di ciclo completo da 100 MWh",
   "nuclearReactors": "Equivalente a un reattore nucleare da 1 GW",
   "hydroPlants": "Equivalente a una centrale idroelettrica da 500 MW",
   "wind3": "Equivalenti a potenza nominale continua di 3 MW",
@@ -175,5 +175,10 @@
     "hundred_percent_thought_experiment": {
       "label": "Esperimento mentale al 100 %"
     }
-  }
+  },
+  "guide": "Guida",
+  "close": "Chiudi",
+  "guideTitle": "Cosa significano le impostazioni",
+  "targetMatch": "Corrispondenza obiettivo",
+  "targetMatchSentenceTemplate": "La capacità dei profili è {ratio} dell'obiettivo selezionato."
 }

@@ -79,10 +79,10 @@
   "fullOutputAssumption": "hypothèse de référence : équivalent énergétique à une puissance nominale continue de 3 MW ; pas un nombre réaliste d’éoliennes",
   "offshoreAssumption": "hypothèse de référence : facteur de charge de 45 %",
   "householdAssumption": "hypothèse de référence : 3 500 kWh/an",
-  "batteryAssumption": "hypothèse de référence : batterie de 100 MWh",
+  "batteryAssumption": "hypothèse de référence : débit énergétique annuel divisé par 100 MWh ; pas un nombre de systèmes de batteries installés",
   "nuclearAssumption": "hypothèse de référence : réacteur de 1 GW avec un facteur de charge de 90 %",
   "hydroAssumption": "hypothèse de référence : centrale hydroélectrique de 500 MW avec un facteur de charge de 45 %",
-  "batteryPacks": "Batteries de 100 MWh",
+  "batteryPacks": "Équivalents cycle complet de 100 MWh",
   "nuclearReactors": "Équivalent d’un réacteur nucléaire de 1 GW",
   "hydroPlants": "Équivalent d’une centrale hydroélectrique de 500 MW",
   "wind3": "Équivalents à une puissance nominale continue de 3 MW",
@@ -175,5 +175,10 @@
     "hundred_percent_thought_experiment": {
       "label": "Expérience de pensée à 100 %"
     }
-  }
+  },
+  "guide": "Guide",
+  "close": "Fermer",
+  "guideTitle": "Signification des paramètres",
+  "targetMatch": "Correspondance cible",
+  "targetMatchSentenceTemplate": "La capacité en profils représente {ratio} de la cible sélectionnée."
 }

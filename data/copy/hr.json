@@ -79,13 +79,13 @@
   "fullOutputAssumption": "referentna pretpostavka: energetski ekvivalent pri kontinuiranoj nazivnoj snazi od 3 MW; nije realan broj turbina",
   "offshoreAssumption": "referentna pretpostavka: faktor kapaciteta od 45 %",
   "householdAssumption": "referentna pretpostavka: 3.500 kWh/godina",
-  "batteryAssumption": "referentna pretpostavka: baterijski paket od 100 MWh",
+  "batteryAssumption": "referentna pretpostavka: godišnji protok energije podijeljen sa 100 MWh; nije broj instaliranih baterijskih sustava",
   "nuclearAssumption": "referentna pretpostavka: reaktor od 1 GW uz faktor kapaciteta 90 %",
   "hydroAssumption": "referentna pretpostavka: hidroelektrana od 500 MW uz faktor kapaciteta 45 %",
   "wind3": "Ekvivalenti pri kontinuiranoj nazivnoj snazi od 3 MW",
   "wind8": "odobalne vjetroturbine snage 8 MW",
   "households": "Ekvivalent kućanstva za jednu godinu",
-  "batteryPacks": "Baterijski paketi od 100 MWh",
+  "batteryPacks": "Ekvivalenti punog ciklusa od 100 MWh",
   "nuclearReactors": "Ekvivalent nuklearnog reaktora od 1 GW",
   "hydroPlants": "Ekvivalent hidroelektrane od 500 MW",
   "truthBoundary": "Granica tumačenja",
@@ -175,5 +175,10 @@
     "hundred_percent_thought_experiment": {
       "label": "100 % misaoni eksperiment"
     }
-  }
+  },
+  "guide": "Vodič",
+  "close": "Zatvori",
+  "guideTitle": "Što znače postavke",
+  "targetMatch": "Podudaranje cilja",
+  "targetMatchSentenceTemplate": "Kapacitet profila iznosi {ratio} od odabranog cilja."
 }

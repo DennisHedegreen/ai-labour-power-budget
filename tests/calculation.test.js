@@ -8,6 +8,7 @@ const {
   calculateCountryBudget,
   calculateShareForTargetProfiles,
   classifyElectricityShare,
+  calculateProfileComparisonGauge,
 } = require("../calculate.js");
 
 function closeTo(actual, expected, tolerance = 0.000001) {
@@ -72,6 +73,31 @@ for (const share of [0, 0.01, 1]) {
 for (const share of [1 + Number.EPSILON, 1.93738, 3]) {
   assert.equal(classifyElectricityShare(share), ELECTRICITY_SHARE_MODES.REQUIRED_ENERGY_MULTIPLE);
 }
+
+assert.deepEqual(calculateProfileComparisonGauge({ calculatedProfiles: 0, targetProfiles: 0 }), {
+  ratio: null,
+  percent: null,
+  clampedPercent: 0,
+});
+assert.deepEqual(calculateProfileComparisonGauge({ calculatedProfiles: 500, targetProfiles: 1000 }), {
+  ratio: 0.5,
+  percent: 50,
+  clampedPercent: 50,
+});
+assert.deepEqual(calculateProfileComparisonGauge({ calculatedProfiles: 1000, targetProfiles: 1000 }), {
+  ratio: 1,
+  percent: 100,
+  clampedPercent: 100,
+});
+assert.deepEqual(calculateProfileComparisonGauge({ calculatedProfiles: 4000, targetProfiles: 1000 }), {
+  ratio: 4,
+  percent: 400,
+  clampedPercent: 300,
+});
+assert.throws(
+  () => calculateProfileComparisonGauge({ calculatedProfiles: 1, targetProfiles: -1 }),
+  /targetProfiles must be >= 0/
+);
 
 function readDataJson(relativePath) {
   return JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", relativePath), "utf8"));

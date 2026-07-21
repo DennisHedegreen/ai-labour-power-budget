@@ -79,10 +79,10 @@
   "fullOutputAssumption": "pressuposto de referência: equivalente energético a potência nominal contínua de 3 MW; não é um número realista de turbinas",
   "offshoreAssumption": "pressuposto de referência: fator de capacidade de 45 %",
   "householdAssumption": "pressuposto de referência: 3 500 kWh/ano",
-  "batteryAssumption": "pressuposto de referência: conjunto de baterias de 100 MWh",
+  "batteryAssumption": "pressuposto de referência: energia anual processada dividida por 100 MWh; não é contagem de sistemas de baterias instalados",
   "nuclearAssumption": "pressuposto de referência: reator de 1 GW com fator de capacidade de 90%",
   "hydroAssumption": "pressuposto de referência: central hidroelétrica de 500 MW com fator de capacidade de 45%",
-  "batteryPacks": "Conjuntos de baterias de 100 MWh",
+  "batteryPacks": "Equivalentes de ciclo completo de 100 MWh",
   "nuclearReactors": "Equivalente a um reator nuclear de 1 GW",
   "hydroPlants": "Equivalente a uma central hidroelétrica de 500 MW",
   "wind3": "Equivalentes a potência nominal contínua de 3 MW",
@@ -175,5 +175,10 @@
     "hundred_percent_thought_experiment": {
       "label": "Experiência mental a 100 %"
     }
-  }
+  },
+  "guide": "Guia",
+  "close": "Fechar",
+  "guideTitle": "O que significam as definições",
+  "targetMatch": "Correspondência do alvo",
+  "targetMatchSentenceTemplate": "A capacidade de perfis é {ratio} do alvo selecionado."
 }

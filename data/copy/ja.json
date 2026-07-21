@@ -37,7 +37,11 @@
   "requiredEnergySentenceTemplate": "{profiles}個の設定済みAI-workerプロファイルには{twh} TWh/年が必要で、これは{countryName}の{denominator}の{energyMultiple}倍に相当します。これは総電力超過の思考実験であり、配分ではありません。",
   "requiredEnergyLabelTemplate": "{denominator}の{energyMultiple}倍",
   "sourceCandidateReportBoundary": "ソース候補値をレビュー計算で使用しています。昇格済みまたは検証済みのランタイムデータではありません。",
-  "statusChips": ["デモ値", "ソースレビュー要", "公開レビュー"],
+  "statusChips": [
+    "デモ値",
+    "ソースレビュー要",
+    "公開レビュー"
+  ],
   "manualSetting": "手動設定",
   "clickToCycle": "クリックで切替",
   "selectCountry": "国を選択",
@@ -75,18 +79,23 @@
   "fullOutputAssumption": "参照仮定: 3 MWの定格出力で連続稼働するエネルギー等価。現実的なタービン数の主張ではありません",
   "offshoreAssumption": "参照仮定: 設備利用率45%",
   "householdAssumption": "参照仮定: 3,500 kWh/年",
-  "batteryAssumption": "参照仮定: 100 MWhバッテリーパック",
+  "batteryAssumption": "参照仮定: 年間エネルギー通過量を100 MWhで割った値。設置済みバッテリーシステム数ではありません",
   "nuclearAssumption": "参照仮定: 設備利用率90%の1 GW原子炉",
   "hydroAssumption": "参照仮定: 設備利用率45%の500 MW水力発電所",
   "wind3": "連続3 MW定格出力の等価数",
   "wind8": "8 MW洋上風力タービン",
   "households": "世帯年等価",
-  "batteryPacks": "100 MWhバッテリーパック",
+  "batteryPacks": "100 MWhフルサイクル等価",
   "nuclearReactors": "1 GW原子炉等価",
   "hydroPlants": "500 MW水力発電所等価",
   "truthBoundary": "真実の境界",
   "truthBoundaryText": "出力はエネルギー等価シナリオのみです。余剰電力や送電網容量、導入済みAI worker、または雇用喪失を示すものではありません。データ状態はモードごとに別に表示されます。",
-  "steps": ["1 国", "2 Worker", "3 予算", "4 レポート"],
+  "steps": [
+    "1 国",
+    "2 Worker",
+    "3 予算",
+    "4 レポート"
+  ],
   "workerProfile": "AI-workerプロファイル",
   "defineWorker": "1つの設定済みAI-workerプロファイルを定義",
   "workerIntro": "このシナリオで使用するワットプロファイルと稼働時間を設定します。",
@@ -119,18 +128,57 @@
   "shareCapacityLabelTemplate": "{share}の電力配分",
   "calculationBasisTemplate": "{watts} W x {hoursPerWeek} 時間/週 x {weeksPerYear} 週/年 x オーバーヘッド{overhead} = {mwhYear} MWh/プロファイル/年",
   "profileText": {
-    "efficient_future_70w": { "label": "70 W", "description": "高効率ハードウェアシナリオ" },
-    "improved_200w": { "label": "200 W", "description": "改善されたハードウェアシナリオ" },
-    "heavy_700w": { "label": "700 W", "description": "現在の重いシナリオ" },
-    "human_week_37h": { "label": "37時間/週", "description": "人間の労働週に相当" },
-    "standard_40h": { "label": "40時間/週", "description": "標準的なフルタイム週" },
-    "always_on_24_7": { "label": "24/7", "description": "常時稼働の機械worker" },
-    "raw_compute": { "label": "オフ / 生の計算", "description": "オーバーヘッド倍率なし" },
-    "facility_1_3": { "label": "1.3x", "description": "単純な冷却 / 施設オーバーヘッドシナリオ" },
-    "one_percent": { "label": "1%" },
-    "five_percent": { "label": "5%" },
-    "ten_percent": { "label": "10%" },
-    "twentyfive_percent": { "label": "25%" },
-    "hundred_percent_thought_experiment": { "label": "100%思考実験" }
-  }
+    "efficient_future_70w": {
+      "label": "70 W",
+      "description": "高効率ハードウェアシナリオ"
+    },
+    "improved_200w": {
+      "label": "200 W",
+      "description": "改善されたハードウェアシナリオ"
+    },
+    "heavy_700w": {
+      "label": "700 W",
+      "description": "現在の重いシナリオ"
+    },
+    "human_week_37h": {
+      "label": "37時間/週",
+      "description": "人間の労働週に相当"
+    },
+    "standard_40h": {
+      "label": "40時間/週",
+      "description": "標準的なフルタイム週"
+    },
+    "always_on_24_7": {
+      "label": "24/7",
+      "description": "常時稼働の機械worker"
+    },
+    "raw_compute": {
+      "label": "オフ / 生の計算",
+      "description": "オーバーヘッド倍率なし"
+    },
+    "facility_1_3": {
+      "label": "1.3x",
+      "description": "単純な冷却 / 施設オーバーヘッドシナリオ"
+    },
+    "one_percent": {
+      "label": "1%"
+    },
+    "five_percent": {
+      "label": "5%"
+    },
+    "ten_percent": {
+      "label": "10%"
+    },
+    "twentyfive_percent": {
+      "label": "25%"
+    },
+    "hundred_percent_thought_experiment": {
+      "label": "100%思考実験"
+    }
+  },
+  "guide": "ガイド",
+  "close": "閉じる",
+  "guideTitle": "設定の意味",
+  "targetMatch": "目標一致",
+  "targetMatchSentenceTemplate": "プロファイル容量は選択した目標の{ratio}です。"
 }

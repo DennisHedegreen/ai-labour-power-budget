@@ -61,10 +61,14 @@
   const equationProfiles = document.querySelector("#equation-profiles");
   const sharePreview = document.querySelector("#share-preview");
   const targetPreview = document.querySelector("#target-preview");
+  const targetMatchLabel = document.querySelector("#target-match-label");
+  const targetMatchValue = document.querySelector("#target-match-value");
+  const targetMatchFill = document.querySelector("#target-match-fill");
   const pressureFill = document.querySelector("#pressure-fill");
   const reportGrid = document.querySelector("#report-grid");
   const reportCoreSentence = document.querySelector("#report-core-sentence");
   const sourceEvidence = document.querySelector("#source-evidence");
+  const guideGrid = document.querySelector("#guide-grid");
   const allocationDriverHeading = document.querySelector("#allocation-driver-heading");
   const allocationRangeLabel = document.querySelector("#allocation-range-label");
   const languageToggle = document.querySelector("#language-toggle");
@@ -151,6 +155,36 @@
     return text.dataModeDemoText;
   }
 
+  function sourceStatusLabel(country = state.selectedCountry, text = activeCopy()) {
+    if (!country) return text.sourceUnavailable;
+    if (country.source_status === "source_candidate") return text.candidateNotPromoted;
+    if (country.source_status === "verified_runtime") return text.dataModePromotedRuntime;
+    if (country.source_status === "demo_not_verified") return text.notVerified;
+    return country.source_status || text.sourceUnavailable;
+  }
+
+  function sourceStatusEvidence(country = state.selectedCountry, text = activeCopy()) {
+    if (!country) return text.sourceUnavailable;
+    const promotionStatus = country.promotion_status === "candidate_not_promoted"
+      ? text.candidateNotPromoted
+      : country.promotion_status
+        ? country.promotion_status.replaceAll("_", " ")
+        : "";
+    const status = sourceStatusLabel(country, text);
+    return [status, promotionStatus]
+      .filter((value, index, values) => value && values.indexOf(value) === index)
+      .join(" · ");
+  }
+
+  function sourceMetricLabel(country = state.selectedCountry, text = activeCopy()) {
+    if (!country) return text.sourceUnavailable;
+    return denominatorText(text) || country.source_metric || country.definition || text.sourceUnavailable;
+  }
+
+  function scenarioStatusLabel(share = state.electricityAllocationShare, text = activeCopy()) {
+    return isBeyondTotalElectricity(share) ? text.thoughtExperiment : text.scenarioOutput;
+  }
+
   function activeJurisdictionRecords() {
     return activeJurisdictionGroup()?.records || [];
   }
@@ -221,7 +255,7 @@
         const code = Array.isArray(slot) ? slot[0] : slot.code;
         const name = Array.isArray(slot) ? slot[1] : slot.name;
         const hasData = countryByCode.has(code);
-        const sourceStatus = countryByCode.get(code)?.source_status;
+        const sourceStatus = sourceStatusLabel(countryByCode.get(code), text);
         const suffix = hasData ? ` - ${sourceStatus || text.demoValue}` : ` - ${text.sourcePassNeeded}`;
         return `<option value="${escapeAttribute(code)}" ${hasData ? "" : "disabled"}>${escapeHtml(countryShellName(code, name) + suffix)}</option>`;
       }),
@@ -312,6 +346,11 @@
     setText('[data-action="back-allocation"]', text.back);
     setText('[data-action="download-report"]', text.downloadReport);
     setText('[data-action="restart"]', text.restart);
+    setAllText('button[data-action="open-guide"]', text.guide);
+    setAllText('button[data-action="close-guide"]', text.close);
+    setText(".guide-head .panel-label", text.guide);
+    setText("#guide-title", text.guideTitle);
+    setText("#target-match-label", text.targetMatch);
     setText('[data-cycle-control="power"] h3', text.powerDraw);
     setText('[data-cycle-control="runtime"] h3', text.runtime);
     setText('[data-cycle-control="overhead"] h3', text.infrastructureOverhead);
@@ -358,11 +397,62 @@
       if (label) label.textContent = text.truthBoundary;
       if (paragraph) paragraph.textContent = truthBoundaryText();
     }
+    renderGuideCopy(text);
   }
 
   function setText(selector, value) {
     const node = document.querySelector(selector);
     if (node) node.textContent = value;
+  }
+
+  function setAllText(selector, value) {
+    document.querySelectorAll(selector).forEach((node) => {
+      node.textContent = value;
+    });
+  }
+
+  function renderGuideCopy(text = activeCopy()) {
+    if (!guideGrid) return;
+    const sections = [
+      [
+        `${text.country} / EU / USA / World`,
+        formatTemplate(text.allocationIntro, { denominator: denominatorText(text) }),
+      ],
+      [
+        text.powerDraw,
+        text.profileText?.heavy_700w?.description || copy.en.profileText.heavy_700w.description,
+      ],
+      [
+        text.runtime,
+        `${text.profileText?.always_on_24_7?.description || copy.en.profileText.always_on_24_7.description} ${runtimeLabel(168, text)}.`,
+      ],
+      [
+        text.infrastructureOverhead,
+        text.profileText?.raw_compute?.description || copy.en.profileText.raw_compute.description,
+      ],
+      [
+        text.electricityShare,
+        text.beyondTotalIntro,
+      ],
+      [
+        text.compareTargetProfiles,
+        text.targetMatchSentenceTemplate
+          ? formatTemplate(text.targetMatchSentenceTemplate, { ratio: "100%" })
+          : text.compareTargetProfiles,
+      ],
+      [
+        text.scenarioReport,
+        text.sourceCandidateReportBoundary,
+      ],
+      [
+        text.truthBoundary,
+        truthBoundaryText(text),
+      ],
+    ];
+
+    guideGrid.innerHTML = sections
+      .map(([heading, body]) => `<article><h3>${escapeHtml(heading)}</h3><p>${escapeHtml(body)}</p></article>`)
+      .join("");
   }
 
   function localizeProfile(profile) {
@@ -506,6 +596,7 @@
       budgetPreview.innerHTML = "";
       reportGrid.innerHTML = "";
       if (sourceEvidence) sourceEvidence.innerHTML = "";
+      renderTargetMatch(0, text);
       return;
     }
 
@@ -564,6 +655,7 @@
       ),
     ].join("");
     targetPreview.textContent = targetComparisonSentence(scenario);
+    renderTargetMatch(profileCount, text);
 
     syncBudgetControlValues(scenario);
     reportCoreSentence.textContent = scenarioCoreSentence(scenario, profileCount);
@@ -575,7 +667,7 @@
 
   function renderReport(scenario) {
     const text = activeCopy();
-    const source = state.selectedCountry.source_status;
+    const sourceStatus = sourceStatusLabel(state.selectedCountry, text);
     const profileCount = scenarioProfileCount(scenario);
     const beyondTotal = isBeyondTotalElectricity(state.electricityAllocationShare);
     return [
@@ -594,9 +686,9 @@
       metric(
         beyondTotal ? text.requiredEnergy : text.allocatedElectricity,
         formatValueWithUnit(scenario.allocatedElectricityTwhYear, 3, "unitTwhPerYear"),
-        text.scenarioOutput
+        scenarioStatusLabel(state.electricityAllocationShare, text)
       ),
-      metric(text.country, countryDisplayName(state.selectedCountry), source),
+      metric(text.country, countryDisplayName(state.selectedCountry), sourceStatus),
       metric(text.wattProfile, `${formatNumber(state.wattsPerAiWorker, 0)} W`, text.scenarioSetting),
       metric(text.runtime, runtimeLabel(state.runtimeHoursPerWeek), text.scenarioSetting),
       metric(text.overhead, `${formatNumber(state.overheadFactor, 2)}x`, text.scenarioSetting),
@@ -628,10 +720,10 @@
             })
       ),
       ...renderComparisons(scenario),
-      metric(formatTemplate(text.shareCapacityLabelTemplate, { share: "1%" }), `${formatInteger(supportedAtShare(0.01))} ${text.profiles}`, source),
-      metric(formatTemplate(text.shareCapacityLabelTemplate, { share: "10%" }), `${formatInteger(supportedAtShare(0.1))} ${text.profiles}`, source),
+      metric(formatTemplate(text.shareCapacityLabelTemplate, { share: "1%" }), `${formatInteger(supportedAtShare(0.01))} ${text.profiles}`, text.scenarioOutput),
+      metric(formatTemplate(text.shareCapacityLabelTemplate, { share: "10%" }), `${formatInteger(supportedAtShare(0.1))} ${text.profiles}`, text.scenarioOutput),
       metric(formatTemplate(text.shareCapacityLabelTemplate, { share: "100%" }), `${formatInteger(supportedAtShare(1))} ${text.profiles}`, text.thoughtExperiment),
-      metric(text.dataStatus, source, activeDataMode() === "source_candidate_review" ? text.candidateNotPromoted : text.notVerified),
+      metric(text.dataStatus, sourceStatus, dataModeLabel(text)),
     ].join("");
   }
 
@@ -642,9 +734,9 @@
       [text.dataMode, dataModeLabel(text), null],
       [text.sourceName, country.source_name || text.sourceUnavailable, null],
       [text.sourceYear, country.source_year || text.sourceUnavailable, null],
-      [text.sourceMetric, country.source_metric || country.definition || text.sourceUnavailable, null],
+      [text.sourceMetric, sourceMetricLabel(country, text), null],
       [text.retrievalDate, country.retrieved_at || text.sourceUnavailable, null],
-      [text.sourceStatus, `${country.source_status || text.sourceUnavailable} · ${country.promotion_status || text.sourceUnavailable}`, null],
+      [text.sourceStatus, sourceStatusEvidence(country, text), null],
       [text.sourceUrl, country.source_url || text.sourceUnavailable, country.source_url || null],
     ];
   }
@@ -716,6 +808,35 @@
     return state.budgetDriver === "profiles"
       ? Math.round(state.targetAiWorkers)
       : scenario.supportedAiWorkers;
+  }
+
+  function renderTargetMatch(profileCount, text = activeCopy()) {
+    if (!targetMatchValue || !targetMatchFill) return;
+    const gauge = calculator.calculateProfileComparisonGauge({
+      calculatedProfiles: profileCount,
+      targetProfiles: state.targetAiWorkers,
+      ceilingRatio: MAX_ALLOCATION_SHARE,
+    });
+    const ratioText = gauge.percent === null ? "0%" : formatPercent(gauge.percent / 100);
+    targetMatchValue.textContent = ratioText;
+    targetMatchFill.style.width = `${gauge.clampedPercent / MAX_ALLOCATION_SHARE}%`;
+    targetMatchFill.dataset.match = targetMatchBand(gauge.ratio);
+    if (targetMatchLabel) targetMatchLabel.textContent = text.targetMatch;
+    const targetMatch = document.querySelector("#target-match");
+    if (targetMatch) {
+      targetMatch.setAttribute(
+        "aria-label",
+        formatTemplate(text.targetMatchSentenceTemplate || copy.en.targetMatchSentenceTemplate, { ratio: ratioText })
+      );
+    }
+  }
+
+  function targetMatchBand(ratio) {
+    if (ratio === null) return "zero-target";
+    if (ratio < 0.95) return "below";
+    if (ratio <= 1.05) return "match";
+    if (ratio <= MAX_ALLOCATION_SHARE) return "above";
+    return "over";
   }
 
   function isBeyondTotalElectricity(share) {
@@ -833,18 +954,14 @@
   }
 
   function buildPdfReportModel(scenario) {
-    const activeLanguageCode = activeLanguage();
-    const text = activeLanguageCode === "ja" ? copy.en : activeCopy();
-    const pdfLanguage = activeLanguageCode === "ja" ? "en" : activeLanguageCode;
-    const pdfCountryName = activeLanguageCode === "ja"
-      ? state.selectedCountry.name
-      : countryDisplayName(state.selectedCountry);
-    const pdfCountrySentenceName = activeLanguageCode === "ja"
-      ? state.selectedCountry.sentence_name || state.selectedCountry.name
-      : countrySentenceName(state.selectedCountry);
+    const pdfLanguage = activeLanguage();
+    const text = activeCopy();
+    const pdfCountryName = countryDisplayName(state.selectedCountry);
+    const pdfCountrySentenceName = countrySentenceName(state.selectedCountry);
     const generatedAt = new Date().toISOString();
     const profileCount = scenarioProfileCount(scenario);
     const beyondTotal = isBeyondTotalElectricity(state.electricityAllocationShare);
+    const sourceStatus = sourceStatusLabel(state.selectedCountry, text);
     const metrics = [
       { label: text.country, value: pdfCountryName },
       { label: text.equivalentProfiles, value: `${formatInteger(profileCount)} ${text.profiles}`, primary: true },
@@ -864,17 +981,18 @@
         value: formatValueWithUnit(scenario.worker.mwhYear, 4, "unitMwhPerYear", text),
       },
       { label: text.calculationBasis, value: calculationBasisText(scenario, text) },
-      { label: text.dataStatus, value: state.selectedCountry.source_status },
+      { label: text.dataStatus, value: sourceStatus, note: dataModeLabel(text) },
     ];
     const comparisons = reportComparisonRows(scenario, text).map(([label, value, assumption]) => ({ label, value, assumption }));
     const evidenceRows = sourceEvidenceRows(text).map(([label, value, href]) => ({ label, value, href }));
-    const sourceStatus = `${state.selectedCountry.source_status} · ${state.selectedCountry.promotion_status || ""}`;
+    const evidenceStatus = sourceStatusEvidence(state.selectedCountry, text);
     return {
       filename: `ai-labour-power-budget-${state.selectedCountry.code}-${generatedAt.slice(0, 10)}.pdf`,
       documentTitle: `AI Labour Power Budget - ${text.scenarioReport}`,
       author: "Hedegreen Research",
       subject: text.energyBoundary,
       locale: pdfLanguage,
+      fontFamily: pdfLanguage === "ja" ? "NotoSansCJKJP" : "Roboto",
       kicker: "Hedegreen Research · AI Labour Power Budget",
       title: text.scenarioReport,
       lead: scenarioCoreSentence(scenario, profileCount, text, pdfCountrySentenceName),
@@ -894,7 +1012,7 @@
       generatedLabel: text.generatedLabel,
       generatedAt,
       statusLabel: text.sourceStatus,
-      status: sourceStatus,
+      status: evidenceStatus,
       footer: text.publicReviewPdfBoundary,
     };
   }
@@ -907,6 +1025,7 @@
       console.error("AI Labour Power Budget PDF runtime is unavailable.");
       return;
     }
+    window.AILabourPowerBudgetPdfFonts?.register?.(window.pdfMake);
 
     button.disabled = true;
     button.setAttribute("aria-busy", "true");
@@ -1103,8 +1222,7 @@
       if (profile.id === "always_on_24_7") return "24/7";
     }
     if (controlName === "overhead") {
-      if (profile.id === "raw_compute") return "RAW";
-      return profile.label.toUpperCase();
+      return localizeProfile(profile).label;
     }
     return profile.label;
   }

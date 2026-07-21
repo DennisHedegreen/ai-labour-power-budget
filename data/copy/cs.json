@@ -79,10 +79,10 @@
   "fullOutputAssumption": "referenční předpoklad: energetický ekvivalent při nepřetržitém jmenovitém výkonu 3 MW; nejde o realistický počet turbín",
   "offshoreAssumption": "referenční předpoklad: kapacitní faktor 45 %",
   "householdAssumption": "referenční předpoklad: 3 500 kWh/rok",
-  "batteryAssumption": "referenční předpoklad: bateriové úložiště 100 MWh",
+  "batteryAssumption": "referenční předpoklad: roční energetický průtok dělený 100 MWh; ne počet instalovaných bateriových systémů",
   "nuclearAssumption": "referenční předpoklad: reaktor 1 GW s kapacitním faktorem 90 %",
   "hydroAssumption": "referenční předpoklad: vodní elektrárna 500 MW s kapacitním faktorem 45 %",
-  "batteryPacks": "Bateriová úložiště 100 MWh",
+  "batteryPacks": "Ekvivalenty plného cyklu 100 MWh",
   "nuclearReactors": "Ekvivalent jaderného reaktoru 1 GW",
   "hydroPlants": "Ekvivalent vodní elektrárny 500 MW",
   "wind3": "Ekvivalenty nepřetržitého jmenovitého výkonu 3 MW",
@@ -175,5 +175,10 @@
     "hundred_percent_thought_experiment": {
       "label": "100% myšlenkový experiment"
     }
-  }
+  },
+  "guide": "Průvodce",
+  "close": "Zavřít",
+  "guideTitle": "Co nastavení znamenají",
+  "targetMatch": "Shoda s cílem",
+  "targetMatchSentenceTemplate": "Kapacita profilů je {ratio} vybraného cíle."
 }

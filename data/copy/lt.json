@@ -79,13 +79,13 @@
   "fullOutputAssumption": "atskaitos prielaida: energijos ekvivalentas esant nuolatinei 3 MW vardinei galiai; tai nėra realistiškas turbinų skaičius",
   "offshoreAssumption": "atskaitos prielaida: 45 % galios koeficientas",
   "householdAssumption": "atskaitos prielaida: 3 500 kWh/metus",
-  "batteryAssumption": "atskaitos prielaida: 100 MWh baterijų paketas",
+  "batteryAssumption": "atskaitos prielaida: metinis energijos pralaidumas padalytas iš 100 MWh; ne įrengtų baterijų sistemų skaičius",
   "nuclearAssumption": "atskaitos prielaida: 1 GW reaktorius, kurio galios koeficientas 90 %",
   "hydroAssumption": "atskaitos prielaida: 500 MW hidroelektrinė, kurios galios koeficientas 45 %",
   "wind3": "Nuolatinės 3 MW vardinės galios ekvivalentai",
   "wind8": "8 MW jūrinės vėjo turbinos",
   "households": "Namų ūkio metų ekvivalentas",
-  "batteryPacks": "100 MWh baterijų paketai",
+  "batteryPacks": "100 MWh pilno ciklo ekvivalentai",
   "nuclearReactors": "1 GW branduolinio reaktoriaus ekvivalentas",
   "hydroPlants": "500 MW hidroelektrinės ekvivalentas",
   "truthBoundary": "Interpretavimo riba",
@@ -175,5 +175,10 @@
     "hundred_percent_thought_experiment": {
       "label": "100 % minties eksperimentas"
     }
-  }
+  },
+  "guide": "Vadovas",
+  "close": "Uždaryti",
+  "guideTitle": "Ką reiškia nustatymai",
+  "targetMatch": "Tikslo atitikimas",
+  "targetMatchSentenceTemplate": "Profilių pajėgumas yra {ratio} pasirinkto tikslo."
 }

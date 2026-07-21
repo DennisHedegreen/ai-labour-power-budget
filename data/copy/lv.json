@@ -79,13 +79,13 @@
   "fullOutputAssumption": "atsauces pieņēmums: enerģijas ekvivalents pie nepārtrauktas 3 MW nominālās jaudas; tas nav reālistisks turbīnu skaits",
   "offshoreAssumption": "atsauces pieņēmums: 45 % jaudas koeficients",
   "householdAssumption": "atsauces pieņēmums: 3 500 kWh/gadā",
-  "batteryAssumption": "atsauces pieņēmums: 100 MWh akumulatoru bloks",
+  "batteryAssumption": "atsauces pieņēmums: gada enerģijas caurplūde dalīta ar 100 MWh; nevis uzstādītu bateriju sistēmu skaits",
   "nuclearAssumption": "atsauces pieņēmums: 1 GW reaktors ar 90 % jaudas koeficientu",
   "hydroAssumption": "atsauces pieņēmums: 500 MW hidroelektrostacija ar 45 % jaudas koeficientu",
   "wind3": "Nepārtrauktas 3 MW nominālās jaudas ekvivalenti",
   "wind8": "8 MW jūras vēja turbīnas",
   "households": "Mājsaimniecības gada ekvivalents",
-  "batteryPacks": "100 MWh akumulatoru bloki",
+  "batteryPacks": "100 MWh pilna cikla ekvivalenti",
   "nuclearReactors": "1 GW kodolreaktora ekvivalents",
   "hydroPlants": "500 MW hidroelektrostacijas ekvivalents",
   "truthBoundary": "Interpretācijas robeža",
@@ -175,5 +175,10 @@
     "hundred_percent_thought_experiment": {
       "label": "100 % domu eksperiments"
     }
-  }
+  },
+  "guide": "Ceļvedis",
+  "close": "Aizvērt",
+  "guideTitle": "Ko nozīmē iestatījumi",
+  "targetMatch": "Mērķa atbilstība",
+  "targetMatchSentenceTemplate": "Profilu kapacitāte ir {ratio} no izvēlētā mērķa."
 }

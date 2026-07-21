@@ -79,13 +79,13 @@
   "fullOutputAssumption": "vertailuoletus: energiaekvivalentti jatkuvalla 3 MW:n nimellisteholla; ei realistinen turbiinimäärä",
   "offshoreAssumption": "vertailuoletus: 45 %:n kapasiteettikerroin",
   "householdAssumption": "vertailuoletus: 3 500 kWh/vuosi",
-  "batteryAssumption": "vertailuoletus: 100 MWh:n akkupaketti",
+  "batteryAssumption": "viiteoletus: vuotuinen energian läpivirtaus jaettuna 100 MWh:lla; ei asennettujen akkujärjestelmien määrä",
   "nuclearAssumption": "vertailuoletus: 1 GW:n reaktori 90 %:n kapasiteettikertoimella",
   "hydroAssumption": "vertailuoletus: 500 MW:n vesivoimalaitos 45 %:n kapasiteettikertoimella",
   "wind3": "Jatkuvan 3 MW:n nimellistehon ekvivalentit",
   "wind8": "8 MW:n merituulivoimalat",
   "households": "Kotitalousvuosiekvivalentti",
-  "batteryPacks": "100 MWh:n akkupaketit",
+  "batteryPacks": "100 MWh:n täyden syklin vastineet",
   "nuclearReactors": "1 GW:n ydinreaktoriekvivalentti",
   "hydroPlants": "500 MW:n vesivoimalaitosekvivalentti",
   "truthBoundary": "Tulkintaraja",
@@ -175,5 +175,10 @@
     "hundred_percent_thought_experiment": {
       "label": "100 %:n ajatuskoe"
     }
-  }
+  },
+  "guide": "Opas",
+  "close": "Sulje",
+  "guideTitle": "Mitä asetukset tarkoittavat",
+  "targetMatch": "Tavoitevastaavuus",
+  "targetMatchSentenceTemplate": "Profiilikapasiteetti on {ratio} valitusta tavoitteesta."
 }

@@ -79,13 +79,13 @@
   "fullOutputAssumption": "referenčna predpostavka: energijski ekvivalent pri neprekinjeni nazivni moči 3 MW; ne predstavlja realnega števila turbin",
   "offshoreAssumption": "referenčna predpostavka: faktor zmogljivosti 45 %",
   "householdAssumption": "referenčna predpostavka: 3.500 kWh/leto",
-  "batteryAssumption": "referenčna predpostavka: baterijski sklop 100 MWh",
+  "batteryAssumption": "referenčna predpostavka: letni energijski pretok deljen s 100 MWh; ne število nameščenih baterijskih sistemov",
   "nuclearAssumption": "referenčna predpostavka: reaktor 1 GW pri 90-odstotnem faktorju zmogljivosti",
   "hydroAssumption": "referenčna predpostavka: hidroelektrarna 500 MW pri 45-odstotnem faktorju zmogljivosti",
   "wind3": "Ekvivalenti pri neprekinjeni nazivni moči 3 MW",
   "wind8": "morske vetrne turbine z močjo 8 MW",
   "households": "Ekvivalent gospodinjstva za eno leto",
-  "batteryPacks": "Baterijski sklopi 100 MWh",
+  "batteryPacks": "Ekvivalenti polnega cikla 100 MWh",
   "nuclearReactors": "Ekvivalent jedrskega reaktorja 1 GW",
   "hydroPlants": "Ekvivalent hidroelektrarne 500 MW",
   "truthBoundary": "Meja razlage",
@@ -175,5 +175,10 @@
     "hundred_percent_thought_experiment": {
       "label": "100 % miselni poskus"
     }
-  }
+  },
+  "guide": "Vodnik",
+  "close": "Zapri",
+  "guideTitle": "Kaj pomenijo nastavitve",
+  "targetMatch": "Ujemanje cilja",
+  "targetMatchSentenceTemplate": "Zmogljivost profilov je {ratio} izbranega cilja."
 }

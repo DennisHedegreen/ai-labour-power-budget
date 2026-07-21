@@ -79,10 +79,10 @@
   "fullOutputAssumption": "referenciafeltevés: energiaegyenérték folyamatos 3 MW névleges teljesítménynél; nem valósághű turbinaszám",
   "offshoreAssumption": "referenciafeltevés: 45%-os kapacitástényező",
   "householdAssumption": "referenciafeltevés: 3 500 kWh/év",
-  "batteryAssumption": "referenciafeltevés: 100 MWh-s akkumulátorcsomag",
+  "batteryAssumption": "referenciafeltételezés: éves energiaátáramlás osztva 100 MWh-val; nem telepített akkumulátorrendszerek száma",
   "nuclearAssumption": "referenciafeltevés: 1 GW-os reaktor 90%-os kapacitástényezővel",
   "hydroAssumption": "referenciafeltevés: 500 MW-os vízerőmű 45%-os kapacitástényezővel",
-  "batteryPacks": "100 MWh-s akkumulátorcsomagok",
+  "batteryPacks": "100 MWh teljes ciklusú egyenértékek",
   "nuclearReactors": "1 GW-os atomreaktor-egyenérték",
   "hydroPlants": "500 MW-os vízerőmű-egyenérték",
   "wind3": "Folyamatos 3 MW névleges teljesítmény egyenértékei",
@@ -175,5 +175,10 @@
     "hundred_percent_thought_experiment": {
       "label": "100%-os gondolatkísérlet"
     }
-  }
+  },
+  "guide": "Útmutató",
+  "close": "Bezárás",
+  "guideTitle": "Mit jelentenek a beállítások",
+  "targetMatch": "Célegyezés",
+  "targetMatchSentenceTemplate": "A profilkapacitás a kiválasztott cél {ratio}-a."
 }

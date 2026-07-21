@@ -79,10 +79,10 @@
   "fullOutputAssumption": "supuesto de referencia: equivalente energético con una potencia nominal continua de 3 MW; no es un número realista de aerogeneradores",
   "offshoreAssumption": "supuesto de referencia: factor de capacidad del 45 %",
   "householdAssumption": "supuesto de referencia: 3.500 kWh/año",
-  "batteryAssumption": "supuesto de referencia: paquete de baterías de 100 MWh",
+  "batteryAssumption": "supuesto de referencia: energía anual procesada dividida por 100 MWh; no es un recuento de sistemas de baterías instalados",
   "nuclearAssumption": "supuesto de referencia: reactor de 1 GW con un factor de capacidad del 90 %",
   "hydroAssumption": "supuesto de referencia: central hidroeléctrica de 500 MW con un factor de capacidad del 45 %",
-  "batteryPacks": "Paquetes de baterías de 100 MWh",
+  "batteryPacks": "Equivalentes de ciclo completo de 100 MWh",
   "nuclearReactors": "Equivalente a un reactor nuclear de 1 GW",
   "hydroPlants": "Equivalente a una central hidroeléctrica de 500 MW",
   "wind3": "Equivalentes a una potencia nominal continua de 3 MW",
@@ -175,5 +175,10 @@
     "hundred_percent_thought_experiment": {
       "label": "Experimento mental del 100 %"
     }
-  }
+  },
+  "guide": "Guía",
+  "close": "Cerrar",
+  "guideTitle": "Qué significan los ajustes",
+  "targetMatch": "Coincidencia objetivo",
+  "targetMatchSentenceTemplate": "La capacidad de perfiles es {ratio} del objetivo seleccionado."
 }

@@ -32,26 +32,26 @@ function assertDeclarations(cssText, selector, declarations) {
 
 assertDeclarations(baseCss, ".driver-value", [
   /font-size:\s*clamp\(/,
-  /white-space:\s*nowrap/,
-  /overflow-wrap:\s*normal/,
+  /white-space:\s*normal/,
+  /overflow-wrap:\s*anywhere/,
 ]);
 assertDeclarations(baseCss, ".equation-readout strong", [
   /font-size:\s*clamp\(/,
-  /white-space:\s*nowrap/,
-  /overflow-wrap:\s*normal/,
+  /white-space:\s*normal/,
+  /overflow-wrap:\s*anywhere/,
 ]);
 assertDeclarations(baseCss, "#equation-profiles", [
   /font-size:\s*clamp\(/,
 ]);
 assertDeclarations(baseCss, ".readout-item.is-numeric strong", [
   /font-size:\s*clamp\(/,
-  /white-space:\s*nowrap/,
-  /overflow-wrap:\s*normal/,
+  /white-space:\s*normal/,
+  /overflow-wrap:\s*anywhere/,
 ]);
 assertDeclarations(baseCss, ".metric.is-primary strong", [
   /font-size:\s*clamp\(/,
-  /white-space:\s*nowrap/,
-  /overflow-wrap:\s*normal/,
+  /white-space:\s*normal/,
+  /overflow-wrap:\s*anywhere/,
 ]);
 
 assertDeclarations(tabletCss, ".machine-panel-side", [

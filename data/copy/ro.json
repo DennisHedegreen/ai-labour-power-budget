@@ -79,10 +79,10 @@
   "fullOutputAssumption": "ipoteză de referință: echivalent energetic la putere nominală continuă de 3 MW; nu reprezintă un număr realist de turbine",
   "offshoreAssumption": "ipoteză de referință: factor de capacitate de 45 %",
   "householdAssumption": "ipoteză de referință: 3.500 kWh/an",
-  "batteryAssumption": "ipoteză de referință: pachet de baterii de 100 MWh",
+  "batteryAssumption": "ipoteză de referință: flux energetic anual împărțit la 100 MWh; nu număr de sisteme de baterii instalate",
   "nuclearAssumption": "ipoteză de referință: reactor de 1 GW cu factor de capacitate de 90%",
   "hydroAssumption": "ipoteză de referință: hidrocentrală de 500 MW cu factor de capacitate de 45%",
-  "batteryPacks": "Pachete de baterii de 100 MWh",
+  "batteryPacks": "Echivalente de ciclu complet de 100 MWh",
   "nuclearReactors": "Echivalentul unui reactor nuclear de 1 GW",
   "hydroPlants": "Echivalentul unei hidrocentrale de 500 MW",
   "wind3": "Echivalente la putere nominală continuă de 3 MW",
@@ -175,5 +175,10 @@
     "hundred_percent_thought_experiment": {
       "label": "Experiment mental la 100 %"
     }
-  }
+  },
+  "guide": "Ghid",
+  "close": "Închide",
+  "guideTitle": "Ce înseamnă setările",
+  "targetMatch": "Potrivire țintă",
+  "targetMatchSentenceTemplate": "Capacitatea profilurilor este {ratio} din ținta selectată."
 }

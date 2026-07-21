@@ -79,10 +79,10 @@
   "fullOutputAssumption": "Referenzannahme: Energieäquivalent bei kontinuierlicher 3-MW-Nennleistung; keine realistische Anzahl von Windenergieanlagen",
   "offshoreAssumption": "Referenzannahme: Kapazitätsfaktor von 45 %",
   "householdAssumption": "Referenzannahme: 3.500 kWh/Jahr",
-  "batteryAssumption": "Referenzannahme: 100-MWh-Batteriespeicher",
+  "batteryAssumption": "Referenzannahme: jährlicher Energiedurchsatz geteilt durch 100 MWh; keine Anzahl installierter Batteriesysteme",
   "nuclearAssumption": "Referenzannahme: 1-GW-Reaktor bei 90 % Kapazitätsfaktor",
   "hydroAssumption": "Referenzannahme: 500-MW-Wasserkraftwerk bei 45 % Kapazitätsfaktor",
-  "batteryPacks": "100-MWh-Batteriespeicher",
+  "batteryPacks": "100-MWh-Vollzyklus-Äquivalente",
   "nuclearReactors": "Äquivalent eines 1-GW-Kernreaktors",
   "hydroPlants": "Äquivalent eines 500-MW-Wasserkraftwerks",
   "wind3": "Äquivalente bei kontinuierlicher 3-MW-Nennleistung",
@@ -175,5 +175,10 @@
     "hundred_percent_thought_experiment": {
       "label": "100 % Gedankenexperiment"
     }
-  }
+  },
+  "guide": "Anleitung",
+  "close": "Schließen",
+  "guideTitle": "Was die Einstellungen bedeuten",
+  "targetMatch": "Zielabgleich",
+  "targetMatchSentenceTemplate": "Die Profilkapazität beträgt {ratio} des gewählten Ziels."
 }
