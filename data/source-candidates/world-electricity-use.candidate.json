@@ -5,7 +5,7 @@
   "updated_at": "2026-07-21",
   "definition": "annual total final consumption of electricity",
   "unit": "TWh/year",
-  "source_method_note": "UNSD Energy Statistics Yearbook 2023, Table 34, Total final consumption (TFC), Electricity. World row: 25,539,798 GWh. United Kingdom row: 269,086 GWh. Australia row: 224,377 GWh. Canada row: 529,902 GWh. Official GWh values are divided by 1,000 to obtain TWh/year.",
+  "source_method_note": "UNSD Energy Statistics Yearbook 2023, Table 34, Total final consumption (TFC), Electricity. World row: 25,539,798 GWh. United Kingdom row: 269,086 GWh. Australia row: 224,377 GWh. Canada row: 529,902 GWh. Japan row: 879,200 GWh. Official GWh values are divided by 1,000 to obtain TWh/year.",
   "records": [
     {
       "code": "WLD",
@@ -121,6 +121,34 @@
         "source_candidate_not_promoted"
       ],
       "notes": "Official UNSD Yearbook table value checked for the Canada row. This is a selected non-EU country annual final-electricity denominator within World mode for public review, not spare grid capacity, installed capacity, or promoted runtime data."
+    },
+    {
+      "code": "JP",
+      "name": "Japan",
+      "local_name": "日本",
+      "local_language": "ja",
+      "local_language_label": "Japanese",
+      "jurisdiction_type": "country",
+      "parent": null,
+      "population": null,
+      "annual_electricity_twh": 879.2,
+      "electricity_per_capita_kwh_year": null,
+      "source_name": "United Nations Statistics Division (UNSD)",
+      "source_dataset": "2023 Energy Statistics Yearbook",
+      "source_series": "Table 34: Total final consumption (TFC) — Electricity — Japan",
+      "source_url": "https://unstats.un.org/unsd/energystats/pubs/yearbook/2023/t34.pdf",
+      "source_year": "2023",
+      "source_retrieved_at": "2026-07-21",
+      "source_status": "source_candidate",
+      "definition": "annual total final consumption of electricity",
+      "unit_original": "gigawatt-hour",
+      "conversion_note": "Official UNSD Table 34 value of 879,200 GWh divided by 1,000 to obtain 879.200 TWh/year.",
+      "review_flags": [
+        "unsd_yearbook_table_value_checked",
+        "selected_non_eu_country_denominator",
+        "source_candidate_not_promoted"
+      ],
+      "notes": "Official UNSD Yearbook table value checked for the Japan row. This is a selected non-EU country annual final-electricity denominator within World mode for public review, not spare grid capacity, installed capacity, or promoted runtime data."
     }
   ],
   "metric_scope": "UNSD annual total final consumption (TFC) of electricity for the World and selected non-EU country denominators",
@@ -156,6 +184,12 @@
         "row": "Canada",
         "official_gwh": 529902,
         "candidate_twh": 529.902
+      },
+      {
+        "code": "JP",
+        "row": "Japan",
+        "official_gwh": 879200,
+        "candidate_twh": 879.2
       }
     ],
     "product": "Electricity",

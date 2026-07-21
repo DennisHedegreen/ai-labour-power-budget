@@ -7,6 +7,13 @@
     "source": true
   },
   {
+    "code": "ja",
+    "label": "日本語",
+    "locale": "ja-JP",
+    "file": "ja.json",
+    "source": false
+  },
+  {
     "code": "da",
     "label": "Dansk",
     "locale": "da-DK",

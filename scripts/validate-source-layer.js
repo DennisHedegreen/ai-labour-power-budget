@@ -149,13 +149,14 @@ assert(
 
 assertDatasetShape(world, {
   id: "world-electricity-use",
-  records: 4,
-  requiredCodes: ["WLD", "UK", "AU", "CA"]
+  records: 5,
+  requiredCodes: ["WLD", "UK", "AU", "CA", "JP"]
 });
 const worldRecord = world.records.find((record) => record.code === "WLD");
 const ukRecord = world.records.find((record) => record.code === "UK");
 const australiaRecord = world.records.find((record) => record.code === "AU");
 const canadaRecord = world.records.find((record) => record.code === "CA");
+const japanRecord = world.records.find((record) => record.code === "JP");
 assert.strictEqual(worldRecord.annual_electricity_twh, 25539.798);
 assert.strictEqual(worldRecord.source_year, "2023");
 assert.strictEqual(worldRecord.source_retrieved_at, "2026-07-13");
@@ -219,6 +220,25 @@ assert(
 assert.strictEqual(
   gate.world.checked_records.find((record) => record.code === "CA").official_gwh / 1000,
   canadaRecord.annual_electricity_twh
+);
+assert.strictEqual(japanRecord.annual_electricity_twh, 879.2);
+assert.strictEqual(japanRecord.source_year, "2023");
+assert.strictEqual(japanRecord.source_retrieved_at, "2026-07-21");
+assert.strictEqual(japanRecord.jurisdiction_type, "country");
+assert.strictEqual(japanRecord.local_name, "日本");
+assert.strictEqual(japanRecord.local_language, "ja");
+assert.strictEqual(japanRecord.source_url, "https://unstats.un.org/unsd/energystats/pubs/yearbook/2023/t34.pdf");
+assert(
+  japanRecord.review_flags.includes("selected_non_eu_country_denominator"),
+  "Japan record must be labelled as a selected non-EU country denominator"
+);
+assert(
+  japanRecord.review_flags.includes("source_candidate_not_promoted"),
+  "Japan record must stay candidate-not-promoted"
+);
+assert.strictEqual(
+  gate.world.checked_records.find((record) => record.code === "JP").official_gwh / 1000,
+  japanRecord.annual_electricity_twh
 );
 
 console.log("AI Labour Power Budget source layer validation passed");

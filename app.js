@@ -337,6 +337,12 @@
     if (allocationPanel) {
       const allocationLabels = allocationPanel.querySelectorAll(".custom-field span");
       if (allocationLabels[0]) allocationLabels[0].textContent = text.compareTargetProfiles;
+      const equationProfileLabel = allocationPanel.querySelector(".equation-readout div:last-child span");
+      if (equationProfileLabel) equationProfileLabel.textContent = text.equivalentProfiles;
+      const profileDriverHeading = allocationPanel.querySelector(".balance-driver--profiles h3");
+      if (profileDriverHeading) profileDriverHeading.textContent = text.compareTargetProfiles;
+      const profileRangeLabel = allocationPanel.querySelector(".balance-driver--profiles .vertical-range-field span");
+      if (profileRangeLabel) profileRangeLabel.textContent = text.profiles;
     }
     setText(".budget-preview .panel-label", text.preview);
     setText('[data-action="to-report"]', text.generateReport);
@@ -629,8 +635,7 @@
     ].join("");
   }
 
-  function sourceEvidenceRows() {
-    const text = activeCopy();
+  function sourceEvidenceRows(text = activeCopy()) {
     const country = state.selectedCountry;
     if (!country) return [];
     return [
@@ -658,8 +663,7 @@
     return `<p class="panel-label">${escapeHtml(text.sourceEvidence)}</p><dl>${rows}</dl>${candidateBoundary}`;
   }
 
-  function truthBoundaryText() {
-    const text = activeCopy();
+  function truthBoundaryText(text = activeCopy()) {
     const parts = [dataModeBoundary(text)];
     const jurisdictionBoundary = jurisdictionTruthBoundary(text);
     if (jurisdictionBoundary) {
@@ -829,12 +833,20 @@
   }
 
   function buildPdfReportModel(scenario) {
-    const text = activeCopy();
+    const activeLanguageCode = activeLanguage();
+    const text = activeLanguageCode === "ja" ? copy.en : activeCopy();
+    const pdfLanguage = activeLanguageCode === "ja" ? "en" : activeLanguageCode;
+    const pdfCountryName = activeLanguageCode === "ja"
+      ? state.selectedCountry.name
+      : countryDisplayName(state.selectedCountry);
+    const pdfCountrySentenceName = activeLanguageCode === "ja"
+      ? state.selectedCountry.sentence_name || state.selectedCountry.name
+      : countrySentenceName(state.selectedCountry);
     const generatedAt = new Date().toISOString();
     const profileCount = scenarioProfileCount(scenario);
     const beyondTotal = isBeyondTotalElectricity(state.electricityAllocationShare);
     const metrics = [
-      { label: text.country, value: countryDisplayName(state.selectedCountry) },
+      { label: text.country, value: pdfCountryName },
       { label: text.equivalentProfiles, value: `${formatInteger(profileCount)} ${text.profiles}`, primary: true },
       {
         label: beyondTotal ? text.requiredEnergyMultiple : text.electricityAllocation,
@@ -842,30 +854,30 @@
       },
       {
         label: beyondTotal ? text.requiredEnergy : text.allocatedElectricity,
-        value: formatValueWithUnit(scenario.allocatedElectricityTwhYear, 3, "unitTwhPerYear"),
+        value: formatValueWithUnit(scenario.allocatedElectricityTwhYear, 3, "unitTwhPerYear", text),
       },
       { label: text.wattProfile, value: `${formatNumber(state.wattsPerAiWorker, 0)} W` },
-      { label: text.runtime, value: runtimeLabel(state.runtimeHoursPerWeek) },
+      { label: text.runtime, value: runtimeLabel(state.runtimeHoursPerWeek, text) },
       { label: text.overhead, value: `${formatNumber(state.overheadFactor, 2)}x` },
       {
         label: text.oneProfileYearly,
-        value: formatValueWithUnit(scenario.worker.mwhYear, 4, "unitMwhPerYear"),
+        value: formatValueWithUnit(scenario.worker.mwhYear, 4, "unitMwhPerYear", text),
       },
-      { label: text.calculationBasis, value: calculationBasisText(scenario) },
+      { label: text.calculationBasis, value: calculationBasisText(scenario, text) },
       { label: text.dataStatus, value: state.selectedCountry.source_status },
     ];
-    const comparisons = reportComparisonRows(scenario).map(([label, value, assumption]) => ({ label, value, assumption }));
-    const evidenceRows = sourceEvidenceRows().map(([label, value, href]) => ({ label, value, href }));
+    const comparisons = reportComparisonRows(scenario, text).map(([label, value, assumption]) => ({ label, value, assumption }));
+    const evidenceRows = sourceEvidenceRows(text).map(([label, value, href]) => ({ label, value, href }));
     const sourceStatus = `${state.selectedCountry.source_status} · ${state.selectedCountry.promotion_status || ""}`;
     return {
       filename: `ai-labour-power-budget-${state.selectedCountry.code}-${generatedAt.slice(0, 10)}.pdf`,
       documentTitle: `AI Labour Power Budget - ${text.scenarioReport}`,
       author: "Hedegreen Research",
       subject: text.energyBoundary,
-      locale: activeLanguage(),
+      locale: pdfLanguage,
       kicker: "Hedegreen Research · AI Labour Power Budget",
       title: text.scenarioReport,
-      lead: scenarioCoreSentence(scenario, profileCount),
+      lead: scenarioCoreSentence(scenario, profileCount, text, pdfCountrySentenceName),
       energyBoundary: text.energyBoundary,
       metrics,
       comparisonsTitle: text.referenceComparisons,
@@ -877,7 +889,7 @@
       },
       truthBoundary: {
         title: text.truthBoundary,
-        text: truthBoundaryText(),
+        text: truthBoundaryText(text),
       },
       generatedLabel: text.generatedLabel,
       generatedAt,
@@ -911,8 +923,7 @@
     }
   }
 
-  function reportComparisonRows(scenario) {
-    const text = activeCopy();
+  function reportComparisonRows(scenario, text = activeCopy()) {
     const assumptions = data.comparisonAssumptions;
     const averageLoadGw = allocatedAverageLoadGw(scenario);
     return [
@@ -928,38 +939,38 @@
         text.householdAssumption,
       ],
       [
-        copyLabel("batteryPacks"),
+        copyLabel("batteryPacks", text),
         formatInteger(scenario.allocatedElectricityTwhYear * 1000000 / assumptions.battery_pack_mwh),
-        copyLabel("batteryAssumption"),
+        copyLabel("batteryAssumption", text),
       ],
       [
-        copyLabel("nuclearReactors"),
+        copyLabel("nuclearReactors", text),
         formatNumber(averageLoadGw * 1000 / (assumptions.nuclear_reactor_mw * assumptions.nuclear_capacity_factor), 2),
-        copyLabel("nuclearAssumption"),
+        copyLabel("nuclearAssumption", text),
       ],
       [
-        copyLabel("hydroPlants"),
+        copyLabel("hydroPlants", text),
         formatNumber(averageLoadGw * 1000 / (assumptions.hydro_plant_mw * assumptions.hydro_capacity_factor), 2),
-        copyLabel("hydroAssumption"),
+        copyLabel("hydroAssumption", text),
       ],
     ];
   }
 
-  function copyLabel(key) {
-    return activeCopy()[key] || copy.en[key] || key;
+  function copyLabel(key, text = activeCopy()) {
+    return text[key] || copy.en[key] || key;
   }
 
-  function formatValueWithUnit(value, fractionDigits, unitKey) {
-    return `${formatNumber(value, fractionDigits)} ${copyLabel(unitKey)}`;
+  function formatValueWithUnit(value, fractionDigits, unitKey, text = activeCopy()) {
+    return `${formatNumber(value, fractionDigits)} ${copyLabel(unitKey, text)}`;
   }
 
-  function runtimeLabel(hoursPerWeek) {
-    const value = formatValueWithUnit(hoursPerWeek, 0, "unitHoursPerWeek");
+  function runtimeLabel(hoursPerWeek, text = activeCopy()) {
+    const value = formatValueWithUnit(hoursPerWeek, 0, "unitHoursPerWeek", text);
     return hoursPerWeek === 168 ? `24/7 - ${value}` : value;
   }
 
-  function calculationBasisText(scenario) {
-    return formatTemplate(activeCopy().calculationBasisTemplate, {
+  function calculationBasisText(scenario, text = activeCopy()) {
+    return formatTemplate(text.calculationBasisTemplate, {
       watts: formatNumber(state.wattsPerAiWorker, 0),
       hoursPerWeek: formatNumber(state.runtimeHoursPerWeek, 0),
       weeksPerYear: formatNumber(calculator.WEEKS_PER_YEAR, 4),
@@ -968,24 +979,24 @@
     });
   }
 
-  function allocationSentenceTemplate() {
-    return activeCopy().allocationSentenceTemplate || copy.en.allocationSentenceTemplate;
+  function allocationSentenceTemplate(text = activeCopy()) {
+    return text.allocationSentenceTemplate || copy.en.allocationSentenceTemplate;
   }
 
-  function comparisonSentenceTemplate() {
-    return activeCopy().comparisonSentenceTemplate || copy.en.comparisonSentenceTemplate;
+  function comparisonSentenceTemplate(text = activeCopy()) {
+    return text.comparisonSentenceTemplate || copy.en.comparisonSentenceTemplate;
   }
 
-  function allocationLabelTemplate() {
-    return activeCopy().allocationLabelTemplate || copy.en.allocationLabelTemplate;
+  function allocationLabelTemplate(text = activeCopy()) {
+    return text.allocationLabelTemplate || copy.en.allocationLabelTemplate;
   }
 
-  function requiredEnergySentenceTemplate() {
-    return activeCopy().requiredEnergySentenceTemplate || copy.en.requiredEnergySentenceTemplate;
+  function requiredEnergySentenceTemplate(text = activeCopy()) {
+    return text.requiredEnergySentenceTemplate || copy.en.requiredEnergySentenceTemplate;
   }
 
-  function requiredEnergyLabelTemplate() {
-    return activeCopy().requiredEnergyLabelTemplate || copy.en.requiredEnergyLabelTemplate;
+  function requiredEnergyLabelTemplate(text = activeCopy()) {
+    return text.requiredEnergyLabelTemplate || copy.en.requiredEnergyLabelTemplate;
   }
 
   function denominatorText(text = activeCopy()) {
@@ -994,21 +1005,26 @@
     return (copyKey && (text[copyKey] || copy.en[copyKey])) || text.denominatorSelected || copy.en.denominatorSelected;
   }
 
-  function scenarioCoreSentence(scenario, profileCount = scenarioProfileCount(scenario)) {
+  function scenarioCoreSentence(
+    scenario,
+    profileCount = scenarioProfileCount(scenario),
+    text = activeCopy(),
+    countryName = countrySentenceName(state.selectedCountry)
+  ) {
     if (isBeyondTotalElectricity(state.electricityAllocationShare)) {
-      return formatTemplate(requiredEnergySentenceTemplate(), {
+      return formatTemplate(requiredEnergySentenceTemplate(text), {
         energyMultiple: formatEnergyMultipleValue(state.electricityAllocationShare),
-        countryName: countrySentenceName(state.selectedCountry),
+        countryName,
         twh: formatNumber(scenario.allocatedElectricityTwhYear, 3),
         profiles: formatInteger(profileCount),
-        denominator: denominatorText(),
+        denominator: denominatorText(text),
       });
     }
-    return formatTemplate(allocationSentenceTemplate(), {
+    return formatTemplate(allocationSentenceTemplate(text), {
       share: formatPercent(state.electricityAllocationShare),
-      countryName: countrySentenceName(state.selectedCountry),
+      countryName,
       profiles: formatInteger(profileCount),
-      denominator: denominatorText(),
+      denominator: denominatorText(text),
     });
   }
 

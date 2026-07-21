@@ -77,6 +77,7 @@ const directPdfLabels = {
   lt: "Atsisiųsti PDF",
   ga: "Íoslódáil PDF",
   mt: "Niżżel PDF",
+  ja: "PDFをダウンロード",
 };
 
 function placeholders(template) {
@@ -225,7 +226,7 @@ function structureSignature(value) {
   return { type: typeof value };
 }
 
-assert.equal(languages.length, 24, "all configured public-review languages must be checked");
+assert.equal(languages.length, 25, "all configured public-review languages must be checked");
 
 const englishCopy = JSON.parse(fs.readFileSync(path.join(copyRoot, "en.json"), "utf8"));
 const englishStringLeaves = stringLeaves(englishCopy);

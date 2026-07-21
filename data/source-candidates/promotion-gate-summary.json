@@ -28,9 +28,9 @@
   },
   "world": {
     "status": "source_value_check_passed_candidate_not_promoted",
-    "reason": "official UNSD 2023 Energy Statistics Yearbook Table 34 World, United Kingdom, Australia, and Canada TFC electricity values checked",
+    "reason": "official UNSD 2023 Energy Statistics Yearbook Table 34 World, United Kingdom, Australia, Canada, and Japan TFC electricity values checked",
     "direct_table_url": "https://unstats.un.org/unsd/energystats/pubs/yearbook/2023/t34.pdf",
-    "records_compared": 4,
+    "records_compared": 5,
     "missing": 0,
     "mismatches": 0,
     "official_gwh": 25539798,
@@ -59,6 +59,12 @@
         "row": "Canada",
         "official_gwh": 529902,
         "candidate_twh": 529.902
+      },
+      {
+        "code": "JP",
+        "row": "Japan",
+        "official_gwh": 879200,
+        "candidate_twh": 879.2
       }
     ],
     "metric_boundary": "UNSD total final consumption of electricity; annual energy denominator, not power or grid capacity. World is the global total; selected country rows are separate country denominators."

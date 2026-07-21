@@ -96,6 +96,8 @@ assert.match(app, /text\.referenceComparisons/);
 assert.match(app, /text\.generatedLabel/);
 assert.match(app, /text\.publicReviewPdfBoundary/);
 assert.match(app, /pdfReport\.downloadReport/);
+assert.match(app, /activeLanguageCode === "ja" \? copy\.en : activeCopy\(\)/);
+assert.match(app, /activeLanguageCode === "ja" \? "en" : activeLanguageCode/);
 assert.match(pdfReport, /application\/pdf/);
 assert.match(pdfReport, /createObjectURL/);
 assert.match(pdfReport, /revokeObjectURL/);
@@ -218,6 +220,7 @@ const worldRecord = worldDataset.records.find((record) => record.code === "WLD")
 const ukRecord = worldDataset.records.find((record) => record.code === "UK");
 const australiaRecord = worldDataset.records.find((record) => record.code === "AU");
 const canadaRecord = worldDataset.records.find((record) => record.code === "CA");
+const japanRecord = worldDataset.records.find((record) => record.code === "JP");
 assert.equal(worldRecord.code, "WLD");
 assert.equal(worldRecord.sentence_name, "the world");
 assert.equal(worldRecord.annual_electricity_twh, 25539.798);
@@ -261,5 +264,18 @@ assert.equal(
 );
 assert(canadaRecord.review_flags.includes("selected_non_eu_country_denominator"));
 assert(canadaRecord.review_flags.includes("source_candidate_not_promoted"));
+assert.equal(japanRecord.code, "JP");
+assert.equal(japanRecord.name, "Japan");
+assert.equal(japanRecord.local_name, "日本");
+assert.equal(japanRecord.local_language, "ja");
+assert.equal(japanRecord.annual_electricity_twh, 879.2);
+assert.equal(japanRecord.source_year, "2023");
+assert.equal(japanRecord.source_retrieved_at, "2026-07-21");
+assert.equal(
+  japanRecord.source_url,
+  "https://unstats.un.org/unsd/energystats/pubs/yearbook/2023/t34.pdf"
+);
+assert(japanRecord.review_flags.includes("selected_non_eu_country_denominator"));
+assert(japanRecord.review_flags.includes("source_candidate_not_promoted"));
 
 console.log("AI Labour Power Budget source/report contract tests passed");

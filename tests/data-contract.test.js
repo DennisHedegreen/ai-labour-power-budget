@@ -107,11 +107,12 @@ assert.match(worldDefinition.review_status, /candidate_not_promoted/);
 
 assert.strictEqual(worldCandidate.dataset_id, "world-electricity-use");
 assert.strictEqual(worldCandidate.status, "source_candidate");
-assert.strictEqual(worldCandidate.records.length, 4);
+assert.strictEqual(worldCandidate.records.length, 5);
 const worldRecord = worldCandidate.records.find((record) => record.code === "WLD");
 const ukRecord = worldCandidate.records.find((record) => record.code === "UK");
 const australiaRecord = worldCandidate.records.find((record) => record.code === "AU");
 const canadaRecord = worldCandidate.records.find((record) => record.code === "CA");
+const japanRecord = worldCandidate.records.find((record) => record.code === "JP");
 assert.strictEqual(worldRecord.code, "WLD");
 assert.strictEqual(worldRecord.sentence_name, "the world");
 assert.strictEqual(worldRecord.annual_electricity_twh, 25539.798);
@@ -166,7 +167,23 @@ assert.strictEqual(
 assert.strictEqual(canadaRecord.source_status, "source_candidate");
 assert(canadaRecord.review_flags.includes("selected_non_eu_country_denominator"));
 assert(canadaRecord.review_flags.includes("source_candidate_not_promoted"));
-assert.strictEqual(promotionGate.world.records_compared, 4);
+assert.strictEqual(japanRecord.code, "JP");
+assert.strictEqual(japanRecord.name, "Japan");
+assert.strictEqual(japanRecord.local_name, "日本");
+assert.strictEqual(japanRecord.local_language, "ja");
+assert.strictEqual(japanRecord.local_language_label, "Japanese");
+assert.strictEqual(japanRecord.jurisdiction_type, "country");
+assert.strictEqual(japanRecord.annual_electricity_twh, 879.2);
+assert.strictEqual(japanRecord.source_year, "2023");
+assert.strictEqual(japanRecord.source_retrieved_at, "2026-07-21");
+assert.strictEqual(
+  japanRecord.source_url,
+  "https://unstats.un.org/unsd/energystats/pubs/yearbook/2023/t34.pdf"
+);
+assert.strictEqual(japanRecord.source_status, "source_candidate");
+assert(japanRecord.review_flags.includes("selected_non_eu_country_denominator"));
+assert(japanRecord.review_flags.includes("source_candidate_not_promoted"));
+assert.strictEqual(promotionGate.world.records_compared, 5);
 assert.strictEqual(
   promotionGate.world.checked_records.find((record) => record.code === "UK").candidate_twh,
   269.086
@@ -178,6 +195,10 @@ assert.strictEqual(
 assert.strictEqual(
   promotionGate.world.checked_records.find((record) => record.code === "CA").candidate_twh,
   529.902
+);
+assert.strictEqual(
+  promotionGate.world.checked_records.find((record) => record.code === "JP").candidate_twh,
+  879.2
 );
 assert.strictEqual(promotionGate.live_import_authorized, false);
 
