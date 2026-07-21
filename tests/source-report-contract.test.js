@@ -217,6 +217,7 @@ const worldDataset = readJson("source-candidates/world-electricity-use.candidate
 const worldRecord = worldDataset.records.find((record) => record.code === "WLD");
 const ukRecord = worldDataset.records.find((record) => record.code === "UK");
 const australiaRecord = worldDataset.records.find((record) => record.code === "AU");
+const canadaRecord = worldDataset.records.find((record) => record.code === "CA");
 assert.equal(worldRecord.code, "WLD");
 assert.equal(worldRecord.sentence_name, "the world");
 assert.equal(worldRecord.annual_electricity_twh, 25539.798);
@@ -249,5 +250,16 @@ assert.equal(
 );
 assert(australiaRecord.review_flags.includes("selected_non_eu_country_denominator"));
 assert(australiaRecord.review_flags.includes("source_candidate_not_promoted"));
+assert.equal(canadaRecord.code, "CA");
+assert.equal(canadaRecord.sentence_name, "Canada");
+assert.equal(canadaRecord.annual_electricity_twh, 529.902);
+assert.equal(canadaRecord.source_year, "2023");
+assert.equal(canadaRecord.source_retrieved_at, "2026-07-21");
+assert.equal(
+  canadaRecord.source_url,
+  "https://unstats.un.org/unsd/energystats/pubs/yearbook/2023/t34.pdf"
+);
+assert(canadaRecord.review_flags.includes("selected_non_eu_country_denominator"));
+assert(canadaRecord.review_flags.includes("source_candidate_not_promoted"));
 
 console.log("AI Labour Power Budget source/report contract tests passed");
