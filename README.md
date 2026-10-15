@@ -7,6 +7,13 @@ Status: public-review prototype. EU, U.S., and World calculations run explicitly
 in `source_candidate_review` mode; those values are not promoted or verified
 runtime data. Demo placeholders remain separate.
 
+## Public Links
+
+- [TID instrument](https://hedegreenresearch.com/tid/ai-labour-power-budget/).
+- [GitHub Pages review demo](https://dennishedegreen.github.io/ai-labour-power-budget/).
+
+Both remain scenario/source-review surfaces with the limits stated above, not verified production-capacity estimates. This is a static web tool, not a Streamlit app.
+
 ## Why This Repository Is Public
 
 This repository is public for method and source review before the tool makes
